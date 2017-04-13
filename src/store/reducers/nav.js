@@ -17,10 +17,16 @@ import { AppNavigator } from '../../router'
 export default (state, action) => {
   switch (action.type) {
     case types.USER_LOGIN:
-      return AppNavigator.router.getStateForAction(NavigationActions.back(), state);
+      return AppNavigator.router.getStateForAction(NavigationActions.reset({
+        index: 0,
+        actions: [ NavigationActions.navigate({routeName: 'Home'}) ]
+      }), state)
     case types.USER_LOGOUT:
-      return AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'Login' }), state);
+      return AppNavigator.router.getStateForAction(NavigationActions.reset({
+        index: 0,
+        actions: [ NavigationActions.navigate({routeName: 'Login'}) ]
+      }), state)
     default:
-      return AppNavigator.router.getStateForAction(action, state);
+      return AppNavigator.router.getStateForAction(action, state)
   }
 }

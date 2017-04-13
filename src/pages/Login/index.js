@@ -13,6 +13,7 @@ import {
 
 import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 
 import { Visit, UserLogin } from '../../store/actions'
 
@@ -29,6 +30,7 @@ export default class Login extends Component {
       password: ''
     }
   }
+
   @autobind
   login () {
     this.props.dispatch(UserLogin(this.state))

@@ -20,7 +20,21 @@ export const UserLogin = opt => async dispatch => {
     if (res.status === 200) {
       const data = await res.json()
       dispatch({ type: types.USER_LOGIN, token: data.token })
-    } else throw {message: '用户名或密码错误'}
+    } else throw { message: '用户名或密码错误' }
+  } catch (err) {
+    console.log(err)
+    Alert.alert('', err.message)
+    dispatch({type: types.USER_LOGIN_ERROR, error: err})
+  }
+}
+
+export const GetUserInfo = async (dispatch, getState) => {
+  try {
+    const res = await api.getUserInfo(getState().auth.token)
+    if (res.status === 200) {
+      const data = await res.json()
+      dispatch({ type: types.GET_USER_INFO, userInfo: data })
+    } else throw { message: '状态码错误' }
   } catch (err) {
     console.log(err)
     Alert.alert('', err.message)

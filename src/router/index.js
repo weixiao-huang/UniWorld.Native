@@ -4,7 +4,7 @@
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { addNavigationHelpers, StackNavigator } from 'react-navigation'
+import { addNavigationHelpers, StackNavigator, NavigationActions } from 'react-navigation'
 
 import Login from '../pages/Login'
 import Home from '../pages/Home'
@@ -24,18 +24,33 @@ const AppRouteConfigs = {
   },
 }
 const stackNavConfigs = {
-  headerMode: 'screen',
+  headerMode: 'none',
   initialRouteName: 'Login'
 }
 
 export const AppNavigator = StackNavigator(AppRouteConfigs, stackNavConfigs)
 
-@connect(state => ({ nav: state.nav }))
+@connect(state => ({ nav: state.nav, auth: state.auth }), dispatch => ({dispatch}))
 export default class AppWithNavigationState extends Component {
   // static propTypes = {
   //   dispatch: PropTypes.func.isRequired,
   //   nav: PropTypes.object.isRequired
   // }
+
+  componentWillMount() {
+    const { auth: { isLoggedIn, token }, dispatch } = this.props
+    if (isLoggedIn && token) {
+      dispatch(NavigationActions.reset({
+        index: 0,
+        actions: [ NavigationActions.navigate({routeName: 'Home'}) ]
+      }))
+    } else {
+      dispatch(NavigationActions.reset({
+        index: 0,
+        actions: [ NavigationActions.navigate({routeName: 'Login'}) ]
+      }))
+    }
+  }
 
   render() {
     return (

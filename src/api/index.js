@@ -3,10 +3,10 @@
  */
 
 import { server } from '../common/constants'
+import { AsyncStorage } from 'react-native'
 
 export default {
   userLogin: data => {
-    console.log(JSON.stringify(data))
     return fetch(`${server}/token/`, {
       method: 'POST',
       headers: {
@@ -14,6 +14,15 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data)
+    })
+  },
+  getUserInfo: token => {
+    console.log()
+    return fetch(`${server}/profile/`, {
+      method: 'GET',
+      headers: {
+        Authorization: `token ${token}`
+      }
     })
   },
   getRoomList: () => {

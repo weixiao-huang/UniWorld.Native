@@ -4,12 +4,16 @@
 
 import React, { Component } from 'react';
 import { Image, Button, StyleSheet, View, Text } from 'react-native'
+import { connect } from 'react-redux'
 
 import styles from '../../../common/styles'
 import BackgroundImage from '../../../components/BackgroundImage'
 
+
+@connect(state => ({userInfo: state.user.userInfo}))
 export default class UserCover extends Component {
   render () {
+    const { username, signature, p_thumb_ups, h_thumb_ups, followers, follows, joined_count } = this.props.userInfo
     return (
       <BackgroundImage bgUrl={require('../../../assets/infoImage.jpg')}>
         <View style={[styles.flex1, coverStyles.container]}>
@@ -17,10 +21,22 @@ export default class UserCover extends Component {
           <View style={[styles.flex1, coverStyles.box]}>
             <View style={[styles.transparent, coverStyles.titleBox]}>
               <Image style={{width: 20, height: 20}} source={require('../../../assets/icon/female.png')} />
-              <Text style={[styles.transparent, {marginLeft: 10, color: 'white', fontSize: 20, fontWeight: 'bold'}]}>asd</Text>
+              <Text
+                style={[styles.transparent, {marginLeft: 10, color: 'white', fontSize: 20, fontWeight: 'bold'}]}
+              >
+                {username}
+              </Text>
             </View>
-            <Text style={[styles.transparent, {marginTop: 5, color: 'white'}]}>123</Text>
-            <Text style={[styles.transparent, coverStyles.tips, {color: '#d3d4f2'}]}>0 好友 | 6 参与 | 0 赞</Text>
+            <Text
+              style={[styles.transparent, {marginTop: 5, color: 'white'}]}
+            >
+              {signature}
+            </Text>
+            <Text
+              style={[styles.transparent, coverStyles.tips, {color: '#d3d4f2'}]}
+            >
+              {followers.length + follows.length} 好友 | {joined_count} 参与 | {p_thumb_ups + h_thumb_ups} 赞
+            </Text>
           </View>
         </View>
       </BackgroundImage>
