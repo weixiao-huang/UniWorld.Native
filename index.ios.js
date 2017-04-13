@@ -7,7 +7,7 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 
-import Home from './src/pages/Login'
+import Home from './src/pages/Home'
 
 export default class UniWorld extends Component {
   render() {

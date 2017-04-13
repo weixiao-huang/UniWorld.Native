@@ -8,7 +8,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native'
 
-export const styles = StyleSheet.create({
+export default StyleSheet.create({
   icon: {
     width: 26,
     height: 26,
