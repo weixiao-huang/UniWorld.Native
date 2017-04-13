@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { StyleSheet, TextInput, Image, View} from 'react-native'
 
 const inputHeight = 45
@@ -33,8 +33,10 @@ export default class Input extends Component {
     return (
       <View style={inputStyles.view}>
         <TextInput
-          placeholder={this.props.placeholder}
+          autoCorrect={false}
           style={inputStyles.input}
+          autoCapitalize='none'
+          {...this.props}
         />
         <Image
           source={this.props.icon}

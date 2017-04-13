@@ -7,11 +7,11 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 
-import Home from './src/pages/Home'
+import Root from './src'
 
 export default class UniWorld extends Component {
   render() {
-    return <Home/>
+    return <Root/>
   }
 }
 

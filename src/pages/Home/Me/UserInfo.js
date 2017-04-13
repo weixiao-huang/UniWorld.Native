@@ -4,10 +4,14 @@
 
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import styles from '../../../common/styles'
 
 import LoginButton from '../../../components/StyleButton'
 import LabelBox from './TextBox'
+import autobind from 'autobind-decorator'
+
+import { UserLogout } from '../../../store/actions'
 
 const infos = [
   [
@@ -26,12 +30,15 @@ const infos = [
   ]
 ]
 
+@connect(...[, dispatch => ({dispatch})])
 export default class UserInfo extends Component {
   edit () {
 
   }
-  logout () {
 
+  @autobind
+  logout () {
+    this.props.dispatch(UserLogout)
   }
   render () {
     return (

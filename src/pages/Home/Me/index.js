@@ -7,7 +7,6 @@ import { Image, Button, StyleSheet, View, Text } from 'react-native'
 import styles from '../../../common/styles'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 
-import BackgroundImage from '../../../components/BackgroundImage'
 import UserInfo from './UserInfo'
 import UserCover from './UserCover'
 

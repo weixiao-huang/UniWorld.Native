@@ -11,16 +11,35 @@ import {
   Text
 } from 'react-native'
 
+import autobind from 'autobind-decorator'
+import { connect } from 'react-redux'
+
+import { Visit, UserLogin } from '../../store/actions'
+
 import Input from './Input'
 import LoginButton from '../../components/StyleButton'
 import BackgroundImage from '../../components/BackgroundImage'
 
+@connect(...[, dispatch=>({dispatch})])
 export default class Login extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: '',
+      password: ''
+    }
+  }
+  @autobind
   login () {
+    this.props.dispatch(UserLogin(this.state))
   }
-  visit () {
 
+  @autobind
+  visit () {
+    this.props.dispatch(Visit)
   }
+
+  @autobind
   signup () {
 
   }
@@ -34,8 +53,17 @@ export default class Login extends Component {
               source={require('../../assets/Logo.png')}
               style={loginStyles.logo}
             />
-            <Input placeholder="手机号" icon={require('../../assets/UserIcon.png')} />
-            <Input placeholder="密码" icon={require('../../assets/PasswordIcon.png')} />
+            <Input
+              placeholder="手机号"
+              icon={require('../../assets/UserIcon.png')}
+              onChangeText={text => this.setState({username: text})}
+            />
+            <Input
+              placeholder="密码"
+              icon={require('../../assets/PasswordIcon.png')}
+              onChangeText={text => this.setState({password: text})}
+              secureTextEntry={true}
+            />
             <LoginButton
               title="登录"
               onPress={this.login}
