@@ -5,7 +5,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 
-import styles from '../../../common/styles'
+import styles from '../../../../common/styles'
 
 export  default class LabelItem extends Component {
   render () {

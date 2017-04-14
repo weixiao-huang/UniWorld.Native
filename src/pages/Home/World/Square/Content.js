@@ -7,9 +7,9 @@ import {
   View,
   Text,
 } from 'react-native'
-import styles from '../../../common/styles'
+import styles from '../../../../common/styles'
 
-import RoomItem from './RoomItem'
+import RoomItem from '../../../../components/RoomItem'
 
 const roomList = [
   {

@@ -8,12 +8,12 @@ import Swiper from 'react-native-swiper'
 
 const height = 150
 const covers = [
-  { src: require('../../../assets/poster/la.jpg') },
-  { src: require('../../../assets/poster/lb.jpg') },
-  { src: require('../../../assets/poster/lc.jpg') },
-  { src: require('../../../assets/poster/ld.jpg') },
-  { src: require('../../../assets/poster/le.jpg') },
-  { src: require('../../../assets/poster/lf.jpg') },
+  { src: require('../../../../assets/poster/la.jpg') },
+  { src: require('../../../../assets/poster/lb.jpg') },
+  { src: require('../../../../assets/poster/lc.jpg') },
+  { src: require('../../../../assets/poster/ld.jpg') },
+  { src: require('../../../../assets/poster/le.jpg') },
+  { src: require('../../../../assets/poster/lf.jpg') },
 ]
 
 export default class WorldSwiper extends Component {

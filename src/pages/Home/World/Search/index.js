@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity, Text } from 'react-native'
 
-import styles from '../../../common/styles'
+import styles from '../../../../common/styles'
 
 export default class Search extends Component {
   search () {
@@ -12,11 +12,11 @@ export default class Search extends Component {
   }
   render () {
     return (
-      <View style={[styles.flex1]}>
-        <View style={[styles.flexCenter, searchStyles.inputBox]}>
-          <TextInput style={[styles.flex1, searchStyles.input]} placeholder="Search"/>
+      <View style={[styles.flex1, localStyles.container]}>
+        <View style={[styles.flexCenter, localStyles.inputBox]}>
+          <TextInput style={[styles.flex1, localStyles.input]} placeholder="Search"/>
           <TouchableOpacity onPress={this.search}>
-            <Text style={searchStyles.button}>搜索</Text>
+            <Text style={localStyles.button}>搜索</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -24,7 +24,10 @@ export default class Search extends Component {
   }
 }
 
-const searchStyles = StyleSheet.create({
+const localStyles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white'
+  },
   inputBox: {
     padding: 5,
     flexDirection: 'row',

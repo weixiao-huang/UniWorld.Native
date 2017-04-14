@@ -3,12 +3,15 @@
  */
 
 import React, { Component } from 'react';
-import { Image, Button, StyleSheet, View, Text } from 'react-native'
+import { Image, View, StyleSheet } from 'react-native'
 import styles from '../../../common/styles'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 
-import UserInfo from './UserInfo'
 import UserCover from './UserCover'
+
+import UserInfo from './UserInfo/index'
+import Follow from './Follow/index'
+import Reputation from './Reputation/index'
 
 export default class NewRoom extends Component {
   static navigationOptions = {
@@ -27,13 +30,29 @@ export default class NewRoom extends Component {
     return (
       <View style={styles.flex1}>
         <UserCover/>
-        <ScrollTabView style={{flex: 2}}>
+        <ScrollTabView
+          style={{flex: 2}}
+          tabBarUnderlineStyle={[meStyles.tabBarUnderline]}
+          tabBarBackgroundColor="white"
+          tabBarTextStyle={[meStyles.tabBarText]}
+        >
           <UserInfo tabLabel="信息"/>
-          <UserInfo tabLabel="标签"/>
-          <UserInfo tabLabel="信誉"/>
+          <Follow tabLabel="关注"/>
+          <Reputation tabLabel="信誉"/>
         </ScrollTabView>
       </View>
    );
   }
 }
 
+const meStyles = StyleSheet.create({
+  tabBarUnderline: {
+    backgroundColor: 'black',
+    // backgroundColor: 'white',
+    // height: 2,
+    // borderTopColor: 'black',
+    // borderTopWidth: 2
+  },
+  tabBarText: {
+  }
+})

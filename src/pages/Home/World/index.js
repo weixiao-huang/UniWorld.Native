@@ -3,11 +3,11 @@
  */
 
 import React, { Component } from 'react';
-import { View, Image } from 'react-native'
+import { View, Image, StyleSheet } from 'react-native'
 
-import Search from './Search'
-import Square from './Square'
-import Recommend from './Recommend'
+import Search from './Search/index'
+import Square from './Square/index'
+import Recommend from './Recommend/index'
 
 import styles from '../../../common/styles'
 import ScrollTabView from 'react-native-scrollable-tab-view'
@@ -28,8 +28,13 @@ export default class World extends Component {
 
   render() {
     return (
-      <View style={[styles.flex1, {paddingTop: 20}]}>
-        <ScrollTabView style={{flex: 2}}>
+      <View style={[styles.flex1, localStyles.container]}>
+        <ScrollTabView
+          style={{flex: 2}}
+          // tabBarBackgroundColor="#ec5367"
+          // tabBarTextStyle={localStyles.tabBarText}
+          // tabBarUnderlineStyle={localStyles.tabBarUnderline}
+        >
           <Square tabLabel="广场"/>
           <Recommend tabLabel="推荐"/>
           <Search tabLabel="搜索"/>
@@ -39,3 +44,14 @@ export default class World extends Component {
   }
 }
 
+const localStyles = StyleSheet.create({
+  container: {
+    paddingTop: 20,
+  },
+  tabBarUnderline: {
+    backgroundColor: 'white'
+  },
+  tabBarText:{
+    color: 'white'
+  }
+})

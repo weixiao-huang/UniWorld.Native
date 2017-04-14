@@ -3,16 +3,15 @@
  */
 
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, ScrollView, Alert } from 'react-native'
 import { connect } from 'react-redux'
-import styles from '../../../common/styles'
+import styles from '../../../../common/styles'
 
-import LoginButton from '../../../components/StyleButton'
+import LoginButton from '../../../../components/StyleButton'
 import LabelBox from './TextBox'
 import autobind from 'autobind-decorator'
 
-import { UserLogout, GetUserInfo } from '../../../store/actions'
-
+import { UserLogout, GetUserInfo } from '../../../../store/actions'
 
 @connect(state=> ({userInfo: state.user.userInfo}), dispatch => ({dispatch}))
 export default class UserInfo extends Component {
@@ -29,7 +28,6 @@ export default class UserInfo extends Component {
   }
   render () {
     const { username, name, gender, university, department, year, signature } = this.props.userInfo
-
     const infos = [
       [
         { title: '手机', content: username },
@@ -47,7 +45,7 @@ export default class UserInfo extends Component {
       ]
     ]
     return (
-      <View style={[styles.flex1, userStyles.container]}>
+      <ScrollView style={[styles.flex1, userStyles.container]}>
         <View style={[styles.flex4]}>
           {infos.map((labels, index) => {
             return (
@@ -71,7 +69,7 @@ export default class UserInfo extends Component {
             color="black"
           />
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }

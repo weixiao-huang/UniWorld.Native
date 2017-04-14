@@ -4,7 +4,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native'
-import styles from '../../../common/styles'
+import styles from '../common/styles'
 
 export default class RoomItem extends Component {
   static propTypes = {
@@ -30,7 +30,7 @@ export default class RoomItem extends Component {
               <Text>{this.props.timeRange[0]} - {this.props.timeRange[1]}</Text>
               <Text style={[itemStyle.people]}>
                 <Text>
-                  <Image style={[itemStyle.icon]} source={require('../../../assets/icon/participants.png')}/>
+                  <Image style={[itemStyle.icon]} source={require('../assets/icon/participants.png')}/>
                 </Text>
                 <Text>1/20</Text>
               </Text>

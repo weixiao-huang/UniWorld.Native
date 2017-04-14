@@ -5,7 +5,7 @@
 import React, { Component, PropTypes } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 
-import styles from '../../../common/styles'
+import styles from '../../../../common/styles'
 
 import LabelItem from './TextItem'
 
