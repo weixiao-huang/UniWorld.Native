@@ -12,8 +12,11 @@ export default class RoomItem extends Component {
     title: PropTypes.string.isRequired,
     place: PropTypes.string.isRequired,
     timeRange: PropTypes.array.isRequired,
-    max_participants: PropTypes.number.isRequired,
     participant_count: PropTypes.number.isRequired
+  }
+
+  static defaultProps = {
+    max_participants: null
   }
 
   _transferTimeFormat(timeRange) {

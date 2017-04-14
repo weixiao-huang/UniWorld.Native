@@ -66,3 +66,17 @@ export const GetWorldList = async (dispatch, getState) => {
     Alert.alert('', err.message)
   }
 }
+
+export const GetInitialLabels = async (dispatch, getState) => {
+  try {
+    const token = getState().auth.token
+    const res = await api.getInitialLabels(token)
+    if (res.status === 200) {
+      const labels = await res.json()
+      dispatch({type: types.GET_INITIAL_LABELS, labels})
+    } else throw { message: 'Get initial labels Status Code Error!'}
+  } catch (err) {
+    console.log(err)
+    Alert.alert('', err.message)
+  }
+}
