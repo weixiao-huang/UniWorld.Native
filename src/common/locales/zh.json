@@ -16,7 +16,10 @@
   "World": {
     "label": "世界",
     "Square": {
-      "label": "广场"
+      "label": "广场",
+      "recommend": "强力推荐",
+      "latest": "当下",
+      "world": "世界"
     },
     "Recommend": {
       "label": "推荐"

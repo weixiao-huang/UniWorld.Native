@@ -5,6 +5,8 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
+import I18n from 'react-native-i18n'
+
 import styles from '../../../../common/styles'
 
 import RoomWrap from './RoomWrap'
@@ -21,8 +23,9 @@ export default class Content extends Component {
     console.log(this.props.recommend.hot)
     return (
       <View>
-        <RoomWrap title="强力推荐" roomList={this.props.recommend.hot}/>
-        <RoomWrap title="当下" roomList={this.props.recommend.hot}/>
+        <RoomWrap title={I18n.t('World.Square.recommend')} roomList={this.props.recommend.hot}/>
+        <RoomWrap title={I18n.t('World.Square.latest')} roomList={this.props.recommend.hot}/>
+        <RoomWrap title={I18n.t('World.Square.world')} roomList={this.props.recommend.hot}/>
       </View>
     )
   }
