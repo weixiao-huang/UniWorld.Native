@@ -11,7 +11,9 @@ export default class RoomItem extends Component {
     src: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     place: PropTypes.string.isRequired,
-    timeRange: PropTypes.array.isRequired
+    timeRange: PropTypes.array.isRequired,
+    max_participants: PropTypes.number.isRequired,
+    participant_count: PropTypes.number.isRequired
   }
 
   _transferTimeFormat(timeRange) {
@@ -61,7 +63,7 @@ export default class RoomItem extends Component {
               <View style={[localStyles.people]}>
                 <Text style={[{color: 'white'}]}>
                   <Image style={[localStyles.icon]} source={require('../assets/icon/participants.png')}/>
-                  <Text> 1/20</Text>
+                  <Text> {this.props.max_participants ? this.props.participant_count + '/' + this.props.max_participants : '不限'}</Text>
                 </Text>
               </View>
             </View>
@@ -116,7 +118,8 @@ const localStyles = StyleSheet.create({
     flexDirection: 'row',
     borderRadius: 5,
     paddingLeft: 5,
-    paddingRight: 5
+    paddingRight: 5,
+    // width: 80
   },
   footer: {
     marginTop: 3,

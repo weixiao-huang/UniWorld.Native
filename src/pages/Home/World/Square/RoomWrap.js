@@ -29,6 +29,8 @@ export default class Content extends Component {
                   title={item.title}
                   place={item.location_string}
                   timeRange={[item.date_time_start, item.date_time_end]}
+                  max_participants={item.max_participants}
+                  participant_count={item.participant_count}
                 />
               </View>
             )
