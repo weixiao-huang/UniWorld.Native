@@ -3,6 +3,7 @@
  */
 import React, { Component } from 'react';
 import { StyleSheet, TextInput, View, TouchableOpacity, Text } from 'react-native'
+import I18n from 'react-native-i18n'
 
 import styles from '../../../../common/styles'
 
@@ -16,7 +17,7 @@ export default class Search extends Component {
         <View style={[styles.flexCenter, localStyles.inputBox]}>
           <TextInput style={[styles.flex1, localStyles.input]} placeholder="Search"/>
           <TouchableOpacity onPress={this.search}>
-            <Text style={localStyles.button}>搜索</Text>
+            <Text style={localStyles.button}>{I18n.t('World.Search.button')}</Text>
           </TouchableOpacity>
         </View>
       </View>

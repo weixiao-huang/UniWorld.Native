@@ -4,6 +4,8 @@
 
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, View, Text } from 'react-native'
+import I18n from 'react-native-i18n'
+
 import styles from '../../../../common/styles'
 
 
@@ -16,7 +18,7 @@ export default class ThumbUps extends Component {
     return (
       <View style={[styles.fullFlexWidth, styles.flexCenter, thumbStyles.header]}>
         <View style={[thumbStyles.thumb_ups__title]}>
-          <Text style={[thumbStyles.thumb_ups__title__text]}>赞</Text>
+          <Text style={[thumbStyles.thumb_ups__title__text]}>{I18n.t('Me.credit.likes')}</Text>
         </View>
         <View style={[styles.flex1]}>
           <Text style={[thumbStyles.thumb_ups__content__text]}>{this.props.thumb_ups}</Text>

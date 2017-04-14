@@ -22,17 +22,25 @@ export default class RoomItem extends Component {
         <View style={[itemStyle.wrap]}>
           <View style={[styles.flex2, styles.fullFlexWidth, {alignItems: 'flex-start'}]}>
             <View style={[itemStyle.tag]}><Text style={{color: 'white'}}>HOT</Text></View>
-            <Text style={[itemStyle.title]}>{this.props.title}</Text>
+            <Text style={[itemStyle.title]}>
+              {this.props.title}
+            </Text>
           </View>
           <View style={[styles.flex1, {justifyContent: 'flex-end'}]}>
-            <Text>{this.props.place}</Text>
+            <Text>
+              {this.props.place}
+            </Text>
             <View style={[itemStyle.footer]}>
-              <Text>{this.props.timeRange[0]} - {this.props.timeRange[1]}</Text>
+              <Text>
+                {this.props.timeRange[0]} - {this.props.timeRange[1]}
+              </Text>
               <Text style={[itemStyle.people]}>
                 <Text>
                   <Image style={[itemStyle.icon]} source={require('../assets/icon/participants.png')}/>
                 </Text>
-                <Text>1/20</Text>
+                <Text>
+                  1/20
+                </Text>
               </Text>
             </View>
           </View>

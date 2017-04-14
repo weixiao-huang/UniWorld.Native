@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Text } from 'react-native'
 import { connect } from 'react-redux'
+import I18n from 'react-native-i18n'
 
 import styles from '../../../common/styles'
 import BackgroundImage from '../../../components/BackgroundImage'
@@ -36,7 +37,7 @@ export default class UserCover extends Component {
             <Text
               style={[styles.transparent, coverStyles.tips, {color: '#d3d4f2'}]}
             >
-              {followers.length + follows.length} 好友 | {joined_count} 参与 | {p_thumb_ups + h_thumb_ups} 赞
+              {followers.length + follows.length} {I18n.t('Me.cover.friends')} | {joined_count} {I18n.t('Me.cover.joined')} | {p_thumb_ups + h_thumb_ups} {I18n.t('Me.cover.thumb_ups')}
             </Text>
           </View>
         </View>

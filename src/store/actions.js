@@ -2,9 +2,11 @@
  * Created by huangwx on 13/04/2017.
  */
 
+import { Alert } from 'react-native'
+import I18n from 'react-native-i18n'
+
 import * as types from './types'
 import api from '../api'
-import { Alert } from 'react-native'
 
 export const Visit = dispatch => {
   dispatch({type: types.USER_LOGIN, token: null})
@@ -20,7 +22,7 @@ export const UserLogin = opt => async dispatch => {
     if (res.status === 200) {
       const data = await res.json()
       dispatch({ type: types.USER_LOGIN, token: data.token })
-    } else throw { message: '用户名或密码错误' }
+    } else throw { message: I18n.t('Actions.loginError') }
   } catch (err) {
     console.log(err)
     Alert.alert('', err.message)
@@ -34,7 +36,7 @@ export const GetUserInfo = async (dispatch, getState) => {
     if (res.status === 200) {
       const data = await res.json()
       dispatch({ type: types.GET_USER_INFO, userInfo: data })
-    } else throw { message: '状态码错误' }
+    } else throw { message: I18n.t('Actions.statusError') }
   } catch (err) {
     console.log(err)
     Alert.alert('', err.message)

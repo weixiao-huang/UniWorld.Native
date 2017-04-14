@@ -4,6 +4,8 @@
 
 import React, { Component } from 'react';
 import { Image, View, StyleSheet } from 'react-native'
+import I18n from 'react-native-i18n'
+
 import styles from '../../../common/styles'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 
@@ -12,18 +14,6 @@ import Mine from './Mine'
 import JoinIn from './JoinIn'
 
 export default class RoomList extends React.Component {
-  static navigationOptions = {
-    tabBar: {
-      label: '列表',
-      icon: ({ tintColor }) => (
-        <Image
-          source={require('../../../assets/icon/myRoomR.png')}
-          style={[styles.icon, {tintColor: tintColor}]}
-        />
-      ),
-    },
-  }
-
   render() {
     return (
       <View style={[styles.flex1, localStyles.container]}>
@@ -33,9 +23,9 @@ export default class RoomList extends React.Component {
           // tabBarTextStyle={localStyles.tabBarText}
           // tabBarUnderlineStyle={localStyles.tabBarUnderline}
         >
-          <Star tabLabel="收藏"/>
-          <JoinIn tabLabel="加入"/>
-          <Mine tabLabel="建立"/>
+          <Star tabLabel={I18n.t('RoomList.Star.label')}/>
+          <JoinIn tabLabel={I18n.t('RoomList.JoinIn.label')}/>
+          <Mine tabLabel={I18n.t('RoomList.Mine.label')}/>
         </ScrollTabView>
       </View>
     );

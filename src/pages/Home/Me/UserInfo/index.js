@@ -5,6 +5,8 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, ScrollView, Alert } from 'react-native'
 import { connect } from 'react-redux'
+import I18n from 'react-native-i18n'
+
 import styles from '../../../../common/styles'
 
 import LoginButton from '../../../../components/StyleButton'
@@ -30,18 +32,18 @@ export default class UserInfo extends Component {
     const { username, name, gender, university, department, year, signature } = this.props.userInfo
     const infos = [
       [
-        { title: '手机', content: username },
-        { title: '名称', content: name },
-        { title: '性别', content: gender === true ? '男' : gender === false ? '女' : '无'},
+        { title: I18n.t('Me.info.phone'), content: username },
+        { title: I18n.t('Me.info.name'), content: name },
+        { title: I18n.t('Me.info.gender'), content: gender === true ? '男' : gender === false ? '女' : '无'},
       ],
       [
-        { title: '学校', content: university.name_ch },
-        { title: '院系', content: department },
-        { title: '年级', content: year },
+        { title: I18n.t('Me.info.school'), content: university.name_ch },
+        { title: I18n.t('Me.info.department'), content: department },
+        { title: I18n.t('Me.info.grade'), content: year },
       ],
       [
-        { title: '昵称', content: username },
-        { title: '签名', content: signature },
+        { title: I18n.t('Me.info.nickname'), content: username },
+        { title: I18n.t('Me.info.signature'), content: signature },
       ]
     ]
     return (
@@ -57,13 +59,13 @@ export default class UserInfo extends Component {
         </View>
         <View style={[styles.flex1, userStyles.buttonBox]}>
           <LoginButton
-            title="编辑"
+            title={I18n.t('Me.info.edit')}
             onPress={this.edit}
             inlineStyle={[userStyles.edit, userStyles.button]}
             color="black"
           />
           <LoginButton
-            title="退出登录"
+            title={I18n.t('Me.info.logout')}
             onPress={this.logout}
             inlineStyle={[userStyles.logout, userStyles.button]}
             color="black"

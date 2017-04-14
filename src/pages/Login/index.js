@@ -13,7 +13,7 @@ import {
 
 import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
-import { NavigationActions } from 'react-navigation'
+import I18n from 'react-native-i18n'
 
 import { Visit, UserLogin } from '../../store/actions'
 
@@ -56,28 +56,28 @@ export default class Login extends Component {
               style={loginStyles.logo}
             />
             <Input
-              placeholder="手机号"
+              placeholder={I18n.t('Login.username')}
               icon={require('../../assets/UserIcon.png')}
               onChangeText={text => this.setState({username: text})}
             />
             <Input
-              placeholder="密码"
+              placeholder={I18n.t('Login.password')}
               icon={require('../../assets/PasswordIcon.png')}
               onChangeText={text => this.setState({password: text})}
               secureTextEntry={true}
             />
             <LoginButton
-              title="登录"
+              title={I18n.t('Login.login')}
               onPress={this.login}
               inlineStyle={loginStyles.loginButton}
             />
             <View style={{flexDirection: 'row'}}>
               <View style={loginStyles.otherView}>
                 <TouchableOpacity style={loginStyles.otherButton} onPress={this.visit}>
-                  <Text style={{color: 'white'}}>游客登录</Text>
+                  <Text style={{color: 'white'}}>{I18n.t('Login.visitor')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={loginStyles.otherButton} onPress={this.signup}>
-                  <Text style={{color: 'white'}}>注册</Text>
+                  <Text style={{color: 'white'}}>{I18n.t('Login.signup')}</Text>
                 </TouchableOpacity>
               </View>
             </View>

@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Text, Picker } from 'react-native'
+import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 
 import NewRoomButton from '../../../components/StyleButton'
@@ -14,18 +15,6 @@ const inputHeight = 45
 const iconSize = 18
 
 export default class NewRoom extends Component {
-  static navigationOptions = {
-    tabBar: {
-      label: '新房间',
-      icon: ({ tintColor }) => (
-        <Image
-          source={require('../../../assets/icon/newR.png')}
-          style={[styles.icon, {tintColor: tintColor}]}
-        />
-      ),
-    },
-  }
-
   create () {
 
   }
@@ -34,13 +23,13 @@ export default class NewRoom extends Component {
     return (
       <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 100}]}>
         <Image style={roomStyle.cover} source={require('../../../assets/customCreate.png')}/>
-        <Text style={roomStyle.title}>创建新房间</Text>
-        <Text style={roomStyle.subTitle}>无论是烧烤之夜还是雪球大战</Text>
-        <Text style={roomStyle.subTitle}>用UniWorld定义一个属于你的世界</Text>
+        <Text style={roomStyle.title}>{I18n.t('NewRoom.title')}</Text>
+        <Text style={roomStyle.subTitle}>{I18n.t('NewRoom.subTitle1')}</Text>
+        <Text style={roomStyle.subTitle}>{I18n.t('NewRoom.subTitle2')}</Text>
         <InputArea/>
         <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
            <NewRoomButton
-            title="创建房间"
+            title={I18n.t('NewRoom.button')}
             onPress={this.create}
             inlineStyle={{margin: 20, backgroundColor: '#ec5367', borderRadius: 5}}
           />

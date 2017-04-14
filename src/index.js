@@ -4,9 +4,14 @@
 
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
+import I18n from 'react-native-i18n'
 import configureStore from './store'
+import Languages from './common/locales'
 
-import AppWithNavigationState, { AppNavigator } from "./router";
+import AppWithNavigationState from "./router";
+
+I18n.fallbacks = true
+I18n.translations = Languages
 
 export default class App extends Component {
   constructor(props) {

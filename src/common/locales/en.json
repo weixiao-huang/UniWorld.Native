@@ -1,0 +1,91 @@
+{
+  "App": {
+    "version": "Version"
+  },
+  "Login": {
+    "username": "Tel",
+    "password": "Password",
+    "login": "Login",
+    "visitor": "visitor",
+    "signup": "Sign Up"
+  },
+  "Actions": {
+    "loginError": "Username or password Error",
+    "statusError": "Status code Error"
+  },
+  "World": {
+    "label": "World",
+    "Square": {
+      "label": "Square"
+    },
+    "Recommend": {
+      "label": "Recommend"
+    },
+    "Search": {
+      "label": "Search",
+      "button": "Search"
+    }
+  },
+  "NewRoom": {
+    "label": "New Room",
+    "button": "Start it",
+    "title": "Create New Room",
+    "subTitle1": "Wherever you are",
+    "subTitle2": "User Uniworld to define your world",
+    "input": {
+      "name": {
+        "title": "Name",
+        "placeholder": "Outing in Beijing"
+      },
+      "label": {
+        "title": "Label",
+        "placeholder": "Click here to add type"
+      },
+      "match": {
+        "title": "Auto Match",
+        "placeholder": "Set as an automatch room?"
+      }
+    }
+  },
+  "RoomList": {
+    "label": "List",
+    "Star": {
+      "label": "Star"
+    },
+    "JoinIn": {
+      "label": "Joined"
+    },
+    "Mine": {
+      "label": "Mine"
+    }
+  },
+  "Me": {
+    "label": "Me",
+    "cover": {
+      "friends": "Friends",
+      "joined": "Rooms",
+      "thumb_ups": "Likes"
+    },
+    "info": {
+      "label": "Info",
+      "phone": "Phone",
+      "name": "Name",
+      "gender": "Gender",
+      "school": "School",
+      "department": "Dept.",
+      "grade": "Grade",
+      "nickname": "Nickname",
+      "signature": "Signature",
+      "edit": "Edit",
+      "logout": "Logout"
+    },
+    "follow": {
+      "label": "Follow",
+      "title": "Follow people"
+    },
+    "credit": {
+      "label": "Credit",
+      "likes": "Likes"
+    }
+  }
+}

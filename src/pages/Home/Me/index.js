@@ -3,7 +3,9 @@
  */
 
 import React, { Component } from 'react';
-import { Image, View, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
+import I18n from 'react-native-i18n'
+
 import styles from '../../../common/styles'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 
@@ -14,18 +16,6 @@ import Follow from './Follow/index'
 import Reputation from './Reputation/index'
 
 export default class NewRoom extends Component {
-  static navigationOptions = {
-    tabBar: {
-      label: '我的',
-      icon: ({ tintColor }) => (
-        <Image
-          source={require('../../../assets/icon/myInfoR.png')}
-          style={[styles.icon, {tintColor: tintColor}]}
-        />
-      ),
-    },
-  }
-
   render() {
     return (
       <View style={styles.flex1}>
@@ -36,9 +26,9 @@ export default class NewRoom extends Component {
           tabBarBackgroundColor="white"
           tabBarTextStyle={[meStyles.tabBarText]}
         >
-          <UserInfo tabLabel="信息"/>
-          <Follow tabLabel="关注"/>
-          <Reputation tabLabel="信誉"/>
+          <UserInfo tabLabel={I18n.t('Me.info.label')}/>
+          <Follow tabLabel={I18n.t('Me.follow.label')}/>
+          <Reputation tabLabel={I18n.t('Me.credit.label')}/>
         </ScrollTabView>
       </View>
    );
