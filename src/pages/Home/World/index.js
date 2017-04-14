@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import { View, Image, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 import I18n from 'react-native-i18n'
 

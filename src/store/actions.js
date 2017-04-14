@@ -36,10 +36,33 @@ export const GetUserInfo = async (dispatch, getState) => {
     if (res.status === 200) {
       const data = await res.json()
       dispatch({ type: types.GET_USER_INFO, userInfo: data })
-    } else throw { message: I18n.t('Actions.statusError') }
+    } else throw { message: 'Get Room List Status Code Error!' }
   } catch (err) {
     console.log(err)
     Alert.alert('', err.message)
     dispatch({type: types.USER_LOGIN_ERROR, error: err})
+  }
+}
+
+export const GetWorldList = async (dispatch, getState) => {
+  try {
+    const token = getState().auth.token
+    const recommendRes = await api.getRecommend(token)
+    const latestRes = await api.getLatest(token)
+    const worldRes = await api.getWorld(token)
+    console.log(recommendRes.status)
+    console.log(latestRes.status)
+    console.log(worldRes.status)
+    if (recommendRes.status === 200 &&
+      latestRes.status === 200 &&
+      worldRes.status === 200) {
+      const recommend = await recommendRes.json()
+      const latest = await latestRes.json()
+      const world = await worldRes.json()
+      dispatch({type: types.GET_WORLD_LIST, recommend: recommend, latest: latest, world: world})
+    } else throw { message: 'Get WorldList Status code Error' }
+  } catch (err) {
+    console.log(err)
+    Alert.alert('', err.message)
   }
 }

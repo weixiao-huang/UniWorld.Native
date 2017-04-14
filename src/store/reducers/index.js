@@ -6,9 +6,11 @@ import { combineReducers } from 'redux'
 import nav from './nav'
 import auth from './auth'
 import user from './user'
+import room from './room'
 
 export default combineReducers({
   nav,
   auth,
-  user
+  user,
+  room
 })

@@ -13,35 +13,57 @@ export default class RoomItem extends Component {
     place: PropTypes.string.isRequired,
     timeRange: PropTypes.array.isRequired
   }
+
+  _transferTimeFormat(timeRange) {
+    let start = new Date(timeRange[0])
+    let end = new Date(timeRange[1])
+    return [
+      `开始: ${1900+start.getYear()}年${start.getMonth()+1}月${start.getDate()}日${start.getHours()}时${start.getMinutes()}分`,
+      `结束: ${1900+end.getYear()}年${end.getMonth()+1}月${end.getDate()}日${end.getHours()}时${end.getMinutes()}分`,
+    ]
+  }
+
   render () {
+    const timeRange = this._transferTimeFormat(this.props.timeRange)
     return (
-      <View style={[styles.fullFlexWidth, itemStyle.container]}>
+      <View style={[styles.fullFlexWidth, localStyles.container]}>
         <View>
-          <Image source={{url: this.props.src}} style={[styles.flex1, itemStyle.cover]}/>
+          <Image source={{url: this.props.src}} style={[styles.flex1, localStyles.cover]}/>
         </View>
-        <View style={[itemStyle.wrap]}>
+        <View style={[localStyles.wrap]}>
           <View style={[styles.flex2, styles.fullFlexWidth, {alignItems: 'flex-start'}]}>
-            <View style={[itemStyle.tag]}><Text style={{color: 'white'}}>HOT</Text></View>
-            <Text style={[itemStyle.title]}>
-              {this.props.title}
-            </Text>
+            <View style={[styles.fullFlexWidth, localStyles.header]}>
+              <View style={[localStyles.tag]}>
+                <Text style={{color: 'white'}}>
+                  HOT
+                </Text>
+              </View>
+              <View style={[styles.flex1]}>
+                <Text style={[localStyles.title]}>
+                  {this.props.title}
+                </Text>
+              </View>
+            </View>
           </View>
           <View style={[styles.flex1, {justifyContent: 'flex-end'}]}>
-            <Text>
+            <Text style={[localStyles.text]}>
               {this.props.place}
             </Text>
-            <View style={[itemStyle.footer]}>
-              <Text>
-                {this.props.timeRange[0]} - {this.props.timeRange[1]}
-              </Text>
-              <Text style={[itemStyle.people]}>
-                <Text>
-                  <Image style={[itemStyle.icon]} source={require('../assets/icon/participants.png')}/>
+            <View style={[localStyles.footer]}>
+              <View>
+                <Text style={[localStyles.time, localStyles.text]}>
+                  {timeRange[0]}
                 </Text>
-                <Text>
-                  1/20
+                <Text style={[localStyles.time, localStyles.text]}>
+                  {timeRange[1]}
                 </Text>
-              </Text>
+              </View>
+              <View style={[localStyles.people]}>
+                <Text style={[{color: 'white'}]}>
+                  <Image style={[localStyles.icon]} source={require('../assets/icon/participants.png')}/>
+                  <Text> 1/20</Text>
+                </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -50,34 +72,51 @@ export default class RoomItem extends Component {
   }
 }
 
-const itemStyle = StyleSheet.create({
+const localStyles = StyleSheet.create({
+  header: {
+    alignItems: 'center',
+  },
+  text: {
+    color: '#ec5367'
+  },
   title: {
     marginLeft: 10
   },
+  time: {
+    fontSize: 10
+  },
   container: {
-    margin: 10,
     borderBottomColor: '#eee',
     borderBottomWidth: 1,
-    paddingBottom: 10,
+    padding: 12,
+    height: 110,
   },
   wrap: {
     marginLeft: 20,
+    flex: 1
   },
   cover: {
-    width: 100,
+    width: 120,
     height: 50,
     borderRadius: 10,
   },
   tag: {
     backgroundColor: '#345586',
-    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    borderRadius: 5,
+    paddingLeft: 5,
+    paddingRight: 5
   },
   people: {
     backgroundColor: '#ec5367',
-    color: 'white',
-    justifyContent: 'space-between',
-    marginRight: 20,
-    paddingLeft: 5
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    borderRadius: 5,
+    paddingLeft: 5,
+    paddingRight: 5
   },
   footer: {
     marginTop: 3,
@@ -86,6 +125,6 @@ const itemStyle = StyleSheet.create({
   },
   icon: {
     width: 8,
-    height: 10
-  }
+    height: 10,
+  },
 })

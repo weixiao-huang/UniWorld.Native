@@ -37,7 +37,7 @@ export default TabNavigator({
     screen: NewRoom,
     navigationOptions: {
       tabBar: {
-        label: I18n.t('NewRoom.label'),
+        label: I18n.t('NewRoom.label', { defaultValue: 'New Room' }),
         icon: ({ tintColor }) => (
           <Image
             source={require('../../assets/icon/newR.png')}
@@ -65,7 +65,7 @@ export default TabNavigator({
     screen: RoomList,
     navigationOptions: {
       tabBar: {
-        label: I18n.t('RoomList.label'),
+        label: I18n.t('RoomList.label', { defaultValue: 'List' }),
         icon: ({ tintColor }) => (
           <Image
             source={require('../../assets/icon/myRoomR.png')}
@@ -79,7 +79,7 @@ export default TabNavigator({
     screen: Me,
     navigationOptions: {
       tabBar: {
-        label: I18n.t('Me.label'),
+        label: I18n.t('Me.label', { defaultValue: 'Me' }),
         icon: ({ tintColor }) => (
           <Image
             source={require('../../assets/icon/myInfoR.png')}

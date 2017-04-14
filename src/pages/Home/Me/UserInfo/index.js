@@ -13,13 +13,10 @@ import LoginButton from '../../../../components/StyleButton'
 import LabelBox from './TextBox'
 import autobind from 'autobind-decorator'
 
-import { UserLogout, GetUserInfo } from '../../../../store/actions'
+import { UserLogout } from '../../../../store/actions'
 
-@connect(state=> ({userInfo: state.user.userInfo}), dispatch => ({dispatch}))
+@connect(state=> ({userInfo: state.user.userInfo}))
 export default class UserInfo extends Component {
-  componentWillMount() {
-    this.props.dispatch(GetUserInfo)
-  }
   edit () {
 
   }

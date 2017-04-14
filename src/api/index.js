@@ -3,7 +3,6 @@
  */
 
 import { server } from '../common/constants'
-import { AsyncStorage } from 'react-native'
 
 export default {
   userLogin: data => {
@@ -20,6 +19,30 @@ export default {
     console.log()
     return fetch(`${server}/profile/`, {
       method: 'GET',
+      headers: {
+        Authorization: `token ${token}`
+      }
+    })
+  },
+  getRecommend: token => {
+    return fetch(`${server}/plaza/hot/`, {
+      method: 'Get',
+      headers: {
+        Authorization: `token ${token}`
+      }
+    })
+  },
+  getLatest: token => {
+    return fetch(`${server}/plaza/latest/`, {
+      method: 'Get',
+      headers: {
+        Authorization: `token ${token}`
+      }
+    })
+  },
+  getWorld: token => {
+    return fetch(`${server}/plaza/random/`, {
+      method: 'Get',
       headers: {
         Authorization: `token ${token}`
       }

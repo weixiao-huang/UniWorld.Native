@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 
 import styles from '../../../common/styles'
@@ -15,7 +16,14 @@ import UserInfo from './UserInfo/index'
 import Follow from './Follow/index'
 import Reputation from './Reputation/index'
 
+import { GetUserInfo } from '../../../store/actions'
+
+@connect(...[, dispatch => ({dispatch})])
 export default class NewRoom extends Component {
+  componentWillMount() {
+    this.props.dispatch(GetUserInfo)
+  }
+
   render() {
     return (
       <View style={styles.flex1}>
