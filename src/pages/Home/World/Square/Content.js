@@ -20,7 +20,10 @@ export default class Content extends Component {
   render () {
     console.log(this.props.recommend.hot)
     return (
-      <RoomWrap roomList={this.props.recommend.hot}/>
+      <View>
+        <RoomWrap title="强力推荐" roomList={this.props.recommend.hot}/>
+        <RoomWrap title="当下" roomList={this.props.recommend.hot}/>
+      </View>
     )
   }
 }

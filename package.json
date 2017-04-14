@@ -13,6 +13,7 @@
 		"react-native-i18n": "^1.0.0",
 		"react-native-scrollable-tab-view": "^0.7.4",
 		"react-native-swiper": "^1.5.4",
+		"react-native-vector-icons": "^4.0.1",
 		"react-navigation": "git+https://github.com/react-community/react-navigation.git#7edd9a7",
 		"react-redux": "^5.0.4",
 		"redux": "^3.6.0",

@@ -11,13 +11,14 @@ import RoomItem from '../../../../components/RoomItem'
 
 export default class Content extends Component {
   static propTypes = {
-    roomList: PropTypes.array.isRequired
+    roomList: PropTypes.array.isRequired,
+    title: PropTypes.string.isRequired
   }
   render () {
     return (
       <View style={[styles.flex1]}>
         <View>
-          <Text>强力推荐</Text>
+          <Text>{this.props.title}</Text>
         </View>
         <View>
           {this.props.roomList.map((item, index) => {
