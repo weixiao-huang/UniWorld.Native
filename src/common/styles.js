@@ -49,7 +49,7 @@ export default StyleSheet.create({
   gray: {
     color: '#c7c7cd'
   },
-  contentSize: {
+  contentFontSize: {
     fontSize: 14
   },
   fullFlexWidth: {

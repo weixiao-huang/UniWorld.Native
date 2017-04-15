@@ -93,7 +93,7 @@ export default class Star extends Component {
   _showAreaPicker() {
     Picker.init({
       pickerData: this._createAreaData(),
-      selectedValue: ['河北', '唐山', '古冶区'],
+      // selectedValue: ['河北', '唐山', '古冶区'],
       onPickerConfirm: pickedValue => {
         console.log('area', pickedValue);
       },
