@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Text, Picker } from 'react-native'
+import { Image, StyleSheet, View, Text, ScrollView } from 'react-native'
 
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
@@ -13,27 +13,29 @@ import NewRoomButton from '../../../components/StyleButton'
 import InputArea from './InputArea'
 
 export default class NewRoom extends Component {
- create () {
+  create () {
 
   }
 
   render() {
     console.log('InitialLabels: ', this.props.initialLabels)
     return (
-      <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 100}]}>
-        <Image style={roomStyle.cover} source={require('../../../assets/customCreate.png')}/>
-        <Text style={roomStyle.title}>{I18n.t('NewRoom.title')}</Text>
-        <Text style={roomStyle.subTitle}>{I18n.t('NewRoom.subTitle1')}</Text>
-        <Text style={roomStyle.subTitle}>{I18n.t('NewRoom.subTitle2')}</Text>
-        <InputArea/>
-        <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
-           <NewRoomButton
-            title={I18n.t('NewRoom.button')}
-            onPress={this.create}
-            inlineStyle={{margin: 20, backgroundColor: '#ec5367', borderRadius: 5}}
-          />
+      <ScrollView>
+        <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 100}]}>
+          <Image style={roomStyle.cover} source={require('../../../assets/customCreate.png')}/>
+          <Text style={roomStyle.title}>{I18n.t('NewRoom.title')}</Text>
+          <Text style={roomStyle.subTitle}>{I18n.t('NewRoom.subTitle1')}</Text>
+          <Text style={roomStyle.subTitle}>{I18n.t('NewRoom.subTitle2')}</Text>
+          <InputArea/>
+          <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
+            <NewRoomButton
+              title={I18n.t('NewRoom.button')}
+              onPress={this.create}
+              inlineStyle={{margin: 20, backgroundColor: '#ec5367', borderRadius: 5}}
+            />
+          </View>
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }

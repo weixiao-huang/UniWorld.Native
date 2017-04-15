@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Switch, StyleSheet } from 'react-native'
+import { View, Text, TextInput, Switch } from 'react-native'
 import { connect } from 'react-redux'
 
 import Picker from 'react-native-picker'
@@ -13,11 +13,13 @@ import _ from 'lodash'
 import styles from '../../../common/styles'
 
 import InputItem from './InputItem'
+import LabelItem from './LabelItem'
 
-import { GetInitialLabels } from '../../../store/actions'
+import { GetInitialLabels, AddLabel, SetMatch } from '../../../store/actions'
 
 const mapStateToProps = state => ({
-  initialLabels: state.initial.labels
+  initialLabels: state.initial.labels,
+  newRoom: state.newRoom
 })
 
 function replaceKeysDeep(obj, replaceKey) {
@@ -47,25 +49,33 @@ export default class InputArea extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      labels: [],
-      match: false
-    }
   }
 
   _createInitialLabels(name) {
-    return Object.values(replaceKeysDeep(this.props.initialLabels, name))[0]
+    let data = []
+    for (let firstLayer of Object.values(replaceKeysDeep(this.props.initialLabels.children[1], name))[0]) {
+      const obj = {}
+      const key = Object.keys(firstLayer)[0]
+      obj[key] = []
+      for (let secondLayer of firstLayer[key]) {
+        if (_.isObject(secondLayer)) {
+          secondLayer = Object.keys(secondLayer)[0]
+        }
+        obj[key].push(secondLayer)
+      }
+      data.push(obj)
+    }
+    return data
   }
 
   _showLabelPicker() {
     Picker.init({
       pickerData: this._createInitialLabels('name_ch'),
       // selectedValue: ['河北', '唐山', '古冶区'],
+      pickerTitleText: I18n.t('NewRoom.input.label.selectTitle'),
       onPickerConfirm: pickedValue => {
         console.log('area', pickedValue)
-        this.setState({
-          labels: this.state.labels.concat(pickedValue)
-        })
+        this.props.dispatch(AddLabel(pickedValue.pop()))
       },
       onPickerCancel: pickedValue => {
         console.log('area', pickedValue)
@@ -81,22 +91,21 @@ export default class InputArea extends Component {
     return (
       <View style={{marginTop: 30, marginBottom: 20}}>
         <InputItem title={I18n.t('NewRoom.input.name.title')}>
-          <TextInput style={[styles.flex1, styles.contentFontSize]} placeholder={I18n.t('NewRoom.input.name.placeholder')}/>
+          <TextInput
+            style={[styles.flex1, styles.contentFontSize]}
+            placeholder={I18n.t('NewRoom.input.name.placeholder')}
+          />
         </InputItem>
-        <InputItem title={I18n.t('NewRoom.input.label.title')}>
-          <Text>{this.state.labels}</Text>
-          <TouchableOpacity style={[styles.flex1]} onPress={this._showLabelPicker.bind(this)}>
-            <Text style={[styles.contentFontSize, localStyles.label]}>
-              {I18n.t('NewRoom.input.label.placeholder')}
-            </Text>
-          </TouchableOpacity>
-        </InputItem>
+        <LabelItem
+          labels={this.props.newRoom.labels}
+          onPress={this._showLabelPicker.bind(this)}
+        />
         <InputItem title={I18n.t('NewRoom.input.match.title')}>
           <Text style={[styles.flex1, styles.gray, styles.contentFontSize]}>{I18n.t('NewRoom.input.match.placeholder')}</Text>
           <Switch
             style={{marginRight: 10}}
-            onValueChange={match => this.setState({match})}
-            value={this.state.match}
+            onValueChange={match => this.props.dispatch(SetMatch(match))}
+            value={this.props.newRoom.match}
           />
         </InputItem>
       </View>
@@ -104,9 +113,3 @@ export default class InputArea extends Component {
   }
 }
 
-
-const localStyles = StyleSheet.create({
-  label: {
-    color: '#c7c7cd'
-  }
-})

@@ -80,3 +80,11 @@ export const GetInitialLabels = async (dispatch, getState) => {
     Alert.alert('', err.message)
   }
 }
+
+export const AddLabel = label => dispatch => {
+  dispatch({type: types.ADD_LABEL, label})
+}
+
+export const SetMatch = match => dispatch => {
+  dispatch({type: types.SET_MATCH, match})
+}

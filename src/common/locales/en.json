@@ -42,7 +42,8 @@
       },
       "label": {
         "title": "Label",
-        "placeholder": "Click here to add type"
+        "placeholder": "Click here to add type",
+        "selectTitle": "Select your room labels"
       },
       "match": {
         "title": "Auto Match",

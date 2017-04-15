@@ -3,6 +3,7 @@
  */
 
 import { combineReducers } from 'redux'
+import newRoom from './newRoom'
 import nav from './nav'
 import auth from './auth'
 import user from './user'
@@ -14,5 +15,6 @@ export default combineReducers({
   auth,
   user,
   room,
-  initial
+  initial,
+  newRoom
 })

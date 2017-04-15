@@ -46,6 +46,9 @@ export default StyleSheet.create({
   flex5: {
     flex:5
   },
+  rowFlex: {
+    flexDirection: 'row'
+  },
   gray: {
     color: '#c7c7cd'
   },
