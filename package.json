@@ -8,6 +8,7 @@
 	},
 	"dependencies": {
 		"autobind-decorator": "^1.4.0",
+		"lodash": "^4.17.4",
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.43.3",
 		"react-native-i18n": "^1.0.0",

@@ -67,6 +67,7 @@ export default class Star extends Component {
       _data[area[i]['name']] = city;
       data.push(_data);
     }
+    console.log(data)
     return data;
   }
 

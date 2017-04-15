@@ -4,28 +4,16 @@
 
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Text, Picker } from 'react-native'
-import { connect } from 'react-redux'
 
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 
-import { GetInitialLabels } from '../../../store/actions'
 
 import NewRoomButton from '../../../components/StyleButton'
 import InputArea from './InputArea'
 
-const mapStateToProps = state => ({
-  initialLabels: state.initial.labels
-})
-
-
-@connect(mapStateToProps, dispatch => ({dispatch}))
 export default class NewRoom extends Component {
-  componentWillMount() {
-    this.props.dispatch(GetInitialLabels)
-  }
-
-  create () {
+ create () {
 
   }
 
