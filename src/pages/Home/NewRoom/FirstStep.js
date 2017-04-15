@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Text, ScrollView } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
@@ -14,7 +15,7 @@ import InputArea from './InputArea'
 
 export default class FirstStep extends Component {
   next() {
-
+    Actions.second
   }
 
   render() {
@@ -29,7 +30,7 @@ export default class FirstStep extends Component {
           <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
             <NewRoomButton
               title={I18n.t('NewRoom.button')}
-              onPress={this.next}
+              onPress={Actions.second}
               inlineStyle={localStyles.button}
             />
           </View>

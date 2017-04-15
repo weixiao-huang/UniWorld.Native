@@ -41,13 +41,35 @@
         "placeholder": "Outing in Beijing"
       },
       "label": {
-        "title": "Label",
+        "title": "Labels",
         "placeholder": "Click here to add type",
         "selectTitle": "Select your room labels"
       },
       "match": {
         "title": "Auto Match",
         "placeholder": "Set as an automatch room?"
+      },
+      "second": {
+        "intro": {
+          "title": "Intro",
+          "placeholder": "Outing in Beijing"
+        },
+        "start": {
+          "title": "Start"
+        },
+        "end": {
+          "title": "End"
+        },
+        "location": {
+          "title": "Location",
+          "placeholder": "anywhere"
+        },
+        "max": {
+          "title": "Max",
+          "placeholder": "NL"
+        },
+        "required": "Required",
+        "options": "Options"
       }
     }
   },
