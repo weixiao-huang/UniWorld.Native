@@ -22,16 +22,16 @@ export default class NewRoom extends Component {
     return (
       <ScrollView>
         <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 100}]}>
-          <Image style={roomStyle.cover} source={require('../../../assets/customCreate.png')}/>
-          <Text style={roomStyle.title}>{I18n.t('NewRoom.title')}</Text>
-          <Text style={roomStyle.subTitle}>{I18n.t('NewRoom.subTitle1')}</Text>
-          <Text style={roomStyle.subTitle}>{I18n.t('NewRoom.subTitle2')}</Text>
+          <Image style={localStyles.cover} source={require('../../../assets/customCreate.png')}/>
+          <Text style={localStyles.title}>{I18n.t('NewRoom.title')}</Text>
+          <Text style={localStyles.subTitle}>{I18n.t('NewRoom.subTitle1')}</Text>
+          <Text style={localStyles.subTitle}>{I18n.t('NewRoom.subTitle2')}</Text>
           <InputArea/>
           <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
             <NewRoomButton
               title={I18n.t('NewRoom.button')}
               onPress={this.create}
-              inlineStyle={{margin: 20, backgroundColor: '#ec5367', borderRadius: 5}}
+              inlineStyle={localStyles.button}
             />
           </View>
         </View>
@@ -40,7 +40,7 @@ export default class NewRoom extends Component {
   }
 }
 
-const roomStyle = StyleSheet.create({
+const localStyles = StyleSheet.create({
   cover: {
     width: '90%',
     height: 130
@@ -55,4 +55,10 @@ const roomStyle = StyleSheet.create({
     fontSize: 28,
     padding: 16,
   },
+  button: {
+    marginTop: 5,
+    marginBottom: 20,
+    backgroundColor: '#ec5367',
+    borderRadius: 5
+  }
 })

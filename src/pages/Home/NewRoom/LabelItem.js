@@ -7,6 +7,8 @@ import { View, Text, TouchableOpacity, TextInput, Switch, StyleSheet } from 'rea
 import styles from '../../../common/styles'
 import I18n from 'react-native-i18n'
 
+import Label from './Label'
+
 export default class LabelItem extends Component {
   static propTypes = {
     labels: PropTypes.array.isRequired,
@@ -27,9 +29,7 @@ export default class LabelItem extends Component {
           <View>
             {this.props.labels.map((item, index) => {
               return (
-                <View key={index}>
-                  <Text>{item}</Text>
-                </View>
+                <Label key={index} title={item}/>
               )
             })}
           </View>
