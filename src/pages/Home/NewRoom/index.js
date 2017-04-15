@@ -14,10 +14,6 @@ import { GetInitialLabels } from '../../../store/actions'
 import NewRoomButton from '../../../components/StyleButton'
 import InputArea from './InputArea'
 
-const inputHeight = 45
-const iconSize = 18
-
-
 const mapStateToProps = state => ({
   initialLabels: state.initial.labels
 })

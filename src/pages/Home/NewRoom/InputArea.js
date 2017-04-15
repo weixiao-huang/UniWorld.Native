@@ -3,11 +3,13 @@
  */
 
 import React, { Component } from 'react';
-import { View, Text, TextInput, Switch, Picker } from 'react-native'
+import { View, Text, TextInput, Switch } from 'react-native'
+
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 
 import InputItem from './InputItem'
+
 
 export default class InputArea extends Component {
   constructor(props) {
