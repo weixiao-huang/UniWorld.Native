@@ -9,6 +9,14 @@
     "visitor": "visitor",
     "signup": "Sign Up"
   },
+  "room": {
+    "info": {
+      "title": "Info"
+    },
+    "detail": {
+      "title": "Detail"
+    }
+  },
   "Actions": {
     "loginError": "Username or password Error",
     "statusError": "Status code Error"
