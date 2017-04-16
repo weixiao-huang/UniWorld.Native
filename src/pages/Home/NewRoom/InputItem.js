@@ -21,12 +21,14 @@ export default class InputItem extends Component {
 
 const inputStyles = StyleSheet.create({
   view: {
-    height: 40,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#f2f0f4'
+    borderColor: '#f2f0f4',
+    borderBottomWidth: 1,
+    paddingTop: 5,
+    paddingBottom: 5
   },
   title: {
     color: '#6d698b',

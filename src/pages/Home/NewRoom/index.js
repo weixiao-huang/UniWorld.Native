@@ -15,8 +15,8 @@ export default class NewRoom extends Component {
     return (
       <Router>
         <Scene key="root">
-          <Scene key="first" component={FirstStep} title="First" initial={true}/>
-          <Scene key="second" component={SecondStep} title="Second"/>
+          <Scene key="first" component={FirstStep} title="First"/>
+          <Scene key="second" component={SecondStep} title="Second" initial={true}/>
         </Scene>
       </Router>
     )

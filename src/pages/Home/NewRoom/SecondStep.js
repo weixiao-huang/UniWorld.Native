@@ -3,10 +3,11 @@
  */
 
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Text, ScrollView, TextInput } from 'react-native'
+import { Image, StyleSheet, View, Text, ScrollView, Picker, TextInput } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
+import DatePicker from 'react-native-datepicker'
 import I18n from 'react-native-i18n'
 import autobind from 'autobind-decorator'
 
@@ -15,6 +16,7 @@ import styles from '../../../common/styles'
 import NewRoomButton from '../../../components/StyleButton'
 import InputArea from './InputItem'
 import InputItem from './InputItem'
+import DateTimePicker from './DateTimePicker'
 
 const mapStateToProps = state => ({
   newRoom: state.newRoom
@@ -22,6 +24,16 @@ const mapStateToProps = state => ({
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
 export default class SecondStep extends Component {
+  constructor(props) {
+    super(props)
+    const date = new Date()
+    const dateFormat = '' // `${date.getYear() + 1900}-${date.getMonth()+1}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}`
+    this.state = {
+      date_time_start: dateFormat,
+      date_time_end: dateFormat,
+      max_participants: I18n.t('NewRoom.input.second.max.placeholder')
+    }
+  }
   next() {
 
   }
@@ -49,25 +61,19 @@ export default class SecondStep extends Component {
                 multiline={true}
               />
             </InputItem>
-            <InputItem title={I18n.t('NewRoom.input.second.start.title')}>
-              <View style={[styles.flex1, styles.contentFontSize]}>
-
-              </View>
-            </InputItem>
-            <InputItem title={I18n.t('NewRoom.input.second.end.title')}>
-              <View style={[styles.flex1, styles.contentFontSize]}>
-
-              </View>
-            </InputItem>
+            <DateTimePicker title={I18n.t('NewRoom.input.second.start.title')} date={this.state.date_time_start} onDateChange={date_time_start => this.setState({date_time_start})}/>
+            <DateTimePicker title={I18n.t('NewRoom.input.second.end.title')} date={this.state.date_time_end} onDateChange={date_time_end => this.setState({date_time_end})}/>
             <InputItem title={I18n.t('NewRoom.input.second.max.title')}>
-              
+              <View style={[styles.flex1]}>
+
+              </View>
             </InputItem>
           </View>
           <InputArea/>
           <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
             <NewRoomButton
               title={I18n.t('NewRoom.button')}
-              onPress={this.next()}
+              onPress={this.next}
               inlineStyle={localStyles.button}
             />
           </View>
