@@ -15,16 +15,27 @@ const initialState = {
   intro: '',
   date_time_start: '',
   date_time_end: '',
+  location_string: '',
   max_participants: '',
-  isPrivate: false
+  isPrivate: false,
+  welcome: '',
+  expense: '',
+  rewards: ''
 }
 
 export default (state=initialState, action) => {
   switch (action.type) {
     case types.ADD_LABEL:
+      if (state.labels.indexOf(action.label) >= 0) return state
       return {
         ...state,
         labels: state.labels.concat(action.label)
+      }
+    case types.REMOVE_LABEL:
+      if (action.index < 0) return state
+      state.labels.splice(action.index, 1)
+      return {
+        ...state,
       }
     case types.SET_NEW_ROOM_DATA:
       return {

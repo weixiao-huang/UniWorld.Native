@@ -85,6 +85,10 @@ export const AddLabel = label => dispatch => {
   dispatch({type: types.ADD_LABEL, label})
 }
 
+export const RemoveLabel = index => dispatch => {
+  dispatch({type: types.REMOVE_LABEL, index})
+}
+
 export const SetNewRoomData = (name, data) => dispatch => {
   dispatch({type: types.SET_NEW_ROOM_DATA, name, data})
 }

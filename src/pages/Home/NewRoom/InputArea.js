@@ -94,6 +94,7 @@ export default class InputArea extends Component {
           <TextInput
             style={[styles.flex1, styles.contentFontSize]}
             placeholder={I18n.t('NewRoom.input.name.placeholder')}
+            onChangeText={title => this.props.dispatch(SetNewRoomData('title', title))}
           />
         </InputItem>
         <LabelItem

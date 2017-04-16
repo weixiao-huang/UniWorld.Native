@@ -14,7 +14,7 @@ import Picker from 'react-native-picker'
 import I18n from 'react-native-i18n'
 import autobind from 'autobind-decorator'
 
-import { SetPrivate, SetNewRoomData } from '../../../store/actions'
+import { SetNewRoomData } from '../../../store/actions'
 
 import styles from '../../../common/styles'
 
@@ -46,7 +46,7 @@ export default class SecondStep extends Component {
       pickerData: ['NL'].concat(Object.keys(Array.from(new Array(threshold+1))).slice(2)),
       pickerTitleText: I18n.t('NewRoom.input.second.max.pickerTitle'),
       onPickerConfirm: max_participants => {
-        this.setState({max_participants})
+        this.props.dispatch(SetNewRoomData('max_participants', parseInt(max_participants[0])))
       }
     })
     Picker.show()
@@ -82,14 +82,28 @@ export default class SecondStep extends Component {
                 style={[styles.flex1, styles.contentFontSize]}
                 placeholder={I18n.t('NewRoom.input.second.intro.placeholder')}
                 multiline={true}
+                onChangeText={intro => this.props.dispatch(SetNewRoomData('intro', intro))}
               />
             </InputItem>
-            <DateTimePicker title={I18n.t('NewRoom.input.second.start.title')} date={this.state.date_time_start} onDateChange={date_time_start => this.setState({date_time_start})}/>
-            <DateTimePicker title={I18n.t('NewRoom.input.second.end.title')} date={this.state.date_time_end} onDateChange={date_time_end => this.setState({date_time_end})}/>
+            <DateTimePicker
+              title={I18n.t('NewRoom.input.second.start.title')}
+              date={this.props.newRoom.date_time_start}
+              onDateChange={date_time_start => this.props.dispatch(SetNewRoomData('date_time_start', date_time_start))}/>
+            <DateTimePicker
+              title={I18n.t('NewRoom.input.second.end.title')}
+              date={this.props.newRoom.date_time_end}
+              onDateChange={date_time_end => this.props.dispatch(SetNewRoomData('date_time_end', date_time_end))}/>
+            <InputItem title={I18n.t('NewRoom.input.second.location.title')}>
+              <TextInput
+                style={[styles.flex1]}
+                placeholder={I18n.t('NewRoom.input.second.location.placeholder')}
+                onchangetext={location_string => this.props.dispatch(SetNewRoomData('location_string', location_string))}
+              />
+            </InputItem>
             <InputItem title={I18n.t('NewRoom.input.second.max.title')}>
               <TouchableOpacity style={[styles.flex1]} onPress={this._showPicker}>
-                <Text style={[styles.contentFontSize, this.state.max_participants ? {color: 'black'} : {color: '#c9c9c9'}]}>
-                  {this.state.max_participants ? this.state.max_participants : I18n.t('NewRoom.input.second.max.placeholder')}
+                <Text style={[styles.contentFontSize, this.props.newRoom.max_participants ? {color: 'black'} : {color: '#c9c9c9'}]}>
+                  {this.props.newRoom.max_participants ? this.props.newRoom.max_participants : I18n.t('NewRoom.input.second.max.placeholder')}
                 </Text>
               </TouchableOpacity>
             </InputItem>
@@ -114,18 +128,21 @@ export default class SecondStep extends Component {
               <TextInput
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.welcome.placeholder')}
+                onchangetext={welcome => this.props.dispatch('welcome', welcome)}
               />
             </InputItem>
             <InputItem title={I18n.t('NewRoom.input.second.expense.title')}>
               <TextInput
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.expense.placeholder')}
+                onchangetext={expense => this.props.dispatch('expense', expense)}
               />
             </InputItem>
             <InputItem title={I18n.t('NewRoom.input.second.rewards.title')}>
               <TextInput
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.rewards.placeholder')}
+                onchangetext={rewards => this.props.dispatch('rewards', rewards)}
               />
             </InputItem>
           </View>

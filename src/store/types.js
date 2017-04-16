@@ -16,4 +16,5 @@ export const GET_WORLD_LIST = 'GET_WORLD_LIST'
 export const GET_INITIAL_LABELS = 'GET_INITIAL_LABELS'
 
 export const ADD_LABEL = 'ADD_LABEL'
+export const REMOVE_LABEL = 'REMOVE_LABEL'
 export const SET_NEW_ROOM_DATA = 'SET_NEW_ROOM_DATA'

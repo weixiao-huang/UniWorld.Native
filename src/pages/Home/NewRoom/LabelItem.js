@@ -4,16 +4,20 @@
 
 import React, { Component, PropTypes } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Switch, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
+
 import styles from '../../../common/styles'
 import I18n from 'react-native-i18n'
 
 import Label from './Label'
 
+@connect(...[, dispatch => ({dispatch})])
 export default class LabelItem extends Component {
   static propTypes = {
     labels: PropTypes.array.isRequired,
-    onPress: PropTypes.func.isRequired
+    onPress: PropTypes.func.isRequired,
   }
+
   render() {
     return (
       <View style={[styles.rowFlex, styles.whiteBackground, localStyles.container]}>
