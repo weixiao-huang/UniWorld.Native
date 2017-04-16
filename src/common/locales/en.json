@@ -54,6 +54,7 @@
           "title": "Intro",
           "placeholder": "Outing in Beijing"
         },
+        "timePlaceholder": "Select Date and Time",
         "start": {
           "title": "Start"
         },

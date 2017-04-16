@@ -5,6 +5,7 @@
 import React, { Component, PropTypes } from 'react'
 import { StyleSheet, View } from 'react-native'
 import DatePicker from 'react-native-datepicker'
+import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 
 import InputItem from './InputItem'
@@ -20,24 +21,25 @@ export default class DateTimePicker extends Component {
       <InputItem title={this.props.title}>
         <View style={[styles.flex1]}>
           <DatePicker
-            style={{width: 200}}
+            // style={{width: 200}}
             date={this.props.date}
             mode="datetime"
-            placeholder="select date"
+            placeholder={I18n.t('NewRoom.input.second.timePlaceholder')}
             format="YYYY-MM-DD hh:mm a"
             minDate="2016-05-01"
             maxDate="2018-06-01"
             confirmBtnText="Confirm"
             cancelBtnText="Cancel"
+            showIcon={false}
             customStyles={{
               dateIcon: {
-                position: 'absolute',
-                left: 0,
-                top: 4,
-                marginLeft: 0
+                // position: 'absolute',
+                // right: 0,
+                // top: 4,
+                // marginLeft: 0
               },
               dateInput: {
-                marginLeft: 36
+                borderWidth: 0,
               }
               // ... You can check the source to find the other keys.
             }}
