@@ -11,7 +11,12 @@ import * as types from '../types'
 const initialState = {
   title: '',
   labels: [],
-  match: false
+  match: false,
+  intro: '',
+  date_time_start: '',
+  date_time_end: '',
+  max_participants: '',
+  isPrivate: false
 }
 
 export default (state=initialState, action) => {
@@ -21,10 +26,10 @@ export default (state=initialState, action) => {
         ...state,
         labels: state.labels.concat(action.label)
       }
-    case types.SET_MATCH:
+    case types.SET_NEW_ROOM_DATA:
       return {
         ...state,
-        match: action.match
+        [action.name]: action.data
       }
     default:
       return state

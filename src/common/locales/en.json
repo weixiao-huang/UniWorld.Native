@@ -50,6 +50,7 @@
         "placeholder": "Set as an automatch room?"
       },
       "second": {
+        "cover": "Define Your World",
         "intro": {
           "title": "Intro",
           "placeholder": "Outing in Beijing"
@@ -67,10 +68,27 @@
         },
         "max": {
           "title": "Max",
+          "pickerTitle": "Select Max Participants",
           "placeholder": "NL"
         },
         "required": "Required",
-        "options": "Options"
+        "options": "Options",
+        "private": {
+          "title": "Private",
+          "placeholder": "Allowed only by invitations"
+        },
+        "welcome": {
+          "title": "Welcome",
+          "placeholder": "someone you want to meet"
+        },
+        "expense": {
+          "title": "Expense",
+          "placeholder": "any expense"
+        },
+        "rewards": {
+          "title": "Rewards",
+          "placeholder": "rewards for joining"
+        }
       }
     }
   },

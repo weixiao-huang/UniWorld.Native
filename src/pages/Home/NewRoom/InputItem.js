@@ -2,11 +2,15 @@
  * Created by huangwx on 11/04/2017.
  */
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { StyleSheet, View, Text } from 'react-native'
 import styles from '../../../common/styles'
 
 export default class InputItem extends Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired
+  }
+
   render () {
     return (
       <View style={[inputStyles.view, styles.whiteBackground]}>

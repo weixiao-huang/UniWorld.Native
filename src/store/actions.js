@@ -85,6 +85,6 @@ export const AddLabel = label => dispatch => {
   dispatch({type: types.ADD_LABEL, label})
 }
 
-export const SetMatch = match => dispatch => {
-  dispatch({type: types.SET_MATCH, match})
+export const SetNewRoomData = (name, data) => dispatch => {
+  dispatch({type: types.SET_NEW_ROOM_DATA, name, data})
 }

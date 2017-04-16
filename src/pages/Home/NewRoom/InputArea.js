@@ -15,7 +15,7 @@ import styles from '../../../common/styles'
 import InputItem from './InputItem'
 import LabelItem from './LabelItem'
 
-import { GetInitialLabels, AddLabel, SetMatch } from '../../../store/actions'
+import { GetInitialLabels, AddLabel, SetNewRoomData } from '../../../store/actions'
 
 const mapStateToProps = state => ({
   initialLabels: state.initial.labels,
@@ -101,10 +101,12 @@ export default class InputArea extends Component {
           onPress={this._showLabelPicker.bind(this)}
         />
         <InputItem title={I18n.t('NewRoom.input.match.title')}>
-          <Text style={[styles.flex1, styles.gray, styles.contentFontSize]}>{I18n.t('NewRoom.input.match.placeholder')}</Text>
+          <Text style={[styles.flex1, styles.gray, styles.contentFontSize]}>
+            {I18n.t('NewRoom.input.match.placeholder')}
+          </Text>
           <Switch
             style={{marginRight: 10}}
-            onValueChange={match => this.props.dispatch(SetMatch(match))}
+            onValueChange={match => this.props.dispatch(SetNewRoomData('match', match))}
             value={this.props.newRoom.match}
           />
         </InputItem>

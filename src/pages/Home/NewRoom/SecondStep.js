@@ -3,18 +3,22 @@
  */
 
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Text, ScrollView, Picker, TextInput } from 'react-native'
+import { Image, StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, Switch } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
 import DatePicker from 'react-native-datepicker'
+import Picker from 'react-native-picker'
+// import InputBox from './InputBox'
+
 import I18n from 'react-native-i18n'
 import autobind from 'autobind-decorator'
+
+import { SetPrivate, SetNewRoomData } from '../../../store/actions'
 
 import styles from '../../../common/styles'
 
 import NewRoomButton from '../../../components/StyleButton'
-import InputArea from './InputItem'
 import InputItem from './InputItem'
 import DateTimePicker from './DateTimePicker'
 
@@ -31,21 +35,35 @@ export default class SecondStep extends Component {
     this.state = {
       date_time_start: dateFormat,
       date_time_end: dateFormat,
-      max_participants: I18n.t('NewRoom.input.second.max.placeholder')
+      max_participants: ''
     }
   }
-  next() {
 
+  @autobind
+  _showPicker() {
+    const threshold = 30
+    Picker.init({
+      pickerData: ['NL'].concat(Object.keys(Array.from(new Array(threshold+1))).slice(2)),
+      pickerTitleText: I18n.t('NewRoom.input.second.max.pickerTitle'),
+      onPickerConfirm: max_participants => {
+        this.setState({max_participants})
+      }
+    })
+    Picker.show()
+  }
+
+  next() {
+    return Actions.third
   }
   render() {
     return (
       <ScrollView>
         <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 100}]}>
-          <Image style={localStyles.cover} source={require('../../../assets/customCreate.png')}/>
-          <Text style={localStyles.title}>{I18n.t('NewRoom.title')}</Text>
-          <Text style={localStyles.subTitle}>{I18n.t('NewRoom.subTitle1')}</Text>
-          <Text style={localStyles.subTitle}>{I18n.t('NewRoom.subTitle2')}</Text>
           <View>
+            <Image style={localStyles.cover} source={require('../../../assets/customCreate2.png')}/>
+          </View>
+          <Text style={localStyles.title}>{I18n.t('NewRoom.input.second.cover')}</Text>
+          <View style={[localStyles.wrap]}>
             <InputItem title={I18n.t('NewRoom.input.name.title')}>
               <Text style={[styles.flex1]}>{this.props.newRoom.title}</Text>
             </InputItem>
@@ -53,7 +71,12 @@ export default class SecondStep extends Component {
               <Text style={[styles.flex1]}>{this.props.newRoom.labels.join(', ')}</Text>
             </InputItem>
           </View>
-          <View>
+
+          <View style={[localStyles.wrap]}>
+            <View style={[localStyles.wrap__title]}>
+              <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoBlue.png')}/>
+              <Text style={[{color: '#3555b6'}, localStyles.wrap__title__text]}>Required</Text>
+            </View>
             <InputItem title={I18n.t('NewRoom.input.second.intro.title')}>
               <TextInput
                 style={[styles.flex1, styles.contentFontSize]}
@@ -64,16 +87,53 @@ export default class SecondStep extends Component {
             <DateTimePicker title={I18n.t('NewRoom.input.second.start.title')} date={this.state.date_time_start} onDateChange={date_time_start => this.setState({date_time_start})}/>
             <DateTimePicker title={I18n.t('NewRoom.input.second.end.title')} date={this.state.date_time_end} onDateChange={date_time_end => this.setState({date_time_end})}/>
             <InputItem title={I18n.t('NewRoom.input.second.max.title')}>
-              <View style={[styles.flex1]}>
-
-              </View>
+              <TouchableOpacity style={[styles.flex1]} onPress={this._showPicker}>
+                <Text style={[styles.contentFontSize, this.state.max_participants ? {color: 'black'} : {color: '#c9c9c9'}]}>
+                  {this.state.max_participants ? this.state.max_participants : I18n.t('NewRoom.input.second.max.placeholder')}
+                </Text>
+              </TouchableOpacity>
             </InputItem>
           </View>
-          <InputArea/>
+
+          <View style={[localStyles.wrap]}>
+            <View style={[localStyles.wrap__title]}>
+              <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoRed.png')}/>
+              <Text style={[{color: '#ec5367'}, localStyles.wrap__title__text]}>{I18n.t('NewRoom.input.second.options')}</Text>
+            </View>
+            <InputItem title={I18n.t('NewRoom.input.second.private.title')}>
+              <Text style={[styles.flex1, styles.gray, styles.contentFontSize]}>
+                {I18n.t('NewRoom.input.second.private.placeholder')}
+              </Text>
+              <Switch
+                style={{marginRight: 10}}
+                onValueChange={isPrivate => this.props.dispatch(SetNewRoomData('isPrivate', isPrivate))}
+                value={this.props.newRoom.isPrivate}
+              />
+            </InputItem>
+            <InputItem title={I18n.t('NewRoom.input.second.welcome.title')}>
+              <TextInput
+                style={[styles.flex1]}
+                placeholder={I18n.t('NewRoom.input.second.welcome.placeholder')}
+              />
+            </InputItem>
+            <InputItem title={I18n.t('NewRoom.input.second.expense.title')}>
+              <TextInput
+                style={[styles.flex1]}
+                placeholder={I18n.t('NewRoom.input.second.expense.placeholder')}
+              />
+            </InputItem>
+            <InputItem title={I18n.t('NewRoom.input.second.rewards.title')}>
+              <TextInput
+                style={[styles.flex1]}
+                placeholder={I18n.t('NewRoom.input.second.rewards.placeholder')}
+              />
+            </InputItem>
+          </View>
+
           <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
             <NewRoomButton
               title={I18n.t('NewRoom.button')}
-              onPress={this.next}
+              onPress={this.next()}
               inlineStyle={localStyles.button}
             />
           </View>
@@ -84,22 +144,36 @@ export default class SecondStep extends Component {
 }
 
 const localStyles = StyleSheet.create({
-  text: {
-
+  wrap: {
+    marginTop: 10,
+    marginBottom: 14
   },
   cover: {
-    width: '90%',
-    height: 130
+    height: 150,
+    resizeMode: 'contain'
   },
-  subTitle: {
-    color: '#95a8e2',
-    fontSize: 14,
-    padding: 3,
+  wrap__icon: {
+    width: 24,
+    height: 24,
+    resizeMode: 'contain',
+  },
+  wrap__title: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: 14,
+    paddingBottom: 10
+  },
+  wrap__title__text: {
+    fontSize: 18,
+    paddingLeft: 10
   },
   title: {
-    color: '#3e3974',
-    fontSize: 28,
-    padding: 16,
+    color: '#95a8e2',
+    fontSize: 18,
+    padding: 18,
+  },
+  max: {
+    color: '#c9c9c9'
   },
   button: {
     marginTop: 5,
