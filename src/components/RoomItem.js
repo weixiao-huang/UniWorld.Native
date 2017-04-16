@@ -30,6 +30,7 @@ export default class RoomItem extends Component {
 
   render () {
     const timeRange = this._transferTimeFormat(this.props.timeRange)
+    console.log('地点', this.props.place)
     return (
       <View style={[styles.fullFlexWidth, localStyles.container]}>
         <View>

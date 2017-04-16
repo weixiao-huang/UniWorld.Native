@@ -37,7 +37,12 @@ export default class ThirdStep extends Component {
     const max = this.props.newRoom.max_participants
     return (
       <ScrollView>
-        <RoomItem src="" title={this.props.newRoom.title} place={this.props.newRoom.location_string} timeRange={[this.props.newRoom.date_time_start, this.props.newRoom.date_time_end]} max_participants={isNaN(max) ? null : max}/>
+        <View>
+          <RoomItem src="" title={this.props.newRoom.title} place={this.props.newRoom.location_string} timeRange={[this.props.newRoom.date_time_start, this.props.newRoom.date_time_end]} max_participants={isNaN(max) ? null : max}/>
+        </View>
+        <View>
+
+        </View>
       </ScrollView>
     )
   }
