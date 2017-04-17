@@ -16,5 +16,5 @@ export default combineReducers({
   user,
   room,
   initial,
-  newRoom
+  newRoom,
 })

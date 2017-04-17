@@ -7,7 +7,7 @@ import { View } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 
-import RoomWrap from './RoomWrap'
+import RoomWrap from '../../../../components/RoomWrap'
 
 const mapStateToProps = state => ({
   latest: state.room.latest,

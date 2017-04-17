@@ -8,7 +8,7 @@ import styles from '../../../../common/styles'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 
-import RoomWrap from '../Square/RoomWrap'
+import RoomWrap from '../../../../components/RoomWrap'
 
 const mapStateToProps = state => ({
   recommend: state.room.recommend,

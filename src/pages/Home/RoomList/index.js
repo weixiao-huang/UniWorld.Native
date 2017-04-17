@@ -3,18 +3,31 @@
  */
 
 import React, { Component } from 'react';
-import { Image, View, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import I18n from 'react-native-i18n'
+import { connect } from 'react-redux'
 
 import styles from '../../../common/styles'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 
-import Star from './Star'
-import Mine from './Mine'
-import JoinIn from './JoinIn'
+import { GetRoomList } from '../../../store/actions'
 
-export default class RoomList extends React.Component {
+import TabContainer from './TabContainer'
+
+const items = ['Star', 'JoinIn', 'Mine']
+
+const mapStateToProps = state => ({
+  roomList: state.room.roomList
+})
+
+@connect(mapStateToProps, dispatch => ({dispatch}))
+export default class RoomList extends Component {
+  componentWillMount() {
+    this.props.dispatch(GetRoomList)
+  }
   render() {
+    const roomList = this.props.roomList
+    console.log('RoomList页面', roomList)
     return (
       <View style={[styles.flex1, localStyles.container]}>
         <ScrollTabView
@@ -23,12 +36,19 @@ export default class RoomList extends React.Component {
           // tabBarTextStyle={localStyles.tabBarText}
           // tabBarUnderlineStyle={localStyles.tabBarUnderline}
         >
-          <Star tabLabel={I18n.t('RoomList.Star.label')}/>
-          <JoinIn tabLabel={I18n.t('RoomList.JoinIn.label')}/>
-          <Mine tabLabel={I18n.t('RoomList.Mine.label')}/>
+          {Object.keys(roomList).map((key, index) => {
+            return (
+              <TabContainer
+                key={index}
+                tabLabel={I18n.t(`RoomList.${items[index]}.label`)}
+                roomList={roomList[key]}
+                title={I18n.t(`RoomList.${items[index]}.title`)}
+              />
+            )
+          })}
         </ScrollTabView>
       </View>
-    );
+    )
   }
 }
 

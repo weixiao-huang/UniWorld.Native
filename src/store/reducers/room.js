@@ -8,7 +8,8 @@ const initialState = {
   recommend: [],
   latest: [],
   world: [],
-  roomInfo: {}
+  roomInfo: {},
+  roomList: []
 }
 
 export default (state=initialState, action) => {
@@ -25,6 +26,11 @@ export default (state=initialState, action) => {
       return {
         ...state,
         roomInfo: action.roomInfo
+      }
+    case types.GET_ROOM_LIST:
+      return {
+        ...state,
+        roomList: action.roomList,
       }
     default:
       return state

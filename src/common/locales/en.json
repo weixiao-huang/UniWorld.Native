@@ -119,13 +119,16 @@
   "RoomList": {
     "label": "List",
     "Star": {
-      "label": "Star"
+      "label": "Star",
+      "title": "Rooms you have marked"
     },
     "JoinIn": {
-      "label": "Joined"
+      "label": "Joined",
+      "title": "Rooms you have joined in"
     },
     "Mine": {
-      "label": "Mine"
+      "label": "Mine",
+      "title": "My rooms"
     }
   },
   "Me": {

@@ -51,7 +51,12 @@ export default {
       }
     })
   },
-  getRoomList: () => {
-    // return fetch(`${server}/plaza/hot`)
+  getRoomList: token => {
+    return fetch(`${server}/profile/rooms/`, {
+      method: 'GET',
+      headers: {
+        Authorization: `token ${token}`
+      }
+    })
   }
 }

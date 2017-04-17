@@ -110,3 +110,17 @@ export const GetRoomInfo = id => async (dispatch, getState) => {
     Alert.alert('', err.message)
   }
 }
+
+export const GetRoomList = async(dispatch, getState) => {
+  try {
+    const token = getState().auth.token
+    const res = await api.getRoomList(token)
+    if (res.status === 200) {
+      const roomList = await res.json()
+      dispatch({type: types.GET_ROOM_LIST, roomList})
+    } else throw { message: 'Get Room List Status Code Error!'}
+  } catch (err) {
+    console.log(err)
+    Alert.alert('', err.message)
+  }
+}

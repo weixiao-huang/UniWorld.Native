@@ -5,18 +5,20 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import styles from '../../../../common/styles'
+import styles from '../common/styles'
 import autobind from 'autobind-decorator'
 
-import { GoToRoomInfo, GetRoomInfo } from '../../../../store/actions'
+import { GoToRoomInfo, GetRoomInfo } from '../store/actions'
 
-import RoomItem from '../../../../components/RoomItem'
+import RoomItem from './RoomItem'
 
 @connect(...[, dispatch => ({dispatch})])
-export default class Content extends Component {
+export default class RoomWrap extends Component {
   static propTypes = {
     roomList: PropTypes.array.isRequired,
-    title: PropTypes.string.isRequired
+  }
+  static defaultProps = {
+    title: ''
   }
 
   @autobind
@@ -30,10 +32,13 @@ export default class Content extends Component {
   render () {
     return (
       <View style={[styles.flex1]}>
-        <View style={[localStyles.title, styles.fullFlexWidth, {alignItems: 'center'}]}>
-          <Image style={[localStyles.title__icon]} source={require('../../../../assets/Star.png')}/>
-          <Text style={[localStyles.title__content]}> {this.props.title}</Text>
-        </View>
+        {this.props.title
+          ? <View style={[localStyles.title, styles.fullFlexWidth, {alignItems: 'center'}]}>
+              <Image style={[localStyles.title__icon]} source={require('../assets/Star.png')}/>
+              <Text style={[localStyles.title__content]}> {this.props.title}</Text>
+            </View>
+          : null
+        }
         <View>
           {this.props.roomList.map((item, index) => {
             return (
