@@ -19,9 +19,9 @@ export default class DateTimePicker extends Component {
   render() {
     return (
       <InputItem title={this.props.title}>
-        <View style={[styles.flex1]}>
+        <View style={[styles.fullFlexWidth]}>
           <DatePicker
-            // style={{width: 200}}
+            style={{width: 200}}
             date={this.props.date}
             mode="datetime"
             placeholder={I18n.t('NewRoom.input.second.timePlaceholder')}

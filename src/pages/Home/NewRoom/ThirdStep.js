@@ -36,7 +36,7 @@ export default class ThirdStep extends Component {
   render() {
     const max = this.props.newRoom.max_participants
     return (
-      <ScrollView>
+      <ScrollView style={[localStyles.container]}>
         <View>
           <RoomItem src="" title={this.props.newRoom.title} place={this.props.newRoom.location_string} timeRange={[this.props.newRoom.date_time_start, this.props.newRoom.date_time_end]} max_participants={isNaN(max) ? null : max}/>
         </View>
@@ -49,6 +49,9 @@ export default class ThirdStep extends Component {
 }
 
 const localStyles = StyleSheet.create({
+  container: {
+    marginTop: 80
+  },
   wrap: {
     marginTop: 10,
     marginBottom: 14

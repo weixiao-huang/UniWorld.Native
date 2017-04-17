@@ -59,10 +59,13 @@ export default class SecondStep extends Component {
     return (
       <ScrollView>
         <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 100}]}>
+          {/* Cover Image */}
           <View>
             <Image style={localStyles.cover} source={require('../../../assets/customCreate2.png')}/>
           </View>
           <Text style={localStyles.title}>{I18n.t('NewRoom.input.second.cover')}</Text>
+
+          {/* Name & Labels */}
           <View style={[localStyles.wrap]}>
             <InputItem title={I18n.t('NewRoom.input.name.title')}>
               <Text style={[styles.flex1]}>{this.props.newRoom.title}</Text>
@@ -72,6 +75,7 @@ export default class SecondStep extends Component {
             </InputItem>
           </View>
 
+          {/*Required*/}
           <View style={[localStyles.wrap]}>
             <View style={[localStyles.wrap__title]}>
               <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoBlue.png')}/>
@@ -109,6 +113,7 @@ export default class SecondStep extends Component {
             </InputItem>
           </View>
 
+          {/* Options */}
           <View style={[localStyles.wrap]}>
             <View style={[localStyles.wrap__title]}>
               <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoRed.png')}/>

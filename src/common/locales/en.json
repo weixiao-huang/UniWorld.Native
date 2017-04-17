@@ -10,11 +10,22 @@
     "signup": "Sign Up"
   },
   "Room": {
+    "follow": "Follow",
+    "share": "Share this room and invite your friends to join",
+    "website": "Please browse our website for more details",
     "Info": {
-      "title": "Info"
+      "title": "Info",
+      "Participants": {
+        "space1": "people have joined",
+        "space2": "place left"
+      }
     },
     "Detail": {
       "title": "Details"
+    },
+    "Footer": {
+      "star": "Mark",
+      "join": "Join In"
     }
   },
   "Actions": {

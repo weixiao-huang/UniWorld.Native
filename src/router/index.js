@@ -32,7 +32,7 @@ const AppRouteConfigs = {
   }
 }
 const stackNavConfigs = {
-  headerMode: 'screen',
+  headerMode: 'none',
   initialRouteName: 'Login'
 }
 
