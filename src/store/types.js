@@ -9,6 +9,9 @@ export const USER_LOGIN = 'USER_LOGIN'
 export const USER_LOGOUT = 'USER_LOGOUT'
 export const USER_LOGIN_ERROR = 'USER_LOGIN_ERROR'
 
+export const GO_TO_ROOM_INFO = 'GO_TO_ROOM_INFO'
+export const GET_ROOM_INFO = 'GET_ROOM_INFO'
+
 export const GET_USER_INFO = 'GET_USER_INFO'
 
 export const GET_WORLD_LIST = 'GET_WORLD_LIST'

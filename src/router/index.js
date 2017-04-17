@@ -8,23 +8,31 @@ import { addNavigationHelpers, StackNavigator, NavigationActions } from 'react-n
 
 import Login from '../pages/Login'
 import Home from '../pages/Home'
+import RoomInfo from '../components/RoomInfo'
 
 const AppRouteConfigs = {
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      title: 'UniWorld'
-    }
-  },
   Login: {
     screen: Login,
     navigationOptions: {
       title: 'Login'
     }
   },
+  Home: {
+    screen: Home,
+    navigationOptions: {
+      title: 'UniWorld'
+    }
+  },
+  RoomInfo: {
+    screen: RoomInfo,
+    path: 'room/:id',
+    navigationOptions: {
+      title: 'RoomInfo'
+    }
+  }
 }
 const stackNavConfigs = {
-  headerMode: 'none',
+  headerMode: 'screen',
   initialRouteName: 'Login'
 }
 

@@ -7,7 +7,8 @@ import * as types from '../types'
 const initialState = {
   recommend: [],
   latest: [],
-  world: []
+  world: [],
+  roomInfo: {}
 }
 
 export default (state=initialState, action) => {
@@ -19,6 +20,11 @@ export default (state=initialState, action) => {
         recommend: action.recommend,
         latest: action.latest,
         world: action.world
+      }
+    case types.GET_ROOM_INFO:
+      return {
+        ...state,
+        roomInfo: action.roomInfo
       }
     default:
       return state

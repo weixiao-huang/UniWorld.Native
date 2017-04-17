@@ -9,12 +9,12 @@
     "visitor": "visitor",
     "signup": "Sign Up"
   },
-  "room": {
-    "info": {
+  "Room": {
+    "Info": {
       "title": "Info"
     },
-    "detail": {
-      "title": "Detail"
+    "Detail": {
+      "title": "Details"
     }
   },
   "Actions": {

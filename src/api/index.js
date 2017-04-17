@@ -43,6 +43,14 @@ export default {
       Authorization: `token ${token}`
     }
   }),
+  getRoomInfo: id => token => {
+    return fetch(`${server}/room/${id}/`, {
+      method: 'GET',
+      headers: {
+        Authorization: `token ${token}`
+      }
+    })
+  },
   getRoomList: () => {
     // return fetch(`${server}/plaza/hot`)
   }

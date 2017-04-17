@@ -26,6 +26,11 @@ export default (state, action) => {
         index: 0,
         actions: [ NavigationActions.navigate({routeName: 'Login'}) ]
       }), state)
+    case types.GO_TO_ROOM_INFO:
+      return AppNavigator.router.getStateForAction(NavigationActions.navigate({
+        routeName: 'RoomInfo',
+        params: { id: action.id }
+      }), state)
     default:
       return AppNavigator.router.getStateForAction(action, state)
   }

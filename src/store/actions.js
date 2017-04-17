@@ -92,3 +92,21 @@ export const RemoveLabel = index => dispatch => {
 export const SetNewRoomData = (name, data) => dispatch => {
   dispatch({type: types.SET_NEW_ROOM_DATA, name, data})
 }
+
+export const GoToRoomInfo = id => dispatch => {
+  dispatch({type: types.GO_TO_ROOM_INFO, id})
+}
+
+export const GetRoomInfo = id => async (dispatch, getState) => {
+  try {
+    const token = getState().auth.token
+    const res = await api.getRoomInfo(id)(token)
+    if (res.status === 200) {
+      const roomInfo = await res.json()
+      dispatch({type: types.GET_ROOM_INFO, roomInfo})
+    } else throw { message: 'Get Room Info Status Code Error!'}
+  } catch (err) {
+    console.log(err)
+    Alert.alert('', err.message)
+  }
+}
