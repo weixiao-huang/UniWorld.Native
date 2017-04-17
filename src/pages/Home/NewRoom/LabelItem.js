@@ -5,17 +5,30 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Switch, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import autobind from 'autobind-decorator'
 
 import styles from '../../../common/styles'
 import I18n from 'react-native-i18n'
 
+import { RemoveLabel } from '../../../store/actions'
+
 import Label from './Label'
 
-@connect(...[, dispatch => ({dispatch})])
+const mapStateToProps = state => ({
+  labels: state.newRoom.labels
+})
+
+@connect(mapStateToProps, dispatch => ({dispatch}))
 export default class LabelItem extends Component {
   static propTypes = {
-    labels: PropTypes.array.isRequired,
     onPress: PropTypes.func.isRequired,
+  }
+
+  @autobind
+  removeLabel(index) {
+    return () => {
+      this.props.dispatch(RemoveLabel(index))
+    }
   }
 
   render() {
@@ -33,7 +46,7 @@ export default class LabelItem extends Component {
           <View>
             {this.props.labels.map((item, index) => {
               return (
-                <Label key={index} title={item}/>
+                <Label onPress={this.removeLabel(index)} key={index} title={item}/>
               )
             })}
           </View>

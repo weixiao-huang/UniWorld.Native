@@ -3,11 +3,9 @@
  */
 
 import React, { Component } from 'react';
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
-
-import styles from '../../../../common/styles'
 
 import RoomWrap from './RoomWrap'
 

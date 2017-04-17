@@ -18,6 +18,7 @@ const textColor = '#fb6b6d'
 export default class Label extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
+    onPress: PropTypes.func.isRequired
   }
 
   render() {
@@ -26,7 +27,7 @@ export default class Label extends Component {
         <View style={[localStyles.triangle]}></View>
         <View style={[localStyles.label, styles.rowFlex]}>
           <Text style={[localStyles.label__text]}>{this.props.title}</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.props.onPress}>
             <Icon name="close" size={22} color="white" />
           </TouchableOpacity>
         </View>

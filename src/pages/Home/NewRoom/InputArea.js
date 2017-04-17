@@ -98,7 +98,6 @@ export default class InputArea extends Component {
           />
         </InputItem>
         <LabelItem
-          labels={this.props.newRoom.labels}
           onPress={this._showLabelPicker.bind(this)}
         />
         <InputItem title={I18n.t('NewRoom.input.match.title')}>
