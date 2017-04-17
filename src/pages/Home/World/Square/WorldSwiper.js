@@ -29,5 +29,3 @@ export default class WorldSwiper extends Component {
     )
   }
 }
-
-

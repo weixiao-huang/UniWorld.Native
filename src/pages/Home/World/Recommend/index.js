@@ -3,16 +3,24 @@
  */
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import styles from '../../../../common/styles'
+import { connect } from 'react-redux'
+import I18n from 'react-native-i18n'
 
+import RoomWrap from '../Square/RoomWrap'
 
+const mapStateToProps = state => ({
+  recommend: state.room.recommend,
+})
+
+@connect(mapStateToProps)
 export default class Recommend extends Component {
   render () {
     return (
-      <View style={[styles.flex1, localStyles.container]}>
-        <Text>推荐页面</Text>
-      </View>
+      <ScrollView style={[localStyles.container]}>
+        <RoomWrap title={I18n.t('World.Square.recommend')} roomList={this.props.recommend.hot}/>
+      </ScrollView>
     )
   }
 }

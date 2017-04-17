@@ -12,18 +12,15 @@ import styles from '../../../../common/styles'
 import RoomWrap from './RoomWrap'
 
 const mapStateToProps = state => ({
-  recommend: state.room.recommend,
   latest: state.room.latest,
   world: state.room.world
 })
 
-@connect(mapStateToProps, dispatch => ({dispatch}))
+@connect(mapStateToProps)
 export default class Content extends Component {
   render () {
-    console.log(this.props.latest.results)
     return (
       <View>
-        <RoomWrap title={I18n.t('World.Square.recommend')} roomList={this.props.recommend.hot}/>
         <RoomWrap title={I18n.t('World.Square.latest')} roomList={this.props.latest.results}/>
         <RoomWrap title={I18n.t('World.Square.world')} roomList={this.props.world.results}/>
       </View>

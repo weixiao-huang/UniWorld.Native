@@ -35,13 +35,13 @@
   "World": {
     "label": "World",
     "Square": {
-      "label": "Square",
+      "label": "Plaza",
       "recommend": "Recommend",
       "latest": "Latest",
       "world": "World"
     },
     "Recommend": {
-      "label": "Recommend"
+      "label": "Discover"
     },
     "Search": {
       "label": "Search",
