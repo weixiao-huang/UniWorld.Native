@@ -10,7 +10,7 @@ import styles from '../../../common/styles'
 
 export default class People extends Component {
   static propTypes = {
-    max_participants: PropTypes.number.isRequired,
+    // max_participants: PropTypes.number.isRequired,
     participants: PropTypes.array.isRequired
   }
   render() {
@@ -18,8 +18,12 @@ export default class People extends Component {
     return (
       <View style={[localStyles.people]}>
         <View style={[styles.fullFlexWidth, localStyles.people__title]}>
-          <Text style={[localStyles.people__title__text]}>{participants.length} {I18n.t('Room.Info.Participants.space1')}, {max_participants - participants.length} {I18n.t('Room.Info.Participants.space2')}</Text>
-          <Text style={[localStyles.people__title__text]}>{participants.length} / {max_participants}</Text>
+          <Text style={[localStyles.people__title__text]}>
+            {participants.length} {I18n.t('Room.Info.Participants.space1')} {max_participants ? `, ${max_participants - participants.length} ${I18n.t('Room.Info.Participants.space2')}` : ''}
+          </Text>
+          <Text style={[localStyles.people__title__text]}>
+            { max_participants ? `${participants.length} / ${max_participants}` : I18n.t('NewRoom.input.second.max.placeholder') }
+          </Text>
         </View>
         <View style={[styles.fullFlexWidth]}>
           {participants.map((item, index) => {

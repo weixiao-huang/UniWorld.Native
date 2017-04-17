@@ -97,9 +97,14 @@ export default class InputArea extends Component {
             onChangeText={title => this.props.dispatch(SetNewRoomData('title', title))}
           />
         </InputItem>
-        <LabelItem
-          onPress={this._showLabelPicker.bind(this)}
-        />
+        <InputItem
+          title={I18n.t('NewRoom.input.label.title')}
+          inlineStyle={{alignItems: 'flex-start'}}
+        >
+          <LabelItem
+            onPress={this._showLabelPicker.bind(this)}
+          />
+        </InputItem>
         <InputItem title={I18n.t('NewRoom.input.match.title')}>
           <Text style={[styles.flex1, styles.gray, styles.contentFontSize]}>
             {I18n.t('NewRoom.input.match.placeholder')}

@@ -13,7 +13,7 @@ export default class InputItem extends Component {
 
   render () {
     return (
-      <View style={[inputStyles.view, styles.whiteBackground]}>
+      <View style={[inputStyles.view, styles.whiteBackground, this.props.inlineStyle]}>
         <Text style={inputStyles.title}>
           {this.props.title}
         </Text>

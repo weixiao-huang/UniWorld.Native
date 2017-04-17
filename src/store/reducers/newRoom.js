@@ -12,6 +12,7 @@ const initialState = {
   title: '',
   labels: [],
   match: false,
+  cover: '',
   intro: '',
   date_time_start: '',
   date_time_end: '',

@@ -7,9 +7,9 @@ import { Image, StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity,
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
-import DatePicker from 'react-native-datepicker'
 import Picker from 'react-native-picker'
-// import InputBox from './InputBox'
+import ImagePicker from 'react-native-image-picker'
+import Icon from 'react-native-vector-icons/Entypo'
 
 import I18n from 'react-native-i18n'
 import autobind from 'autobind-decorator'
@@ -33,9 +33,7 @@ export default class SecondStep extends Component {
     const date = new Date()
     const dateFormat = '' // `${date.getYear() + 1900}-${date.getMonth()+1}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}`
     this.state = {
-      date_time_start: dateFormat,
-      date_time_end: dateFormat,
-      max_participants: ''
+      cover: ''
     }
   }
 
@@ -52,6 +50,32 @@ export default class SecondStep extends Component {
     Picker.show()
   }
 
+  @autobind
+  _showUpload() {
+    const options = {
+      title: I18n.t('NewRoom.input.second.Cover.uploadTitle')
+    }
+    ImagePicker.showImagePicker(options, res => {
+      console.log('Response = ', res)
+      if (res.didCancel) {
+        console.log('User cancelled image picker')
+      }
+      else if (res.error) {
+        console.log('ImagePicker Error: ', res.error)
+      }
+      else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton)
+      }
+      else {
+        const cover = { uri: res.uri }
+        // You can also display the image using data:
+        this.state({ cover: 'data:image/jpeg;base64,' + res.data })
+
+        this.props.dispatch(SetNewRoomData('cover', cover))
+      }
+    })
+  }
+
   next() {
     return Actions.third
   }
@@ -59,11 +83,13 @@ export default class SecondStep extends Component {
     return (
       <ScrollView>
         <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 100}]}>
-          {/* Cover Image */}
+
+          {/* Header Image */}
           <View>
-            <Image style={localStyles.cover} source={require('../../../assets/customCreate2.png')}/>
+            <Image style={localStyles.header} source={require('../../../assets/customCreate2.png')}/>
           </View>
-          <Text style={localStyles.title}>{I18n.t('NewRoom.input.second.cover')}</Text>
+          <Text style={localStyles.title}>{I18n.t('NewRoom.input.second.title')}</Text>
+
 
           {/* Name & Labels */}
           <View style={[localStyles.wrap]}>
@@ -74,6 +100,22 @@ export default class SecondStep extends Component {
               <Text style={[styles.flex1]}>{this.props.newRoom.labels.join(', ')}</Text>
             </InputItem>
           </View>
+
+
+          {/* Cover */}
+          <View style={[localStyles.wrap]}>
+            <InputItem title={I18n.t('NewRoom.input.second.Cover.title')}>
+              <View style={[styles.fullFlexWidth, localStyles.cover]}>
+                <Text style={{color: '#c7c7c7'}}>{I18n.t('NewRoom.input.second.Cover.placeholder')}</Text>
+                <TouchableOpacity onPress={this._showUpload}>
+                  <Image source={this.props.newRoom.cover ? this.props.newRoom.cover : ''} style={[localStyles.cover__image]}>
+                    <Icon name="camera" size={20}/>
+                  </Image>
+                </TouchableOpacity>
+              </View>
+            </InputItem>
+          </View>
+
 
           {/*Required*/}
           <View style={[localStyles.wrap]}>
@@ -106,12 +148,13 @@ export default class SecondStep extends Component {
             </InputItem>
             <InputItem title={I18n.t('NewRoom.input.second.max.title')}>
               <TouchableOpacity style={[styles.flex1]} onPress={this._showPicker}>
-                <Text style={[styles.contentFontSize, this.props.newRoom.max_participants ? {color: 'black'} : {color: '#c9c9c9'}]}>
+                <Text style={[styles.contentFontSize, isNaN(this.props.newRoom.max_participants) ? {color: '#c9c9c9'} : {color: 'black'}]}>
                   {this.props.newRoom.max_participants ? this.props.newRoom.max_participants : I18n.t('NewRoom.input.second.max.placeholder')}
                 </Text>
               </TouchableOpacity>
             </InputItem>
           </View>
+
 
           {/* Options */}
           <View style={[localStyles.wrap]}>
@@ -165,12 +208,28 @@ export default class SecondStep extends Component {
   }
 }
 
+const coverSize = 60
 const localStyles = StyleSheet.create({
+  cover: {
+    margin: 4,
+    marginRight: 14,
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  cover__image: {
+    width: coverSize,
+    height: coverSize,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: coverSize / 2,
+    borderWidth: 1,
+    borderColor: '#cecccf'
+  },
   wrap: {
     marginTop: 10,
     marginBottom: 14
   },
-  cover: {
+  header: {
     height: 150,
     resizeMode: 'contain'
   },

@@ -69,7 +69,12 @@
         "placeholder": "Set as an automatch room?"
       },
       "second": {
-        "cover": "Define Your World",
+        "title": "Define Your World",
+        "Cover": {
+          "title": "Cover",
+          "placeholder": "Please upload your room cover",
+          "uploadTitle": "Select room cover"
+        },
         "intro": {
           "title": "Intro",
           "placeholder": "Outing in Beijing"
