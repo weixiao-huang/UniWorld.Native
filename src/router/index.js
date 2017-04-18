@@ -9,6 +9,7 @@ import { addNavigationHelpers, StackNavigator, NavigationActions } from 'react-n
 import Login from '../pages/Login'
 import Home from '../pages/Home'
 import RoomInfo from '../components/RoomInfo'
+import RoomDetail from '../components/RoomDetail'
 import User from '../components/User'
 
 const AppRouteConfigs = {
@@ -36,6 +37,13 @@ const AppRouteConfigs = {
     path: 'user/:id',
     navigationOptions: {
       title: 'User'
+    }
+  },
+  RoomDetail: {
+    screen: RoomDetail,
+    path: 'room/:id/detail',
+    navigationOptions: {
+      title: 'RoomDetail'
     }
   }
 }

@@ -36,6 +36,23 @@
       "join": "Join In",
       "leave": "Leave",
       "room": "Room"
+    },
+    "Notice": {
+      "title": "Notice",
+      "Footer": {
+        "edit": "Edit",
+        "new": "New notification"
+      }
+    },
+    "Chat": {
+      "title": "Chat"
+    },
+    "Member": {
+      "title": "Member",
+      "Footer": {
+        "likeRoom": "Like room",
+        "likeAll": "Like all participants"
+      }
     }
   },
   "Actions": {

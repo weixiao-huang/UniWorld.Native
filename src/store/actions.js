@@ -111,6 +111,10 @@ export const GetRoomInfo = id => async (dispatch, getState) => {
   }
 }
 
+export const GoToRoomDetail = id => dispatch => {
+  dispatch({type: types.GO_TO_ROOM_DETAIL, id})
+}
+
 export const GoToUser = id => dispatch => {
   dispatch({type: types.GO_TO_USER, id})
 }

@@ -13,6 +13,8 @@ export const GO_TO_ROOM_INFO = 'GO_TO_ROOM_INFO'
 export const GET_ROOM_INFO = 'GET_ROOM_INFO'
 export const GO_TO_USER = 'GO_TO_USER'
 export const GET_USER = 'GET_USER'
+export const GO_TO_ROOM_DETAIL = 'GO_TO_ROOM_DETAIL'
+export const GET_ROOM_DETAIL = 'GET_ROOM_DETAIL'
 
 export const GET_USER_INFO = 'GET_USER_INFO'
 

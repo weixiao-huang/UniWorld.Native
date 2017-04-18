@@ -14,6 +14,8 @@ import Detail from './Detail/index'
 
 import styles from '../../common/styles'
 
+import { GoToRoomDetail } from '../../store/actions'
+
 const mapStateToProps = state => ({
   roomInfo: state.room.roomInfo,
   userId: state.user.userInfo.id
@@ -33,8 +35,11 @@ export default class RoomInfo extends Component {
   _leave() {
 
   }
-  _room() {
-
+  @autobind
+  _room(id) {
+    return () => {
+      this.props.dispatch(GoToRoomDetail(id))
+    }
   }
 
   _joinin() {
@@ -63,7 +68,7 @@ export default class RoomInfo extends Component {
         <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
           <TouchableOpacity
             style={[styles.flexCenter, localStyles.star]}
-            onPress={this._joined() ? this._mark : this._leave}
+            onPress={this._joined() ? this._leave: this._mark}
           >
             <Text style={[localStyles.footer__text]}>
               {this._joined() ? I18n.t('Room.Footer.leave') : I18n.t('Room.Footer.star')}
@@ -71,7 +76,7 @@ export default class RoomInfo extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.flexCenter, localStyles.join]}
-            onPress={this._joined() ? this._joinin: this._room}
+            onPress={this._joined() ? this._room(id): this._joinin}
           >
             <Text style={[localStyles.footer__text]}>
               {this._joined() ? I18n.t('Room.Footer.room') : I18n.t('Room.Footer.join')}
