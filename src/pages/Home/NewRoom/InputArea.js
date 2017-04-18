@@ -12,8 +12,8 @@ import I18n from 'react-native-i18n'
 import _ from 'lodash'
 import styles from '../../../common/styles'
 
-import InputItem from './InputItem'
-import LabelItem from './LabelItem'
+import InputItem from '../../../components/InputItem'
+import LabelItem from '../../../components/LabelItem'
 
 import { GetInitialLabels, AddLabel, SetNewRoomData } from '../../../store/actions'
 

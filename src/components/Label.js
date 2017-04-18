@@ -6,7 +6,7 @@ import React, { Component, PropTypes } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/EvilIcons'
 
-import styles from '../../../common/styles'
+import styles from '../common/styles'
 
 const labelBgColor = '#fbc6c7'
 const labelWidth = 12
@@ -18,7 +18,6 @@ const textColor = '#fb6b6d'
 export default class Label extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
-    onPress: PropTypes.func.isRequired
   }
 
   render() {
@@ -26,10 +25,13 @@ export default class Label extends Component {
       <View style={[styles.rowFlex, {alignItems: 'center'}, localStyles.container]}>
         <View style={[localStyles.triangle]}></View>
         <View style={[localStyles.label, styles.rowFlex]}>
-          <Text style={[localStyles.label__text]}>{this.props.title}</Text>
-          <TouchableOpacity onPress={this.props.onPress}>
-            <Icon name="close" size={22} color="white" />
-          </TouchableOpacity>
+          <Text style={[localStyles.label__text, this.props.close ? {paddingRight: 0} : {paddingRight: 10}]}>{this.props.title}</Text>
+          {this.props.close
+            ? <TouchableOpacity onPress={this.props.onPress}>
+                <Icon name="close" size={22} color="white" />
+              </TouchableOpacity>
+            : null
+          }
         </View>
       </View>
     )
@@ -44,7 +46,7 @@ const localStyles = StyleSheet.create({
     color: textColor,
     paddingLeft: paddingLeft,
     paddingTop: textPadding,
-    paddingBottom: textPadding
+    paddingBottom: textPadding,
   },
   label: {
     backgroundColor: labelBgColor,

@@ -15,6 +15,7 @@
     "website": "Please browse our website for more details",
     "Info": {
       "title": "Info",
+      "label": "Label",
       "Participants": {
         "space1": "people have joined",
         "space2": "place left"

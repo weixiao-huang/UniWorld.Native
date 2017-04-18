@@ -6,7 +6,7 @@ import React, { Component, PropTypes } from 'react';
 import { View, Text, Image, TextInput, Switch, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
-import InputItem from './InputItem'
+import InputItem from '../../../components/InputItem'
 
 export default class InputBox extends Component {
   static propTypes = {

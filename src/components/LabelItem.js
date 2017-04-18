@@ -7,10 +7,10 @@ import { View, Text, TouchableOpacity, TextInput, Switch, StyleSheet } from 'rea
 import { connect } from 'react-redux'
 import autobind from 'autobind-decorator'
 
-import styles from '../../../common/styles'
+import styles from '../common/styles'
 import I18n from 'react-native-i18n'
 
-import { RemoveLabel } from '../../../store/actions'
+import { RemoveLabel } from '../store/actions'
 
 import Label from './Label'
 

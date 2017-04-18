@@ -20,7 +20,7 @@ import styles from '../../../common/styles'
 
 import NewRoomButton from '../../../components/StyleButton'
 import RoomItem from '../../../components/RoomItem'
-import InputItem from './InputItem'
+import InputItem from '../../../components/InputItem'
 import DateTimePicker from './DateTimePicker'
 
 const mapStateToProps = state => ({

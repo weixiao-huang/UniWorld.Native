@@ -14,7 +14,7 @@ import { GetRoomList } from '../../../store/actions'
 
 import TabContainer from './TabContainer'
 
-const items = ['Star', 'JoinIn', 'Mine']
+const items = ['JoinIn', 'Star', 'Mine']
 
 const mapStateToProps = state => ({
   roomList: state.room.roomList

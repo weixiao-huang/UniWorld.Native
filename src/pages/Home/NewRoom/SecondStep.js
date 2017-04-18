@@ -19,7 +19,7 @@ import { SetNewRoomData } from '../../../store/actions'
 import styles from '../../../common/styles'
 
 import NewRoomButton from '../../../components/StyleButton'
-import InputItem from './InputItem'
+import InputItem from '../../../components/InputItem'
 import DateTimePicker from './DateTimePicker'
 
 const mapStateToProps = state => ({

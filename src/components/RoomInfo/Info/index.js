@@ -9,6 +9,7 @@ import I18n from 'react-native-i18n'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import styles from '../../../common/styles'
+import LabelBox from './LabelBox'
 import Header from './Header'
 import Time from './Time'
 import People from './People'
@@ -23,7 +24,7 @@ export default class Info extends Component {
   render() {
     const {
       cover, title, description, date_time_start, date_time_end,
-      max_participants, participants, host
+      max_participants, participants, host, labels
     } = this.props.roomInfo
     return (
       <ScrollView style={[localStyles.container, styles.flex1]}>
@@ -35,6 +36,10 @@ export default class Info extends Component {
         <View style={[localStyles.wrap]}>
           <People max_participants={max_participants} participants={participants}/>
         </View>
+        {labels.length
+          ? <LabelBox labels={labels}/>
+          : null
+        }
         <View style={[localStyles.wrap]}>
           <Host host={host}/>
         </View>

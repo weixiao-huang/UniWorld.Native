@@ -8,7 +8,7 @@ import DatePicker from 'react-native-datepicker'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 
-import InputItem from './InputItem'
+import InputItem from '../../../components/InputItem'
 
 export default class DateTimePicker extends Component {
   static propTypes = {
