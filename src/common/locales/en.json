@@ -6,6 +6,8 @@
     "male": "male",
     "female": "female"
   },
+  "yes": "Yes",
+  "no": "No",
   "dislikes": "Dislikes",
   "Login": {
     "username": "Tel",
@@ -90,6 +92,7 @@
           "placeholder": "Please upload your room cover",
           "uploadTitle": "Select room cover"
         },
+        "name": "Name",
         "intro": {
           "title": "Intro",
           "placeholder": "Outing in Beijing"
@@ -128,6 +131,10 @@
           "title": "Rewards",
           "placeholder": "rewards for joining"
         }
+      },
+      "third": {
+        "preview": "Preview",
+        "confirm": "Confirm"
       }
     }
   },

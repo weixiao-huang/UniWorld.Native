@@ -9,7 +9,6 @@ import { Actions } from 'react-native-router-flux'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 
-
 import NewRoomButton from '../../../components/StyleButton'
 import InputArea from './InputArea'
 
@@ -56,8 +55,8 @@ const localStyles = StyleSheet.create({
     padding: 16,
   },
   button: {
-    marginTop: 5,
-    marginBottom: 20,
+    marginTop: 10,
+    marginBottom: 30,
     backgroundColor: '#ec5367',
     borderRadius: 5
   }

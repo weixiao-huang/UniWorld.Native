@@ -28,7 +28,7 @@ export default class Label extends Component {
           <Text style={[localStyles.label__text, this.props.close ? {paddingRight: 0} : {paddingRight: 10}]}>{this.props.title}</Text>
           {this.props.close
             ? <TouchableOpacity onPress={this.props.onPress}>
-                <Icon name="close" size={22} color="white" />
+                <Icon name="close" size={22} style={{paddingTop: 3}} color="white" />
               </TouchableOpacity>
             : null
           }
@@ -47,6 +47,7 @@ const localStyles = StyleSheet.create({
     paddingLeft: paddingLeft,
     paddingTop: textPadding,
     paddingBottom: textPadding,
+    lineHeight: 18
   },
   label: {
     backgroundColor: labelBgColor,

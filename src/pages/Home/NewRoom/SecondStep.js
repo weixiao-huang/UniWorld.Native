@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/Entypo'
 
 import I18n from 'react-native-i18n'
 import autobind from 'autobind-decorator'
+import _ from 'lodash'
 
 import { SetNewRoomData } from '../../../store/actions'
 
@@ -21,6 +22,7 @@ import styles from '../../../common/styles'
 import NewRoomButton from '../../../components/StyleButton'
 import InputItem from '../../../components/InputItem'
 import DateTimePicker from './DateTimePicker'
+import Label from '../../../components/Label'
 
 const mapStateToProps = state => ({
   newRoom: state.newRoom
@@ -97,7 +99,13 @@ export default class SecondStep extends Component {
               <Text style={[styles.flex1]}>{this.props.newRoom.title}</Text>
             </InputItem>
             <InputItem title={I18n.t('NewRoom.input.label.title')}>
-              <Text style={[styles.flex1]}>{this.props.newRoom.labels.join(', ')}</Text>
+              <View style={[styles.fullFlexWidth, styles.flexWrap, {alignItems: 'center'}]}>
+                {this.props.newRoom.labels.map((item, index) => {
+                  return (
+                    <Label key={index} title={item}/>
+                  )
+                })}
+              </View>
             </InputItem>
           </View>
 
@@ -128,6 +136,7 @@ export default class SecondStep extends Component {
                 style={[styles.flex1, styles.contentFontSize]}
                 placeholder={I18n.t('NewRoom.input.second.intro.placeholder')}
                 multiline={true}
+                defaultValue={this.props.newRoom.intro}
                 onChangeText={intro => this.props.dispatch(SetNewRoomData('intro', intro))}
               />
             </InputItem>
@@ -143,12 +152,13 @@ export default class SecondStep extends Component {
               <TextInput
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.location.placeholder')}
-                onchangetext={location_string => this.props.dispatch(SetNewRoomData('location_string', location_string))}
+                defaultValue={this.props.newRoom.location_string}
+                onChangeText={location_string => this.props.dispatch(SetNewRoomData('location_string', location_string))}
               />
             </InputItem>
             <InputItem title={I18n.t('NewRoom.input.second.max.title')}>
               <TouchableOpacity style={[styles.flex1]} onPress={this._showPicker}>
-                <Text style={[styles.contentFontSize, isNaN(this.props.newRoom.max_participants) ? {color: '#c9c9c9'} : {color: 'black'}]}>
+                <Text style={[styles.contentFontSize, _.isNumber(this.props.newRoom.max_participants) || isNaN(this.props.newRoom.max_participants) ? {color: 'black'} : {color: '#c9c9c9'}]}>
                   {this.props.newRoom.max_participants ? this.props.newRoom.max_participants : I18n.t('NewRoom.input.second.max.placeholder')}
                 </Text>
               </TouchableOpacity>
@@ -176,21 +186,24 @@ export default class SecondStep extends Component {
               <TextInput
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.welcome.placeholder')}
-                onchangetext={welcome => this.props.dispatch('welcome', welcome)}
+                defaultValue={this.props.newRoom.welcome}
+                onChangeText={welcome => this.props.dispatch(SetNewRoomData('welcome', welcome))}
               />
             </InputItem>
             <InputItem title={I18n.t('NewRoom.input.second.expense.title')}>
               <TextInput
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.expense.placeholder')}
-                onchangetext={expense => this.props.dispatch('expense', expense)}
+                onChangeText={expense => this.props.dispatch(SetNewRoomData('expense', expense))}
+                defaultValue={this.props.newRoom.expense}
               />
             </InputItem>
             <InputItem title={I18n.t('NewRoom.input.second.rewards.title')}>
               <TextInput
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.rewards.placeholder')}
-                onchangetext={rewards => this.props.dispatch('rewards', rewards)}
+                onChangeText={rewards => this.props.dispatch(SetNewRoomData('rewards', rewards))}
+                defaultValue={this.props.newRoom.rewards}
               />
             </InputItem>
           </View>
