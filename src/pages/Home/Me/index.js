@@ -20,8 +20,8 @@ import { GetUserInfo } from '../../../store/actions'
 
 @connect(...[, dispatch => ({dispatch})])
 export default class NewRoom extends Component {
-  componentWillMount() {
-    this.props.dispatch(GetUserInfo)
+  async componentWillMount() {
+    await this.props.dispatch(GetUserInfo)
   }
 
   render() {

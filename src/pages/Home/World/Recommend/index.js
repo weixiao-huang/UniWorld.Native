@@ -25,9 +25,6 @@ export default class Recommend extends Component {
       refreshing: false
     }
   }
-  componentWillMount() {
-    this.props.dispatch(GetRecommendRoomList)
-  }
   @autobind
   async _onRefresh() {
     this.setState({refreshing: true})

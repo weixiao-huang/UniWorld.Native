@@ -26,11 +26,6 @@ export default class Square extends Component {
     }
   }
 
-  componentWillMount() {
-    this.props.dispatch(GetLatestRoomList)
-    this.props.dispatch(GetWorldRoomList)
-  }
-
   @autobind
   async _onRefresh() {
     this.setState({refreshing: true})

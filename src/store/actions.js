@@ -35,7 +35,7 @@ export const GetUserInfo = async (dispatch, getState) => {
     const res = await api.getUserInfo(getState().auth.token)
     if (res.status === 200) {
       const data = await res.json()
-      dispatch({ type: types.GET_USER_INFO, userInfo: data })
+      return dispatch({ type: types.GET_USER_INFO, userInfo: data })
     } else throw { message: 'Get Room List Status Code Error!' }
   } catch (err) {
     console.log(err)

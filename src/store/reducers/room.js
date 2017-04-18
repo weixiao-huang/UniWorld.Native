@@ -15,13 +15,14 @@ const initialState = {
 
 export default (state=initialState, action) => {
   switch (action.type) {
-    case types.GET_WORLD_LIST:
-      console.log('Actions: ', action)
+    case types.USER_LOGOUT:
       return {
         ...state,
-        recommend: action.recommend,
-        latest: action.latest,
-        world: action.world
+        recommend: [],
+        latest: [],
+        world: [],
+        roomInfo: {},
+        roomList: []
       }
     case types.GET_WORLD_ROOM_LIST:
       return {

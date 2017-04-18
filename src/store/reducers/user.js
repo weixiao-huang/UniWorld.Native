@@ -22,6 +22,12 @@ export default (state=initialState, action) => {
         ...state,
         user: action.user
       }
+    case types.USER_LOGOUT:
+      return {
+        ...state,
+        userInfo: {},
+        user: {}
+      }
     default:
       return state
   }

@@ -6,14 +6,24 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet } from 'react-native'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 import I18n from 'react-native-i18n'
+import { connect } from 'react-redux'
 
 import Search from './Search/index'
 import Square from './Square/index'
 import Recommend from './Recommend/index'
 
 import styles from '../../../common/styles'
+import { GetLatestRoomList, GetRecommendRoomList, GetWorldRoomList } from '../../../store/actions'
 
+@connect(...[, dispatch => ({dispatch})])
 export default class World extends Component {
+
+  async componentWillMount() {
+    await this.props.dispatch(GetLatestRoomList)
+    await this.props.dispatch(GetWorldRoomList)
+    await this.props.dispatch(GetRecommendRoomList)
+  }
+
   render() {
     return (
       <View style={[styles.flex1, localStyles.container]}>
