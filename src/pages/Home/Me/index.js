@@ -10,7 +10,7 @@ import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 
-import UserCover from '../../../components/UserCover'
+import UserCover from './UserCover'
 
 import UserInfo from './UserInfo/index'
 import Follow from './Follow/index'
