@@ -3,28 +3,21 @@
  */
 
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 
-import styles from '../../../common/styles'
+import styles from '../../common/styles'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 
-import UserCover from '../../../components/UserCover'
+import UserCover from '../UserCover'
 
-import UserInfo from './UserInfo/index'
-import Follow from './Follow/index'
-import Reputation from './Reputation/index'
-
-import { GetUserInfo } from '../../../store/actions'
+const PlaceHolder = ({id}) => <Text>{id}</Text>
 
 @connect(...[, dispatch => ({dispatch})])
 export default class NewRoom extends Component {
-  componentWillMount() {
-    this.props.dispatch(GetUserInfo)
-  }
-
   render() {
+    const { params: { id } } = this.props.navigation.state
     return (
       <View style={styles.flex1}>
         <UserCover/>
@@ -34,12 +27,12 @@ export default class NewRoom extends Component {
           tabBarBackgroundColor="white"
           tabBarTextStyle={[meStyles.tabBarText]}
         >
-          <UserInfo tabLabel={I18n.t('Me.info.label')}/>
-          <Follow tabLabel={I18n.t('Me.follow.label')}/>
-          <Reputation tabLabel={I18n.t('Me.credit.label')}/>
+          <PlaceHolder id={id} tabLabel={I18n.t('Me.info.label')}/>
+          <PlaceHolder id={id} tabLabel={I18n.t('Me.follow.label')}/>
+          <PlaceHolder id={id} tabLabel={I18n.t('Me.credit.label')}/>
         </ScrollTabView>
       </View>
-   );
+    );
   }
 }
 

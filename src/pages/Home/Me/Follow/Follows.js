@@ -4,19 +4,33 @@
 
 import React, { Component, PropTypes } from 'react';
 import { Image, Button, StyleSheet, TouchableOpacity, ScrollView, View, Text } from 'react-native'
+import { connect } from 'react-redux'
 import styles from '../../../../common/styles'
+import autobind from 'autobind-decorator'
 
+import { GoToUser, GetUser } from '../../../../store/actions'
+
+@connect(...[, dispatch => ({dispatch})])
 export default class Follows extends Component {
   static propTypes = {
     follows: PropTypes.array.isRequired
   }
+
+  @autobind
+  _gotoUser(id) {
+    return () => {
+      this.props.dispatch(GoToUser(id))
+      this.props.dispatch(GetUser(id))
+    }
+  }
+  
   render() {
     return (
       <View style={[styles.rowFlex, styles.flexWrap, styles.whiteBackground, localStyles.container]}>
         {this.props.follows.map((item, index) => {
           return (
             <View key={index} style={[styles.flexCenter]}>
-              <TouchableOpacity style={[localStyles.icon]}>
+              <TouchableOpacity onPress={this._gotoUser(item.id)} style={[localStyles.icon]}>
                 <Image style={[localStyles.icon__img]} source={{uri: item.avatar}}/>
               </TouchableOpacity>
               <Text>{item.name}</Text>

@@ -4,15 +4,28 @@
 
 import React, { Component, PropTypes } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
+import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
+import autobind from 'autobind-decorator'
 import styles from '../../../common/styles'
 
+import { GoToUser, GetUser } from '../../../store/actions'
 
+@connect(...[, dispatch => ({dispatch})])
 export default class People extends Component {
   static propTypes = {
     // max_participants: PropTypes.number.isRequired,
     participants: PropTypes.array.isRequired
   }
+
+  @autobind
+  _gotoUser(id) {
+    return () => {
+      this.props.dispatch(GoToUser(id))
+      this.props.dispatch(GetUser(id))
+    }
+  }
+
   render() {
     const { max_participants, participants } = this.props
     return (
@@ -28,7 +41,7 @@ export default class People extends Component {
         <View style={[styles.fullFlexWidth, localStyles.people__iconBox]}>
           {participants.map((item, index) => {
             return (
-              <TouchableOpacity style={[localStyles.people__icon]} key={index}>
+              <TouchableOpacity onPress={this._gotoUser(item.id)} style={[localStyles.people__icon]} key={index}>
                 <Image
                   style={[localStyles.people__icon__item]}
                   source={{uri: item.avatar}}

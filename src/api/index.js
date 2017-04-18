@@ -15,48 +15,34 @@ export default {
   }),
   getUserInfo: token => fetch(`${server}/profile/`, {
     method: 'GET',
-    headers: {
-      Authorization: `token ${token}`
-    }
+    headers: { Authorization: `token ${token}` }
+  }),
+  getUser: id => token => fetch(`${server}/user/${id}/`, {
+    method: 'GET',
+    headers: { Authorization: `token ${token}` }
   }),
   getRecommend: token => fetch(`${server}/plaza/hot/`, {
     method: 'GET',
-    headers: {
-      Authorization: `token ${token}`
-    }
+    headers: { Authorization: `token ${token}` }
   }),
   getLatest: token => fetch(`${server}/plaza/latest/`, {
     method: 'GET',
-    headers: {
-      Authorization: `token ${token}`
-    }
+    headers: { Authorization: `token ${token}` }
   }),
   getWorld: token => fetch(`${server}/plaza/random/`, {
     method: 'GET',
-    headers: {
-      Authorization: `token ${token}`
-    }
+    headers: { Authorization: `token ${token}` }
   }),
   getInitialLabels: token => fetch(`${server}/label/`, {
     method: 'GET',
-    headers: {
-      Authorization: `token ${token}`
-    }
+    headers: { Authorization: `token ${token}` }
   }),
-  getRoomInfo: id => token => {
-    return fetch(`${server}/room/${id}/`, {
-      method: 'GET',
-      headers: {
-        Authorization: `token ${token}`
-      }
-    })
-  },
-  getRoomList: token => {
-    return fetch(`${server}/profile/rooms/`, {
-      method: 'GET',
-      headers: {
-        Authorization: `token ${token}`
-      }
-    })
-  }
+  getRoomInfo: id => token => fetch(`${server}/room/${id}/`, {
+    method: 'GET',
+    headers: { Authorization: `token ${token}` }
+  }),
+  getRoomList: token => fetch(`${server}/profile/rooms/`, {
+    method: 'GET',
+    headers: { Authorization: `token ${token}` }
+  })
 }

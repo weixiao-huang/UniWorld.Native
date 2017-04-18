@@ -31,6 +31,11 @@ export default (state, action) => {
         routeName: 'RoomInfo',
         params: { id: action.id }
       }), state)
+    case types.GO_TO_USER:
+      return AppNavigator.router.getStateForAction(NavigationActions.navigate({
+        routeName: 'User',
+        params: { id: action.id }
+      }), state)
     default:
       return AppNavigator.router.getStateForAction(action, state)
   }

@@ -111,6 +111,24 @@ export const GetRoomInfo = id => async (dispatch, getState) => {
   }
 }
 
+export const GoToUser = id => dispatch => {
+  dispatch({type: types.GO_TO_USER, id})
+}
+
+export const GetUser = id => async (dispatch, getState) => {
+  try {
+    const token = getState().auth.token
+    const res = await api.getUser(id)(token)
+    if (res.status === 200) {
+      const user = await res.json()
+      dispatch({type: types.GET_USER, user})
+    } else throw { message: 'Get User Status Code Error!'}
+  } catch (err) {
+    console.log(err)
+    Alert.alert('', err.message)
+  }
+}
+
 export const GetRoomList = async(dispatch, getState) => {
   try {
     const token = getState().auth.token

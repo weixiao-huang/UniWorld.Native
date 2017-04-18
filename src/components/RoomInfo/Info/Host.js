@@ -4,11 +4,16 @@
 
 import React, { Component, PropTypes } from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
+import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
+import autobind from 'autobind-decorator'
 
 import Follow from '../../StyleButton'
 import styles from '../../../common/styles'
 
+import { GoToUser, GetUser } from '../../../store/actions'
+
+@connect(...[, dispatch => ({dispatch})])
 export default class Host extends Component {
   static propsTypes = {
     host: PropTypes.object.isRequired
@@ -16,15 +21,21 @@ export default class Host extends Component {
   follow() {
 
   }
-  gotoHost() {
 
+  @autobind
+  _gotoHost(id) {
+    return () => {
+      this.props.dispatch(GoToUser(id))
+      this.props.dispatch(GetUser(id))
+    }
   }
+
   render() {
     const { host } = this.props
     return (
       <View style={[styles.fullFlexWidth, localStyles.container]}>
         <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.wrap]}>
-          <TouchableOpacity onPress={this.gotoHost}>
+          <TouchableOpacity onPress={this._gotoHost(host.id)}>
             <Image style={[localStyles.wrap__avatar]} source={{uri: host.avatar}}/>
           </TouchableOpacity>
           <View style={[styles.flex1, localStyles.wrap__title]}>

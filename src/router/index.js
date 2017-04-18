@@ -9,6 +9,7 @@ import { addNavigationHelpers, StackNavigator, NavigationActions } from 'react-n
 import Login from '../pages/Login'
 import Home from '../pages/Home'
 import RoomInfo from '../components/RoomInfo'
+import User from '../components/User'
 
 const AppRouteConfigs = {
   Login: {
@@ -29,10 +30,17 @@ const AppRouteConfigs = {
     navigationOptions: {
       title: 'RoomInfo'
     }
+  },
+  User: {
+    screen: User,
+    path: 'user/:id',
+    navigationOptions: {
+      title: 'User'
+    }
   }
 }
 const stackNavConfigs = {
-  headerMode: 'none',
+  headerMode: 'screen',
   initialRouteName: 'Login'
 }
 

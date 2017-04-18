@@ -14,7 +14,6 @@ import styles from '../../common/styles'
 
 export default class RoomInfo extends Component {
   render() {
-    console.log('房间信息roomInfo: ', this.props.roomInfo)
     const { params: { id } } = this.props.navigation.state
     return (
       <View style={[styles.flex1, localStyles.container]}>

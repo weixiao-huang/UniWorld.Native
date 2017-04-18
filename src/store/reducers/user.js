@@ -6,7 +6,8 @@
 import * as types from '../types'
 
 const initialState = {
-  userInfo: {}
+  userInfo: {},
+  user: {}
 }
 
 export default (state=initialState, action) => {
@@ -15,6 +16,11 @@ export default (state=initialState, action) => {
       return {
         ...state,
         userInfo: action.userInfo
+      }
+    case types.GET_USER:
+      return {
+        ...state,
+        user: action.user
       }
     default:
       return state
