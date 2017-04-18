@@ -11,7 +11,7 @@ import autobind from 'autobind-decorator'
 import WorldSwiper from './WorldSwiper'
 import Content from './Content'
 
-import { GetWorldList } from '../../../../store/actions'
+import { GetLatestRoomList, GetWorldRoomList } from '../../../../store/actions'
 
 const mapStateToProps = state => ({
   refreshing: state.room.refreshing
@@ -26,10 +26,16 @@ export default class Square extends Component {
     }
   }
 
+  componentWillMount() {
+    this.props.dispatch(GetLatestRoomList)
+    this.props.dispatch(GetWorldRoomList)
+  }
+
   @autobind
   async _onRefresh() {
     this.setState({refreshing: true})
-    await this.props.dispatch(GetWorldList)
+    await this.props.dispatch(GetLatestRoomList)
+    await this.props.dispatch(GetWorldRoomList)
     this.setState({refreshing: false})
   }
 

@@ -44,23 +44,42 @@ export const GetUserInfo = async (dispatch, getState) => {
   }
 }
 
-export const GetWorldList = async (dispatch, getState) => {
+export const GetLatestRoomList = async (dispatch, getState) => {
   try {
     const token = getState().auth.token
-    const recommendRes = await api.getRecommend(token)
-    const latestRes = await api.getLatest(token)
-    const worldRes = await api.getWorld(token)
-    console.log(recommendRes.status)
-    console.log(latestRes.status)
-    console.log(worldRes.status)
-    if (recommendRes.status === 200 &&
-      latestRes.status === 200 &&
-      worldRes.status === 200) {
-      const recommend = await recommendRes.json()
-      const latest = await latestRes.json()
-      const world = await worldRes.json()
-      return dispatch({type: types.GET_WORLD_LIST, recommend: recommend, latest: latest, world: world})
-    } else throw { message: 'Get WorldList Status code Error' }
+    const res = await api.getLatest(token)
+    if (res.status === 200) {
+      const data = await res.json()
+      return dispatch({type: types.GET_LATEST_ROOM_LIST, latest: data})
+    } else throw { message: 'Get Latest Status code Error' }
+  } catch (err) {
+    console.log(err)
+    Alert.alert('', err.message)
+  }
+}
+
+export const GetRecommendRoomList = async (dispatch, getState) => {
+  try {
+    const token = getState().auth.token
+    const res = await api.getLatest(token)
+    if (res.status === 200) {
+      const data = await res.json()
+      return dispatch({type: types.GET_RECOMMEND_ROOM_LIST, recommend: data})
+    } else throw { message: 'Get Latest Status code Error' }
+  } catch (err) {
+    console.log(err)
+    Alert.alert('', err.message)
+  }
+}
+
+export const GetWorldRoomList = async (dispatch, getState) => {
+  try {
+    const token = getState().auth.token
+    const res = await api.getLatest(token)
+    if (res.status === 200) {
+      const data = await res.json()
+      return dispatch({type: types.GET_WORLD_ROOM_LIST, world: data})
+    } else throw { message: 'Get Latest Status code Error' }
   } catch (err) {
     console.log(err)
     Alert.alert('', err.message)

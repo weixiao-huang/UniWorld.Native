@@ -23,6 +23,21 @@ export default (state=initialState, action) => {
         latest: action.latest,
         world: action.world
       }
+    case types.GET_WORLD_ROOM_LIST:
+      return {
+        ...state,
+        world: action.world
+      }
+    case types.GET_LATEST_ROOM_LIST:
+      return {
+        ...state,
+        latest: action.latest
+      }
+    case types.GET_RECOMMEND_ROOM_LIST:
+      return {
+        ...state,
+        recommend: action.recommend
+      }
     case types.GET_ROOM_INFO:
       return {
         ...state,
