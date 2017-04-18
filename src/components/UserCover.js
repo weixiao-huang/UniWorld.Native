@@ -23,20 +23,14 @@ export default class UserCover extends Component {
           <View style={[styles.flex1, coverStyles.box]}>
             <View style={[styles.transparent, coverStyles.titleBox]}>
               <Image style={{width: 20, height: 20}} source={require('../assets/icon/female.png')} />
-              <Text
-                style={[styles.transparent, {marginLeft: 10, color: 'white', fontSize: 20, fontWeight: 'bold'}]}
-              >
+              <Text style={[styles.transparent, {marginLeft: 10, color: 'white', fontSize: 20, fontWeight: 'bold'}]}>
                 {name}
               </Text>
             </View>
-            <Text
-              style={[styles.transparent, {marginTop: 5, color: 'white'}]}
-            >
+            <Text style={[styles.transparent, {marginTop: 5, color: 'white'}]}>
               {signature}
             </Text>
-            <Text
-              style={[styles.transparent, coverStyles.tips, {color: '#d3d4f2'}]}
-            >
+            <Text style={[styles.transparent, coverStyles.tips, {color: '#d3d4f2'}]}>
               {followers.length + follows.length} {I18n.t('Me.cover.friends')} | {joined_count} {I18n.t('Me.cover.joined')} | {p_thumb_ups + h_thumb_ups} {I18n.t('Me.cover.thumb_ups')}
             </Text>
           </View>

@@ -2,6 +2,11 @@
   "App": {
     "version": "Version"
   },
+  "Gender": {
+    "male": "male",
+    "female": "female"
+  },
+  "dislikes": "Dislikes",
   "Login": {
     "username": "Tel",
     "password": "Password",
@@ -32,6 +37,14 @@
   "Actions": {
     "loginError": "Username or password Error",
     "statusError": "Status code Error"
+  },
+  "User": {
+    "info": "Info",
+    "rooms": "Rooms",
+    "interests": "Interests",
+    "likes": "Likes",
+    "follow": "Follow",
+    "followers": "Followers"
   },
   "World": {
     "label": "World",

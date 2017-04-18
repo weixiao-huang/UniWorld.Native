@@ -11,10 +11,15 @@ import styles from '../../common/styles'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 
 import UserCover from '../UserCover'
+import Info from './Info'
+import Interests from './Interests'
+import Rooms from './Rooms'
 
-const PlaceHolder = ({id}) => <Text>{id}</Text>
+const mapStateToProps = state => ({
+  user: state.user.user
+})
 
-@connect(...[, dispatch => ({dispatch})])
+@connect(mapStateToProps, dispatch => ({dispatch}))
 export default class NewRoom extends Component {
   render() {
     const { params: { id } } = this.props.navigation.state
@@ -27,9 +32,9 @@ export default class NewRoom extends Component {
           tabBarBackgroundColor="white"
           tabBarTextStyle={[meStyles.tabBarText]}
         >
-          <PlaceHolder id={id} tabLabel={I18n.t('Me.info.label')}/>
-          <PlaceHolder id={id} tabLabel={I18n.t('Me.follow.label')}/>
-          <PlaceHolder id={id} tabLabel={I18n.t('Me.credit.label')}/>
+          <Info user={this.props.user} tabLabel={I18n.t('User.info')}/>
+          <Rooms tabLabel={I18n.t('User.rooms')}/>
+          <Interests tabLabel={I18n.t('User.interests')}/>
         </ScrollTabView>
       </View>
     );
