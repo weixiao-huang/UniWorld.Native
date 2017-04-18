@@ -63,7 +63,7 @@ const localStyles = StyleSheet.create({
   },
   des__text: {
     padding: 10,
-    fontSize: 15,
+    fontSize: 14,
     lineHeight: 20
   },
   des__icon: {

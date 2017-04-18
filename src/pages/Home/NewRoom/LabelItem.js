@@ -40,7 +40,7 @@ export default class LabelItem extends Component {
           </Text>
         </TouchableOpacity>
         {this.props.labels.length > 0
-          ? <View>
+          ? <View style={[styles.rowFlex, styles.flexWrap]}>
               {this.props.labels.map((item, index) => {
                 return (
                   <Label onPress={this.removeLabel(index)} key={index} title={item}/>

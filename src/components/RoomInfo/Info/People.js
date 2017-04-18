@@ -25,7 +25,7 @@ export default class People extends Component {
             { max_participants ? `${participants.length} / ${max_participants}` : I18n.t('NewRoom.input.second.max.placeholder') }
           </Text>
         </View>
-        <View style={[styles.fullFlexWidth]}>
+        <View style={[styles.fullFlexWidth, localStyles.people__iconBox]}>
           {participants.map((item, index) => {
             return (
               <TouchableOpacity style={[localStyles.people__icon]} key={index}>
@@ -43,6 +43,9 @@ export default class People extends Component {
 }
 
 const localStyles = StyleSheet.create({
+  people__iconBox: {
+    flexWrap: 'wrap'
+  },
   people__title: {
     justifyContent: 'space-between',
     marginBottom: 5
@@ -52,7 +55,7 @@ const localStyles = StyleSheet.create({
     fontSize: 16
   },
   people__icon: {
-    margin: 5
+    margin: 4
   },
   people__icon__item: {
     width: 50,
@@ -62,6 +65,6 @@ const localStyles = StyleSheet.create({
     borderColor: '#ec5367',
   },
   people: {
-    margin: 15
+    margin: 12
   },
 })

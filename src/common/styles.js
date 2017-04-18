@@ -49,6 +49,9 @@ export default StyleSheet.create({
   rowFlex: {
     flexDirection: 'row'
   },
+  flexWrap: {
+    flexWrap: 'wrap'
+  },
   gray: {
     color: '#c7c7cd'
   },
