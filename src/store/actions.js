@@ -59,7 +59,7 @@ export const GetWorldList = async (dispatch, getState) => {
       const recommend = await recommendRes.json()
       const latest = await latestRes.json()
       const world = await worldRes.json()
-      dispatch({type: types.GET_WORLD_LIST, recommend: recommend, latest: latest, world: world})
+      return dispatch({type: types.GET_WORLD_LIST, recommend: recommend, latest: latest, world: world})
     } else throw { message: 'Get WorldList Status code Error' }
   } catch (err) {
     console.log(err)

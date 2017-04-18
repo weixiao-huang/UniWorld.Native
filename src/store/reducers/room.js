@@ -9,7 +9,8 @@ const initialState = {
   latest: [],
   world: [],
   roomInfo: {},
-  roomList: []
+  roomList: [],
+  refreshing: false
 }
 
 export default (state=initialState, action) => {
