@@ -33,7 +33,9 @@
     },
     "Footer": {
       "star": "Mark",
-      "join": "Join In"
+      "join": "Join In",
+      "leave": "Leave",
+      "room": "Room"
     }
   },
   "Actions": {
@@ -70,7 +72,7 @@
     "button": "Start it",
     "title": "Create New Room",
     "subTitle1": "Wherever you are",
-    "subTitle2": "User Uniworld to define your world",
+    "subTitle2": "Use UniWorld to define your world",
     "input": {
       "name": {
         "title": "Name",
