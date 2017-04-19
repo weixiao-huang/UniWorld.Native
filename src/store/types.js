@@ -2,6 +2,9 @@
  * Created by huangwx on 12/04/2017.
  */
 
+export const GO_TO_HOME = 'GO_TO_HOME'
+export const GO_TO_LOGIN = 'GO_TO_LOGIN'
+
 export const GET_ROOM_LIST = 'GET_ROOM_LIST'
 
 export const USER_LOGIN_DOING = 'USER_LOGIN_DOING'

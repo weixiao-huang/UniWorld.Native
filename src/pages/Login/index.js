@@ -32,8 +32,8 @@ export default class Login extends Component {
   }
 
   @autobind
-  login () {
-    this.props.dispatch(UserLogin(this.state))
+  async login () {
+    await this.props.dispatch(UserLogin(this.state))
   }
 
   @autobind

@@ -20,9 +20,9 @@ export default class People extends Component {
 
   @autobind
   _gotoUser(id) {
-    return () => {
-      this.props.dispatch(GoToUser(id))
-      this.props.dispatch(GetUser(id))
+    return async () => {
+      await this.props.dispatch(GoToUser(id))
+      await this.props.dispatch(GetUser(id))
     }
   }
 

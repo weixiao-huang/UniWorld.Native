@@ -23,9 +23,9 @@ export default class RoomWrap extends Component {
 
   @autobind
   _gotoRoomInfo(id) {
-    return () => {
-      this.props.dispatch(GoToRoomInfo(id))
-      this.props.dispatch(GetRoomInfo(id))
+    return async () => {
+      await this.props.dispatch(GetRoomInfo(id))
+      await this.props.dispatch(GoToRoomInfo(id))
     }
   }
 
