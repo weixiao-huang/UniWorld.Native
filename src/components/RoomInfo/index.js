@@ -14,7 +14,7 @@ import Detail from './Detail/index'
 
 import styles from '../../common/styles'
 
-import { GoToRoomDetail } from '../../store/actions'
+import { GoToRoomDetail, FetchQuestionnaires } from '../../store/actions'
 
 const mapStateToProps = state => ({
   roomInfo: state.room.roomInfo,
@@ -37,7 +37,8 @@ export default class RoomInfo extends Component {
   }
   @autobind
   _room(id) {
-    return () => {
+    return async () => {
+      await this.props.dispatch(FetchQuestionnaires(id))
       this.props.dispatch(GoToRoomDetail(id))
     }
   }

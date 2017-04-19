@@ -12,7 +12,7 @@ import ScrollTabView from 'react-native-scrollable-tab-view'
 
 import TabContainer from './TabContainer'
 
-const items = ['JoinIn', 'Star', 'Mine']
+const items = ['Star', 'Mine', 'JoinIn']
 
 const mapStateToProps = state => ({
   roomList: state.room.roomList

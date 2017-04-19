@@ -72,10 +72,14 @@ export const GoToUser = id => dispatch => (
   dispatch({type: types.GO_TO_USER, id})
 )
 
-export const FetchUser = id => (dispatch, getState) => {
+export const FetchUser = id => (dispatch, getState) => (
   composeHandle(api.fetchUser(id))(types.GET_USER, 'user')(dispatch, getState)
-}
+)
 
-export const FetchRoomList = (dispatch, getState) => {
+export const FetchRoomList = (dispatch, getState) => (
   composeHandle(api.fetchRoomList)(types.GET_ROOM_LIST, 'roomList')(dispatch, getState)
-}
+)
+
+export const FetchQuestionnaires = id => (dispatch, getState) => (
+  composeHandle(api.fetchQuestionnaires(id))(types.GET_QUESTIONNAIRES, 'questionnaires')(dispatch, getState)
+)

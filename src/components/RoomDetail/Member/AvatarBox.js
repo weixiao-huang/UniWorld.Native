@@ -18,6 +18,7 @@ const mapStateToProps = state => ({
 @connect(mapStateToProps)
 export default class AvatarBox extends Component {
   render() {
+    const length = 7
     return (
       <View style={[styles.whiteBackground, localStyles.container]}>
         <View style={[styles.rowFlex, localStyles.title]}>
@@ -26,11 +27,11 @@ export default class AvatarBox extends Component {
             {`(${this.props.participants.length})`}
           </Text>
         </View>
-        <View style={[styles.rowFlex, styles.flexWrap, localStyles.wrap]}>
+        <View style={[styles.rowFlex, styles.flexWrap, {alignItems: 'flex-start', justifyContent: 'space-around'}, localStyles.wrap]}>
           {this.props.participants.map((item, index) =>
-            <View style={[styles.flexCenter, localStyles.icon]} key={index}>
+            <View style={[localStyles.icon]} key={index}>
               <Avatar size={60} id={item.id} avatar={item.avatar}/>
-              <Text style={[localStyles.icon__text]}>{item.name}</Text>
+              <Text style={[{width: 60, textAlign: 'center', lineHeight: 18}, localStyles.icon__text]}>{item.name.length > length ? item.name.slice(0, length) + '...' : item.name}</Text>
             </View>
           )}
         </View>
@@ -45,7 +46,9 @@ const localStyles = StyleSheet.create({
     padding: 15
   },
   title: {
-    paddingBottom: 10
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f2f0f4'
   },
   title__text: {
     fontSize: 16

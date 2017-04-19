@@ -1,21 +1,32 @@
 /**
  * Created by huangwx on 18/04/2017.
  */
-import React, { Component } from 'react'
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
 
+import React, { Component } from 'react'
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'react-native'
+import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import autobind from 'autobind-decorator'
-
 import styles from '../../../common/styles'
 
+import NoticeItem from './NoticeItem'
+
+const mapStateToProps = state => ({
+  questionnaires: state.room.questionnaires.questionnaires
+})
+
+@connect(mapStateToProps)
 export default class Notice extends Component {
   render() {
     return (
       <View style={[styles.flex1]}>
-        <View>
-          <Text>Notice</Text>
-        </View>
+        <ScrollView>
+          {this.props.questionnaires.map((item, index) => (
+            <View key={index}>
+              <NoticeItem questionnaire={item}/>
+            </View>
+          ))}
+        </ScrollView>
         <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
           <TouchableOpacity
             style={[styles.flexCenter, localStyles.star]}

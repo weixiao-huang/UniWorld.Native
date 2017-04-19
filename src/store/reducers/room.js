@@ -8,22 +8,16 @@ const initialState = {
   recommend: [],
   latest: [],
   world: [],
-  roomInfo: {},
   roomList: [],
+  roomInfo: {},
+  questionnaires: {},
   refreshing: false
 }
 
 export default (state=initialState, action) => {
   switch (action.type) {
     case types.USER_LOGOUT:
-      return {
-        ...state,
-        recommend: [],
-        latest: [],
-        world: [],
-        roomInfo: {},
-        roomList: []
-      }
+      return initialState
     case types.GET_WORLD_ROOM_LIST:
       return {
         ...state,
@@ -48,6 +42,11 @@ export default (state=initialState, action) => {
       return {
         ...state,
         roomList: action.roomList,
+      }
+    case types.GET_QUESTIONNAIRES:
+      return {
+        ...state,
+        questionnaires: action.questionnaires
       }
     default:
       return state
