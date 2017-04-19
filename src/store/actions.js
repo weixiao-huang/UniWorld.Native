@@ -5,7 +5,7 @@
 
 import * as types from './types'
 import api from '../api'
-import { actionHandle, composeHandle, statusCodeHandle } from './utils'
+import { actionHandle, composeHandle, statusCodeHandle, tokenRequestHandle } from './utils'
 
 export const GoToHome = dispatch => dispatch({type: types.GO_TO_HOME})
 export const GoToLogin = dispatch => dispatch({type: types.GO_TO_LOGIN})
@@ -83,3 +83,37 @@ export const FetchRoomList = (dispatch, getState) => (
 export const FetchQuestionnaires = id => (dispatch, getState) => (
   composeHandle(api.fetchQuestionnaires(id))(types.GET_QUESTIONNAIRES, 'questionnaires')(dispatch, getState)
 )
+
+export const MarkRoom = roomId => (dispatch, getState) => (
+  actionHandle(() => (
+    tokenRequestHandle(api.markRoom(roomId))(getState).then(res => {
+      if (res.status !== 200) throw { message: 'Status Code Error' }
+    })
+  ))
+)
+
+export const UnmarkRoom = roomId => (dispatch, getState) => (
+  actionHandle(() => (
+    tokenRequestHandle(api.unmarkRoom(roomId))(getState).then(res => {
+      if (res.status !== 200) throw { message: 'Status Code Error' }
+    })
+  ))
+)
+
+export const JoinRoom = roomId => (dispatch, getState) => (
+  actionHandle(() => (
+    tokenRequestHandle(api.joinRoom(roomId))(getState).then(res => {
+      if (res.status !== 200) throw { message: 'Status Code Error' }
+    })
+  ))
+)
+
+export const LeaveRoom = roomId => (dispatch, getState) => (
+  actionHandle(() => (
+    tokenRequestHandle(api.leaveRoom(roomId))(getState).then(res => {
+      if (res.status !== 200) throw { message: 'Status Code Error' }
+    })
+  ))
+)
+
+

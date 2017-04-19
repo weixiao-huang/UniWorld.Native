@@ -11,6 +11,7 @@ const initialState = {
   roomList: [],
   roomInfo: {},
   questionnaires: {},
+  isMarked: false,
   refreshing: false
 }
 
@@ -47,6 +48,16 @@ export default (state=initialState, action) => {
       return {
         ...state,
         questionnaires: action.questionnaires
+      }
+    case types.MARK_ROOM:
+      return {
+        ...state,
+        isMarked: true
+      }
+    case types.UNMARK_ROOM:
+      return {
+        ...state,
+        isMarked: false
       }
     default:
       return state

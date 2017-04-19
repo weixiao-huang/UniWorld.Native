@@ -38,6 +38,7 @@
     },
     "Footer": {
       "star": "Mark",
+      "unstar": "Unmark",
       "join": "Join In",
       "leave": "Leave",
       "room": "Room"

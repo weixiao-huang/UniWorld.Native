@@ -40,6 +40,7 @@ const localStyles = StyleSheet.create({
   container: {
     margin: 10,
     marginTop: 20,
+    marginRight: 20,
     alignItems: 'flex-start'
   },
   time: {
