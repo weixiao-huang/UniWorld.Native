@@ -9,7 +9,7 @@ import ScrollTabView from 'react-native-scrollable-tab-view'
 import I18n from 'react-native-i18n'
 import autobind from 'autobind-decorator'
 
-import styles from '../../common/styles'
+import styles from '../../../common/styles'
 
 export default class Chat extends Component {
   render() {
@@ -19,7 +19,7 @@ export default class Chat extends Component {
           <Text>Chat</Text>
         </View>
         <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
-          <Image style={[localStyles.footer__icon]} source={require('../../assets/icon/logoBlue.png')}/>
+          <Image style={[localStyles.footer__icon]} source={require('../../../assets/icon/logoBlue.png')}/>
           <TextInput multiline={true} style={[styles.fullFlexWidth, localStyles.footer__input]}/>
         </View>
       </View>

@@ -11,9 +11,9 @@ import I18n from 'react-native-i18n'
 import autobind from 'autobind-decorator'
 import styles from '../../common/styles'
 
-import Notice from './Notice'
-import Chat from './Chat'
-import Member from './Member'
+import Notice from './Notice/index'
+import Chat from './Chat/index'
+import Member from './Member/index'
 
 const mapStateToProps = state => ({
   roomInfo: state.room.roomInfo,
