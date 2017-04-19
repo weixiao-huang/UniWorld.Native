@@ -3,15 +3,13 @@
  */
 
 import React, { Component, PropTypes } from 'react'
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
-import autobind from 'autobind-decorator'
-
-import Follow from '../../StyleButton'
 import styles from '../../../common/styles'
 
-import { GoToUser, FetchUser } from '../../../store/actions'
+import Follow from '../../StyleButton'
+import Avatar from '../../Avatar'
 
 @connect(...[, dispatch => ({dispatch})])
 export default class Host extends Component {
@@ -22,22 +20,13 @@ export default class Host extends Component {
 
   }
 
-  @autobind
-  _gotoHost(id) {
-    return async () => {
-      await this.props.dispatch(FetchUser(id))
-      this.props.dispatch(GoToUser(id))
-    }
-  }
 
   render() {
     const { host } = this.props
     return (
       <View style={[styles.fullFlexWidth, localStyles.container]}>
         <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.wrap]}>
-          <TouchableOpacity onPress={this._gotoHost(host.id)}>
-            <Image style={[localStyles.wrap__avatar]} source={{uri: host.avatar}}/>
-          </TouchableOpacity>
+          <Avatar id={host.id} avatar={host.avatar}/>
           <View style={[styles.flex1, localStyles.wrap__title]}>
             <Text style={[localStyles.wrap__title__name]}>{host.name}</Text>
             <Text style={[localStyles.wrap__title__signature]}>{host.signature}</Text>
@@ -70,13 +59,6 @@ const localStyles = StyleSheet.create({
   },
   wrap__title: {
     paddingLeft: 15
-  },
-  wrap__avatar: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    borderWidth: 1,
-    borderColor: '#ec5367'
   },
   buttonBox: {
     marginRight: 20

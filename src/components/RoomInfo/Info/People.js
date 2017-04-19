@@ -3,27 +3,16 @@
  */
 
 import React, { Component, PropTypes } from 'react'
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
-import { connect } from 'react-redux'
+import { StyleSheet, View, Text } from 'react-native'
 import I18n from 'react-native-i18n'
-import autobind from 'autobind-decorator'
 import styles from '../../../common/styles'
 
-import { GoToUser, FetchUser } from '../../../store/actions'
+import Avatar from '../../Avatar'
 
-@connect(...[, dispatch => ({dispatch})])
 export default class People extends Component {
   static propTypes = {
     // max_participants: PropTypes.number.isRequired,
     participants: PropTypes.array.isRequired
-  }
-
-  @autobind
-  _gotoUser(id) {
-    return async () => {
-      await this.props.dispatch(FetchUser(id))
-      await this.props.dispatch(GoToUser(id))
-    }
   }
 
   render() {
@@ -41,12 +30,9 @@ export default class People extends Component {
         <View style={[styles.fullFlexWidth, localStyles.people__iconBox]}>
           {participants.map((item, index) => {
             return (
-              <TouchableOpacity onPress={this._gotoUser(item.id)} style={[localStyles.people__icon]} key={index}>
-                <Image
-                  style={[localStyles.people__icon__item]}
-                  source={{uri: item.avatar}}
-                />
-              </TouchableOpacity>
+              <View key={index} style={[localStyles.people__icon]}>
+                <Avatar id={item.id} size={50} avatar={item.avatar}/>
+              </View>
             )
           })}
         </View>

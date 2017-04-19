@@ -29,7 +29,12 @@
       }
     },
     "Detail": {
-      "title": "Details"
+      "title": "Details",
+      "Member": {
+        "title": "All participants",
+        "reportRoom": "Report room",
+        "reportUser": "Report user"
+      }
     },
     "Footer": {
       "star": "Mark",

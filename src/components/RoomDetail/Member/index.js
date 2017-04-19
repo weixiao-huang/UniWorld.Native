@@ -8,15 +8,16 @@ import { connect } from 'react-redux'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 import I18n from 'react-native-i18n'
 import autobind from 'autobind-decorator'
-
 import styles from '../../../common/styles'
+
+import AvatarBox from './AvatarBox'
 
 export default class Member extends Component {
   render() {
     return (
       <View style={[styles.flex1]}>
         <View>
-          <Text>Notice</Text>
+          <AvatarBox/>
         </View>
         <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
           <TouchableOpacity
