@@ -13,18 +13,11 @@ import Square from './Square/index'
 import Recommend from './Recommend/index'
 
 import styles from '../../../common/styles'
-import { GetLatestRoomList, GetRecommendRoomList, GetWorldRoomList } from '../../../store/actions'
 
 @connect(...[, dispatch => ({dispatch})])
 export default class World extends Component {
-
-  async componentWillMount() {
-    await this.props.dispatch(GetLatestRoomList)
-    await this.props.dispatch(GetWorldRoomList)
-    await this.props.dispatch(GetRecommendRoomList)
-  }
-
   render() {
+    console.log('渲染World')
     return (
       <View style={[styles.flex1, localStyles.container]}>
         <ScrollTabView

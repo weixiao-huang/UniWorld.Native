@@ -14,8 +14,11 @@ import BackgroundImage from '../../../components/BackgroundImage'
 @connect(state => ({userInfo: state.user.userInfo}))
 export default class UserCover extends Component {
   render () {
-    const { name, signature, p_thumb_ups, h_thumb_ups, followers, follows, joined_count } = this.props.userInfo
-    const { avatar_thumbnail, gender } = this.props.userInfo
+    console.log('渲染UserCover')
+    const {
+      name, signature, p_thumb_ups, h_thumb_ups, followers, follows,
+      joined_count, avatar_thumbnail, gender
+    } = this.props.userInfo
     return (
       <BackgroundImage bgUrl={require('../../../assets/infoImage.jpg')}>
         <View style={[styles.flex1, coverStyles.container]}>

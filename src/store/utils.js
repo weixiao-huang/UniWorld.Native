@@ -12,16 +12,24 @@ export const actionHandle = func => {
     Alert.alert('', err.message)
   }
 }
-export const statusCodeHandle = (res, successStatusCode=200) => async func => {
-  if (res.status === successStatusCode) return func(await res.json())
-  else throw { message: res }
+
+// func should return a Promise object
+export const statusCodeHandle = (res, successStatusCode=200) => func => {
+  if (res.status === successStatusCode)
+    return res.json()
+      .then(data => func(data))
+      .catch(err => {throw err})
+  else throw { message: 'Status Code Error' }
 }
-export const tokenRequestHandle = api => getState => api(getState().auth.token)
+
+// return a Promise object
+// api should return a Promise object
+export const tokenRequestHandle = apiFunc => getState => apiFunc(getState().auth.token)
 
 export const composeHandle = apiFunc => (type, stateName) => (dispatch, getState) => (
-  actionHandle(async () => (
-    statusCodeHandle
-    (await tokenRequestHandle(apiFunc)(getState))
-    (async data => dispatch({type, [stateName]: data}))
+  actionHandle(() => (
+    tokenRequestHandle(apiFunc)(getState).then(res =>
+      statusCodeHandle(res)(data => dispatch({type, [stateName]: data}))
+    ).catch(err => {throw err})
   ))
 )

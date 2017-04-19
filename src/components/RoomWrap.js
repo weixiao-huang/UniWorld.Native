@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import styles from '../common/styles'
 import autobind from 'autobind-decorator'
 
-import { GoToRoomInfo, GetRoomInfo } from '../store/actions'
+import { GoToRoomInfo, FetchRoomInfo } from '../store/actions'
 
 import RoomItem from './RoomItem'
 
@@ -24,8 +24,8 @@ export default class RoomWrap extends Component {
   @autobind
   _gotoRoomInfo(id) {
     return async () => {
-      await this.props.dispatch(GetRoomInfo(id))
-      await this.props.dispatch(GoToRoomInfo(id))
+      await this.props.dispatch(FetchRoomInfo(id))
+      this.props.dispatch(GoToRoomInfo(id))
     }
   }
 

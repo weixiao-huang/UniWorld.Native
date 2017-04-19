@@ -16,15 +16,18 @@ import UserInfo from './UserInfo/index'
 import Follow from './Follow/index'
 import Reputation from './Reputation/index'
 
-import { GetUserInfo } from '../../../store/actions'
+import { FetchUserInfo } from '../../../store/actions'
 
 @connect(...[, dispatch => ({dispatch})])
-export default class NewRoom extends Component {
+export default class Me extends Component {
   async componentWillMount() {
-    await this.props.dispatch(GetUserInfo)
+    console.log('Me挂载函数开始')
+    await this.props.dispatch(FetchUserInfo)
+    console.log('Me挂载函数结束')
   }
 
   render() {
+    console.log('渲染Me')
     return (
       <View style={styles.flex1}>
         <UserCover/>

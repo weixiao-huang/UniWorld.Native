@@ -11,7 +11,7 @@ import autobind from 'autobind-decorator'
 import Follow from '../../StyleButton'
 import styles from '../../../common/styles'
 
-import { GoToUser, GetUser } from '../../../store/actions'
+import { GoToUser, FetchUser } from '../../../store/actions'
 
 @connect(...[, dispatch => ({dispatch})])
 export default class Host extends Component {
@@ -24,9 +24,9 @@ export default class Host extends Component {
 
   @autobind
   _gotoHost(id) {
-    return () => {
+    return async () => {
+      await this.props.dispatch(FetchUser(id))
       this.props.dispatch(GoToUser(id))
-      this.props.dispatch(GetUser(id))
     }
   }
 

@@ -13,7 +13,7 @@ import LoginButton from '../../../../components/StyleButton'
 import LabelBox from './TextBox'
 import autobind from 'autobind-decorator'
 
-import { UserLogout } from '../../../../store/actions'
+import { UserLogout, GoToLogin } from '../../../../store/actions'
 
 @connect(state=> ({userInfo: state.user.userInfo}))
 export default class UserInfo extends Component {
@@ -23,8 +23,10 @@ export default class UserInfo extends Component {
 
   @autobind
   logout () {
+    this.props.dispatch(GoToLogin)
     this.props.dispatch(UserLogout)
   }
+
   render () {
     const { username, name, gender, university, department, year, signature } = this.props.userInfo
     const infos = [

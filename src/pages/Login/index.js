@@ -15,7 +15,10 @@ import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 
-import { Visit, UserLogin } from '../../store/actions'
+import {
+  Visit, UserLogin, FetchRoomList, FetchWorldRoomList, FetchRecommendRoomList,
+  FetchLatestRoomList, GoToHome, FetchUserInfo
+} from '../../store/actions'
 
 import Input from './Input'
 import LoginButton from '../../components/StyleButton'
@@ -33,7 +36,15 @@ export default class Login extends Component {
 
   @autobind
   async login () {
+    console.log('登录前')
     await this.props.dispatch(UserLogin(this.state))
+    await this.props.dispatch(FetchRoomList)
+    await this.props.dispatch(FetchRecommendRoomList)
+    await this.props.dispatch(FetchLatestRoomList)
+    await this.props.dispatch(FetchWorldRoomList)
+    await this.props.dispatch(FetchUserInfo)
+    this.props.dispatch(GoToHome)
+    console.log('登录函数完毕')
   }
 
   @autobind

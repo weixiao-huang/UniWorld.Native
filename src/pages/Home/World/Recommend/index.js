@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import autobind from 'autobind-decorator'
 
-import { GetRecommendRoomList } from '../../../../store/actions'
+import { FetchRecommendRoomList } from '../../../../store/actions'
 
 import RoomWrap from '../../../../components/RoomWrap'
 
@@ -28,10 +28,11 @@ export default class Recommend extends Component {
   @autobind
   async _onRefresh() {
     this.setState({refreshing: true})
-    await this.props.dispatch(GetRecommendRoomList)
+    await this.props.dispatch(FetchRecommendRoomList)
     this.setState({refreshing: false})
   }
   render () {
+    console.log('渲染Recommend')
     return (
       <ScrollView
         style={[localStyles.container]}

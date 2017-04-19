@@ -10,8 +10,6 @@ import { connect } from 'react-redux'
 import styles from '../../../common/styles'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 
-import { GetRoomList } from '../../../store/actions'
-
 import TabContainer from './TabContainer'
 
 const items = ['JoinIn', 'Star', 'Mine']
@@ -22,10 +20,8 @@ const mapStateToProps = state => ({
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
 export default class RoomList extends Component {
-  componentWillMount() {
-    this.props.dispatch(GetRoomList)
-  }
   render() {
+    console.log('渲染RoomList')
     const roomList = this.props.roomList
     console.log('RoomList页面', roomList)
     return (

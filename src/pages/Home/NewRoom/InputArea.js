@@ -15,7 +15,7 @@ import styles from '../../../common/styles'
 import InputItem from '../../../components/InputItem'
 import LabelItem from '../../../components/LabelItem'
 
-import { GetInitialLabels, AddLabel, SetNewRoomData } from '../../../store/actions'
+import { FetchInitialLabels, AddLabel, SetNewRoomData } from '../../../store/actions'
 
 const mapStateToProps = state => ({
   initialLabels: state.initial.labels,
@@ -44,7 +44,7 @@ function replaceKeysDeep(obj, replaceKey) {
 @connect(mapStateToProps, dispatch => ({dispatch}))
 export default class InputArea extends Component {
   componentWillMount() {
-    this.props.dispatch(GetInitialLabels)
+    this.props.dispatch(FetchInitialLabels)
   }
 
   constructor(props) {

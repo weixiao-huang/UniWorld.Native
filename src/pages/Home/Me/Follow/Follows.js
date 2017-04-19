@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import styles from '../../../../common/styles'
 import autobind from 'autobind-decorator'
 
-import { GoToUser, GetUser } from '../../../../store/actions'
+import { GoToUser, FetchUser } from '../../../../store/actions'
 
 @connect(...[, dispatch => ({dispatch})])
 export default class Follows extends Component {
@@ -18,12 +18,12 @@ export default class Follows extends Component {
 
   @autobind
   _gotoUser(id) {
-    return () => {
-      this.props.dispatch(GoToUser(id))
-      this.props.dispatch(GetUser(id))
+    return async () => {
+      await this.props.dispatch(GoToUser(id))
+      await this.props.dispatch(FetchUser(id))
     }
   }
-  
+
   render() {
     return (
       <View style={[styles.rowFlex, styles.flexWrap, styles.whiteBackground, localStyles.container]}>

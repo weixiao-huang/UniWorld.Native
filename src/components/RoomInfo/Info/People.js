@@ -9,7 +9,7 @@ import I18n from 'react-native-i18n'
 import autobind from 'autobind-decorator'
 import styles from '../../../common/styles'
 
-import { GoToUser, GetUser } from '../../../store/actions'
+import { GoToUser, FetchUser } from '../../../store/actions'
 
 @connect(...[, dispatch => ({dispatch})])
 export default class People extends Component {
@@ -21,8 +21,8 @@ export default class People extends Component {
   @autobind
   _gotoUser(id) {
     return async () => {
+      await this.props.dispatch(FetchUser(id))
       await this.props.dispatch(GoToUser(id))
-      await this.props.dispatch(GetUser(id))
     }
   }
 
