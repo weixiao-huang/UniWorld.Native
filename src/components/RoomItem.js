@@ -30,6 +30,7 @@ export default class RoomItem extends Component {
 
   render () {
     const timeRange = this._transferTimeFormat(this.props.timeRange)
+    const length = 20
     return (
       <View style={[styles.fullFlexWidth, localStyles.container]}>
         <View>
@@ -45,7 +46,7 @@ export default class RoomItem extends Component {
               </View>
               <View style={[styles.flex1]}>
                 <Text style={[localStyles.title]}>
-                  {this.props.title}
+                  {this.props.title.length > length ? this.props.title.slice(0, length) + '...' : this.props.title}
                 </Text>
               </View>
             </View>
@@ -85,7 +86,8 @@ const localStyles = StyleSheet.create({
     color: '#ec5367'
   },
   title: {
-    marginLeft: 10
+    marginLeft: 10,
+    lineHeight: 18
   },
   time: {
     fontSize: 10

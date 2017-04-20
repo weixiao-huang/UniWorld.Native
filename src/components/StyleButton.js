@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, Text, TouchableOpacity} from 'react-native'
 
-const buttonHeight = 45
-
 export default class StyleButton extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -28,7 +26,6 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#a55b7d',
     borderRadius: 10,
-    // height: buttonHeight,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',

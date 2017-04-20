@@ -2,7 +2,7 @@
  * Created by huangwx on 11/04/2017.
  */
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, Text, TextInput, Switch } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -16,11 +16,6 @@ import InputItem from '../../../components/InputItem'
 import LabelItem from '../../../components/LabelItem'
 
 import { FetchInitialLabels, AddLabel, SetNewRoomData } from '../../../store/actions'
-
-const mapStateToProps = state => ({
-  initialLabels: state.initial.labels,
-  newRoom: state.newRoom
-})
 
 function replaceKeysDeep(obj, replaceKey) {
   const replacedKey = 'children'
@@ -41,14 +36,18 @@ function replaceKeysDeep(obj, replaceKey) {
   }
 }
 
+const mapStateToProps = state => ({
+  initialLabels: state.initial.labels,
+  newRoom: state.newRoom
+})
+
 @connect(mapStateToProps, dispatch => ({dispatch}))
 export default class InputArea extends Component {
+  static propTypes = {
+    onChangeTitle: PropTypes.func.isRequired
+  }
   componentWillMount() {
     this.props.dispatch(FetchInitialLabels)
-  }
-
-  constructor(props) {
-    super(props)
   }
 
   _createInitialLabels(name) {
@@ -94,7 +93,7 @@ export default class InputArea extends Component {
           <TextInput
             style={[styles.flex1, styles.contentFontSize]}
             placeholder={I18n.t('NewRoom.input.name.placeholder')}
-            onChangeText={title => this.props.dispatch(SetNewRoomData('title', title))}
+            onChangeText={this.props.onChangeTitle}
             defaultValue={this.props.newRoom.title}
           />
         </InputItem>

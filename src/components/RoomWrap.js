@@ -3,7 +3,7 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, ListView, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import styles from '../common/styles'
 import autobind from 'autobind-decorator'
@@ -14,6 +14,14 @@ import RoomItem from './RoomItem'
 
 @connect(...[, dispatch => ({dispatch})])
 export default class RoomWrap extends Component {
+  constructor(props) {
+    super(props)
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+    this.state = {
+      dataSource: ds.cloneWithRows(this.props.roomList)
+    }
+  }
+
   static propTypes = {
     roomList: PropTypes.array.isRequired,
   }

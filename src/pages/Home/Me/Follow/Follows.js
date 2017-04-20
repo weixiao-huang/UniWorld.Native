@@ -13,14 +13,19 @@ export default class Follows extends Component {
   }
 
   render() {
+    const length = 7
     return (
       <View style={[styles.rowFlex, styles.flexWrap, styles.whiteBackground, localStyles.container]}>
         {this.props.follows.map((item, index) =>
-          <View key={index} style={[styles.flexCenter]}>
+          <View key={index} style={[localStyles.wrap]}>
             <View style={[localStyles.icon]}>
               <Avatar size={68} id={item.id} avatar={item.avatar}/>
             </View>
-            <Text>{item.name}</Text>
+            <Text style={[localStyles.icon__text, styles.flexWrap]}>
+              {
+                item.name.length > length ? item.name.slice(0, length) + '...' : item.name
+              }
+            </Text>
           </View>
         )}
       </View>
@@ -36,6 +41,9 @@ const localStyles = StyleSheet.create({
     borderTopWidth: 1,
     // justifyContent: 'center'
   },
+  wrap: {
+    alignItems: 'center'
+  },
   icon: {
     margin: 10
   },
@@ -45,5 +53,10 @@ const localStyles = StyleSheet.create({
     borderRadius: iconSize / 2,
     borderWidth: 1,
     borderColor: '#ec5367'
+  },
+  icon__text: {
+    width: 60,
+    textAlign: 'center',
+    lineHeight: 18
   }
 })

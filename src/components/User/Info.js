@@ -41,8 +41,8 @@ export default class Info extends Component {
         </View>
         <View style={[localStyles.wrap]}>
           <InputItem title={I18n.t('dislikes')}>
-            <Text style={[styles.fullFlexWidth]}>
-              不知道数据在哪里
+            <Text style={[styles.fullFlexWidth, {fontWeight: 'bold'}]}>
+              {user.thumb_downs}
             </Text>
           </InputItem>
         </View>

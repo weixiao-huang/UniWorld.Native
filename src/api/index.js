@@ -21,6 +21,10 @@ export default {
     method: 'GET',
     headers: { Authorization: `token ${token}` }
   }),
+  fetchDislikes: id => token => fetch(`${server}/user/${id}/thumb_downs/`, {
+    method: 'GET',
+    headers: { Authorization: `token ${token}` }
+  }),
   fetchRecommend: token => fetch(`${server}/plaza/hot/`, {
     method: 'GET',
     headers: { Authorization: `token ${token}` }
@@ -30,6 +34,10 @@ export default {
     headers: { Authorization: `token ${token}` }
   }),
   fetchWorld: token => fetch(`${server}/plaza/random/`, {
+    method: 'GET',
+    headers: { Authorization: `token ${token}` }
+  }),
+  fetchDataFromUrl: url => token => fetch(url, {
     method: 'GET',
     headers: { Authorization: `token ${token}` }
   }),

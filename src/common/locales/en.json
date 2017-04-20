@@ -82,7 +82,8 @@
       "label": "Plaza",
       "recommend": "Recommend",
       "latest": "Latest",
-      "world": "World"
+      "world": "World",
+      "loadMore": "Click for loading more..."
     },
     "Recommend": {
       "label": "Discover"

@@ -104,6 +104,7 @@ const loginStyles = StyleSheet.create({
   loginButton: {
     marginTop: 20,
     marginBottom: 20,
+    padding: 15,
   },
   otherButton: {
     backgroundColor: 'transparent',

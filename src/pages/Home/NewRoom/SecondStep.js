@@ -35,7 +35,12 @@ export default class SecondStep extends Component {
     const date = new Date()
     const dateFormat = '' // `${date.getYear() + 1900}-${date.getMonth()+1}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}`
     this.state = {
-      cover: ''
+      cover: this.props.newRoom.cover,
+      intro: this.props.newRoom.intro,
+      location_string: this.props.newRoom.location_string,
+      welcome: this.props.newRoom.welcome,
+      expense: this.props.newRoom.expense,
+      rewards: this.props.newRoom.rewards,
     }
   }
 
@@ -78,13 +83,19 @@ export default class SecondStep extends Component {
     })
   }
 
+  @autobind
   next() {
-    return Actions.third
+    this.props.navigation.navigate('Third')
+    this.props.dispatch(SetNewRoomData('intro', this.state.intro))
+    this.props.dispatch(SetNewRoomData('location_string', this.state.location_string))
+    this.props.dispatch(SetNewRoomData('welcome', this.state.welcome))
+    this.props.dispatch(SetNewRoomData('expense', this.state.expense))
+    this.props.dispatch(SetNewRoomData('rewards', this.state.rewards))
   }
   render() {
     return (
       <ScrollView>
-        <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 100}]}>
+        <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 20}]}>
 
           {/* Header Image */}
           <View>
@@ -137,7 +148,7 @@ export default class SecondStep extends Component {
                 placeholder={I18n.t('NewRoom.input.second.intro.placeholder')}
                 multiline={true}
                 defaultValue={this.props.newRoom.intro}
-                onChangeText={intro => this.props.dispatch(SetNewRoomData('intro', intro))}
+                onChangeText={intro => this.setState({intro})}
               />
             </InputItem>
             <DateTimePicker
@@ -153,7 +164,7 @@ export default class SecondStep extends Component {
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.location.placeholder')}
                 defaultValue={this.props.newRoom.location_string}
-                onChangeText={location_string => this.props.dispatch(SetNewRoomData('location_string', location_string))}
+                onChangeText={location_string => this.setState({location_string})}
               />
             </InputItem>
             <InputItem title={I18n.t('NewRoom.input.second.max.title')}>
@@ -187,14 +198,14 @@ export default class SecondStep extends Component {
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.welcome.placeholder')}
                 defaultValue={this.props.newRoom.welcome}
-                onChangeText={welcome => this.props.dispatch(SetNewRoomData('welcome', welcome))}
+                onChangeText={welcome => this.setState({welcome})}
               />
             </InputItem>
             <InputItem title={I18n.t('NewRoom.input.second.expense.title')}>
               <TextInput
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.expense.placeholder')}
-                onChangeText={expense => this.props.dispatch(SetNewRoomData('expense', expense))}
+                onChangeText={expense => this.setState({expense})}
                 defaultValue={this.props.newRoom.expense}
               />
             </InputItem>
@@ -202,7 +213,7 @@ export default class SecondStep extends Component {
               <TextInput
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.rewards.placeholder')}
-                onChangeText={rewards => this.props.dispatch(SetNewRoomData('rewards', rewards))}
+                onChangeText={rewards => this.setState({rewards})}
                 defaultValue={this.props.newRoom.rewards}
               />
             </InputItem>
@@ -211,7 +222,7 @@ export default class SecondStep extends Component {
           <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
             <NewRoomButton
               title={I18n.t('NewRoom.button')}
-              onPress={this.next()}
+              onPress={this.next}
               inlineStyle={localStyles.button}
             />
           </View>

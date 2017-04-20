@@ -112,7 +112,7 @@ export default class ThirdStep extends Component {
             })}
           </View>
 
-          <View style={[styles.fullFlexWidth, {margin: 20, marginBottom: 60}]}>
+          <View style={[styles.fullFlexWidth, {margin: 20}]}>
             <NewRoomButton
               title={I18n.t('NewRoom.button')}
               onPress={this._confirm()}
@@ -127,7 +127,6 @@ export default class ThirdStep extends Component {
 
 const localStyles = StyleSheet.create({
   container: {
-    paddingTop: 60,
     backgroundColor: '#f2f0f4',
   },
   wrap: {
@@ -166,7 +165,6 @@ const localStyles = StyleSheet.create({
   },
   button: {
     marginTop: 5,
-    marginBottom: 20,
     backgroundColor: '#ec5367',
     borderRadius: 5,
     padding: 15

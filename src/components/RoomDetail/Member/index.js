@@ -47,8 +47,8 @@ export default class Member extends Component {
           </View>
         </ScrollView>
         <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
-          <Button inlineStyle={localStyles.star} title={I18n.t('Room.Member.Footer.likeRoom')} onPress={this.likeRoom}/>
-          <Button inlineStyle={localStyles.join} title={I18n.t('Room.Member.Footer.likeAll')} onPress={this.likeUser}/>
+          <Button inlineStyle={[localStyles.footer__button, {backgroundColor: '#fdae57', flex: 1}]} title={I18n.t('Room.Member.Footer.likeRoom')} onPress={this.likeRoom}/>
+          <Button inlineStyle={[localStyles.footer__button, {backgroundColor: '#ec5367', flex: 2}]} title={I18n.t('Room.Member.Footer.likeAll')} onPress={this.likeUser}/>
         </View>
       </View>
     )
@@ -56,11 +56,6 @@ export default class Member extends Component {
 }
 
 const localStyles = StyleSheet.create({
-  star: {
-    flex: 1,
-    backgroundColor: '#fdae57',
-    borderRadius: 0
-  },
   button: {
     margin: 10
   },
@@ -68,11 +63,7 @@ const localStyles = StyleSheet.create({
     margin: 10,
     borderRadius: 5,
     backgroundColor: 'white',
-  },
-  join: {
-    flex: 2,
-    backgroundColor: '#ec5367',
-    borderRadius: 0
+    padding: 10
   },
   footer: {
     position: 'absolute',
@@ -83,5 +74,9 @@ const localStyles = StyleSheet.create({
     padding: 16,
     color: 'white',
     fontSize: 17
+  },
+  footer__button: {
+    borderRadius: 0,
+    padding: 20
   }
 })

@@ -4,32 +4,46 @@
 
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Text, ScrollView } from 'react-native'
-import { Actions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
+import autobind from 'autobind-decorator'
 
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 
 import NewRoomButton from '../../../components/StyleButton'
 import InputArea from './InputArea'
+import { SetNewRoomData } from '../../../store/actions'
 
+@connect(state => ({title: state.newRoom.title}), dispatch => ({dispatch}))
 export default class FirstStep extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      title: this.props.title
+    }
+  }
+
+  @autobind
   next() {
-    Actions.second
+    this.props.navigation.navigate('Second')
+    this.props.dispatch(SetNewRoomData('title', this.state.title))
   }
 
   render() {
     return (
       <ScrollView>
-        <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 100}]}>
+        <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 20}]}>
           <Image style={localStyles.cover} source={require('../../../assets/customCreate.png')}/>
           <Text style={localStyles.title}>{I18n.t('NewRoom.title')}</Text>
           <Text style={localStyles.subTitle}>{I18n.t('NewRoom.subTitle1')}</Text>
           <Text style={localStyles.subTitle}>{I18n.t('NewRoom.subTitle2')}</Text>
-          <InputArea/>
+          <InputArea
+            onChangeTitle={title => this.setState({title})}
+          />
           <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
             <NewRoomButton
               title={I18n.t('NewRoom.button')}
-              onPress={Actions.second}
+              onPress={this.next}
               inlineStyle={localStyles.button}
             />
           </View>
@@ -41,7 +55,7 @@ export default class FirstStep extends Component {
 
 const localStyles = StyleSheet.create({
   cover: {
-    width: '90%',
+    resizeMode: 'contain',
     height: 130
   },
   subTitle: {

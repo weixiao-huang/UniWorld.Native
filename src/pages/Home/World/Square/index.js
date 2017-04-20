@@ -35,7 +35,6 @@ export default class Square extends Component {
   }
 
   render () {
-    console.log('渲染Square')
     return (
       <ScrollView
         style={[styles.flex1, localStyles.container]}
