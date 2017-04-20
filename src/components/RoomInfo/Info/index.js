@@ -5,7 +5,8 @@
 import React, { Component, PropTypes } from 'react'
 import { StyleSheet, View, ScrollView, TouchableOpacity, Text, Image, Dimensions } from 'react-native'
 import I18n from 'react-native-i18n'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import Button from '../../../components/StyleButton'
 
 import styles from '../../../common/styles'
 import LabelBox from './LabelBox'
@@ -18,11 +19,34 @@ export default class Info extends Component {
   static propTypes = {
     roomInfo: PropTypes.object.isRequired
   }
+  share = () => {
+
+  }
   render() {
     const {
       cover, title, description, date_time_start, date_time_end,
-      max_participants, participants, host, labels
+      max_participants, participants, host, labels, location_string
     } = this.props.roomInfo
+    let options = {
+      location_string: {
+        iconName: 'location-on',
+        content: location_string
+      },
+      welcome: {
+        iconName: 'thumb-up'
+      },
+      rewards: {
+        iconName: 'card-giftcard'
+      },
+      expense: {
+        iconName: 'attach-money'
+      }
+    }
+    const opt = JSON.parse(this.props.roomInfo.options)
+    for (let option in opt) {
+      if (opt.hasOwnProperty(option))
+        options[option].content = opt[option]
+    }
     return (
       <ScrollView style={[localStyles.container, styles.flex1]}>
         <Image style={[localStyles.cover]} source={{uri: cover}}/>
@@ -37,14 +61,26 @@ export default class Info extends Component {
           ? <LabelBox labels={labels}/>
           : null
         }
+        {Object.keys(opt).length > 0 ?
+          <View style={[localStyles.wrap]}>
+            {Object.values(options).map((item, index) => (
+              item.content ?
+                <View style={[styles.rowFlex, localStyles.infoItem]} key={index}>
+                  <Icon style={[localStyles.share__text__icon]} name={item.iconName} size={20}/>
+                  <Text> {item.content}</Text>
+                </View> : null
+            ))}
+          </View> : null
+        }
         <View style={[localStyles.wrap]}>
           <Host host={host}/>
         </View>
         <View style={[styles.flexCenter, localStyles.wrap]}>
-          <TouchableOpacity>
-            <Text style={[localStyles.share__text]}>
-              <Icon style={[localStyles.share__text__icon]} name="thumbs-o-up" size={20}/> {I18n.t('Room.share')}
-            </Text>
+          <TouchableOpacity style={[styles.flex1]}>
+            <View style={[styles.rowFlex, styles.flexCenter, localStyles.share__text]}>
+              <Icon style={[localStyles.share__text__icon]} name="thumb-up" size={20}/>
+              <Text> {I18n.t('Room.share')}</Text>
+            </View>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -62,13 +98,21 @@ const localStyles = StyleSheet.create({
   },
   wrap: {
     marginBottom: 10,
-    paddingBottom: 20,
     backgroundColor: 'white'
   },
+  infoItem: {
+    borderBottomWidth: 1,
+    padding: 15,
+    paddingLeft: 20,
+    alignItems: 'center',
+    borderBottomColor: '#e9e9ef',
+
+  },
   share__text: {
-    paddingTop: 15
+    padding: 15,
   },
   share__text__icon: {
-    color: '#ea5569'
+    color: '#ea5569',
+    paddingRight: 10
   }
 })

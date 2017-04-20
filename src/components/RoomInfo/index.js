@@ -88,18 +88,19 @@ export default class RoomInfo extends Component {
   render() {
     return (
       <View style={[styles.flex1, localStyles.container]}>
-        {this.state.isJoined
-          ? <Info roomInfo={this.props.roomInfo} tabLabel={I18n.t('Room.Info.title')}/>
-          : <ScrollTabView
-              style={{flex: 2, marginTop: 20}}
-              // tabBarBackgroundColor="#ec5367"
-              // tabBarTextStyle={localStyles.tabBarText}
-              // tabBarUnderlineStyle={localStyles.tabBarUnderline}
-            >
-              <Info roomInfo={this.props.roomInfo} tabLabel={I18n.t('Room.Info.title')}/>
-              <Detail tabLabel={I18n.t('Room.Detail.title')}/>
-            </ScrollTabView>
-        }
+        <Info roomInfo={this.props.roomInfo} tabLabel={I18n.t('Room.Info.title')}/>
+        {/*{this.state.isJoined*/}
+          {/*? <Info roomInfo={this.props.roomInfo} tabLabel={I18n.t('Room.Info.title')}/>*/}
+          {/*: <ScrollTabView*/}
+              {/*style={{flex: 2, marginTop: 20}}*/}
+              {/*// tabBarBackgroundColor="#ec5367"*/}
+              {/*// tabBarTextStyle={localStyles.tabBarText}*/}
+              {/*// tabBarUnderlineStyle={localStyles.tabBarUnderline}*/}
+            {/*>*/}
+              {/*<Info roomInfo={this.props.roomInfo} tabLabel={I18n.t('Room.Info.title')}/>*/}
+              {/*<Detail tabLabel={I18n.t('Room.Detail.title')}/>*/}
+            {/*</ScrollTabView>*/}
+        {/*}*/}
 
         <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
           <TouchableOpacity

@@ -3,7 +3,6 @@ import { StyleSheet, Text, TouchableOpacity} from 'react-native'
 
 export default class StyleButton extends Component {
   static propTypes = {
-    title: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired,
     color: PropTypes.string,
   }
