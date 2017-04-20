@@ -52,8 +52,8 @@ export const RemoveLabel = index => dispatch => (
   dispatch({type: types.REMOVE_LABEL, index})
 )
 
-export const SetNewRoomData = (name, data) => dispatch => (
-  dispatch({type: types.SET_NEW_ROOM_DATA, name, data})
+export const SetNewRoomData = data => dispatch => (
+  dispatch({type: types.SET_NEW_ROOM_DATA, data})
 )
 
 export const GoToRoomInfo = id => dispatch => (

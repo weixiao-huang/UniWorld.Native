@@ -19,14 +19,14 @@ export default class FirstStep extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: this.props.title
+      title: this.props.title,
     }
   }
 
   @autobind
   next() {
     this.props.navigation.navigate('Second')
-    this.props.dispatch(SetNewRoomData('title', this.state.title))
+    this.props.dispatch(SetNewRoomData({title: this.state.title}))
   }
 
   render() {

@@ -4,11 +4,7 @@
 
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, Switch } from 'react-native'
-import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
-
-import DatePicker from 'react-native-datepicker'
-import Picker from 'react-native-picker'
 
 import I18n from 'react-native-i18n'
 import autobind from 'autobind-decorator'
@@ -18,7 +14,6 @@ import styles from '../../../common/styles'
 import NewRoomButton from '../../../components/StyleButton'
 import RoomItem from '../../../components/RoomItem'
 import InputItem from '../../../components/InputItem'
-import DateTimePicker from './DateTimePicker'
 
 const mapStateToProps = state => ({
   newRoom: state.newRoom

@@ -4,7 +4,6 @@
 
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, Switch } from 'react-native'
-import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
 import Picker from 'react-native-picker'
@@ -35,12 +34,7 @@ export default class SecondStep extends Component {
     const date = new Date()
     const dateFormat = '' // `${date.getYear() + 1900}-${date.getMonth()+1}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}`
     this.state = {
-      cover: this.props.newRoom.cover,
-      intro: this.props.newRoom.intro,
-      location_string: this.props.newRoom.location_string,
-      welcome: this.props.newRoom.welcome,
-      expense: this.props.newRoom.expense,
-      rewards: this.props.newRoom.rewards,
+      ...this.props.newRoom
     }
   }
 
@@ -51,7 +45,7 @@ export default class SecondStep extends Component {
       pickerData: ['NL'].concat(Object.keys(Array.from(new Array(threshold+1))).slice(2)),
       pickerTitleText: I18n.t('NewRoom.input.second.max.pickerTitle'),
       onPickerConfirm: max_participants => {
-        this.props.dispatch(SetNewRoomData('max_participants', parseInt(max_participants[0])))
+        this.setState({max_participants: parseInt(max_participants[0])})
       }
     })
     Picker.show()
@@ -76,9 +70,9 @@ export default class SecondStep extends Component {
       else {
         const cover = { uri: res.uri }
         // You can also display the image using data:
-        this.state({ cover: 'data:image/jpeg;base64,' + res.data })
+        // this.setState({ cover: 'data:image/jpeg;base64,' + res.data })
 
-        this.props.dispatch(SetNewRoomData('cover', cover))
+        this.setState({cover: cover.uri})
       }
     })
   }
@@ -86,11 +80,7 @@ export default class SecondStep extends Component {
   @autobind
   next() {
     this.props.navigation.navigate('Third')
-    this.props.dispatch(SetNewRoomData('intro', this.state.intro))
-    this.props.dispatch(SetNewRoomData('location_string', this.state.location_string))
-    this.props.dispatch(SetNewRoomData('welcome', this.state.welcome))
-    this.props.dispatch(SetNewRoomData('expense', this.state.expense))
-    this.props.dispatch(SetNewRoomData('rewards', this.state.rewards))
+    this.props.dispatch(SetNewRoomData(this.state))
   }
   render() {
     return (
@@ -107,11 +97,11 @@ export default class SecondStep extends Component {
           {/* Name & Labels */}
           <View style={[localStyles.wrap]}>
             <InputItem title={I18n.t('NewRoom.input.name.title')}>
-              <Text style={[styles.flex1]}>{this.props.newRoom.title}</Text>
+              <Text style={[styles.flex1]}>{this.state.title}</Text>
             </InputItem>
             <InputItem title={I18n.t('NewRoom.input.label.title')}>
               <View style={[styles.fullFlexWidth, styles.flexWrap, {alignItems: 'center'}]}>
-                {this.props.newRoom.labels.map((item, index) => {
+                {[...this.state.labels].map((item, index) => {
                   return (
                     <Label key={index} title={item}/>
                   )
@@ -127,7 +117,7 @@ export default class SecondStep extends Component {
               <View style={[styles.fullFlexWidth, localStyles.cover]}>
                 <Text style={{color: '#c7c7c7'}}>{I18n.t('NewRoom.input.second.Cover.placeholder')}</Text>
                 <TouchableOpacity onPress={this._showUpload}>
-                  <Image source={this.props.newRoom.cover ? this.props.newRoom.cover : ''} style={[localStyles.cover__image]}>
+                  <Image source={this.state.cover ? this.state.cover : ''} style={[localStyles.cover__image]}>
                     <Icon name="camera" size={20}/>
                   </Image>
                 </TouchableOpacity>
@@ -147,30 +137,30 @@ export default class SecondStep extends Component {
                 style={[styles.flex1, styles.contentFontSize]}
                 placeholder={I18n.t('NewRoom.input.second.intro.placeholder')}
                 multiline={true}
-                defaultValue={this.props.newRoom.intro}
+                defaultValue={this.state.intro}
                 onChangeText={intro => this.setState({intro})}
               />
             </InputItem>
             <DateTimePicker
               title={I18n.t('NewRoom.input.second.start.title')}
-              date={this.props.newRoom.date_time_start}
-              onDateChange={date_time_start => this.props.dispatch(SetNewRoomData('date_time_start', date_time_start))}/>
+              date={this.state.date_time_start}
+              onDateChange={date_time_start => this.setState({date_time_start})}/>
             <DateTimePicker
               title={I18n.t('NewRoom.input.second.end.title')}
-              date={this.props.newRoom.date_time_end}
-              onDateChange={date_time_end => this.props.dispatch(SetNewRoomData('date_time_end', date_time_end))}/>
+              date={this.state.date_time_end}
+              onDateChange={date_time_end => this.setState({date_time_end})}/>
             <InputItem title={I18n.t('NewRoom.input.second.location.title')}>
               <TextInput
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.location.placeholder')}
-                defaultValue={this.props.newRoom.location_string}
+                defaultValue={this.state.location_string}
                 onChangeText={location_string => this.setState({location_string})}
               />
             </InputItem>
             <InputItem title={I18n.t('NewRoom.input.second.max.title')}>
               <TouchableOpacity style={[styles.flex1]} onPress={this._showPicker}>
-                <Text style={[styles.contentFontSize, _.isNumber(this.props.newRoom.max_participants) || isNaN(this.props.newRoom.max_participants) ? {color: 'black'} : {color: '#c9c9c9'}]}>
-                  {this.props.newRoom.max_participants ? this.props.newRoom.max_participants : I18n.t('NewRoom.input.second.max.placeholder')}
+                <Text style={[styles.contentFontSize, _.isNumber(this.state.max_participants) || isNaN(this.state.max_participants) ? {color: 'black'} : {color: '#c9c9c9'}]}>
+                  {this.state.max_participants ? this.state.max_participants : I18n.t('NewRoom.input.second.max.placeholder')}
                 </Text>
               </TouchableOpacity>
             </InputItem>
@@ -189,15 +179,15 @@ export default class SecondStep extends Component {
               </Text>
               <Switch
                 style={{marginRight: 10}}
-                onValueChange={isPrivate => this.props.dispatch(SetNewRoomData('isPrivate', isPrivate))}
-                value={this.props.newRoom.isPrivate}
+                onValueChange={isPrivate => this.setState({isPrivate})}
+                value={this.state.isPrivate}
               />
             </InputItem>
             <InputItem title={I18n.t('NewRoom.input.second.welcome.title')}>
               <TextInput
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.welcome.placeholder')}
-                defaultValue={this.props.newRoom.welcome}
+                defaultValue={this.state.welcome}
                 onChangeText={welcome => this.setState({welcome})}
               />
             </InputItem>
@@ -206,7 +196,7 @@ export default class SecondStep extends Component {
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.expense.placeholder')}
                 onChangeText={expense => this.setState({expense})}
-                defaultValue={this.props.newRoom.expense}
+                defaultValue={this.state.expense}
               />
             </InputItem>
             <InputItem title={I18n.t('NewRoom.input.second.rewards.title')}>
@@ -214,7 +204,7 @@ export default class SecondStep extends Component {
                 style={[styles.flex1]}
                 placeholder={I18n.t('NewRoom.input.second.rewards.placeholder')}
                 onChangeText={rewards => this.setState({rewards})}
-                defaultValue={this.props.newRoom.rewards}
+                defaultValue={this.state.rewards}
               />
             </InputItem>
           </View>

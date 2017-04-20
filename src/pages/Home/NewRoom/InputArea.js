@@ -111,8 +111,8 @@ export default class InputArea extends Component {
           </Text>
           <Switch
             style={{marginRight: 10}}
-            onValueChange={match => this.props.dispatch(SetNewRoomData('match', match))}
-            value={this.props.newRoom.match}
+            onValueChange={is_matchroom => this.props.dispatch(SetNewRoomData({is_matchroom}))}
+            value={this.props.newRoom.is_matchroom}
           />
         </InputItem>
       </View>
