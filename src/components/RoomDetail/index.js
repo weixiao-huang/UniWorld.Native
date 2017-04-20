@@ -3,12 +3,11 @@
  */
 
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 import { connect } from 'react-redux'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 import I18n from 'react-native-i18n'
-import autobind from 'autobind-decorator'
 import styles from '../../common/styles'
 
 import Notice from './Notice/index'
@@ -22,30 +21,7 @@ const mapStateToProps = state => ({
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
 export default class RoomInfo extends Component {
-  @autobind
-  _joined() {
-    for (let participant of this.props.roomInfo.participants) {
-      if (this.props.userId === participant.id) return true
-    }
-    return false
-  }
-
-
-  _leave() {
-
-  }
-  _room() {
-
-  }
-
-  _joinin() {
-
-  }
-  _mark() {
-
-  }
   render() {
-    const { params: { id } } = this.props.navigation.state
     return (
       <View style={[styles.flex1, localStyles.container]}>
         <ScrollTabView

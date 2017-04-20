@@ -63,11 +63,11 @@ export default class RoomInfo extends Component {
   @autobind
   async join() {
     try {
-      this.setState({isJoined: true})
-      await this.props.dispatch(JoinRoom(this.props.roomInfo.id))
       this.room()
-      this.props.dispatch(FetchRoomInfo(this.props.roomInfo.id))
-      this.props.dispatch(FetchRoomList)
+      await this.props.dispatch(JoinRoom(this.props.roomInfo.id))
+      await this.props.dispatch(FetchRoomInfo(this.props.roomInfo.id))
+      await this.props.dispatch(FetchRoomList)
+      this.setState({isJoined: true})
     } catch (err) {
       console.log('Join 错误', err)
     }
@@ -93,7 +93,6 @@ export default class RoomInfo extends Component {
     }
   }
   render() {
-    const { params: { id } } = this.props.navigation.state
     return (
       <View style={[styles.flex1, localStyles.container]}>
         {this.state.isJoined
