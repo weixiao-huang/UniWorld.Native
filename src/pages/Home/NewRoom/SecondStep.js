@@ -273,6 +273,7 @@ const localStyles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 20,
     backgroundColor: '#ec5367',
-    borderRadius: 5
+    borderRadius: 5,
+    padding: 15
   }
 })

@@ -98,6 +98,8 @@ const localStyles = StyleSheet.create({
   },
   buttonBox__button: {
     width: 80,
+    paddingTop: 12,
+    paddingBottom: 12,
     backgroundColor: '#ec5367',
     borderRadius: 5
   }

@@ -58,6 +58,7 @@ const localStyles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 30,
     backgroundColor: '#ec5367',
-    borderRadius: 5
+    borderRadius: 5,
+    padding: 15
   }
 })

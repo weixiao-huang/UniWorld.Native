@@ -6,6 +6,8 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
+import Button from '../StyleButton'
+import autobind from 'autobind-decorator'
 
 import styles from '../../common/styles'
 import ScrollTabView from 'react-native-scrollable-tab-view'
@@ -15,12 +17,42 @@ import Info from './Info'
 import Interests from './Interests'
 import Rooms from './Rooms'
 
+import { FollowUser, UnfollowUser, FetchUserInfo } from '../../store/actions'
+
 const mapStateToProps = state => ({
-  user: state.user.user
+  user: state.user.user,
+  myFollows: state.user.userInfo.follows
 })
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
 export default class NewRoom extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isFollowed: this._isFollowed()
+    }
+  }
+
+  @autobind
+  async follow() {
+    this.setState({isFollowed: true})
+    await this.props.dispatch(FollowUser(this.props.user.id))
+    this.props.dispatch(FetchUserInfo)
+  }
+
+  @autobind
+  async unfollow() {
+    this.setState({isFollowed: false})
+    await this.props.dispatch(UnfollowUser(this.props.user.id))
+    this.props.dispatch(FetchUserInfo)
+  }
+
+  _isFollowed() {
+    for (let follow of this.props.myFollows) {
+      if (this.props.user.id === follow.id) return true
+    }
+    return false
+  }
   render() {
     const { params: { id } } = this.props.navigation.state
     return (
@@ -33,13 +65,16 @@ export default class NewRoom extends Component {
           tabBarTextStyle={[localStyles.tabBarText]}
         >
           <Info user={this.props.user} tabLabel={I18n.t('User.info')}/>
-          <Rooms tabLabel={I18n.t('User.rooms')}/>
-          <Interests tabLabel={I18n.t('User.interests')}/>
+          <Rooms isFollowed={this.state.isFollowed} tabLabel={I18n.t('User.rooms')}/>
+          <Interests isFollowed={this.state.isFollowed} tabLabel={I18n.t('User.interests')}/>
         </ScrollTabView>
         <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
-          <TouchableOpacity style={[styles.flex1, styles.flexCenter, localStyles.footer__follow]}>
-            <Text style={[localStyles.footer__text]}> + {I18n.t('User.follow')}</Text>
-          </TouchableOpacity>
+          <Button
+            inlineStyle={[localStyles.footer__follow, this.state.isFollowed ? {backgroundColor: '#c4caf2'} : null]}
+            textStyle={[localStyles.footer__text]}
+            title={this.state.isFollowed ? `= ${I18n.t('User.followed')}` : `+ ${I18n.t('User.follow')}`}
+            onPress={this.state.isFollowed ? this.unfollow : this.follow}
+          />
         </View>
       </View>
     );
@@ -48,7 +83,8 @@ export default class NewRoom extends Component {
 
 const localStyles = StyleSheet.create({
   footer__follow: {
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    borderRadius: 0
   },
   footer: {
     position: 'absolute',

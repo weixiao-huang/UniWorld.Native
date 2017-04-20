@@ -18,7 +18,7 @@ export default class StyleButton extends Component {
         onPress={this.props.onPress}
         style={[styles.button, this.props.inlineStyle]}
       >
-        <Text style={{color: this.props.color}}>{this.props.title}</Text>
+        <Text style={[{color: this.props.color}, this.props.textStyle]}>{this.props.title}</Text>
       </TouchableOpacity>
     )
   }
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#a55b7d',
     borderRadius: 10,
-    height: buttonHeight,
+    // height: buttonHeight,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
