@@ -15,7 +15,7 @@ import styles from '../../common/styles'
 
 import {
   GoToRoomDetail, FetchRoomList, FetchQuestionnaires, MarkRoom, UnmarkRoom,
-  JoinRoom, LeaveRoom
+  JoinRoom, LeaveRoom, FetchRoomInfo
 } from '../../store/actions'
 
 const mapStateToProps = state => ({
@@ -55,11 +55,9 @@ export default class RoomInfo extends Component {
     }
   }
   @autobind
-  room(id) {
-    return async () => {
-      await this.props.dispatch(FetchQuestionnaires(id))
-      this.props.dispatch(GoToRoomDetail(id))
-    }
+  async room() {
+    await this.props.dispatch(FetchQuestionnaires(this.props.roomInfo.id))
+    this.props.dispatch(GoToRoomDetail(this.props.roomInfo.id))
   }
 
   @autobind
@@ -67,6 +65,8 @@ export default class RoomInfo extends Component {
     try {
       this.setState({isJoined: true})
       await this.props.dispatch(JoinRoom(this.props.roomInfo.id))
+      this.room()
+      this.props.dispatch(FetchRoomInfo(this.props.roomInfo.id))
       this.props.dispatch(FetchRoomList)
     } catch (err) {
       console.log('Join 错误', err)
@@ -120,7 +120,7 @@ export default class RoomInfo extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.flexCenter, localStyles.join]}
-            onPress={this.state.isJoined ? this.room(id): this.join}
+            onPress={this.state.isJoined ? this.room: this.join}
           >
             <Text style={[localStyles.footer__text]}>
               {this.state.isJoined ? I18n.t('Room.Footer.room') : I18n.t('Room.Footer.join')}

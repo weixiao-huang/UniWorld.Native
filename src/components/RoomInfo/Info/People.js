@@ -43,7 +43,8 @@ export default class People extends Component {
 
 const localStyles = StyleSheet.create({
   people__iconBox: {
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    alignItems: 'center'
   },
   people__title: {
     justifyContent: 'space-between',

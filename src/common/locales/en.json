@@ -18,6 +18,7 @@
   },
   "Room": {
     "follow": "Follow",
+    "unfollow": "Unfollow",
     "share": "Share this room and invite your friends to join",
     "website": "Please browse our website for more details",
     "Info": {

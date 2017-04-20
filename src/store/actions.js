@@ -116,4 +116,18 @@ export const LeaveRoom = roomId => (dispatch, getState) => (
   ))
 )
 
+export const FollowUser = userId => (dispatch, getState) => (
+  actionHandle(() => (
+    tokenRequestHandle(api.followUser(userId))(getState).then(res => {
+      if (res.status !== 200) throw { message: 'Status Code Error' }
+    })
+  ))
+)
 
+export const UnfollowUser = userId => (dispatch, getState) => (
+  actionHandle(() => (
+    tokenRequestHandle(api.unfollowUser(userId))(getState).then(res => {
+      if (res.status !== 200) throw { message: 'Status Code Error' }
+    })
+  ))
+)

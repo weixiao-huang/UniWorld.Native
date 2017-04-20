@@ -7,19 +7,49 @@ import { StyleSheet, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
+import autobind from 'autobind-decorator'
 
 import Follow from '../../StyleButton'
 import Avatar from '../../Avatar'
 
-@connect(...[, dispatch => ({dispatch})])
+import { FollowUser, UnfollowUser, FetchUserInfo } from '../../../store/actions'
+
+const mapStateToProps = state => ({
+  myFollows: state.user.userInfo.follows
+})
+
+@connect(mapStateToProps, dispatch => ({dispatch}))
 export default class Host extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isFollowed: this._isFollowed()
+    }
+  }
   static propsTypes = {
     host: PropTypes.object.isRequired
   }
-  follow() {
 
+  @autobind
+  async follow() {
+    this.setState({isFollowed: true})
+    await this.props.dispatch(FollowUser(this.props.host.id))
+    this.props.dispatch(FetchUserInfo)
   }
 
+  @autobind
+  async unfollow() {
+    this.setState({isFollowed: false})
+    await this.props.dispatch(UnfollowUser(this.props.host.id))
+    this.props.dispatch(FetchUserInfo)
+  }
+
+  _isFollowed() {
+    for (let follow of this.props.myFollows) {
+      if (this.props.host.id === follow.id) return true
+    }
+    return false
+  }
 
   render() {
     const { host } = this.props
@@ -33,7 +63,10 @@ export default class Host extends Component {
           </View>
         </View>
         <View style={[localStyles.buttonBox]}>
-          <Follow inlineStyle={localStyles.buttonBox__button} title={I18n.t('Room.follow')} onPress={this.follow}/>
+          <Follow
+            inlineStyle={localStyles.buttonBox__button}
+            title={this.state.isFollowed ? I18n.t('Room.unfollow') : I18n.t('Room.follow')}
+            onPress={this.state.isFollowed ? this.unfollow : this.follow}/>
         </View>
       </View>
     )

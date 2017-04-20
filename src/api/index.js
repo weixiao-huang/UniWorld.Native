@@ -64,6 +64,10 @@ export default {
     method: 'GET',
     headers: { Authorization: `token ${token}`}
   }),
+  unfollowUser: userId => token => fetch(`${server}/user/${userId}/unfollow/`, {
+    method: 'GET',
+    headers: { Authorization: `token ${token}`}
+  }),
   leaveRoom: roomId => token => fetch(`${server}/room/${roomId}/leave/`, {
     method: 'GET',
     headers: { Authorization: `token ${token}`}
