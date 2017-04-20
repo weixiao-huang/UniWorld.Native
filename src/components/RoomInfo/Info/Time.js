@@ -30,7 +30,9 @@ export default class Time extends Component {
 const localStyles = StyleSheet.create({
   time: {
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 15,
+    marginBottom: 30
   },
   time__left: {
     borderWidth: 1,

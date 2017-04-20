@@ -31,7 +31,6 @@ export default class Recommend extends Component {
   }
 
   render () {
-    console.log('渲染Recommend')
     return (
       <ScrollView
         style={[localStyles.container]}

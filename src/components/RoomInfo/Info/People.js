@@ -3,11 +3,14 @@
  */
 
 import React, { Component, PropTypes } from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text, Dimensions } from 'react-native'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 
 import Avatar from '../../Avatar'
+const containerGap = 15
+const gap = 7
+const numPerRow = 5
 
 export default class People extends Component {
   static propTypes = {
@@ -27,11 +30,15 @@ export default class People extends Component {
             { max_participants ? `${participants.length} / ${max_participants}` : I18n.t('NewRoom.input.second.max.placeholder') }
           </Text>
         </View>
-        <View style={[styles.fullFlexWidth, localStyles.people__iconBox]}>
+        <View style={[styles.rowFlex, styles.flexWrap]}>
           {participants.map((item, index) => {
             return (
               <View key={index} style={[localStyles.people__icon]}>
-                <Avatar id={item.id} size={50} avatar={item.avatar}/>
+                <Avatar
+                  id={item.id}
+                  size={(Dimensions.get('window').width - 2 * containerGap) / numPerRow - gap * 2}
+                  avatar={item.avatar}
+                />
               </View>
             )
           })}
@@ -42,10 +49,6 @@ export default class People extends Component {
 }
 
 const localStyles = StyleSheet.create({
-  people__iconBox: {
-    flexWrap: 'wrap',
-    alignItems: 'center'
-  },
   people__title: {
     justifyContent: 'space-between',
     marginBottom: 5
@@ -55,7 +58,7 @@ const localStyles = StyleSheet.create({
     fontSize: 16
   },
   people__icon: {
-    margin: 4
+    margin: gap
   },
   people__icon__item: {
     width: 50,
@@ -65,6 +68,6 @@ const localStyles = StyleSheet.create({
     borderColor: '#ec5367',
   },
   people: {
-    margin: 12
+    margin: containerGap
   },
 })
