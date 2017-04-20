@@ -17,7 +17,6 @@ import styles from '../../../common/styles'
 @connect(...[, dispatch => ({dispatch})])
 export default class World extends Component {
   render() {
-    console.log('渲染World')
     return (
       <View style={[styles.flex1, localStyles.container]}>
         <ScrollTabView

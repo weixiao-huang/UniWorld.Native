@@ -7,7 +7,6 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import Button from '../StyleButton'
-import autobind from 'autobind-decorator'
 
 import styles from '../../common/styles'
 import ScrollTabView from 'react-native-scrollable-tab-view'
@@ -33,21 +32,19 @@ export default class NewRoom extends Component {
     }
   }
 
-  @autobind
-  async follow() {
+  follow = async () => {
     this.setState({isFollowed: true})
     await this.props.dispatch(FollowUser(this.props.user.id))
     this.props.dispatch(FetchUserInfo)
   }
 
-  @autobind
-  async unfollow() {
+  unfollow = async () => {
     this.setState({isFollowed: false})
     await this.props.dispatch(UnfollowUser(this.props.user.id))
     this.props.dispatch(FetchUserInfo)
   }
 
-  _isFollowed() {
+  _isFollowed = () => {
     for (let follow of this.props.myFollows) {
       if (this.props.user.id === follow.id) return true
     }

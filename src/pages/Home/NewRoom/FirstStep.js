@@ -5,7 +5,6 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Text, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
-import autobind from 'autobind-decorator'
 
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
@@ -23,8 +22,7 @@ export default class FirstStep extends Component {
     }
   }
 
-  @autobind
-  next() {
+  next = () => {
     this.props.navigation.navigate('Second')
     this.props.dispatch(SetNewRoomData({title: this.state.title}))
   }

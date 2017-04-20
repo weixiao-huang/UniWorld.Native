@@ -11,7 +11,6 @@ import styles from '../../../../common/styles'
 
 import LoginButton from '../../../../components/StyleButton'
 import LabelBox from './TextBox'
-import autobind from 'autobind-decorator'
 
 import { UserLogout, GoToLogin } from '../../../../store/actions'
 
@@ -21,8 +20,7 @@ export default class UserInfo extends Component {
 
   }
 
-  @autobind
-  logout () {
+  logout = () => {
     this.props.dispatch(GoToLogin)
     this.props.dispatch(UserLogout)
   }

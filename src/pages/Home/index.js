@@ -2,7 +2,7 @@
  * Created by huangwx on 11/04/2017.
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import { Image } from 'react-native'
 import { TabNavigator } from 'react-navigation'
 

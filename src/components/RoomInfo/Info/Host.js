@@ -7,7 +7,6 @@ import { StyleSheet, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
-import autobind from 'autobind-decorator'
 
 import Follow from '../../StyleButton'
 import Avatar from '../../Avatar'
@@ -30,21 +29,19 @@ export default class Host extends Component {
     host: PropTypes.object.isRequired
   }
 
-  @autobind
-  async follow() {
+  follow = async () => {
     this.setState({isFollowed: true})
     await this.props.dispatch(FollowUser(this.props.host.id))
     this.props.dispatch(FetchUserInfo)
   }
 
-  @autobind
-  async unfollow() {
+  unfollow = async () => {
     this.setState({isFollowed: false})
     await this.props.dispatch(UnfollowUser(this.props.host.id))
     this.props.dispatch(FetchUserInfo)
   }
 
-  _isFollowed() {
+  _isFollowed = () => {
     for (let follow of this.props.myFollows) {
       if (this.props.host.id === follow.id) return true
     }

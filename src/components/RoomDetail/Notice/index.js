@@ -6,7 +6,6 @@ import React, { Component } from 'react'
 import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
-import autobind from 'autobind-decorator'
 import styles from '../../../common/styles'
 
 import NoticeItem from './NoticeItem'

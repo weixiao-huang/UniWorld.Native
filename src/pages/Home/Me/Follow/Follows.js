@@ -42,7 +42,8 @@ const localStyles = StyleSheet.create({
     // justifyContent: 'center'
   },
   wrap: {
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom: 10
   },
   icon: {
     margin: 10

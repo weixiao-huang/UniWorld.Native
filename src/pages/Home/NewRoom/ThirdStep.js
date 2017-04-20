@@ -7,7 +7,6 @@ import { Image, StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity,
 import { connect } from 'react-redux'
 
 import I18n from 'react-native-i18n'
-import autobind from 'autobind-decorator'
 
 import styles from '../../../common/styles'
 

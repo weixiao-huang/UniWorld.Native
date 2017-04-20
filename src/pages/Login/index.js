@@ -11,7 +11,6 @@ import {
   Text
 } from 'react-native'
 
-import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 
@@ -34,8 +33,7 @@ export default class Login extends Component {
     }
   }
 
-  @autobind
-  async login () {
+  login = async () => {
     console.log('登录前')
     await this.props.dispatch(UserLogin(this.state))
     await this.props.dispatch(FetchRoomList)
@@ -47,13 +45,11 @@ export default class Login extends Component {
     console.log('登录函数完毕')
   }
 
-  @autobind
-  visit () {
+  visit = async () => {
     this.props.dispatch(Visit)
   }
 
-  @autobind
-  signup () {
+  signup = async () => {
 
   }
 

@@ -6,16 +6,11 @@ import React, { Component } from 'react';
 import { StyleSheet, ScrollView, RefreshControl } from 'react-native'
 import styles from '../../../../common/styles'
 import { connect } from 'react-redux'
-import autobind from 'autobind-decorator'
 
 import WorldSwiper from './WorldSwiper'
 import Content from './Content'
 
 import { FetchLatestRoomList, FetchWorldRoomList } from '../../../../store/actions'
-
-const mapStateToProps = state => ({
-  refreshing: state.room.refreshing
-})
 
 @connect(...[, dispatch => ({dispatch})])
 export default class Square extends Component {
@@ -26,8 +21,7 @@ export default class Square extends Component {
     }
   }
 
-  @autobind
-  async _onRefresh() {
+  _onRefresh = async () => {
     this.setState({refreshing: true})
     await this.props.dispatch(FetchLatestRoomList)
     await this.props.dispatch(FetchWorldRoomList)

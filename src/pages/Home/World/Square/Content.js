@@ -7,8 +7,8 @@ import { View, ListView, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import RoomWrap from '../../../../components/RoomWrap'
+// import GiftedListView from 'react-native-gifted-listview'
 
-import autobind from 'autobind-decorator'
 import api from '../../../../api'
 import Button from '../../../../components/StyleButton'
 
@@ -24,12 +24,39 @@ export default class Content extends Component {
     super(props)
     this.state = {
       next: this.props.world.next,
-      data: []
+      data: [
+        {
+          title: I18n.t('World.Square.latest'),
+          content: this.props.latest.results
+        },
+        {
+          title: I18n.t('World.Square.world'),
+          content: this.props.world.results
+        }
+      ]
     }
   }
 
-  @autobind
-  async fetchNextRoomList() {
+  fetchNextRoomList = async () => {
+    try {
+      if (this.state.next) {
+        const res = await api.fetchDataFromUrl(this.state.next)(this.props.token)
+        if (res.status === 200) {
+          const data = await res.json()
+          this.setState({
+            next: data.next,
+            data: this.state.data.concat({title: '', content: data.results})
+          })
+        }
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  _renderRowView = item => <RoomWrap title={item.title} roomList={item.content}/>
+
+  _onFetch = async () => {
     try {
       if (this.state.next) {
         const res = await api.fetchDataFromUrl(this.state.next)(this.props.token)
@@ -49,9 +76,21 @@ export default class Content extends Component {
   render () {
     return (
       <View>
+        {/*<GiftedListView*/}
+          {/*rowView={this._renderRowView}*/}
+          {/*onFetch={this._onFetch}*/}
+          {/*firstLoader={true}*/}
+          {/*pagination={true}*/}
+          {/*refreshable={true}*/}
+          {/*withSections={false}*/}
+          {/*customStyles={{*/}
+            {/*paginationView: {*/}
+              {/*backgroundColor: '#eee',*/}
+            {/*},*/}
+          {/*}}*/}
+          {/*refreshableTintColor="blue"*/}
+        {/*/>*/}
         <View>
-          <RoomWrap title={I18n.t('World.Square.latest')} roomList={this.props.latest.results}/>
-          <RoomWrap title={I18n.t('World.Square.world')} roomList={this.props.world.results}/>
           {this.state.data.map((item, index) =>
             <RoomWrap key={index} title={item.title} roomList={item.content}/>)
           }

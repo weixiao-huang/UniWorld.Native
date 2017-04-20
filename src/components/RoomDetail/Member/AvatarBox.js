@@ -6,7 +6,6 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
-import autobind from 'autobind-decorator'
 import styles from '../../../common/styles'
 
 import Avatar from '../../../components/Avatar'

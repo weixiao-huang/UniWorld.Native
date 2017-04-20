@@ -7,7 +7,6 @@ import { View, Text, ScrollView, StyleSheet, RefreshControl } from 'react-native
 import styles from '../../../../common/styles'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
-import autobind from 'autobind-decorator'
 
 import { FetchRecommendRoomList } from '../../../../store/actions'
 
@@ -25,12 +24,12 @@ export default class Recommend extends Component {
       refreshing: false
     }
   }
-  @autobind
-  async _onRefresh() {
+  _onRefresh = async () => {
     this.setState({refreshing: true})
     await this.props.dispatch(FetchRecommendRoomList)
     this.setState({refreshing: false})
   }
+
   render () {
     console.log('渲染Recommend')
     return (

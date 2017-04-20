@@ -5,9 +5,7 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, TextInput, Switch } from 'react-native'
 import { connect } from 'react-redux'
-
 import Picker from 'react-native-picker'
-
 import I18n from 'react-native-i18n'
 import _ from 'lodash'
 import styles from '../../../common/styles'
@@ -52,7 +50,9 @@ export default class InputArea extends Component {
 
   _createInitialLabels(name) {
     let data = []
-    for (let firstLayer of Object.values(replaceKeysDeep(this.props.initialLabels.children[1], name))[0]) {
+    const labels = Object.values(replaceKeysDeep(this.props.initialLabels.children[1], name))[0]
+    // console.log(Object.values(Object.values(labels)[0])[0])
+    for (let firstLayer of labels) {
       const obj = {}
       const key = Object.keys(firstLayer)[0]
       obj[key] = []

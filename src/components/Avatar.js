@@ -5,7 +5,6 @@
 import React, { Component, PropTypes } from 'react'
 import { StyleSheet, TouchableOpacity, Image } from 'react-native'
 import { connect } from 'react-redux'
-import autobind from 'autobind-decorator'
 
 import { FetchUser, GoToUser } from '../store/actions'
 
@@ -19,8 +18,7 @@ export default class Avatar extends Component {
     size: 70
   }
 
-  @autobind
-  _gotoUser(id) {
+  _gotoUser = id => {
     return async () => {
       await this.props.dispatch(FetchUser(id))
       this.props.dispatch(GoToUser(id))

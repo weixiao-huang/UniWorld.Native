@@ -6,7 +6,6 @@ import React, { Component, PropTypes } from 'react';
 import { View, ListView, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import styles from '../common/styles'
-import autobind from 'autobind-decorator'
 
 import { GoToRoomInfo, FetchRoomInfo } from '../store/actions'
 
@@ -29,8 +28,7 @@ export default class RoomWrap extends Component {
     title: ''
   }
 
-  @autobind
-  _gotoRoomInfo(id) {
+  _gotoRoomInfo = id => {
     return async () => {
       await this.props.dispatch(FetchRoomInfo(id))
       this.props.dispatch(GoToRoomInfo(id))

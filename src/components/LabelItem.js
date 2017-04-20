@@ -5,7 +5,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Switch, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import autobind from 'autobind-decorator'
 
 import styles from '../common/styles'
 import I18n from 'react-native-i18n'
@@ -24,8 +23,7 @@ export default class LabelItem extends Component {
     onPress: PropTypes.func.isRequired,
   }
 
-  @autobind
-  removeLabel(index) {
+  removeLabel = index => {
     return () => {
       this.props.dispatch(RemoveLabel(index))
     }

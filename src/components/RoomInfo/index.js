@@ -3,12 +3,11 @@
  */
 
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 
 import { connect } from 'react-redux'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 import I18n from 'react-native-i18n'
-import autobind from 'autobind-decorator'
 import Info from './Info/index'
 import Detail from './Detail/index'
 import styles from '../../common/styles'
@@ -32,20 +31,18 @@ export default class RoomInfo extends Component {
       isJoined: this._joined()
     }
   }
-  @autobind
-  _joined() {
+  _joined = () => {
     for (let participant of this.props.roomInfo.participants) {
       if (this.props.myId === participant.id) return true
     }
     return false
   }
 
-  _isMarked() {
+  _isMarked = () => {
     return this.props.roomInfo.marked_users.indexOf(this.props.myId) >= 0
   }
 
-  @autobind
-  async leave() {
+  leave = async () => {
     try {
       this.setState({isJoined: false})
       await this.props.dispatch(LeaveRoom(this.props.roomInfo.id))
@@ -54,14 +51,12 @@ export default class RoomInfo extends Component {
       console.log('Leave 错误', err)
     }
   }
-  @autobind
-  async room() {
+  room = async () => {
     await this.props.dispatch(FetchQuestionnaires(this.props.roomInfo.id))
     this.props.dispatch(GoToRoomDetail(this.props.roomInfo.id))
   }
 
-  @autobind
-  async join() {
+  join = async () => {
     try {
       this.room()
       await this.props.dispatch(JoinRoom(this.props.roomInfo.id))
@@ -72,8 +67,7 @@ export default class RoomInfo extends Component {
       console.log('Join 错误', err)
     }
   }
-  @autobind
-  async mark() {
+  mark = async () => {
     try {
       this.setState({isMarked: true})
       await this.props.dispatch(MarkRoom(this.props.roomInfo.id))
@@ -82,8 +76,7 @@ export default class RoomInfo extends Component {
       console.log('Mark错误', err)
     }
   }
-  @autobind
-  async unmark() {
+  unmark = async () => {
     try {
       this.setState({isMarked: false})
       await this.props.dispatch(UnmarkRoom(this.props.roomInfo.id))

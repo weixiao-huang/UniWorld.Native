@@ -11,7 +11,6 @@ import ImagePicker from 'react-native-image-picker'
 import Icon from 'react-native-vector-icons/Entypo'
 
 import I18n from 'react-native-i18n'
-import autobind from 'autobind-decorator'
 import _ from 'lodash'
 
 import { SetNewRoomData } from '../../../store/actions'
@@ -38,8 +37,7 @@ export default class SecondStep extends Component {
     }
   }
 
-  @autobind
-  _showPicker() {
+  _showPicker = () => {
     const threshold = 30
     Picker.init({
       pickerData: ['NL'].concat(Object.keys(Array.from(new Array(threshold+1))).slice(2)),
@@ -51,8 +49,7 @@ export default class SecondStep extends Component {
     Picker.show()
   }
 
-  @autobind
-  _showUpload() {
+  _showUpload = () => {
     const options = {
       title: I18n.t('NewRoom.input.second.Cover.uploadTitle')
     }
@@ -77,8 +74,7 @@ export default class SecondStep extends Component {
     })
   }
 
-  @autobind
-  next() {
+  next = () => {
     this.props.navigation.navigate('Third')
     this.props.dispatch(SetNewRoomData(this.state))
   }
@@ -117,9 +113,9 @@ export default class SecondStep extends Component {
               <View style={[styles.fullFlexWidth, localStyles.cover]}>
                 <Text style={{color: '#c7c7c7'}}>{I18n.t('NewRoom.input.second.Cover.placeholder')}</Text>
                 <TouchableOpacity onPress={this._showUpload}>
-                  <Image source={this.state.cover ? this.state.cover : ''} style={[localStyles.cover__image]}>
+                  {/*<Image source={this.state.cover ? this.state.cover : ''} style={[localStyles.cover__image]}>*/}
                     <Icon name="camera" size={20}/>
-                  </Image>
+                  {/*</Image>*/}
                 </TouchableOpacity>
               </View>
             </InputItem>

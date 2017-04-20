@@ -7,7 +7,6 @@ import { StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 import I18n from 'react-native-i18n'
-import autobind from 'autobind-decorator'
 import styles from '../../../common/styles'
 import Button from '../../../components/StyleButton'
 
@@ -19,20 +18,16 @@ const mapStateToProps = state => ({
 
 @connect(mapStateToProps)
 export default class Member extends Component {
-  @autobind
-  reportRoom() {
+  reportRoom = () => {
 
   }
-  @autobind
-  reportUser() {
+  reportUser = () => {
 
   }
-  @autobind
-  likeRoom() {
+  likeRoom = () => {
 
   }
-  @autobind
-  likeUser() {
+  likeUser = () => {
 
   }
 
