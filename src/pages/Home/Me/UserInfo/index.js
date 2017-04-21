@@ -39,7 +39,7 @@ export default class UserInfo extends Component {
         { title: I18n.t('Me.info.grade'), content: year },
       ],
       [
-        { title: I18n.t('Me.info.nickname'), content: username },
+        { title: I18n.t('Me.info.nickname'), content: name },
         { title: I18n.t('Me.info.signature'), content: signature },
       ]
     ]

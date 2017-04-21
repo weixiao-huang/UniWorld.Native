@@ -65,7 +65,16 @@ export default {
     method: 'GET',
     headers: { Authorization: `token ${token}`}
   }),
-  createAnnouncement: roomId => token => fetch(`${server}/room/${roomId}/create_announcement/`, {
+
+  /*
+    data: {
+      title: string,
+      description: string,
+      is_announcement: true | false (true for notifications, false for questionnaires)
+      required: true (if it is questionnaires, show whether it's required)
+    }
+   */
+  createAnnouncement: data => roomId => token => fetch(`${server}/room/${roomId}/create_announcement/`, {
 
   }),
   followUser: userId => token => fetch(`${server}/user/${userId}/follow/`, {
@@ -92,6 +101,26 @@ export default {
     method: 'GET',
     headers: { Authorization: `token ${token}`}
   }),
+
+  /*
+    data: {
+      name: string
+      gender: true | false | null
+      department: string,
+      grade: number,
+      signature: string
+    }
+   */
+  editUserInfo: data => token => fetch(`${server}/profile/edit/`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `token ${token}`
+    },
+    body: JSON.stringify(data)
+  }),
+
   /*
     data: {
       cover: url : (dizhi),
@@ -116,6 +145,7 @@ export default {
     },
     body: JSON.stringify(data)
   }),
+
   /*
     data: {
       text: reportReason : string
@@ -130,6 +160,7 @@ export default {
     },
     body: JSON.stringify(data)
   }),
+
   /*
     data: {
       id: userId : int,
@@ -137,6 +168,44 @@ export default {
     }
    */
   reportUser: data => roomId => token => fetch(`${server}/room/${roomId}/thumb_down/`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `token ${token}`
+    },
+    body: JSON.stringify(data)
+  }),
+
+  likeUser: userId => roomId => token => fetch(`${server}/room/${roomId}/thumb_up/?id=${userId}`, {
+    method: 'GET',
+    headers: { Authorization: `token ${token}`}
+  }),
+  /*
+    data: {
+      ids: array(int)
+    }
+   */
+  likerUsers: data => roomId => token => fetch(`${server}/room/${roomId}/thumb_up/`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `token ${token}`
+    },
+    body: JSON.stringify(data)
+  }),
+
+  messagePolling: token => fetch(`${server}/message_polling/`, {
+    method: 'GET',
+    headers: { Authorization: `token ${token}`}
+  }),
+  /*
+    data: {
+      text: string
+    }
+   */
+  sendMessage: data => roomId => token => fetch(`${server}/room/${roomId}/send_message/`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

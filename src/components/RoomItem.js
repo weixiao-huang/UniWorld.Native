@@ -96,7 +96,7 @@ const localStyles = StyleSheet.create({
     borderBottomColor: '#eee',
     borderBottomWidth: 1,
     padding: 12,
-    height: 110,
+    height: 120,
   },
   wrap: {
     marginLeft: 20,
