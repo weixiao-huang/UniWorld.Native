@@ -3,21 +3,43 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { Image, ScrollView, View, StyleSheet, Dimensions } from 'react-native'
+import { Image, ScrollView, View, StyleSheet, Dimensions, RefreshControl } from 'react-native'
 import styles from '../../../common/styles'
+import { connect } from 'react-redux'
+import { FetchRoomList } from '../../../store/actions'
 
 import RoomWrap from '../../../components/RoomWrap'
 
+@connect(...[, dispatch => ({dispatch})])
 export default class TabContainer extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      refreshing: false
+    }
+  }
   static propTypes = {
     roomList: PropTypes.array.isRequired
   }
   static defaultProps = {
     title: ''
   }
+  _onRefresh = async () => {
+    this.setState({refreshing: true})
+    await this.props.dispatch(FetchRoomList)
+    this.setState({refreshing: false})
+  }
   render() {
     return (
-      <ScrollView style={[localStyles.container]}>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }
+        style={[localStyles.container]}
+      >
         {this.props.roomList.length
           ? <RoomWrap title={this.props.title} roomList={this.props.roomList}/>
           : <View style={[styles.flexCenter]}><Image style={[localStyles.empty]} source={require('../../../assets/emptyList.png')}/></View>

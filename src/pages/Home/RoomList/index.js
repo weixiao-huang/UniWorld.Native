@@ -32,16 +32,9 @@ export default class RoomList extends Component {
           // tabBarTextStyle={localStyles.tabBarText}
           // tabBarUnderlineStyle={localStyles.tabBarUnderline}
         >
-          {Object.keys(roomList).map((key, index) => {
-            return (
-              <TabContainer
-                key={index}
-                tabLabel={I18n.t(`RoomList.${items[index]}.label`)}
-                roomList={roomList[key]}
-                title={I18n.t(`RoomList.${items[index]}.title`)}
-              />
-            )
-          })}
+          <TabContainer title={I18n.t('RoomList.Star.title')} tabLabel={I18n.t('RoomList.Star.label')} roomList={roomList.marked}/>
+          <TabContainer title={I18n.t('RoomList.JoinIn.title')} tabLabel={I18n.t('RoomList.JoinIn.label')} roomList={roomList.joined}/>
+          <TabContainer title={I18n.t('RoomList.Mine.title')} tabLabel={I18n.t('RoomList.Mine.label')} roomList={roomList.hosted}/>
         </ScrollTabView>
       </View>
     )

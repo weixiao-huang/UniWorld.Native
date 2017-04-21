@@ -91,6 +91,7 @@ export default class InputArea extends Component {
       <View style={{marginTop: 30, marginBottom: 20}}>
         <InputItem title={I18n.t('NewRoom.input.name.title')}>
           <TextInput
+            maxLength={50}
             style={[styles.flex1, styles.contentFontSize]}
             placeholder={I18n.t('NewRoom.input.name.placeholder')}
             onChangeText={this.props.onChangeTitle}
