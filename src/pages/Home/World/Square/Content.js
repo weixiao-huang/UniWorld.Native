@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { View, ListView, StyleSheet } from 'react-native'
+import { View, ListView, StyleSheet, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import RoomWrap from '../../../../components/RoomWrap'
@@ -23,17 +23,9 @@ export default class Content extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      isFetching: false,
       next: this.props.world.next,
-      data: [
-        {
-          title: I18n.t('World.Square.latest'),
-          content: this.props.latest.results
-        },
-        {
-          title: I18n.t('World.Square.world'),
-          content: this.props.world.results
-        }
-      ]
+      data: []
     }
   }
 
@@ -59,6 +51,7 @@ export default class Content extends Component {
   _onFetch = async () => {
     try {
       if (this.state.next) {
+        this.setState({isFetching: true})
         const res = await api.fetchDataFromUrl(this.state.next)(this.props.token)
         if (res.status === 200) {
           const data = await res.json()
@@ -67,6 +60,7 @@ export default class Content extends Component {
             data: this.state.data.concat({title: '', content: data.results})
           })
         }
+        this.setState({isFetching: false})
       }
     } catch (err) {
       console.log(err)
@@ -91,12 +85,26 @@ export default class Content extends Component {
           {/*refreshableTintColor="blue"*/}
         {/*/>*/}
         <View>
+          <RoomWrap title={I18n.t('World.Square.latest')} roomList={this.props.latest.results}/>
+          <RoomWrap title={I18n.t('World.Square.world')} roomList={this.props.world.results}/>
           {this.state.data.map((item, index) =>
             <RoomWrap key={index} title={item.title} roomList={item.content}/>)
           }
         </View>
-        {this.state.next
-          ? <Button textStyle={{color:'#bcbcbc', fontSize: 16}} inlineStyle={localStyles.button} title={I18n.t('World.Square.loadMore')} onPress={this.fetchNextRoomList}/>
+        {this.state.isFetching ?
+          <ActivityIndicator
+            style={{height: 40}}
+            animating={this.state.isFetching}
+          />
+          : null
+        }
+        {this.state.next && !this.state.isFetching ?
+          <Button
+            textStyle={{color:'#bcbcbc', fontSize: 16}}
+            inlineStyle={localStyles.button}
+            title={I18n.t('World.Square.loadMore')}
+            onPress={this.fetchNextRoomList}
+          />
           : null
          }
       </View>

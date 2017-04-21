@@ -42,14 +42,14 @@ export default class Info extends Component {
         iconName: 'attach-money'
       }
     }
-    let opt = {}
-    if (this.props.roomInfo.options) {
-      opt = JSON.parse(this.props.roomInfo.options)
+    let opt = this.props.roomInfo.options
+    if (opt) {
+      opt = JSON.parse(opt)
       for (let option in opt) {
-        if (opt.hasOwnProperty(option))
+        if (opt.hasOwnProperty(option) && options.hasOwnProperty(option))
           options[option].content = opt[option]
       }
-    }
+    } else opt = {}
     return (
       <ScrollView style={[localStyles.container, styles.flex1]}>
         <Image style={[localStyles.cover]} source={{uri: cover}}/>

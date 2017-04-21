@@ -12,7 +12,7 @@ import Content from './Content'
 
 import { FetchLatestRoomList, FetchWorldRoomList } from '../../../../store/actions'
 
-@connect(...[, dispatch => ({dispatch})])
+@connect(...[state=>({world: state.room.world}), dispatch => ({dispatch})])
 export default class Square extends Component {
   constructor(props) {
     super(props)
@@ -22,10 +22,12 @@ export default class Square extends Component {
   }
 
   _onRefresh = async () => {
+    console.log('刷新之前的world', this.props.world)
     this.setState({refreshing: true})
     await this.props.dispatch(FetchLatestRoomList)
     await this.props.dispatch(FetchWorldRoomList)
     this.setState({refreshing: false})
+    console.log('刷新之后的world', this.props.world)
   }
 
   render () {
