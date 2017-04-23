@@ -4,7 +4,26 @@
 
 import { server } from '../common/constants'
 
+const getByToken = url => token => fetch(`${server}${url}`, {
+  method: 'GET',
+  headers: { Authorization: `token ${token}` }
+})
+
+const postByToken = url => data => token => fetch(`${server}${url}`, {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    Authorization: `token ${token}`
+  },
+  body: JSON.stringify(data)
+})
+
 export default {
+  fetchDataFromUrl: url => token => fetch(url, {
+    method: 'GET',
+    headers: { Authorization: `token ${token}` }
+  }),
   userLogin: data => fetch(`${server}/token/`, {
     method: 'POST',
     headers: {
@@ -13,59 +32,34 @@ export default {
     },
     body: JSON.stringify(data)
   }),
-  fetchUserInfo: token => fetch(`${server}/profile/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}` }
-  }),
-  fetchUser: id => token => fetch(`${server}/user/${id}/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}` }
-  }),
-  fetchDislikes: id => token => fetch(`${server}/user/${id}/thumb_downs/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}` }
-  }),
-  fetchRecommend: token => fetch(`${server}/plaza/hot/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}` }
-  }),
-  fetchLatest: token => fetch(`${server}/plaza/latest/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}` }
-  }),
-  fetchWorld: token => fetch(`${server}/plaza/random/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}` }
-  }),
-  fetchDataFromUrl: url => token => fetch(url, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}` }
-  }),
-  fetchInitialLabels: token => fetch(`${server}/label/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}` }
-  }),
-  fetchRoomInfo: id => token => fetch(`${server}/room/${id}/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}` }
-  }),
-  fetchRoomList: token => fetch(`${server}/profile/rooms/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}` }
-  }),
-  fetchQuestionnaires: id => token => fetch(`${server}/room/${id}/questionnaires/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}`}
-  }),
-  fetchParticipants: id => token => fetch(`${server}/room/${id}/participants/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}`}
-  }),
-  fetchResult: resultId => id => token => fetch(`${server}/room/${id}/get_result/${resultId}/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}`}
-  }),
 
+  /*
+    GET METHODS
+   */
+  fetchUserInfo: token => getByToken(`/profile/`)(token),
+  fetchUser: id => token => getByToken(`/user/${id}/`)(token),
+  fetchDislikes: token => getByToken(`/user/${id}/thumb_downs/`)(token),
+  fetchRecommend: token => getByToken(`/plaza/hot/`)(token),
+  fetchLatest: token => getByToken(`/plaza/latest/`)(token),
+  fetchWorld: token => getByToken(`/plaza/random/`)(token),
+  fetchInitialLabels: token => getByToken(`/label/`)(token),
+  fetchRoomInfo: id => token => getByToken(`/room/${id}/`)(token),
+  fetchRoomList: token => getByToken(`/profile/rooms/`)(token),
+  fetchQuestionnaires: id => token => getByToken(`/room/${id}/questionnaires/`)(token),
+  fetchParticipants: id => token => getByToken(`/room/${id}/participants/`)(token),
+  fetchResult: resultId => id => token => getByToken(`/room/${id}/get_result/${resultId}/`)(token),
+  followUser: userId => token => getByToken(`/user/${userId}/follow/`)(token),
+  unfollowUser: userId => token => getByToken(`/user/${userId}/unfollow/`)(token),
+  leaveRoom: roomId => token => getByToken(`/room/${roomId}/leave/`)(token),
+  joinRoom: roomId => token => getByToken(`/room/${roomId}/join/`)(token),
+  markRoom: roomId => token => getByToken(`/room/${roomId}/mark/`)(token),
+  unmarkRoom: roomId => token => getByToken(`/room/${roomId}/unmark/`)(token),
+  likeUser: userId => roomId => token => getByToken(`/room/${roomId}/thumb_up/?id=${userId}`)(token),
+  messagePolling: token => getByToken(`${server}/message_polling/`)(token),
+
+  /*
+    POST METHODS
+   */
   /*
     data: {
       title: string,
@@ -74,33 +68,9 @@ export default {
       required: true (if it is questionnaires, show whether it's required)
     }
    */
-  createAnnouncement: data => roomId => token => fetch(`${server}/room/${roomId}/create_announcement/`, {
-
-  }),
-  followUser: userId => token => fetch(`${server}/user/${userId}/follow/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}`}
-  }),
-  unfollowUser: userId => token => fetch(`${server}/user/${userId}/unfollow/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}`}
-  }),
-  leaveRoom: roomId => token => fetch(`${server}/room/${roomId}/leave/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}`}
-  }),
-  joinRoom: roomId => token => fetch(`${server}/room/${roomId}/join/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}`}
-  }),
-  markRoom: roomId => token => fetch(`${server}/room/${roomId}/mark/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}`}
-  }),
-  unmarkRoom: roomId => token => fetch(`${server}/room/${roomId}/unmark/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}`}
-  }),
+  createAnnouncement: data => roomId => token => (
+    postByToken(`/room/${roomId}/create_announcement/`)(data)(token)
+  ),
 
   /*
     data: {
@@ -111,15 +81,7 @@ export default {
       signature: string
     }
    */
-  editUserInfo: data => token => fetch(`${server}/profile/edit/`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `token ${token}`
-    },
-    body: JSON.stringify(data)
-  }),
+  editUserInfo: data => token => postByToken(`${server}/profile/edit/`)(data)(token),
 
   /*
     data: {
@@ -136,30 +98,14 @@ export default {
       title: '123' : string
     }
    */
-  createRoom: data => token => fetch(`${server}/create/`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `token ${token}`
-    },
-    body: JSON.stringify(data)
-  }),
+  createRoom: data => token => postByToken(`/create/`)(data)(token),
 
   /*
     data: {
       text: reportReason : string
     }
    */
-  reportRoom: data => roomId => token => fetch(`${server}/room/${roomId}/report/`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `token ${token}`
-    },
-    body: JSON.stringify(data)
-  }),
+  reportRoom: data => roomId => token => postByToken(`/room/${roomId}/report/`)(data)(token),
 
   /*
     data: {
@@ -167,51 +113,19 @@ export default {
       text: reportReason : string
     }
    */
-  reportUser: data => roomId => token => fetch(`${server}/room/${roomId}/thumb_down/`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `token ${token}`
-    },
-    body: JSON.stringify(data)
-  }),
+  reportUser: data => roomId => token => postByToken(`/room/${roomId}/thumb_down/`)(data)(token),
 
-  likeUser: userId => roomId => token => fetch(`${server}/room/${roomId}/thumb_up/?id=${userId}`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}`}
-  }),
   /*
     data: {
       ids: array(int)
     }
    */
-  likerUsers: data => roomId => token => fetch(`${server}/room/${roomId}/thumb_up/`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `token ${token}`
-    },
-    body: JSON.stringify(data)
-  }),
+  likerUsers: data => roomId => token => postByToken(`/room/${roomId}/thumb_up/`)(data)(token),
 
-  messagePolling: token => fetch(`${server}/message_polling/`, {
-    method: 'GET',
-    headers: { Authorization: `token ${token}`}
-  }),
   /*
     data: {
       text: string
     }
    */
-  sendMessage: data => roomId => token => fetch(`${server}/room/${roomId}/send_message/`, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `token ${token}`
-    },
-    body: JSON.stringify(data)
-  })
+  sendMessage: data => roomId => token => postByToken(`${server}/room/${roomId}/send_message/`)(data)(token),
 }
