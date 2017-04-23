@@ -21,13 +21,10 @@ import { FetchUserInfo } from '../../../store/actions'
 @connect(...[, dispatch => ({dispatch})])
 export default class Me extends Component {
   async componentWillMount() {
-    console.log('Me挂载函数开始')
     await this.props.dispatch(FetchUserInfo)
-    console.log('Me挂载函数结束')
   }
 
   render() {
-    console.log('渲染Me')
     return (
       <View style={styles.flex1}>
         <UserCover/>

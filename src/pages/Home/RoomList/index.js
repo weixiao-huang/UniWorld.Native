@@ -21,9 +21,7 @@ const mapStateToProps = state => ({
 @connect(mapStateToProps, dispatch => ({dispatch}))
 export default class RoomList extends Component {
   render() {
-    console.log('渲染RoomList')
     const roomList = this.props.roomList
-    console.log('RoomList页面', roomList)
     return (
       <View style={[styles.flex1, localStyles.container]}>
         <ScrollTabView
