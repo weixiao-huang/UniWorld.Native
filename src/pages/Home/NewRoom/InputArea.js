@@ -41,6 +41,12 @@ const mapStateToProps = state => ({
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
 export default class InputArea extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      initialLabels: this._createInitialLabels('name_ch')
+    }
+  }
   static propTypes = {
     onChangeTitle: PropTypes.func.isRequired
   }
@@ -51,14 +57,15 @@ export default class InputArea extends Component {
   _createInitialLabels(name) {
     let data = []
     const labels = Object.values(replaceKeysDeep(this.props.initialLabels.children[1], name))[0]
-    // console.log(Object.values(Object.values(labels)[0])[0])
+    console.log(Object.values(labels)[0])
     for (let firstLayer of labels) {
       const obj = {}
       const key = Object.keys(firstLayer)[0]
       obj[key] = []
       for (let secondLayer of firstLayer[key]) {
-        if (_.isObject(secondLayer)) {
-          secondLayer = Object.keys(secondLayer)[0]
+        if (typeof(secondLayer) === 'string') {
+          // secondLayer = Object.keys(secondLayer)[0]
+          secondLayer = { [secondLayer]: [''] }
         }
         obj[key].push(secondLayer)
       }
@@ -69,18 +76,19 @@ export default class InputArea extends Component {
 
   _showLabelPicker() {
     Picker.init({
-      pickerData: this._createInitialLabels('name_ch'),
+      pickerData: this.state.initialLabels,
       // selectedValue: ['河北', '唐山', '古冶区'],
       pickerTitleText: I18n.t('NewRoom.input.label.selectTitle'),
       onPickerConfirm: pickedValue => {
         console.log('area', pickedValue)
-        this.props.dispatch(AddLabel(pickedValue.pop()))
+        const label = pickedValue.pop()
+        this.props.dispatch(AddLabel(label ? label : pickedValue.pop()))
       },
       onPickerCancel: pickedValue => {
-        console.log('area', pickedValue)
+        // console.log('area', pickedValue)
       },
       onPickerSelect: pickedValue => {
-        console.log('area', pickedValue)
+        // console.log('area', pickedValue)
       }
     })
     Picker.show()

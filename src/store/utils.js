@@ -4,9 +4,9 @@
 
 import { Alert } from 'react-native'
 
-export const actionHandle = func => {
+export const actionHandle = async func => {
   try {
-    return func()
+    return await func()
   } catch (err) {
     console.log(err)
     Alert.alert('', err.message)

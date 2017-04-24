@@ -32,11 +32,6 @@ export default class LabelItem extends Component {
   render() {
     return (
       <View style={[styles.flex1]}>
-        <TouchableOpacity onPress={this.props.onPress}>
-          <Text style={[styles.contentFontSize, localStyles.button]}>
-            {I18n.t('NewRoom.input.label.placeholder')}
-          </Text>
-        </TouchableOpacity>
         {this.props.labels.length > 0
           ? <View style={[styles.fullFlexWidth, styles.flexWrap, {alignItems: 'center'}]}>
               {this.props.labels.map((item, index) => {
@@ -47,6 +42,11 @@ export default class LabelItem extends Component {
             </View>
           : null
         }
+        <TouchableOpacity onPress={this.props.onPress}>
+          <Text style={[styles.contentFontSize, localStyles.button]}>
+            {I18n.t('NewRoom.input.label.placeholder')}
+          </Text>
+        </TouchableOpacity>
       </View>
     )
   }

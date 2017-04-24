@@ -36,26 +36,66 @@ export default {
   /*
     GET METHODS
    */
-  fetchUserInfo: token => getByToken(`/profile/`)(token),
-  fetchUser: id => token => getByToken(`/user/${id}/`)(token),
-  fetchDislikes: token => getByToken(`/user/${id}/thumb_downs/`)(token),
-  fetchRecommend: token => getByToken(`/plaza/hot/`)(token),
-  fetchLatest: token => getByToken(`/plaza/latest/`)(token),
-  fetchWorld: token => getByToken(`/plaza/random/`)(token),
-  fetchInitialLabels: token => getByToken(`/label/`)(token),
-  fetchRoomInfo: id => token => getByToken(`/room/${id}/`)(token),
-  fetchRoomList: token => getByToken(`/profile/rooms/`)(token),
-  fetchQuestionnaires: id => token => getByToken(`/room/${id}/questionnaires/`)(token),
-  fetchParticipants: id => token => getByToken(`/room/${id}/participants/`)(token),
-  fetchResult: resultId => id => token => getByToken(`/room/${id}/get_result/${resultId}/`)(token),
-  followUser: userId => token => getByToken(`/user/${userId}/follow/`)(token),
-  unfollowUser: userId => token => getByToken(`/user/${userId}/unfollow/`)(token),
-  leaveRoom: roomId => token => getByToken(`/room/${roomId}/leave/`)(token),
-  joinRoom: roomId => token => getByToken(`/room/${roomId}/join/`)(token),
-  markRoom: roomId => token => getByToken(`/room/${roomId}/mark/`)(token),
-  unmarkRoom: roomId => token => getByToken(`/room/${roomId}/unmark/`)(token),
-  likeUser: userId => roomId => token => getByToken(`/room/${roomId}/thumb_up/?id=${userId}`)(token),
-  messagePolling: token => getByToken(`${server}/message_polling/`)(token),
+  fetchUserInfo: token => getByToken(
+    `/profile/`
+  )(token),
+  fetchUser: id => token => getByToken(
+    `/user/${id}/`
+  )(token),
+  fetchDislikes: token => getByToken(
+    `/user/${id}/thumb_downs/`
+  )(token),
+  fetchRecommend: token => getByToken(
+    `/plaza/hot/`
+  )(token),
+  fetchLatest: token => getByToken(
+    `/plaza/latest/`
+  )(token),
+  fetchWorld: token => getByToken(
+    `/plaza/random/`
+  )(token),
+  fetchInitialLabels: token => getByToken(
+    `/label/`
+  )(token),
+  fetchRoomInfo: id => token => getByToken(
+    `/room/${id}/`
+  )(token),
+  fetchRoomList: token => getByToken(
+    `/profile/rooms/`
+  )(token),
+  fetchQuestionnaires: id => token => getByToken(
+    `/room/${id}/questionnaires/`
+  )(token),
+  fetchParticipants: id => token => getByToken(
+    `/room/${id}/participants/`
+  )(token),
+  fetchResult: resultId => id => token => getByToken(
+    `/room/${id}/get_result/${resultId}/`
+  )(token),
+  followUser: userId => token => getByToken(
+    `/user/${userId}/follow/`
+  )(token),
+  unfollowUser: userId => token => getByToken(
+    `/user/${userId}/unfollow/`
+  )(token),
+  leaveRoom: roomId => token => getByToken(
+    `/room/${roomId}/leave/`
+  )(token),
+  joinRoom: roomId => token => getByToken(
+    `/room/${roomId}/join/`
+  )(token),
+  markRoom: roomId => token => getByToken(
+    `/room/${roomId}/mark/`
+  )(token),
+  unmarkRoom: roomId => token => getByToken(
+    `/room/${roomId}/unmark/`
+  )(token),
+  likeUser: userId => roomId => token => getByToken(
+    `/room/${roomId}/thumb_up/?id=${userId}`
+  )(token),
+  messagePolling: token => getByToken(
+    `/message_polling/`
+  )(token),
 
   /*
     POST METHODS

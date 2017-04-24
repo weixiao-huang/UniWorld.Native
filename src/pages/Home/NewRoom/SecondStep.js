@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, Switch } from 'react-native'
+import { Image, StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, Switch, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 
 import Picker from 'react-native-picker'
@@ -33,6 +33,7 @@ export default class SecondStep extends Component {
     const date = new Date()
     const dateFormat = '' // `${date.getYear() + 1900}-${date.getMonth()+1}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}`
     this.state = {
+      isUploading: false,
       ...this.props.newRoom
     }
   }
@@ -53,23 +54,30 @@ export default class SecondStep extends Component {
     const options = {
       title: I18n.t('NewRoom.input.second.Cover.uploadTitle')
     }
+    this.setState({isUploading: true})
     ImagePicker.showImagePicker(options, res => {
       console.log('Response = ', res)
       if (res.didCancel) {
         console.log('User cancelled image picker')
+        this.setState({isUploading: false})
       }
       else if (res.error) {
         console.log('ImagePicker Error: ', res.error)
+        this.setState({isUploading: false})
       }
       else if (res.customButton) {
         console.log('User tapped custom button: ', res.customButton)
+        this.setState({isUploading: false})
       }
       else {
         const cover = { uri: res.uri }
         // You can also display the image using data:
         // this.setState({ cover: 'data:image/jpeg;base64,' + res.data })
 
-        this.setState({cover: cover.uri})
+        this.setState({
+          cover: cover.uri,
+          isUploading: false
+        })
       }
     })
   }
@@ -110,13 +118,24 @@ export default class SecondStep extends Component {
           {/* Cover */}
           <View style={[localStyles.wrap]}>
             <InputItem title={I18n.t('NewRoom.input.second.Cover.title')}>
-              <View style={[styles.fullFlexWidth, localStyles.cover]}>
-                <Text style={{color: '#c7c7c7'}}>{I18n.t('NewRoom.input.second.Cover.placeholder')}</Text>
-                <TouchableOpacity onPress={this._showUpload}>
-                  {/*<Image source={this.state.cover ? this.state.cover : ''} style={[localStyles.cover__image]}>*/}
-                    <Icon name="camera" size={20}/>
-                  {/*</Image>*/}
-                </TouchableOpacity>
+              <View style={[styles.fullFlexWidth]}>
+                <View style={[styles.flex1, localStyles.wrap__cover]}>
+                  <View style={[styles.fullFlexWidth, localStyles.cover]}>
+                    <Text style={{color: '#c7c7c7'}}>{I18n.t('NewRoom.input.second.Cover.placeholder')}</Text>
+                    <ActivityIndicator animating={this.state.isUploading}/>
+                    <TouchableOpacity onPress={this._showUpload}>
+                      {/*<Image source={this.state.cover ? this.state.cover : ''} style={[localStyles.cover__image]}>*/}
+                      <Icon name="camera" size={20}/>
+                      {/*</Image>*/}
+                    </TouchableOpacity>
+                  </View>
+                  {this.state.cover ?
+                    <View style={[styles.rowFlex, localStyles.wrap__cover__wrap]}>
+                      <Image style={[localStyles.wrap__cover__wrap__img]} source={{url: this.state.cover}}/>
+                    </View>
+                    : null
+                  }
+                </View>
               </View>
             </InputItem>
           </View>
@@ -220,9 +239,20 @@ export default class SecondStep extends Component {
 
 const coverSize = 60
 const localStyles = StyleSheet.create({
+  wrap__cover: {
+    marginRight: 20
+  },
+  wrap__cover__wrap: {
+    paddingTop: 10,
+    paddingBottom: 20,
+  },
+  wrap__cover__wrap__img: {
+    width: '100%',
+    height: 200,
+    borderRadius: 10,
+  },
   cover: {
     margin: 4,
-    marginRight: 14,
     alignItems: 'center',
     justifyContent: 'space-between'
   },
