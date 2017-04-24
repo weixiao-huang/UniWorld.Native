@@ -82,9 +82,17 @@ export default class SecondStep extends Component {
     })
   }
 
+  _isCompleted = () => (
+    this.state.intro.length > 0 &&
+    this.state.date_time_start.length > 0 &&
+    this.state.date_time_end.length > 0 &&
+    this.state.location_string.length > 0 &&
+    _.isNumber(this.state.max_participants) || isNaN(this.state.max_participants)
+  )
+
   next = () => {
-    this.props.navigation.navigate('Third')
     this.props.dispatch(SetNewRoomData(this.state))
+    this.props.navigation.navigate('Third')
   }
   render() {
     return (
@@ -226,9 +234,10 @@ export default class SecondStep extends Component {
 
           <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
             <NewRoomButton
+              disabled={!this._isCompleted()}
               title={I18n.t('NewRoom.button')}
               onPress={this.next}
-              inlineStyle={localStyles.button}
+              inlineStyle={[localStyles.button, this._isCompleted() ? localStyles.active : localStyles.disabled]}
             />
           </View>
         </View>
@@ -299,8 +308,13 @@ const localStyles = StyleSheet.create({
   button: {
     marginTop: 5,
     marginBottom: 20,
-    backgroundColor: '#ec5367',
     borderRadius: 5,
     padding: 15
+  },
+  active: {
+    backgroundColor: '#ec5367',
+  },
+  disabled: {
+    backgroundColor: '#cbcbcb'
   }
 })

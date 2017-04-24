@@ -7,13 +7,15 @@ export default class StyleButton extends Component {
     color: PropTypes.string,
   }
   static defaultProps = {
-    color: 'white'
+    color: 'white',
+    disabled: false
   }
   render () {
     return (
       <TouchableOpacity
         onPress={this.props.onPress}
         style={[styles.button, this.props.inlineStyle]}
+        disabled={this.props.disabled}
       >
         <Text style={[{color: this.props.color}, this.props.textStyle]}>{this.props.title}</Text>
       </TouchableOpacity>

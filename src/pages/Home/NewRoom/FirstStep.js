@@ -27,6 +27,8 @@ export default class FirstStep extends Component {
     this.props.dispatch(SetNewRoomData({title: this.state.title}))
   }
 
+  _isCompleted = () => this.state.title.length > 0
+
   render() {
     return (
       <ScrollView>
@@ -40,9 +42,10 @@ export default class FirstStep extends Component {
           />
           <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
             <NewRoomButton
+              disabled={!this._isCompleted()}
               title={I18n.t('NewRoom.button')}
               onPress={this.next}
-              inlineStyle={localStyles.button}
+              inlineStyle={[localStyles.button, this._isCompleted() ? localStyles.active : localStyles.disabled]}
             />
           </View>
         </View>
@@ -69,8 +72,13 @@ const localStyles = StyleSheet.create({
   button: {
     marginTop: 10,
     marginBottom: 30,
-    backgroundColor: '#ec5367',
     borderRadius: 5,
     padding: 15
+  },
+  active: {
+    backgroundColor: '#ec5367',
+  },
+  disabled: {
+    backgroundColor: '#cbcbcb'
   }
 })
