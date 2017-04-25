@@ -52,11 +52,15 @@ export default class SecondStep extends Component {
 
   _showUpload = () => {
     const options = {
-      title: I18n.t('NewRoom.input.second.Cover.uploadTitle')
+      title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
+      cancelButtonTitle: 'Cancel',
+      takePhotoButtonTitle: 'Take Photo...',
+      chooseFromLibraryButtonTitle: 'Choose from Library...',
+      returnBase64Image: true,
+      returnIsVertical: false
     }
     this.setState({isUploading: true})
     ImagePicker.showImagePicker(options, res => {
-      console.log('Response = ', res)
       if (res.didCancel) {
         console.log('User cancelled image picker')
         this.setState({isUploading: false})
@@ -75,7 +79,7 @@ export default class SecondStep extends Component {
         // this.setState({ cover: 'data:image/jpeg;base64,' + res.data })
 
         this.setState({
-          cover: cover.uri,
+          cover: cover.uri, // 'data:image/jpeg;base64,' + res.data, //  cover.uri,
           isUploading: false
         })
       }
@@ -95,6 +99,7 @@ export default class SecondStep extends Component {
     this.props.navigation.navigate('Third')
   }
   render() {
+    console.log(this.state.cover)
     return (
       <ScrollView>
         <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 20}]}>

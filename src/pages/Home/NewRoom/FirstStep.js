@@ -27,7 +27,7 @@ export default class FirstStep extends Component {
     this.props.dispatch(SetNewRoomData({title: this.state.title}))
   }
 
-  _isCompleted = () => this.state.title.length > 0
+  _isCompleted = () => this.state.title.length > 5
 
   render() {
     return (

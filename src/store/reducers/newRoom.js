@@ -9,6 +9,7 @@
 import * as types from '../types'
 
 const initialState = {
+  id: '',
   title: '',
   labels: [],
   is_matchroom: false,
@@ -42,6 +43,11 @@ export default (state=initialState, action) => {
       return {
         ...state,
         ...(action.data)
+      }
+    case types.SET_NEW_ROOM_ID:
+      return {
+        ...state,
+        id: action.id
       }
     default:
       return state

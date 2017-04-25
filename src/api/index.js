@@ -32,7 +32,15 @@ export default {
     },
     body: JSON.stringify(data)
   }),
-
+  uploadCover: data => roomId => token => fetch(`${server}/room/${roomId}/upload_avatar/`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'multipart/form-data',// ; boundary=6ff46e0b6b5148d984f148b6542e5a5d',
+      'Authorization': `token ${token}`,
+    },
+    body: data,
+  }),
   /*
     GET METHODS
    */

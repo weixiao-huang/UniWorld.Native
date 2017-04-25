@@ -18,7 +18,7 @@ const logger = store => next => action => {
 
 const middlewares = [
   thunk,
-  // logger
+  logger
 ]
 
 const createAppStore = applyMiddleware(...middlewares)(createStore)

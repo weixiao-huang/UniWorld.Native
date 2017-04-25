@@ -5,6 +5,7 @@
 
 import * as types from './types'
 import api from '../api'
+import { Alert } from 'react-native'
 import { actionHandle, composeHandle, statusCodeHandle, tokenRequestHandle } from './utils'
 
 export const GoToHome = dispatch => dispatch({type: types.GO_TO_HOME})
@@ -82,6 +83,19 @@ export const FetchRoomList = (dispatch, getState) => (
 
 export const FetchQuestionnaires = id => (dispatch, getState) => (
   composeHandle(api.fetchQuestionnaires(id))(types.GET_QUESTIONNAIRES, 'questionnaires')(dispatch, getState)
+)
+
+export const CreateRoom = data => (dispatch, getState) => (
+  composeHandle(api.createRoom(data), 201)(types.SET_NEW_ROOM_ID, 'id')(dispatch, getState)
+)
+
+export const UploadCover = data => roomId => (dispatch, getState) => (
+  actionHandle(() => (
+    tokenRequestHandle(api.uploadCover(data)(roomId))(getState).then(res => {
+      if (res.status !== 200) throw { message: res }
+      Alert.alert('', '上传成功')
+    })
+  ))
 )
 
 export const MarkRoom = roomId => (dispatch, getState) => (

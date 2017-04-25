@@ -19,17 +19,17 @@ export const statusCodeHandle = (res, successStatusCode=200) => func => {
     return res.json()
       .then(data => func(data))
       .catch(err => {throw err})
-  else throw { message: 'Status Code Error' }
+  else throw { message: res }
 }
 
 // return a Promise object
 // api should return a Promise object
 export const tokenRequestHandle = apiFunc => getState => apiFunc(getState().auth.token)
 
-export const composeHandle = apiFunc => (type, stateName) => (dispatch, getState) => (
+export const composeHandle = (apiFunc, successStatusCode=200) => (type, stateName) => (dispatch, getState) => (
   actionHandle(() => (
     tokenRequestHandle(apiFunc)(getState).then(res =>
-      statusCodeHandle(res)(data => dispatch({type, [stateName]: data}))
+      statusCodeHandle(res, successStatusCode)(data => dispatch({type, [stateName]: data}))
     ).catch(err => {throw err})
   ))
 )

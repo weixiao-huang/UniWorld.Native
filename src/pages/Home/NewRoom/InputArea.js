@@ -57,7 +57,6 @@ export default class InputArea extends Component {
   _createInitialLabels(name) {
     let data = []
     const labels = Object.values(replaceKeysDeep(this.props.initialLabels.children[1], name))[0]
-    console.log(Object.values(labels)[0])
     for (let firstLayer of labels) {
       const obj = {}
       const key = Object.keys(firstLayer)[0]

@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, Switch } from 'react-native'
+import { Image, StyleSheet, View, Text, ScrollView, Alert } from 'react-native'
 import { connect } from 'react-redux'
 
 import I18n from 'react-native-i18n'
@@ -14,17 +14,62 @@ import NewRoomButton from '../../../components/StyleButton'
 import RoomItem from '../../../components/RoomItem'
 import InputItem from '../../../components/InputItem'
 
+import { CreateRoom, UploadCover } from '../../../store/actions'
+
 const mapStateToProps = state => ({
-  newRoom: state.newRoom
+  newRoom: state.newRoom,
+  initialLabels: state.initial.labels.children[1].children,
+  token: state.auth.token
 })
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
 export default class ThirdStep extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      labelDict: this._setLabelDict()
+    }
   }
-  _confirm() {
-    return () => {}
+
+  _setLabelDict(name='name_ch') {
+    let labelDict = {}
+    for (let firstLayer of this.props.initialLabels) {
+      for (let secondLayer of firstLayer.children) {
+        if (secondLayer.children.length <= 0) {
+          labelDict[secondLayer[name]] = secondLayer.id
+          continue
+        }
+        for (let thirdLayer of secondLayer.children) {
+          labelDict[thirdLayer[name]] = thirdLayer.id
+        }
+      }
+    }
+    return labelDict
+  }
+  _confirm = async () => {
+    const { newRoom } = this.props
+    const data = {
+      title: newRoom.title,
+      is_matchroom: newRoom.is_matchroom,
+      description: newRoom.description,
+      location_string: newRoom.location_string,
+      max_participants: isNaN(newRoom.max_participants) ? null : newRoom.max_participants,
+      date_time_start: newRoom.date_time_start.split(' ').slice(0, 2).join('T'),
+      date_time_end: newRoom.date_time_end.split(' ').slice(0, 2).join('T'),
+      options: JSON.stringify({
+        welcome: newRoom.welcome,
+        expense: newRoom.expense,
+        rewards: newRoom.rewards,
+      }),
+      show: !newRoom.isPrivate,
+      labels: newRoom.labels.map(item => this.state.labelDict[item])
+    }
+    // await this.props.dispatch(CreateRoom(data))
+    let formData = new FormData()
+    if (newRoom.cover) {
+      formData.append('cover', {uri: newRoom.cover, name: 'cover'}) //, type: 'application/octet-stream'})
+      this.props.dispatch(UploadCover(formData)(this.props.newRoom.id))
+    }
   }
 
   render() {
@@ -76,6 +121,8 @@ export default class ThirdStep extends Component {
         content: newRoom.rewards
       }
     ]
+    console.log(newRoom.date_time_start)
+    console.log(newRoom.date_time_end)
     return (
       <ScrollView style={[localStyles.container]}>
         <View style={[localStyles.wrap]}>
@@ -109,7 +156,7 @@ export default class ThirdStep extends Component {
           <View style={[styles.fullFlexWidth, {margin: 20}]}>
             <NewRoomButton
               title={I18n.t('NewRoom.button')}
-              onPress={this._confirm()}
+              onPress={this._confirm}
               inlineStyle={localStyles.button}
             />
           </View>
