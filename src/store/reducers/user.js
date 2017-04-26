@@ -8,6 +8,7 @@ import * as types from '../types'
 const initialState = {
   userInfo: {},
   user: {},
+  dislikes: [],
   messages: {},
   isEditing: false
 }
@@ -34,6 +35,11 @@ export default (state=initialState, action) => {
         ...state,
         userInfo: {},
         user: {}
+      }
+    case types.SET_USER_DISLIKES:
+      return {
+        ...state,
+        dislikes: action.dislikes
       }
     case types.SET_ROOM_MESSAGES:
       let messages = {}

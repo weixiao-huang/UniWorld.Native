@@ -50,7 +50,7 @@ export default {
   fetchUser: id => token => getByToken(
     `/user/${id}/`
   )(token),
-  fetchDislikes: token => getByToken(
+  fetchDislikes: id => token => getByToken(
     `/user/${id}/thumb_downs/`
   )(token),
   fetchRecommend: token => getByToken(

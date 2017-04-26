@@ -77,6 +77,10 @@ export const SetEditStatus = isEditing => dispatch => (
   dispatch({type: types.SET_EDIT_STATUS, isEditing})
 )
 
+export const FetchDislikes = userId => (dispatch, getState) => (
+  composeHandle(api.fetchDislikes(userId))(types.SET_USER_DISLIKES, 'dislikes')(dispatch, getState)
+)
+
 export const FetchUser = id => (dispatch, getState) => (
   composeHandle(api.fetchUser(id))(types.GET_USER, 'user')(dispatch, getState)
 )

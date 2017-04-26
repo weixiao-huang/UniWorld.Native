@@ -3,20 +3,40 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-native'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
+import { connect } from 'react-redux'
+import { FetchDislikes } from '../../store/actions'
 
 import InputItem from '../InputItem'
+import DislikeBox from './DislikeBox'
 
+const mapStateToProps = state => ({
+  dislikes: state.user.dislikes,
+  userId: state.user.user.id
+})
+
+@connect(mapStateToProps, dispatch => ({dispatch}))
 export default class Info extends Component {
-  static propTypes = {
-    user: PropTypes.object.isRequired
+  constructor(props) {
+    super(props)
+    this.state = {
+      showDislikes: false
+    }
   }
+  static propTypes = {
+    user: PropTypes.object.isRequired,
+  }
+  async componentWillMount() {
+    console.log(this.props.userId)
+    await this.props.dispatch(FetchDislikes(this.props.userId))
+  }
+
   render() {
-    const { user } = this.props
+    const { user, dislikes } = this.props
     return (
-      <View>
+      <ScrollView>
         <View style={[localStyles.wrap]}>
           <InputItem title={I18n.t('Me.info.gender')}>
             <Text style={[styles.fullFlexWidth]}>
@@ -40,13 +60,19 @@ export default class Info extends Component {
           </InputItem>
         </View>
         <View style={[localStyles.wrap]}>
-          <InputItem title={I18n.t('dislikes')}>
-            <Text style={[styles.fullFlexWidth, {fontWeight: 'bold'}]}>
-              {user.thumb_downs}
-            </Text>
-          </InputItem>
+          <TouchableOpacity onPress={() => {this.setState({showDislikes: !this.state.showDislikes})}}>
+            <InputItem textStyle={{color: '#3555b6'}} title={I18n.t('dislikes')}>
+              <Text style={[styles.fullFlexWidth, {fontWeight: 'bold', color: '#3555b6'}]}>
+                {user.thumb_downs}
+              </Text>
+            </InputItem>
+          </TouchableOpacity>
+          {this.state.showDislikes ?
+            <DislikeBox dislikes={dislikes} show={true}/>
+            : null
+          }
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }

@@ -14,7 +14,8 @@ import Avatar from '../../Avatar'
 import { FollowUser, UnfollowUser, FetchUserInfo } from '../../../store/actions'
 
 const mapStateToProps = state => ({
-  myFollows: state.user.userInfo.follows
+  myFollows: state.user.userInfo.follows,
+  myId: state.user.userInfo.id
 })
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
@@ -59,12 +60,14 @@ export default class Host extends Component {
             <Text style={[localStyles.wrap__title__signature]}>{host.signature}</Text>
           </View>
         </View>
-        <View style={[localStyles.buttonBox]}>
-          <Follow
-            inlineStyle={localStyles.buttonBox__button}
-            title={this.state.isFollowed ? I18n.t('Room.unfollow') : I18n.t('Room.follow')}
-            onPress={this.state.isFollowed ? this.unfollow : this.follow}/>
-        </View>
+        {host.id === this.props.myId ? null :
+          <View style={[localStyles.buttonBox]}>
+            <Follow
+              inlineStyle={localStyles.buttonBox__button}
+              title={this.state.isFollowed ? I18n.t('Room.unfollow') : I18n.t('Room.follow')}
+              onPress={this.state.isFollowed ? this.unfollow : this.follow}/>
+          </View>
+        }
       </View>
     )
   }
