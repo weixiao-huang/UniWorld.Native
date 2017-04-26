@@ -3000,6 +3000,10 @@ react-native-image-picker@latest:
   version "0.26.3"
   resolved "http://registry.npm.taobao.org/react-native-image-picker/download/react-native-image-picker-0.26.3.tgz#0ad2eede49501a7046d8046a73813696539c3dcd"
 
+react-native-keyboard-spacer@^0.3.1:
+  version "0.3.1"
+  resolved "http://registry.npm.taobao.org/react-native-keyboard-spacer/download/react-native-keyboard-spacer-0.3.1.tgz#9580297ebfd078202dc4c65303d29cda35de67f1"
+
 react-native-picker@^4.0.18:
   version "4.0.18"
   resolved "http://registry.npm.taobao.org/react-native-picker/download/react-native-picker-4.0.18.tgz#cd75244bb7819e29c2910171120e62be8bf690fb"

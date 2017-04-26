@@ -128,6 +128,15 @@ export const MarkRoom = roomId => (dispatch, getState) => (
   ))
 )
 
+export const SendMessage = data => roomId => (dispatch, getState) => (
+  actionHandle(() => (
+    tokenRequestHandle(api.sendMessage(data)(roomId))(getState).then(res =>
+      statusCodeHandle(res, 201)(data => dispatch({type: types.SEND_MESSAGE, message: data, roomId}))
+    ).catch(err => {throw err})
+  ))
+)
+
+
 export const UnmarkRoom = roomId => (dispatch, getState) => (
   actionHandle(() => (
     tokenRequestHandle(api.unmarkRoom(roomId))(getState).then(res => {

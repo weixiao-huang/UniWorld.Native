@@ -41,6 +41,16 @@ export default (state=initialState, action) => {
         ...state,
         dislikes: action.dislikes
       }
+    case types.SEND_MESSAGE:
+      let message = {}
+      message[action.roomId] = state.messages[action.roomId].concat([action.message])
+      return {
+        ...state,
+        messages: {
+          ...state.messages,
+          ...message
+        }
+      }
     case types.SET_ROOM_MESSAGES:
       let messages = {}
       for (let roomId in action.messages) {

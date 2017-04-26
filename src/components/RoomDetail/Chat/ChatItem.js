@@ -8,37 +8,41 @@ import { connect } from 'react-redux'
 import styles from '../../../common/styles'
 import { GoToUser, FetchUser } from '../../../store/actions'
 
-@connect(...[, dispatch => ({dispatch})])
+const mapStateToProps = state => ({
+  myId: state.user.userInfo.id
+})
+
+@connect(mapStateToProps, dispatch => ({dispatch}))
 export default class ChatItem extends Component {
   static propTypes = {
     sender: PropTypes.object.isRequired,
     content: PropTypes.string.isRequired
   }
-  static defaultProps = {
-    mine: false
-  }
+  _mine = () => (
+    this.props.myId === this.props.sender.id
+  )
   user = async () => {
     await this.props.dispatch(FetchUser(this.props.sender.id))
     this.props.dispatch(GoToUser(this.props.sender.id))
   }
   render() {
     return (
-      <View style={[styles.fullFlexWidth, localStyles.container, this.props.mine ? localStyles.rowReverse: null]}>
-        <View style={[styles.rowFlex, styles.alignCenter, localStyles.sender, this.props.mine ? localStyles.rowReverse : null]}>
+      <View style={[styles.fullFlexWidth, localStyles.container, this._mine() ? localStyles.rowReverse: null]}>
+        <View style={[styles.rowFlex, styles.alignCenter, localStyles.sender, this._mine() ? localStyles.rowReverse : null]}>
           <TouchableOpacity onPress={this.user}>
             <Image style={[localStyles.avatar__img]} source={{url: this.props.sender.avatar}}/>
           </TouchableOpacity>
           <View
             style={[
               localStyles.sender__triangle,
-              this.props.mine ? {transform:[{rotate: '90deg'}], marginTop: 0} : null]
+              this._mine() ? {transform:[{rotate: '90deg'}], marginTop: 0, marginRight: 5} : null]
             }
           >
           </View>
         </View>
-        <View style={[styles.fullFlexWidth, this.props.mine ? {justifyContent: 'flex-end', marginRight: -3} : null]}>
+        <View style={[styles.fullFlexWidth, this._mine() ? {justifyContent: 'flex-end', marginRight: -3} : null]}>
           <View style={[localStyles.content]}>
-            {this.props.mine ? null :
+            {this._mine() ? null :
               <Text style={[localStyles.content__title]}>{this.props.sender.name}</Text>
             }
             <View style={[localStyles.content__text]}>

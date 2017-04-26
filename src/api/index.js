@@ -175,5 +175,5 @@ export default {
       text: string
     }
    */
-  sendMessage: data => roomId => token => postByToken(`${server}/room/${roomId}/send_message/`)(data)(token),
+  sendMessage: data => roomId => token => postByToken(`/room/${roomId}/send_message/`)(data)(token),
 }
