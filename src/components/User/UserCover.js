@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Text, TouchableOpacity, Modal } from 'react-native'
+import { Image, StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Modal } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 
@@ -25,17 +25,17 @@ export default class UserCover extends Component {
     return (
       <BackgroundImage bgUrl={require('../../assets/infoImage.jpg')}>
         <View style={[styles.flex1, coverStyles.container]}>
-          <TouchableOpacity onPress={() => this.setState({showModal: true})}>
+          <TouchableWithoutFeedback onPress={() => this.setState({showModal: true})}>
             <Image style={[coverStyles.avatar]} source={{url: avatar_thumbnail}} />
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
           <Modal
             visible={this.state.showModal}
             animationType={"fade"}
           >
             <View style={[styles.flex1, styles.flexCenter]}>
-              <TouchableOpacity style={[{width: '100%', height: '100%'}]} onPress={() => this.setState({showModal: false})}>
+              <TouchableWithoutFeedback style={[{width: '100%', height: '100%'}]} onPress={() => this.setState({showModal: false})}>
                 <Image style={[{resizeMode: 'contain', width: '100%', height: '100%'}]} source={{url: avatar}}/>
-              </TouchableOpacity>
+              </TouchableWithoutFeedback>
             </View>
           </Modal>
           <View style={[styles.flex1, coverStyles.box]}>

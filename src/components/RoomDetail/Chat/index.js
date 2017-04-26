@@ -9,7 +9,7 @@ import styles from '../../../common/styles'
 import ChatItem from './ChatItem'
 
 const mapStateToProps = state => ({
-  messages: state.user.messages[state.room.roomInfo.id]
+  messages: state.user.messages[state.room.roomInfo.id] || []
 })
 
 @connect(mapStateToProps)
@@ -24,7 +24,7 @@ export default class Chat extends Component {
             <ChatItem key={index} sender={item.sender} content={item.text}/>
           ))}
         </ScrollView>
-        <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
+        <View style={[styles.rowFlex, styles.flexCenter, localStyles.footer]}>
           <Image style={[localStyles.footer__icon]} source={require('../../../assets/icon/logoBlue.png')}/>
           <TextInput multiline={true} style={[styles.fullFlexWidth, localStyles.footer__input]}/>
         </View>
@@ -35,15 +35,16 @@ export default class Chat extends Component {
 
 const localStyles = StyleSheet.create({
   footer: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
+    // position: 'absolute',
+    // bottom: 0,
+    // width: '100%',
     backgroundColor: '#f5f5f7',
     padding: 10,
     height: 52
   },
   footer__icon: {
     width: 30,
+    height: 30,
     marginLeft: 5,
     resizeMode: 'contain'
   },
