@@ -14,7 +14,7 @@ const postByToken = url => data => token => fetch(`${server}${url}`, {
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    Authorization: `token ${token}`
+    'Authorization': `token ${token}`
   },
   body: JSON.stringify(data)
 })

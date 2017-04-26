@@ -2,13 +2,13 @@
  * Created by huangwx on 11/04/2017.
  */
 
-import React from 'react';
-import { Image } from 'react-native'
+import React, { Component } from 'react';
+import { Image, Alert } from 'react-native'
 import { TabNavigator } from 'react-navigation'
-
+import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
-
 import styles from '../../common/styles'
+import { MessagePolling } from '../../store/actions'
 
 import World from './World'
 import NewRoom from './NewRoom'
@@ -17,7 +17,7 @@ import RoomList from './RoomList'
 import Me from './Me'
 
 
-export default TabNavigator({
+const HomeRouter = TabNavigator({
   World: {
     screen: World,
     navigationOptions: {
@@ -91,4 +91,25 @@ export default TabNavigator({
   }
 })
 
-
+@connect(...[, dispatch => ({dispatch})])
+export default class Home extends Component {
+  _messagePolling = async () => {
+    try {
+      console.log('开始轮训')
+      await this.props.dispatch(MessagePolling)
+      console.log('即将开始下一轮轮训')
+      setTimeout(this._messagePolling, 1000)
+    } catch (err) {
+      Alert.alert('消息轮训错误', err)
+      setTimeout(this._messagePolling, 1000)
+    }
+  }
+  // componentDidMount() {
+  //   this._messagePolling()
+  // }
+  render() {
+    return (
+      <HomeRouter/>
+    )
+  }
+}

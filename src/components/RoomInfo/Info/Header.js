@@ -11,7 +11,7 @@ import styles from '../../../common/styles'
 export default class Header extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired
+    // description: PropTypes.string.isRequired
   }
   render() {
     return (

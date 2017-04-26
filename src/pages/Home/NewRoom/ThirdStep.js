@@ -64,7 +64,7 @@ export default class ThirdStep extends Component {
       show: !newRoom.isPrivate,
       labels: newRoom.labels.map(item => this.state.labelDict[item])
     }
-    // await this.props.dispatch(CreateRoom(data))
+    await this.props.dispatch(CreateRoom(data))
     let formData = new FormData()
     if (newRoom.cover) {
       formData.append('cover', {uri: newRoom.cover, name: 'cover'}) //, type: 'application/octet-stream'})

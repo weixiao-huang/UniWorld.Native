@@ -19,6 +19,8 @@ export const GO_TO_USER = 'GO_TO_USER'
 export const GET_USER = 'GET_USER'
 export const GO_TO_ROOM_DETAIL = 'GO_TO_ROOM_DETAIL'
 export const GET_ROOM_DETAIL = 'GET_ROOM_DETAIL'
+export const SET_ROOM_MESSAGES = 'SET_ROOM_MESSAGES'
+export const SET_EDIT_STATUS = 'SET_EDIT_STATUS'
 
 export const GET_USER_INFO = 'GET_USER_INFO'
 

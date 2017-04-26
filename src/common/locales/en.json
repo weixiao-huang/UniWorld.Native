@@ -9,6 +9,10 @@
   "yes": "Yes",
   "no": "No",
   "dislikes": "Dislikes",
+  "title": "Title",
+  "content": "Content",
+  "save": "Save",
+  "cancel": "Cancel",
   "Login": {
     "username": "Tel",
     "password": "Password",
@@ -49,7 +53,7 @@
       "Footer": {
         "edit": "Edit",
         "new": "New notification"
-      }
+      },
     },
     "Chat": {
       "title": "Chat"

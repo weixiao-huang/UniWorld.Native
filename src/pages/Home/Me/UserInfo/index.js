@@ -9,15 +9,23 @@ import I18n from 'react-native-i18n'
 
 import styles from '../../../../common/styles'
 
-import LoginButton from '../../../../components/StyleButton'
+import Button from '../../../../components/StyleButton'
 import LabelBox from './TextBox'
 
-import { UserLogout, GoToLogin } from '../../../../store/actions'
+import { UserLogout, GoToLogin, SetEditStatus } from '../../../../store/actions'
 
-@connect(state=> ({userInfo: state.user.userInfo}))
+const mapStateToProps = state => ({
+  userInfo: state.user.userInfo,
+  isEditing: state.user.isEditing
+})
+
+@connect(mapStateToProps, dispatch => ({dispatch}))
 export default class UserInfo extends Component {
-  edit () {
-
+  edit = () => {
+    this.props.dispatch(SetEditStatus(true))
+  }
+  save = () => {
+    this.props.dispatch(SetEditStatus(false))
   }
 
   logout = () => {
@@ -55,13 +63,13 @@ export default class UserInfo extends Component {
           })}
         </View>
         <View style={[styles.flex1, userStyles.buttonBox]}>
-          <LoginButton
-            title={I18n.t('Me.info.edit')}
-            onPress={this.edit}
+          <Button
+            title={this.props.isEditing ? I18n.t('save') : I18n.t('Me.info.edit')}
+            onPress={this.props.isEditing ? this.save : this.edit}
             inlineStyle={[userStyles.edit, userStyles.button]}
             color="black"
           />
-          <LoginButton
+          <Button
             title={I18n.t('Me.info.logout')}
             onPress={this.logout}
             inlineStyle={[userStyles.logout, userStyles.button]}

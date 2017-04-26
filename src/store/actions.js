@@ -73,6 +73,10 @@ export const GoToUser = id => dispatch => (
   dispatch({type: types.GO_TO_USER, id})
 )
 
+export const SetEditStatus = isEditing => dispatch => (
+  dispatch({type: types.SET_EDIT_STATUS, isEditing})
+)
+
 export const FetchUser = id => (dispatch, getState) => (
   composeHandle(api.fetchUser(id))(types.GET_USER, 'user')(dispatch, getState)
 )
@@ -87,6 +91,20 @@ export const FetchQuestionnaires = id => (dispatch, getState) => (
 
 export const CreateRoom = data => (dispatch, getState) => (
   composeHandle(api.createRoom(data), 201)(types.SET_NEW_ROOM_ID, 'id')(dispatch, getState)
+)
+
+export const MessagePolling = (dispatch, getState) => (
+  actionHandle(() => (
+    tokenRequestHandle(api.messagePolling)(getState).then(async res => {
+      if (res.status !== 200) throw { message: res }
+      try {
+        const data = await res.json()
+        console.log('成功接收到消息: ', Object.values(data.messages)[0][0])
+        return dispatch({type: types.SET_ROOM_MESSAGES, messages: data.messages})
+      } catch (err) {
+      }
+    })
+  ))
 )
 
 export const UploadCover = data => roomId => (dispatch, getState) => (
@@ -145,4 +163,5 @@ export const UnfollowUser = userId => (dispatch, getState) => (
     })
   ))
 )
+
 

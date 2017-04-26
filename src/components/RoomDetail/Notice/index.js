@@ -3,12 +3,13 @@
  */
 
 import React, { Component } from 'react'
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image, Modal } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 
 import NoticeItem from './NoticeItem'
+import InputItem from '../../../components/InputItem'
 
 const mapStateToProps = state => ({
   questionnaires: state.room.questionnaires.questionnaires
@@ -16,6 +17,12 @@ const mapStateToProps = state => ({
 
 @connect(mapStateToProps)
 export default class Notice extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showModal: false
+    }
+  }
   render() {
     return (
       <View style={[styles.flex1]}>
@@ -26,6 +33,19 @@ export default class Notice extends Component {
             </View>
           ))}
         </ScrollView>
+        {/*<View style={{marginTop: 22}}>*/}
+          {/*<Modal*/}
+            {/*animationType="slide"*/}
+            {/*transparent={true}*/}
+            {/*visible={this.state.showModal}*/}
+            {/*onRequestClose={() => {console.log("Modal has been closed.")}}*/}
+          {/*>*/}
+            {/*<TouchableOpacity style={[styles.flex1, styles.flexCenter]} onPress={() => this.setState({showModal: false})}>*/}
+              {/*<View style={[styles.whiteBackground]}>*/}
+              {/*</View>*/}
+            {/*</TouchableOpacity>*/}
+          {/*</Modal>*/}
+        {/*</View>*/}
         <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
           <TouchableOpacity
             style={[styles.flexCenter, localStyles.star]}
@@ -36,6 +56,7 @@ export default class Notice extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.flexCenter, styles.fullFlexWidth, localStyles.join]}
+            onPress={() => this.setState({showModal: true})}
           >
               <Image style={[localStyles.footer__icon]} source={require('../../../assets/Logo.png')}/>
               <Text style={[localStyles.footer__text]}>
