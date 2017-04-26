@@ -61,5 +61,8 @@ export default StyleSheet.create({
   fullFlexWidth: {
     flex: 1,
     flexDirection: 'row'
+  },
+  alignCenter: {
+    alignItems: 'center'
   }
 });

@@ -5,23 +5,24 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, ScrollView, TextInput, Image } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
-
 import styles from '../../../common/styles'
+import ChatItem from './ChatItem'
 
 const mapStateToProps = state => ({
-  messages: state.user.messages,
-  id: state.room.roomInfo.id
+  messages: state.user.messages[state.room.roomInfo.id]
 })
 
 @connect(mapStateToProps)
 export default class Chat extends Component {
+  _getChatMessages = () => {
+  }
   render() {
-    console.log(this.props.messages)
-    console.log(this.props.id)
     return (
       <View style={[styles.flex1]}>
         <ScrollView>
-          <Text>{JSON.stringify(this.props.messages)}</Text>
+          {this.props.messages.map((item, index) => (
+            <ChatItem key={index} sender={item.sender} content={item.text}/>
+          ))}
         </ScrollView>
         <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
           <Image style={[localStyles.footer__icon]} source={require('../../../assets/icon/logoBlue.png')}/>

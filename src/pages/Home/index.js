@@ -104,9 +104,9 @@ export default class Home extends Component {
       setTimeout(this._messagePolling, 1000)
     }
   }
-  // componentDidMount() {
-  //   this._messagePolling()
-  // }
+  componentDidMount() {
+    this._messagePolling()
+  }
   render() {
     return (
       <HomeRouter/>

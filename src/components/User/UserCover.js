@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Text } from 'react-native'
+import { Image, StyleSheet, View, Text, TouchableOpacity, Modal } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 
@@ -13,13 +13,31 @@ import BackgroundImage from '../../components/BackgroundImage'
 
 @connect(state => ({user: state.user.user}))
 export default class UserCover extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showModal: false
+    }
+  }
   render () {
     const { name, signature, thumb_ups, thumb_downs, followers, follows } = this.props.user
-    const { avatar_thumbnail, gender } = this.props.user
+    const { avatar_thumbnail, gender, avatar } = this.props.user
     return (
       <BackgroundImage bgUrl={require('../../assets/infoImage.jpg')}>
         <View style={[styles.flex1, coverStyles.container]}>
-          <Image style={[coverStyles.avatar]} source={{url: avatar_thumbnail}} />
+          <TouchableOpacity onPress={() => this.setState({showModal: true})}>
+            <Image style={[coverStyles.avatar]} source={{url: avatar_thumbnail}} />
+          </TouchableOpacity>
+          <Modal
+            visible={this.state.showModal}
+            animationType={"fade"}
+          >
+            <View style={[styles.flex1, styles.flexCenter]}>
+              <TouchableOpacity style={[{width: '100%', height: '100%'}]} onPress={() => this.setState({showModal: false})}>
+                <Image style={[{resizeMode: 'contain', width: '100%', height: '100%'}]} source={{url: avatar}}/>
+              </TouchableOpacity>
+            </View>
+          </Modal>
           <View style={[styles.flex1, coverStyles.box]}>
             <View style={[styles.transparent, coverStyles.titleBox]}>
               <Image style={{width: 20, height: 20}} source={gender ? require('../../assets/icon/male.png') : require('../../assets/icon/female.png')} />
