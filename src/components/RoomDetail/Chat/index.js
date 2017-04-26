@@ -2,7 +2,7 @@
  * Created by huangwx on 18/04/2017.
  */
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, ScrollView, TextInput, Image } from 'react-native'
+import { StyleSheet, View, ListView, KeyboardAvoidingView, TextInput, Image } from 'react-native'
 import { connect } from 'react-redux'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import I18n from 'react-native-i18n'
@@ -21,7 +21,8 @@ export default class Chat extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      text: ''
+      text: '',
+      ds: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
     }
   }
   _sendMessage = () => {
@@ -31,26 +32,28 @@ export default class Chat extends Component {
     }
   }
   render() {
+    let _listView = ListView
     return (
       <View style={[styles.flex1]}>
-        <View style={[styles.flex1]}>
-          <ScrollView>
-            {this.props.messages.map((item, index) => (
-              <ChatItem key={index} sender={item.sender} content={item.text}/>
-            ))}
-          </ScrollView>
-        </View>
-        <View style={[styles.rowFlex, styles.flexCenter, localStyles.footer]}>
-          <Image style={[localStyles.footer__icon]} source={require('../../../assets/icon/logoBlue.png')}/>
-          <TextInput
-            onChangeText={text => this.setState({text})}
-            // multiline={true}
-            value={this.state.text}
-            onSubmitEditing={this._sendMessage}
-            style={[styles.fullFlexWidth, localStyles.footer__input]}
+        <KeyboardAvoidingView keyboardVerticalOffset={70} behavior={'padding'} style={[styles.flex1]}>
+          <ListView
+            ref={listView => {_listView = listView}}
+            dataSource={this.state.ds.cloneWithRows(this.props.messages)}
+            renderRow={(item, sectionID, rowID, highlightRow) => <ChatItem index={parseInt(rowID)} sender={item.sender} content={item.text}/>}
           />
-        </View>
-        <KeyboardSpacer/>
+          <View style={[styles.rowFlex, styles.flexCenter, localStyles.footer]}>
+            <Image style={[localStyles.footer__icon]} source={require('../../../assets/icon/logoBlue.png')}/>
+            <TextInput
+              onChangeText={text => this.setState({text})}
+              // multiline={true}
+              value={this.state.text}
+              onSubmitEditing={this._sendMessage}
+              style={[styles.fullFlexWidth, localStyles.footer__input]}
+              onFocus={() => {_listView.scrollToEnd({animate: true})}}
+            />
+          </View>
+        </KeyboardAvoidingView>
+        {/*<KeyboardSpacer/>*/}
       </View>
     )
   }

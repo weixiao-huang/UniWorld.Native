@@ -16,7 +16,8 @@ const mapStateToProps = state => ({
 export default class ChatItem extends Component {
   static propTypes = {
     sender: PropTypes.object.isRequired,
-    content: PropTypes.string.isRequired
+    content: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired
   }
   _mine = () => (
     this.props.myId === this.props.sender.id
@@ -27,7 +28,14 @@ export default class ChatItem extends Component {
   }
   render() {
     return (
-      <View style={[styles.fullFlexWidth, localStyles.container, this._mine() ? localStyles.rowReverse: null]}>
+      <View
+        style={[
+          styles.fullFlexWidth,
+          localStyles.container,
+          this._mine() ? localStyles.rowReverse: null,
+          this.props.index > 0 ? {marginTop: 0} : null
+        ]}
+      >
         <View style={[styles.rowFlex, styles.alignCenter, localStyles.sender, this._mine() ? localStyles.rowReverse : null]}>
           <TouchableOpacity onPress={this.user}>
             <Image style={[localStyles.avatar__img]} source={{url: this.props.sender.avatar}}/>
@@ -64,8 +72,7 @@ const localStyles = StyleSheet.create({
   },
   container: {
     alignItems: 'flex-start',
-    margin: 16,
-    marginBottom: 0
+    margin: 20,
   },
   sender: {
   },
