@@ -3007,10 +3007,6 @@ react-native-invertible-scroll-view@^1.0.0:
     react-clone-referenced-element "^1.0.1"
     react-native-scrollable-mixin "^1.0.1"
 
-react-native-keyboard-spacer@^0.3.1:
-  version "0.3.1"
-  resolved "http://registry.npm.taobao.org/react-native-keyboard-spacer/download/react-native-keyboard-spacer-0.3.1.tgz#9580297ebfd078202dc4c65303d29cda35de67f1"
-
 react-native-picker@^4.0.18:
   version "4.0.18"
   resolved "http://registry.npm.taobao.org/react-native-picker/download/react-native-picker-4.0.18.tgz#cd75244bb7819e29c2910171120e62be8bf690fb"
@@ -3025,6 +3021,10 @@ react-native-scrollable-tab-view@^0.7.4:
   dependencies:
     react-static-container "^1.0.1"
     react-timer-mixin "^0.13.3"
+
+react-native-spinkit@latest:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/react-native-spinkit/download/react-native-spinkit-1.0.2.tgz#0d31b019556e038aa8e953038562550cb0ead8d2"
 
 react-native-swiper@^1.5.4:
   version "1.5.4"

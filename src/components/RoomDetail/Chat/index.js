@@ -48,6 +48,8 @@ export default class Chat extends Component {
             <TextInput
               onChangeText={text => this.setState({text})}
               // multiline={true}
+              autoFocus={true}
+              blurOnSubmit={false}
               value={this.state.text}
               onSubmitEditing={this._sendMessage}
               style={[styles.fullFlexWidth, localStyles.footer__input]}
