@@ -38,6 +38,7 @@ export default class Chat extends Component {
       <View style={[styles.flex1]}>
         <KeyboardAvoidingView keyboardVerticalOffset={70} behavior={'padding'} style={[styles.flex1]}>
           <ListView
+            enableEmptySections={true}
             ref={listView => {_listView = listView}}
             renderScrollComponent={props => <InvertibleScrollView {...props} inverted/>}
             dataSource={this.state.ds.cloneWithRows(this.props.messages)}

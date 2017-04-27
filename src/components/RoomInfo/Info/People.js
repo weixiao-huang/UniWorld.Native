@@ -31,17 +31,15 @@ export default class People extends Component {
           </Text>
         </View>
         <View style={[styles.rowFlex, styles.flexWrap, {alignItems: 'flex-start'}]}>
-          {participants.map((item, index) => {
-            return (
-              <View key={index} style={[localStyles.people__icon]}>
-                <Avatar
-                  id={item.id}
-                  size={(Dimensions.get('window').width - 2 * containerGap) / numPerRow - gap * 2}
-                  avatar={item.avatar}
-                />
-              </View>
-            )
-          })}
+          {participants.map((item, index) => (
+            <View key={index} style={[localStyles.people__icon]}>
+              <Avatar
+                id={item.id}
+                size={(Dimensions.get('window').width - 2 * containerGap) / numPerRow - gap * 2}
+                avatar={item.avatar}
+              />
+            </View>
+          ))}
         </View>
       </View>
     )
