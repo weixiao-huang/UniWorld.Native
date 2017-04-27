@@ -93,19 +93,35 @@ const HomeRouter = TabNavigator({
 
 @connect(...[, dispatch => ({dispatch})])
 export default class Home extends Component {
-  _messagePolling = async () => {
-    try {
-      console.log('开始轮训')
-      await this.props.dispatch(MessagePolling)
-      console.log('即将开始下一轮轮训')
-      setTimeout(this._messagePolling, 1000)
-    } catch (err) {
-      Alert.alert('消息轮训错误', err)
-      setTimeout(this._messagePolling, 1000)
+  constructor(props) {
+    super(props)
+    this.state = {
+      isPolling: false
     }
   }
+  _messagePolling = async () => {
+    console.log(this.state.isPolling)
+    if (this.state.isPolling) {
+      try {
+        console.log('开始轮训')
+        await this.props.dispatch(MessagePolling)
+        console.log('即将开始下一轮轮训')
+        setTimeout(this._messagePolling, 1000)
+      } catch (err) {
+        Alert.alert('消息轮训错误', err)
+        setTimeout(this._messagePolling, 1000)
+      }
+    }
+  }
+  componentWillMount() {
+    this.setState({isPolling: true})
+  }
   componentDidMount() {
+    console.log('是否轮训？？？？', this.state.isPolling)
     this._messagePolling()
+  }
+  componentWillUnmount() {
+    this.setState({isPolling: false})
   }
   render() {
     return (

@@ -9,6 +9,7 @@ import auth from './auth'
 import user from './user'
 import room from './room'
 import initial from './initial'
+import common from './common'
 
 export default combineReducers({
   nav,
@@ -17,4 +18,5 @@ export default combineReducers({
   room,
   initial,
   newRoom,
+  common
 })

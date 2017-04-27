@@ -77,6 +77,14 @@ export const SetEditStatus = isEditing => dispatch => (
   dispatch({type: types.SET_EDIT_STATUS, isEditing})
 )
 
+export const SetLoading = loading => dispatch => (
+  dispatch({type: types.SET_LOADING, loading})
+)
+
+export const SetCommonData = (name, data) => dispatch => (
+  dispatch({type: types.SET_COMMON_DATA, data: {[name]: data}})
+)
+
 export const FetchDislikes = userId => (dispatch, getState) => (
   composeHandle(api.fetchDislikes(userId))(types.SET_USER_DISLIKES, 'dislikes')(dispatch, getState)
 )

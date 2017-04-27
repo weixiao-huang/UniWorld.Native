@@ -9,7 +9,7 @@ import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
 import {
   Visit, UserLogin, FetchRoomList, FetchWorldRoomList, FetchRecommendRoomList,
-  FetchLatestRoomList, GoToHome, FetchUserInfo
+  FetchLatestRoomList, GoToHome, FetchUserInfo, SetLoading
 } from '../../store/actions'
 
 import Input from './Input'
@@ -18,29 +18,30 @@ import BackgroundImage from '../../components/BackgroundImage'
 
 import Loading from '../../components/Loading'
 
-@connect(...[, dispatch=>({dispatch})])
+const mapStateToProps = state => ({
+  loading: state.common.loading
+})
+
+@connect(mapStateToProps, dispatch=>({dispatch}))
 export default class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
       username: '',
       password: '',
-      isVisible: false,
     }
   }
 
   login = async () => {
-    console.log('登录前')
-    this.setState({isVisible: true})
+    this.props.dispatch(SetLoading(true))
     await this.props.dispatch(UserLogin(this.state))
     await this.props.dispatch(FetchRoomList)
     await this.props.dispatch(FetchRecommendRoomList)
     await this.props.dispatch(FetchLatestRoomList)
     await this.props.dispatch(FetchWorldRoomList)
     await this.props.dispatch(FetchUserInfo)
-    this.setState({isVisible: false})
+    this.props.dispatch(SetLoading(false))
     this.props.dispatch(GoToHome)
-    console.log('登录函数完毕')
   }
 
   visit = async () => {
@@ -54,7 +55,7 @@ export default class Login extends Component {
   render () {
     return (
       <View style={{flex: 1}}>
-        <Loading visible={this.state.isVisible}/>
+        <Loading visible={this.props.loading}/>
         <BackgroundImage bgUrl={require('../../assets/background.jpg')}>
           <View style={loginStyles.container}>
             <Image

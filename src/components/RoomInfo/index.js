@@ -14,13 +14,14 @@ import styles from '../../common/styles'
 import Loading from '../../components/Loading'
 
 import {
-  GoToRoomDetail, FetchRoomList, FetchQuestionnaires, MarkRoom, UnmarkRoom,
-  JoinRoom, LeaveRoom, FetchRoomInfo
+  GoToRoomDetail, FetchRoomList, MarkRoom, UnmarkRoom,
+  JoinRoom, LeaveRoom, FetchRoomInfo, SetLoading
 } from '../../store/actions'
 
 const mapStateToProps = state => ({
   roomInfo: state.room.roomInfo,
-  myId: state.user.userInfo.id
+  myId: state.user.userInfo.id,
+  loading: state.common.loading
 })
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
@@ -30,19 +31,16 @@ export default class RoomInfo extends Component {
     this.state = {
       isMarked: false,
       isJoined: false,
-      loading: false
     }
   }
   async componentWillMount() {
-    this.setState({
-      loading: true
-    })
+    this.props.dispatch(SetLoading(true))
     await this.props.dispatch(FetchRoomInfo(this.props.navigation.state.params.id))
     this.setState({
       isMarked: this._isMarked(),
       isJoined: this._joined(),
-      loading: false
     })
+    this.props.dispatch(SetLoading(false))
   }
   _joined = () => {
     for (let participant of this.props.roomInfo.participants) {
@@ -65,7 +63,7 @@ export default class RoomInfo extends Component {
     }
   }
   room = async () => {
-    await this.props.dispatch(FetchQuestionnaires(this.props.roomInfo.id))
+    // await this.props.dispatch(FetchQuestionnaires(this.props.roomInfo.id))
     this.props.dispatch(GoToRoomDetail(this.props.roomInfo.id))
   }
 
@@ -99,13 +97,14 @@ export default class RoomInfo extends Component {
     }
   }
   render() {
-    console.log('获取RoomInfo的Props', this.props.navigation.state.params.id)
-    const isEmpty = Object.keys(this.props.roomInfo).length > 0
+    // console.log('获取RoomInfo的Props', this.props.navigation.state.params.id)
+    const isEmpty = Object.keys(this.props.roomInfo).length <= 0
     return (
       <View style={[styles.flex1, localStyles.container]}>
-        <Loading visible={this.state.loading}/>
         <View style={[styles.flex1]}>
-          {this.state.loading ? null :
+          {this.props.loading ?
+            <Loading visible={this.props.loading}/> :
+            isEmpty ? null :
             <Info roomInfo={this.props.roomInfo} tabLabel={I18n.t('Room.Info.title')}/>
           }
           <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>

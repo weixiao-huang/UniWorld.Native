@@ -24,6 +24,8 @@ export const SET_EDIT_STATUS = 'SET_EDIT_STATUS'
 export const SET_USER_DISLIKES = 'SET_USER_DISLIKES'
 
 export const SEND_MESSAGE = 'SEND_MESSAGE'
+export const SET_LOADING = 'SET_LOADING'
+export const SET_COMMON_DATA = 'SET_COMMON_DATA'
 
 export const GET_USER_INFO = 'GET_USER_INFO'
 
