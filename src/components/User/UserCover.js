@@ -2,22 +2,23 @@
  * Created by huangwx on 11/04/2017.
  */
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Image, StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity, Modal } from 'react-native'
-import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 
 import styles from '../../common/styles'
 import BackgroundImage from '../../components/BackgroundImage'
 
 
-@connect(state => ({user: state.user.user}))
 export default class UserCover extends Component {
   constructor(props) {
     super(props)
     this.state = {
       showModal: false
     }
+  }
+  static propTypes = {
+    user: PropTypes.object.isRequired
   }
   render () {
     const { name, signature, thumb_ups, thumb_downs, followers, follows } = this.props.user

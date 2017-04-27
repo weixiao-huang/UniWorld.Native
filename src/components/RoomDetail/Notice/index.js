@@ -2,26 +2,22 @@
  * Created by huangwx on 18/04/2017.
  */
 
-import React, { Component } from 'react'
-import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image, Modal } from 'react-native'
-import { connect } from 'react-redux'
+import React, { Component, PropTypes } from 'react'
+import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'react-native'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 
 import NoticeItem from './NoticeItem'
-import InputItem from '../../../components/InputItem'
 
-const mapStateToProps = state => ({
-  questionnaires: state.room.questionnaires.questionnaires
-})
-
-@connect(mapStateToProps)
 export default class Notice extends Component {
   constructor(props) {
     super(props)
     this.state = {
       showModal: false
     }
+  }
+  static propTypes = {
+    questionnaires: PropTypes.array.isRequired
   }
   render() {
     return (

@@ -20,7 +20,7 @@ export default class Avatar extends Component {
 
   _gotoUser = id => {
     return async () => {
-      await this.props.dispatch(FetchUser(id))
+      // await this.props.dispatch(FetchUser(id))
       this.props.dispatch(GoToUser(id))
     }
   }

@@ -18,8 +18,8 @@ import Loading from "../Loading";
 
 const mapStateToProps = state => ({
   roomInfo: state.room.roomInfo,
-  userId: state.user.userInfo.id,
-  loading: state.common.loading
+  loading: state.common.loading,
+  questionnaires: state.room.questionnaires.questionnaires
 })
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
@@ -34,17 +34,19 @@ export default class RoomInfo extends Component {
   }
   render() {
     console.log('RoomDetails的props: ', this.props.navigation.state.params)
+    const isEmpty = this.props.questionnaires.length <= 0
     return (
       <View style={[styles.flex1, localStyles.container]}>
         {this.props.loading ?
           <Loading visible={this.props.loading}/> :
+          isEmpty ? null :
           <ScrollTabView
             style={{flex: 2, marginTop: 20}}
             // tabBarBackgroundColor="#ec5367"
             // tabBarTextStyle={localStyles.tabBarText}
             // tabBarUnderlineStyle={localStyles.tabBarUnderline}
           >
-            <Notice tabLabel={I18n.t('Room.Notice.title')}/>
+            <Notice questionnaires={this.props.questionnaires} tabLabel={I18n.t('Room.Notice.title')}/>
             <Chat tabLabel={I18n.t('Room.Chat.title')}/>
             <Member tabLabel={I18n.t('Room.Member.title')}/>
           </ScrollTabView>

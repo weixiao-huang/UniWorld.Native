@@ -10,7 +10,7 @@ const initialState = {
   world: [],
   roomList: [],
   roomInfo: {},
-  questionnaires: {},
+  questionnaires: [],
   isMarked: false,
   refreshing: false
 }

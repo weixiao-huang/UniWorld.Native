@@ -6,18 +6,10 @@ import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-native'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
-import { connect } from 'react-redux'
-import { FetchDislikes } from '../../store/actions'
 
 import InputItem from '../InputItem'
 import DislikeBox from './DislikeBox'
 
-const mapStateToProps = state => ({
-  dislikes: state.user.dislikes,
-  userId: state.user.user.id
-})
-
-@connect(mapStateToProps, dispatch => ({dispatch}))
 export default class Info extends Component {
   constructor(props) {
     super(props)
@@ -27,10 +19,7 @@ export default class Info extends Component {
   }
   static propTypes = {
     user: PropTypes.object.isRequired,
-  }
-  async componentWillMount() {
-    console.log(this.props.userId)
-    await this.props.dispatch(FetchDislikes(this.props.userId))
+    dislikes: PropTypes.array.isRequired
   }
 
   render() {
