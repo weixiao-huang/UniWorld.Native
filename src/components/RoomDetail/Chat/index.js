@@ -4,9 +4,10 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, ListView, KeyboardAvoidingView, TextInput, Image } from 'react-native'
 import { connect } from 'react-redux'
-import KeyboardSpacer from 'react-native-keyboard-spacer'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
+import InvertibleScrollView from 'react-native-invertible-scroll-view'
+
 import ChatItem from './ChatItem'
 
 import { SendMessage } from '../../../store/actions'
@@ -38,6 +39,7 @@ export default class Chat extends Component {
         <KeyboardAvoidingView keyboardVerticalOffset={70} behavior={'padding'} style={[styles.flex1]}>
           <ListView
             ref={listView => {_listView = listView}}
+            renderScrollComponent={props => <InvertibleScrollView {...props} inverted/>}
             dataSource={this.state.ds.cloneWithRows(this.props.messages)}
             renderRow={(item, sectionID, rowID, highlightRow) => <ChatItem index={parseInt(rowID)} sender={item.sender} content={item.text}/>}
           />
@@ -49,11 +51,10 @@ export default class Chat extends Component {
               value={this.state.text}
               onSubmitEditing={this._sendMessage}
               style={[styles.fullFlexWidth, localStyles.footer__input]}
-              onFocus={() => {_listView.scrollToEnd({animate: true})}}
+              onFocus={() => {_listView.scrollTo({y: 0, animated: true})}}
             />
           </View>
         </KeyboardAvoidingView>
-        {/*<KeyboardSpacer/>*/}
       </View>
     )
   }

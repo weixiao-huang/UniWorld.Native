@@ -66,6 +66,7 @@ export default class Login extends Component {
               placeholder={I18n.t('Login.username')}
               icon={require('../../assets/UserIcon.png')}
               onChangeText={text => this.setState({username: text})}
+              keyboardType="numeric"
             />
             <Input
               placeholder={I18n.t('Login.password')}
