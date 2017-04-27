@@ -30,7 +30,7 @@ export default class RoomWrap extends Component {
 
   _gotoRoomInfo = id => {
     return async () => {
-      await this.props.dispatch(FetchRoomInfo(id))
+      // await this.props.dispatch(FetchRoomInfo(id))
       this.props.dispatch(GoToRoomInfo(id))
     }
   }

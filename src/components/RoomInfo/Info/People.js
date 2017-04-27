@@ -30,7 +30,7 @@ export default class People extends Component {
             { max_participants ? `${participants.length} / ${max_participants}` : I18n.t('NewRoom.input.second.max.placeholder') }
           </Text>
         </View>
-        <View style={[styles.rowFlex, styles.flexWrap]}>
+        <View style={[styles.rowFlex, styles.flexWrap, {alignItems: 'flex-start'}]}>
           {participants.map((item, index) => {
             return (
               <View key={index} style={[localStyles.people__icon]}>

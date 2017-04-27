@@ -11,6 +11,7 @@ import I18n from 'react-native-i18n'
 import Info from './Info/index'
 import Detail from './Detail/index'
 import styles from '../../common/styles'
+import Loading from '../../components/Loading'
 
 import {
   GoToRoomDetail, FetchRoomList, FetchQuestionnaires, MarkRoom, UnmarkRoom,
@@ -27,9 +28,21 @@ export default class RoomInfo extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isMarked: this._isMarked(),
-      isJoined: this._joined()
+      isMarked: false,
+      isJoined: false,
+      loading: false
     }
+  }
+  async componentWillMount() {
+    this.setState({
+      loading: true
+    })
+    await this.props.dispatch(FetchRoomInfo(this.props.navigation.state.params.id))
+    this.setState({
+      isMarked: this._isMarked(),
+      isJoined: this._joined(),
+      loading: false
+    })
   }
   _joined = () => {
     for (let participant of this.props.roomInfo.participants) {
@@ -86,39 +99,33 @@ export default class RoomInfo extends Component {
     }
   }
   render() {
+    console.log('获取RoomInfo的Props', this.props.navigation.state.params.id)
+    const isEmpty = Object.keys(this.props.roomInfo).length > 0
     return (
       <View style={[styles.flex1, localStyles.container]}>
-        <Info roomInfo={this.props.roomInfo} tabLabel={I18n.t('Room.Info.title')}/>
-        {/*{this.state.isJoined*/}
-          {/*? <Info roomInfo={this.props.roomInfo} tabLabel={I18n.t('Room.Info.title')}/>*/}
-          {/*: <ScrollTabView*/}
-              {/*style={{flex: 2, marginTop: 20}}*/}
-              {/*// tabBarBackgroundColor="#ec5367"*/}
-              {/*// tabBarTextStyle={localStyles.tabBarText}*/}
-              {/*// tabBarUnderlineStyle={localStyles.tabBarUnderline}*/}
-            {/*>*/}
-              {/*<Info roomInfo={this.props.roomInfo} tabLabel={I18n.t('Room.Info.title')}/>*/}
-              {/*<Detail tabLabel={I18n.t('Room.Detail.title')}/>*/}
-            {/*</ScrollTabView>*/}
-        {/*}*/}
-
-        <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
-          <TouchableOpacity
-            style={[styles.flexCenter, localStyles.star]}
-            onPress={this.state.isJoined ? this.leave: this.state.isMarked ? this.unmark : this.mark}
-          >
-            <Text style={[localStyles.footer__text]}>
-              {this.state.isJoined ? I18n.t('Room.Footer.leave') : this.state.isMarked ? I18n.t('Room.Footer.unstar') : I18n.t('Room.Footer.star')}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.flexCenter, localStyles.join]}
-            onPress={this.state.isJoined ? this.room: this.join}
-          >
-            <Text style={[localStyles.footer__text]}>
-              {this.state.isJoined ? I18n.t('Room.Footer.room') : I18n.t('Room.Footer.join')}
-            </Text>
-          </TouchableOpacity>
+        <Loading visible={this.state.loading}/>
+        <View style={[styles.flex1]}>
+          {this.state.loading ? null :
+            <Info roomInfo={this.props.roomInfo} tabLabel={I18n.t('Room.Info.title')}/>
+          }
+          <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
+            <TouchableOpacity
+              style={[styles.flexCenter, localStyles.star]}
+              onPress={this.state.isJoined ? this.leave : this.state.isMarked ? this.unmark : this.mark}
+            >
+              <Text style={[localStyles.footer__text]}>
+                {this.state.isJoined ? I18n.t('Room.Footer.leave') : this.state.isMarked ? I18n.t('Room.Footer.unstar') : I18n.t('Room.Footer.star')}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.flexCenter, localStyles.join]}
+              onPress={this.state.isJoined ? this.room : this.join}
+            >
+              <Text style={[localStyles.footer__text]}>
+                {this.state.isJoined ? I18n.t('Room.Footer.room') : I18n.t('Room.Footer.join')}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     )

@@ -16,7 +16,7 @@ import Input from './Input'
 import LoginButton from '../../components/StyleButton'
 import BackgroundImage from '../../components/BackgroundImage'
 
-import Spinner from 'react-native-spinkit'
+import Loading from '../../components/Loading'
 
 @connect(...[, dispatch=>({dispatch})])
 export default class Login extends Component {
@@ -26,7 +26,6 @@ export default class Login extends Component {
       username: '',
       password: '',
       isVisible: false,
-      type: Platform.OS === 'ios' ? 'ArcAlt' : 'WanderingCubes'
     }
   }
 
@@ -55,15 +54,7 @@ export default class Login extends Component {
   render () {
     return (
       <View style={{flex: 1}}>
-        <Modal
-          transparent={true}
-          animationType="fade"
-          visible={this.state.isVisible}
-        >
-          <View style={[styles.flex1, styles.flexCenter, {backgroundColor: 'rgba(0, 0, 0, 0.4)'}]}>
-            <Spinner isVisible={this.state.isVisible} size={50} color='#FFFFFF' type={this.state.type}/>
-          </View>
-        </Modal>
+        <Loading visible={this.state.isVisible}/>
         <BackgroundImage bgUrl={require('../../assets/background.jpg')}>
           <View style={loginStyles.container}>
             <Image
