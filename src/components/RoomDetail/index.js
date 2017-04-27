@@ -14,7 +14,7 @@ import { FetchQuestionnaires, SetLoading } from '../../store/actions'
 import Notice from './Notice/index'
 import Chat from './Chat/index'
 import Member from './Member/index'
-import Loading from "../Loading";
+import Loading from "../Loading"
 
 const mapStateToProps = state => ({
   roomInfo: state.room.roomInfo,

@@ -13,6 +13,7 @@
   "content": "Content",
   "save": "Save",
   "cancel": "Cancel",
+  "full": "Room is Full",
   "Login": {
     "username": "Tel",
     "password": "Password",

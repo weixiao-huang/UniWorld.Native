@@ -67,6 +67,11 @@ export default class RoomInfo extends Component {
     this.props.dispatch(GoToRoomDetail(this.props.roomInfo.id))
   }
 
+  _isFull = () => {
+    const { max_participants, participants } = this.props.roomInfo
+    return max_participants && participants.length >= max_participants
+  }
+
   join = async () => {
     try {
       this.room()
@@ -97,7 +102,6 @@ export default class RoomInfo extends Component {
     }
   }
   render() {
-    // console.log('获取RoomInfo的Props', this.props.navigation.state.params.id)
     const isEmpty = Object.keys(this.props.roomInfo).length <= 0
     return (
       <View style={[styles.flex1, localStyles.container]}>
@@ -117,11 +121,12 @@ export default class RoomInfo extends Component {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[styles.flexCenter, localStyles.join]}
+              style={[styles.flexCenter, localStyles.join, this._isFull() ? { backgroundColor: '#cbcbcb' } : null]}
               onPress={this.state.isJoined ? this.room : this.join}
+              disabled={this._isFull()}
             >
               <Text style={[localStyles.footer__text]}>
-                {this.state.isJoined ? I18n.t('Room.Footer.room') : I18n.t('Room.Footer.join')}
+                {this._isFull() ? I18n.t('full') : this.state.isJoined ? I18n.t('Room.Footer.room') : I18n.t('Room.Footer.join')}
               </Text>
             </TouchableOpacity>
           </View>
