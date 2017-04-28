@@ -31,6 +31,7 @@ export default class RoomInfo extends Component {
     this.state = {
       isMarked: false,
       isJoined: false,
+      disabled: false
     }
   }
   async componentWillMount() {
@@ -63,9 +64,10 @@ export default class RoomInfo extends Component {
       console.log('Leave 错误', err)
     }
   }
-  room = async () => {
-    // await this.props.dispatch(FetchQuestionnaires(this.props.roomInfo.id))
+  room = () => {
+    this.setState({disabled: true})
     this.props.dispatch(GoToRoomDetail(this.props.roomInfo.id))
+    setTimeout(() => this.setState({disabled: false}), 1000)
   }
 
   _isFull = () => {
@@ -124,7 +126,7 @@ export default class RoomInfo extends Component {
             <TouchableOpacity
               style={[styles.flexCenter, localStyles.join, this._isFull() ? { backgroundColor: '#cbcbcb' } : null]}
               onPress={this.state.isJoined ? this.room : this.join}
-              disabled={this._isFull()}
+              disabled={this._isFull() || this.state.disabled}
             >
               <Text style={[localStyles.footer__text]}>
                 {this._isFull() ? I18n.t('full') : this.state.isJoined ? I18n.t('Room.Footer.room') : I18n.t('Room.Footer.join')}

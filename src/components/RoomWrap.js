@@ -17,7 +17,8 @@ export default class RoomWrap extends Component {
     super(props)
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.state = {
-      dataSource: ds.cloneWithRows(this.props.roomList)
+      dataSource: ds.cloneWithRows(this.props.roomList),
+      disabled: false
     }
   }
 
@@ -28,11 +29,10 @@ export default class RoomWrap extends Component {
     title: ''
   }
 
-  _gotoRoomInfo = id => {
-    return async () => {
-      // await this.props.dispatch(FetchRoomInfo(id))
-      this.props.dispatch(GoToRoomInfo(id))
-    }
+  _gotoRoomInfo = id => () => {
+    this.setState({disabled: true})
+    this.props.dispatch(GoToRoomInfo(id))
+    setTimeout(() => this.setState({disabled: false}), 1000)
   }
 
   render () {
@@ -49,7 +49,10 @@ export default class RoomWrap extends Component {
           {this.props.roomList.map((item, index) => {
             return (
               <View key={index} style={[styles.flex1]}>
-                <TouchableOpacity onPress={this._gotoRoomInfo(item.id)}>
+                <TouchableOpacity
+                  disabled={this.state.disabled}
+                  onPress={this._gotoRoomInfo(item.id)}
+                >
                   <RoomItem
                     src={item.cover}
                     title={item.title}

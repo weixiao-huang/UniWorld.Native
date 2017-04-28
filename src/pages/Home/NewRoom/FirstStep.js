@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Text, ScrollView, Dimensions } from 'react-native'
+import { Image, StyleSheet, View, Text, ScrollView, Dimensions, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 
 import I18n from 'react-native-i18n'
@@ -19,12 +19,15 @@ export default class FirstStep extends Component {
     super(props)
     this.state = {
       title: this.props.title,
+      disabled: false
     }
   }
 
   next = () => {
+    this.setState({disabled: true})
     this.props.navigation.navigate('Second')
     this.props.dispatch(SetNewRoomData({title: this.state.title}))
+    setTimeout(() => this.setState({disabled: false}), 1000)
   }
 
   _isCompleted = () => this.state.title.length > 5
@@ -42,7 +45,7 @@ export default class FirstStep extends Component {
           />
           <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
             <NewRoomButton
-              disabled={!this._isCompleted()}
+              disabled={!this._isCompleted() || this.state.disabled}
               title={I18n.t('NewRoom.button')}
               onPress={this.next}
               inlineStyle={[localStyles.button, this._isCompleted() ? localStyles.active : localStyles.disabled]}

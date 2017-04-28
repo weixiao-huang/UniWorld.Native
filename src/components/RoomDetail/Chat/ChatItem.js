@@ -43,7 +43,7 @@ export default class ChatItem extends Component {
           <View
             style={[
               localStyles.sender__triangle,
-              this._mine() ? {transform:[{rotate: '90deg'}], marginTop: 0, marginRight: 5} : null]
+              this._mine() ? {transform:[{rotate: '90deg'}], borderBottomColor: '#d5d9f0', marginTop: 0, marginRight: 5} : null]
             }
           >
           </View>
@@ -53,7 +53,7 @@ export default class ChatItem extends Component {
             {this._mine() ? null :
               <Text style={[localStyles.content__title]}>{this.props.sender.name}</Text>
             }
-            <View style={[localStyles.content__text]}>
+            <View style={[localStyles.content__text, this._mine() ? {backgroundColor: '#d5d9f0'} : null]}>
               <Text>{this.props.content}</Text>
             </View>
           </View>

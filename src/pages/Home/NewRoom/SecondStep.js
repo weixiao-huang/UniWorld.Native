@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, Switch, ActivityIndicator } from 'react-native'
+import { Image, StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, Switch, ActivityIndicator, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 
 import Picker from 'react-native-picker'
@@ -101,152 +101,155 @@ export default class SecondStep extends Component {
   render() {
     console.log(this.state.cover)
     return (
-      <ScrollView>
-        <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 20}]}>
+      <KeyboardAvoidingView behavior={'position'}>
+        <ScrollView>
+          <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 20}]}>
 
-          {/* Header Image */}
-          <View>
-            <Image style={localStyles.header} source={require('../../../assets/customCreate2.png')}/>
-          </View>
-          <Text style={localStyles.title}>{I18n.t('NewRoom.input.second.title')}</Text>
-
-
-          {/* Name & Labels */}
-          <View style={[localStyles.wrap]}>
-            <InputItem title={I18n.t('NewRoom.input.name.title')}>
-              <Text style={[styles.flex1]}>{this.state.title}</Text>
-            </InputItem>
-            <InputItem title={I18n.t('NewRoom.input.label.title')}>
-              <View style={[styles.fullFlexWidth, styles.flexWrap, {alignItems: 'center'}]}>
-                {[...this.state.labels].map((item, index) => {
-                  return (
-                    <Label key={index} title={item}/>
-                  )
-                })}
-              </View>
-            </InputItem>
-          </View>
+            {/* Header Image */}
+            <View>
+              <Image style={localStyles.header} source={require('../../../assets/customCreate2.png')}/>
+            </View>
+            <Text style={localStyles.title}>{I18n.t('NewRoom.input.second.title')}</Text>
 
 
-          {/* Cover */}
-          <View style={[localStyles.wrap]}>
-            <InputItem title={I18n.t('NewRoom.input.second.Cover.title')}>
-              <View style={[styles.fullFlexWidth]}>
-                <View style={[styles.flex1, localStyles.wrap__cover]}>
-                  <View style={[styles.fullFlexWidth, localStyles.cover]}>
-                    <Text style={{color: '#c7c7c7'}}>{I18n.t('NewRoom.input.second.Cover.placeholder')}</Text>
-                    <ActivityIndicator animating={this.state.isUploading}/>
-                    <TouchableOpacity onPress={this._showUpload}>
-                      {/*<Image source={this.state.cover ? this.state.cover : ''} style={[localStyles.cover__image]}>*/}
-                      <Icon name="camera" size={20}/>
-                      {/*</Image>*/}
-                    </TouchableOpacity>
-                  </View>
-                  {this.state.cover ?
-                    <View style={[styles.rowFlex, localStyles.wrap__cover__wrap]}>
-                      <Image style={[localStyles.wrap__cover__wrap__img]} source={{url: this.state.cover}}/>
-                    </View>
-                    : null
-                  }
+            {/* Name & Labels */}
+            <View style={[localStyles.wrap]}>
+              <InputItem title={I18n.t('NewRoom.input.name.title')}>
+                <Text style={[styles.flex1]}>{this.state.title}</Text>
+              </InputItem>
+              <InputItem title={I18n.t('NewRoom.input.label.title')}>
+                <View style={[styles.fullFlexWidth, styles.flexWrap, {alignItems: 'center'}]}>
+                  {[...this.state.labels].map((item, index) => {
+                    return (
+                      <Label key={index} title={item}/>
+                    )
+                  })}
                 </View>
+              </InputItem>
+            </View>
+
+
+            {/* Cover */}
+            <View style={[localStyles.wrap]}>
+              <InputItem title={I18n.t('NewRoom.input.second.Cover.title')}>
+                <View style={[styles.fullFlexWidth]}>
+                  <View style={[styles.flex1, localStyles.wrap__cover]}>
+                    <View style={[styles.fullFlexWidth, localStyles.cover]}>
+                      <Text style={{color: '#c7c7c7'}}>{I18n.t('NewRoom.input.second.Cover.placeholder')}</Text>
+                      <ActivityIndicator animating={this.state.isUploading}/>
+                      <TouchableOpacity onPress={this._showUpload}>
+                        {/*<Image source={this.state.cover ? this.state.cover : ''} style={[localStyles.cover__image]}>*/}
+                        <Icon name="camera" size={20}/>
+                        {/*</Image>*/}
+                      </TouchableOpacity>
+                    </View>
+                    {this.state.cover ?
+                      <View style={[styles.rowFlex, localStyles.wrap__cover__wrap]}>
+                        <Image style={[localStyles.wrap__cover__wrap__img]} source={{url: this.state.cover}}/>
+                      </View>
+                      : null
+                    }
+                  </View>
+                </View>
+              </InputItem>
+            </View>
+
+
+            {/*Required*/}
+            <View style={[localStyles.wrap]}>
+              <View style={[localStyles.wrap__title]}>
+                <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoBlue.png')}/>
+                <Text style={[{color: '#3555b6'}, localStyles.wrap__title__text]}>Required</Text>
               </View>
-            </InputItem>
-          </View>
-
-
-          {/*Required*/}
-          <View style={[localStyles.wrap]}>
-            <View style={[localStyles.wrap__title]}>
-              <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoBlue.png')}/>
-              <Text style={[{color: '#3555b6'}, localStyles.wrap__title__text]}>Required</Text>
+              <InputItem title={I18n.t('NewRoom.input.second.intro.title')}>
+                <TextInput
+                  style={[styles.flex1, styles.contentFontSize]}
+                  placeholder={I18n.t('NewRoom.input.second.intro.placeholder')}
+                  multiline={true}
+                  defaultValue={this.state.intro}
+                  onChangeText={intro => this.setState({intro})}
+                />
+              </InputItem>
+              <DateTimePicker
+                title={I18n.t('NewRoom.input.second.start.title')}
+                date={this.state.date_time_start}
+                onDateChange={date_time_start => this.setState({date_time_start})}/>
+              <DateTimePicker
+                title={I18n.t('NewRoom.input.second.end.title')}
+                date={this.state.date_time_end}
+                onDateChange={date_time_end => this.setState({date_time_end})}/>
+              <InputItem title={I18n.t('NewRoom.input.second.location.title')}>
+                <TextInput
+                  style={[styles.flex1]}
+                  placeholder={I18n.t('NewRoom.input.second.location.placeholder')}
+                  defaultValue={this.state.location_string}
+                  onChangeText={location_string => this.setState({location_string})}
+                />
+              </InputItem>
+              <InputItem title={I18n.t('NewRoom.input.second.max.title')}>
+                <TouchableOpacity style={[styles.flex1]} onPress={this._showPicker}>
+                  <Text style={[styles.contentFontSize, _.isNumber(this.state.max_participants) || isNaN(this.state.max_participants) ? {color: 'black'} : {color: '#c9c9c9'}]}>
+                    {this.state.max_participants ? this.state.max_participants : I18n.t('NewRoom.input.second.max.placeholder')}
+                  </Text>
+                </TouchableOpacity>
+              </InputItem>
             </View>
-            <InputItem title={I18n.t('NewRoom.input.second.intro.title')}>
-              <TextInput
-                style={[styles.flex1, styles.contentFontSize]}
-                placeholder={I18n.t('NewRoom.input.second.intro.placeholder')}
-                multiline={true}
-                defaultValue={this.state.intro}
-                onChangeText={intro => this.setState({intro})}
-              />
-            </InputItem>
-            <DateTimePicker
-              title={I18n.t('NewRoom.input.second.start.title')}
-              date={this.state.date_time_start}
-              onDateChange={date_time_start => this.setState({date_time_start})}/>
-            <DateTimePicker
-              title={I18n.t('NewRoom.input.second.end.title')}
-              date={this.state.date_time_end}
-              onDateChange={date_time_end => this.setState({date_time_end})}/>
-            <InputItem title={I18n.t('NewRoom.input.second.location.title')}>
-              <TextInput
-                style={[styles.flex1]}
-                placeholder={I18n.t('NewRoom.input.second.location.placeholder')}
-                defaultValue={this.state.location_string}
-                onChangeText={location_string => this.setState({location_string})}
-              />
-            </InputItem>
-            <InputItem title={I18n.t('NewRoom.input.second.max.title')}>
-              <TouchableOpacity style={[styles.flex1]} onPress={this._showPicker}>
-                <Text style={[styles.contentFontSize, _.isNumber(this.state.max_participants) || isNaN(this.state.max_participants) ? {color: 'black'} : {color: '#c9c9c9'}]}>
-                  {this.state.max_participants ? this.state.max_participants : I18n.t('NewRoom.input.second.max.placeholder')}
+
+
+            {/* Options */}
+            <View style={[localStyles.wrap]}>
+              <View style={[localStyles.wrap__title]}>
+                <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoRed.png')}/>
+                <Text style={[{color: '#ec5367'}, localStyles.wrap__title__text]}>{I18n.t('NewRoom.input.second.options')}</Text>
+              </View>
+              <InputItem title={I18n.t('NewRoom.input.second.private.title')}>
+                <Text style={[styles.flex1, styles.gray, styles.contentFontSize]}>
+                  {I18n.t('NewRoom.input.second.private.placeholder')}
                 </Text>
-              </TouchableOpacity>
-            </InputItem>
-          </View>
-
-
-          {/* Options */}
-          <View style={[localStyles.wrap]}>
-            <View style={[localStyles.wrap__title]}>
-              <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoRed.png')}/>
-              <Text style={[{color: '#ec5367'}, localStyles.wrap__title__text]}>{I18n.t('NewRoom.input.second.options')}</Text>
+                <Switch
+                  style={{marginRight: 10}}
+                  onValueChange={isPrivate => this.setState({isPrivate})}
+                  value={this.state.isPrivate}
+                />
+              </InputItem>
+              <InputItem title={I18n.t('NewRoom.input.second.welcome.title')}>
+                <TextInput
+                  style={[styles.flex1]}
+                  placeholder={I18n.t('NewRoom.input.second.welcome.placeholder')}
+                  defaultValue={this.state.welcome}
+                  onChangeText={welcome => this.setState({welcome})}
+                />
+              </InputItem>
+              <InputItem title={I18n.t('NewRoom.input.second.expense.title')}>
+                <TextInput
+                  style={[styles.flex1]}
+                  placeholder={I18n.t('NewRoom.input.second.expense.placeholder')}
+                  onChangeText={expense => this.setState({expense})}
+                  defaultValue={this.state.expense}
+                />
+              </InputItem>
+              <InputItem title={I18n.t('NewRoom.input.second.rewards.title')}>
+                <TextInput
+                  style={[styles.flex1]}
+                  placeholder={I18n.t('NewRoom.input.second.rewards.placeholder')}
+                  onChangeText={rewards => this.setState({rewards})}
+                  defaultValue={this.state.rewards}
+                />
+              </InputItem>
             </View>
-            <InputItem title={I18n.t('NewRoom.input.second.private.title')}>
-              <Text style={[styles.flex1, styles.gray, styles.contentFontSize]}>
-                {I18n.t('NewRoom.input.second.private.placeholder')}
-              </Text>
-              <Switch
-                style={{marginRight: 10}}
-                onValueChange={isPrivate => this.setState({isPrivate})}
-                value={this.state.isPrivate}
-              />
-            </InputItem>
-            <InputItem title={I18n.t('NewRoom.input.second.welcome.title')}>
-              <TextInput
-                style={[styles.flex1]}
-                placeholder={I18n.t('NewRoom.input.second.welcome.placeholder')}
-                defaultValue={this.state.welcome}
-                onChangeText={welcome => this.setState({welcome})}
-              />
-            </InputItem>
-            <InputItem title={I18n.t('NewRoom.input.second.expense.title')}>
-              <TextInput
-                style={[styles.flex1]}
-                placeholder={I18n.t('NewRoom.input.second.expense.placeholder')}
-                onChangeText={expense => this.setState({expense})}
-                defaultValue={this.state.expense}
-              />
-            </InputItem>
-            <InputItem title={I18n.t('NewRoom.input.second.rewards.title')}>
-              <TextInput
-                style={[styles.flex1]}
-                placeholder={I18n.t('NewRoom.input.second.rewards.placeholder')}
-                onChangeText={rewards => this.setState({rewards})}
-                defaultValue={this.state.rewards}
-              />
-            </InputItem>
-          </View>
 
-          <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
-            <NewRoomButton
-              disabled={!this._isCompleted()}
-              title={I18n.t('NewRoom.button')}
-              onPress={this.next}
-              inlineStyle={[localStyles.button, this._isCompleted() ? localStyles.active : localStyles.disabled]}
-            />
+            <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
+              <NewRoomButton
+                disabled={!this._isCompleted()}
+                title={I18n.t('NewRoom.button')}
+                onPress={this.next}
+                inlineStyle={[localStyles.button, this._isCompleted() ? localStyles.active : localStyles.disabled]}
+              />
+            </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
+
     )
   }
 }
