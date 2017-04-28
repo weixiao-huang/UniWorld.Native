@@ -24,13 +24,6 @@ export default auth = (state=initialState, action) => {
         token: action.token,
         status: 'done'
       }
-    case types.USER_LOGOUT:
-      return {
-        ...state,
-        isLoggedIn: false,
-        token: {},
-        status: null
-      }
     case types.USER_LOGIN_ERROR:
       return {
         ...state,
@@ -38,6 +31,8 @@ export default auth = (state=initialState, action) => {
         token: {},
         status: null
       }
+    case types.USER_LOGOUT:
+      return initialState
     default:
       return state
   }

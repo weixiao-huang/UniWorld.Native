@@ -49,6 +49,8 @@ export default (state=initialState, action) => {
         ...state,
         id: action.id
       }
+    case types.USER_LOGOUT:
+      return initialState
     default:
       return state
   }

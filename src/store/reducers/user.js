@@ -30,12 +30,6 @@ export default (state=initialState, action) => {
         ...state,
         user: action.user
       }
-    case types.USER_LOGOUT:
-      return {
-        ...state,
-        userInfo: {},
-        user: {}
-      }
     case types.SET_USER_DISLIKES:
       return {
         ...state,
@@ -79,6 +73,8 @@ export default (state=initialState, action) => {
           ...messages
         }
       }
+    case types.USER_LOGOUT:
+      return initialState
     default:
       return state
   }

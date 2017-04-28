@@ -9,7 +9,7 @@ import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
 import {
   Visit, UserLogin, FetchRoomList, FetchWorldRoomList, FetchRecommendRoomList,
-  FetchLatestRoomList, GoToHome, FetchUserInfo, SetLoading
+  FetchLatestRoomList, GoToHome, FetchUserInfo, SetLoading, FetchInitialLabels
 } from '../../store/actions'
 
 import Input from './Input'
@@ -40,6 +40,7 @@ export default class Login extends Component {
     await this.props.dispatch(FetchLatestRoomList)
     await this.props.dispatch(FetchWorldRoomList)
     await this.props.dispatch(FetchUserInfo)
+    await this.props.dispatch(FetchInitialLabels)
     this.props.dispatch(SetLoading(false))
     this.props.dispatch(GoToHome)
   }

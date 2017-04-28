@@ -17,8 +17,6 @@ const initialState = {
 
 export default (state=initialState, action) => {
   switch (action.type) {
-    case types.USER_LOGOUT:
-      return initialState
     case types.GET_WORLD_ROOM_LIST:
       return {
         ...state,
@@ -59,6 +57,8 @@ export default (state=initialState, action) => {
         ...state,
         isMarked: false
       }
+    case types.USER_LOGOUT:
+      return initialState
     default:
       return state
   }

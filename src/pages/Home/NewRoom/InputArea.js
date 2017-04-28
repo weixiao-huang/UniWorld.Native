@@ -50,9 +50,9 @@ export default class InputArea extends Component {
   static propTypes = {
     onChangeTitle: PropTypes.func.isRequired
   }
-  componentWillMount() {
-    this.props.dispatch(FetchInitialLabels)
-  }
+  // componentWillMount() {
+  //   this.props.dispatch(FetchInitialLabels)
+  // }
 
   _createInitialLabels(name) {
     let data = []

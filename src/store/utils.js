@@ -9,7 +9,7 @@ export const actionHandle = async func => {
     return await func()
   } catch (err) {
     console.log(err)
-    Alert.alert('', err.message)
+    // Alert.alert('', err.message)
   }
 }
 
