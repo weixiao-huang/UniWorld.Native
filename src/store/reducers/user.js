@@ -46,8 +46,14 @@ export default (state=initialState, action) => {
       }
     case types.SEND_MESSAGE:
       let message = {}
-      message[action.roomId] = state.messages[action.roomId].concat([action.message])
+      console.log('继续测试：', action.roomId, action.message)
+      if (state.messages.hasOwnProperty(action.roomId)) {
+        message[action.roomId] = state.messages[action.roomId].concat([action.message])
+      } else {
+        message[action.roomId] = [action.message]
+      }
       // message[action.roomId] = [action.message].concat(state.messages[action.roomId])
+      console.log('再测试：', message)
       return {
         ...state,
         messages: {
