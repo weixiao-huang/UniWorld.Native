@@ -18,7 +18,11 @@ export default class LabelBox extends Component {
       <View style={[styles.flex1, labelBoxStyles.container]}>
         {this.props.labels.map((label, index) => {
           return (
-            <LabelItem title={label.title} content={label.content} key={index} />
+            <LabelItem
+              editable={label.editable}
+              title={label.title}
+              content={label.content} key={index}
+            />
           )
         })}
       </View>

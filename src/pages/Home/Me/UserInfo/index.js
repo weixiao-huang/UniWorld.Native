@@ -47,8 +47,8 @@ export default class UserInfo extends Component {
         { title: I18n.t('Me.info.grade'), content: year },
       ],
       [
-        { title: I18n.t('Me.info.nickname'), content: name },
-        { title: I18n.t('Me.info.signature'), content: signature },
+        { title: I18n.t('Me.info.nickname'), content: name, editable: true },
+        { title: I18n.t('Me.info.signature'), content: signature, editable: true },
       ]
     ]
     return (

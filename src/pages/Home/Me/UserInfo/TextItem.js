@@ -14,7 +14,7 @@ export  default class LabelItem extends Component {
       <View style={[styles.flex1, localStyles.container]}>
         <View style={[localStyles.inputBox]}>
           <Text style={[localStyles.title]}>{this.props.title}</Text>
-          {this.props.isEditing ?
+          {this.props.isEditing && this.props.editable ?
             <TextInput
               style={[styles.flex1, localStyles.content, localStyles.inputBox__input]}
               placeholder={this.props.content}
@@ -33,10 +33,11 @@ const localStyles = StyleSheet.create({
     paddingLeft: 10,
   },
   content: {
-    paddingLeft: 15
+    paddingLeft: 15,
+    fontSize: 14
   },
   inputBox__input: {
-    fontSize: 16
+    fontSize: 14
   },
   inputBox: {
     padding: 10,
