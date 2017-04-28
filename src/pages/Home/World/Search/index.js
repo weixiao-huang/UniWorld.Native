@@ -2,7 +2,7 @@
  * Created by huangwx on 11/04/2017.
  */
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, View, TouchableOpacity, Text } from 'react-native'
+import { StyleSheet, TextInput, View, TouchableOpacity, Text, Image } from 'react-native'
 import I18n from 'react-native-i18n'
 
 import styles from '../../../../common/styles'
@@ -20,6 +20,9 @@ export default class Search extends Component {
             <Text style={localStyles.button}>{I18n.t('World.Search.button')}</Text>
           </TouchableOpacity>
         </View>
+        <View style={[styles.flex1, styles.flexCenter]}>
+          <Image style={[localStyles.cover]} source={require('../../../../assets/emptyList.png')}/>
+        </View>
       </View>
     )
   }
@@ -28,6 +31,10 @@ export default class Search extends Component {
 const localStyles = StyleSheet.create({
   container: {
     backgroundColor: 'white'
+  },
+  cover: {
+    resizeMode: 'contain',
+    width: '70%',
   },
   inputBox: {
     padding: 5,

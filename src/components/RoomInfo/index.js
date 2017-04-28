@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native'
 
 import { connect } from 'react-redux'
 import ScrollTabView from 'react-native-scrollable-tab-view'
@@ -55,7 +55,7 @@ export default class RoomInfo extends Component {
     return this.props.roomInfo.marked_users.indexOf(this.props.myId) >= 0
   }
 
-  leave = async () => {
+  _leave = async () => {
     try {
       this.setState({isJoined: false})
       await this.props.dispatch(LeaveRoom(this.props.roomInfo.id))
@@ -63,6 +63,17 @@ export default class RoomInfo extends Component {
     } catch (err) {
       console.log('Leave 错误', err)
     }
+  }
+
+  leave = async () => {
+    Alert.alert(
+      I18n.t('Room.Footer.Leave.title'),
+      I18n.t('Room.Footer.Leave.content'),
+      [
+        { text: I18n.t('Room.Footer.Leave.confirm'), onPress: () => {this._leave()} },
+        { text: I18n.t('Room.Footer.Leave.cancel'), onPress: () => {} }
+      ]
+    )
   }
   room = () => {
     this.setState({disabled: true})

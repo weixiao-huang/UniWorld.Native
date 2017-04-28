@@ -36,7 +36,14 @@ export default class Avatar extends Component {
         onPress={this._gotoUser(this.props.id)}
       >
         <Image
-          style={[localStyles.avatar, {width: this.props.size, height: this.props.size, borderRadius: this.props.size / 2}]}
+          style={[
+            localStyles.avatar,
+            {
+              width: this.props.size,
+              height: this.props.size,
+              borderRadius: this.props.size / 2
+            }
+          ]}
           source={{uri: this.props.avatar}}/>
       </TouchableOpacity>
     )

@@ -47,7 +47,13 @@
       "unstar": "Unmark",
       "join": "Join In",
       "leave": "Leave",
-      "room": "Room"
+      "room": "Room",
+      "Leave": {
+        "title": "Leave room",
+        "content": "You will leave this room, confirm?",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+      }
     },
     "Notice": {
       "title": "Notice",

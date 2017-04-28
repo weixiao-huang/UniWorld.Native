@@ -22,6 +22,7 @@ import {
 } from '../../store/actions'
 
 const mapStateToProps = state => ({
+  myId: state.user.userInfo.id,
   myFollows: state.user.userInfo.follows,
   user: state.user.user,
   dislikes: state.user.dislikes,
@@ -39,7 +40,6 @@ export default class NewRoom extends Component {
 
   async componentWillMount() {
     const { params: { id } } = this.props.navigation.state
-    console.log('用户Id: ', id)
     this.props.dispatch(SetLoading(true))
     await this.props.dispatch(FetchUser(id))
     await this.props.dispatch(FetchDislikes(id))
@@ -66,6 +66,7 @@ export default class NewRoom extends Component {
     return false
   }
   render() {
+    const { params: { id } } = this.props.navigation.state
     const isEmpty = Object.keys(this.props.user).length <= 0
     return (
       <View style={[styles.flex1]}>
@@ -84,14 +85,16 @@ export default class NewRoom extends Component {
               <Rooms isFollowed={this.state.isFollowed} tabLabel={I18n.t('User.rooms')}/>
               <Interests isFollowed={this.state.isFollowed} tabLabel={I18n.t('User.interests')}/>
             </ScrollTabView>
-            <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
-              <Button
-                inlineStyle={[localStyles.footer__follow, this.state.isFollowed ? {backgroundColor: '#c4caf2'} : null]}
-                textStyle={[localStyles.footer__text]}
-                title={this.state.isFollowed ? `= ${I18n.t('User.followed')}` : `+ ${I18n.t('User.follow')}`}
-                onPress={this.state.isFollowed ? this.unfollow : this.follow}
-              />
-            </View>
+            {id === this.props.myId ? null :
+              <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
+                <Button
+                  inlineStyle={[localStyles.footer__follow, this.state.isFollowed ? {backgroundColor: '#c4caf2'} : null]}
+                  textStyle={[localStyles.footer__text]}
+                  title={this.state.isFollowed ? `= ${I18n.t('User.followed')}` : `+ ${I18n.t('User.follow')}`}
+                  onPress={this.state.isFollowed ? this.unfollow : this.follow}
+                />
+              </View>
+            }
           </View>
         }
       </View>
