@@ -34,7 +34,9 @@ export default class RoomInfo extends Component {
   }
   render() {
     console.log('RoomDetails的props: ', this.props.navigation.state.params)
-    const isEmpty = this.props.questionnaires.length <= 0
+    console.log(this.props.questionnaires)
+    const isEmpty = !this.props.questionnaires || this.props.questionnaires.length <= 0
+    console.log(isEmpty)
     return (
       <View style={[styles.flex1, localStyles.container]}>
         {this.props.loading ?

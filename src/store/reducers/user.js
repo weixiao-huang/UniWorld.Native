@@ -43,8 +43,8 @@ export default (state=initialState, action) => {
       }
     case types.SEND_MESSAGE:
       let message = {}
-      // message[action.roomId] = state.messages[action.roomId].concat([action.message])
-      message[action.roomId] = [action.message].concat(state.messages[action.roomId])
+      message[action.roomId] = state.messages[action.roomId].concat([action.message])
+      // message[action.roomId] = [action.message].concat(state.messages[action.roomId])
       return {
         ...state,
         messages: {
@@ -56,10 +56,11 @@ export default (state=initialState, action) => {
       let messages = {}
       for (let roomId in action.messages) {
         if (state.messages.hasOwnProperty(roomId)) {
-          messages[roomId] = action.messages[roomId].reverse().concat(state.messages[roomId])
+          // messages[roomId] = action.messages[roomId].reverse().concat(state.messages[roomId])
+          messages[roomId] = state.messages[roomId].concat(action.messages[roomId])
         } else {
-          // messages[roomId] = action.messages[roomId]
-          messages[roomId] = action.messages[roomId].reverse()
+          messages[roomId] = action.messages[roomId]
+          // messages[roomId] = action.messages[roomId].reverse()
         }
       }
       return {

@@ -36,7 +36,7 @@ const localStyles = StyleSheet.create({
     paddingLeft: 15
   },
   inputBox__input: {
-    fontSize: 14
+    fontSize: 16
   },
   inputBox: {
     padding: 10,

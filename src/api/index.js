@@ -9,6 +9,8 @@ const getByToken = url => token => fetch(`${server}${url}`, {
   headers: { Authorization: `token ${token}` }
 })
 
+const getWithoutToken = url => fetch(`${server}${url}`)
+
 const postByToken = url => data => token => fetch(`${server}${url}`, {
   method: 'POST',
   headers: {
@@ -44,6 +46,27 @@ export default {
   /*
     GET METHODS
    */
+
+  fetchRecommend: token => token ? getByToken(
+    `/plaza/hot/`
+  )(token) : getWithoutToken(
+    `/plaza/hot/`
+  ),
+  fetchLatest: token => token ? getByToken(
+    `/plaza/latest/`
+  )(token) : getWithoutToken(
+    `/plaza/latest/`
+  ),
+  fetchWorld: token => token ? getByToken(
+    `/plaza/random/`
+  )(token) : getWithoutToken(
+    `/plaza/random/`
+  ),
+  fetchRoomInfo: id => token => token ? getByToken(
+    `/room/${id}/`
+  )(token) : getWithoutToken(
+    `/room/${id}/`
+  ),
   fetchUserInfo: token => getByToken(
     `/profile/`
   )(token),
@@ -53,20 +76,8 @@ export default {
   fetchDislikes: id => token => getByToken(
     `/user/${id}/thumb_downs/`
   )(token),
-  fetchRecommend: token => getByToken(
-    `/plaza/hot/`
-  )(token),
-  fetchLatest: token => getByToken(
-    `/plaza/latest/`
-  )(token),
-  fetchWorld: token => getByToken(
-    `/plaza/random/`
-  )(token),
   fetchInitialLabels: token => getByToken(
     `/label/`
-  )(token),
-  fetchRoomInfo: id => token => getByToken(
-    `/room/${id}/`
   )(token),
   fetchRoomList: token => getByToken(
     `/profile/rooms/`

@@ -42,6 +42,7 @@ export default class RoomInfo extends Component {
     })
     this.props.dispatch(SetLoading(false))
   }
+
   _joined = () => {
     for (let participant of this.props.roomInfo.participants) {
       if (this.props.myId === participant.id) return true

@@ -3,16 +3,20 @@
  */
 
 import React, { Component } from 'react';
-import { Image, Button, StyleSheet } from 'react-native'
+import { Image, View, Button, StyleSheet } from 'react-native'
 import styles from '../../../common/styles'
+import Tester from '../../../components/Tester'
 
-export default class NewRoom extends React.Component {
+export default class Smile extends React.Component {
   render() {
     return (
-      <Button
-        onPress={() => this.props.navigation.goBack()}
-        title="Go back home"
-      />
+      <View style={[styles.flex1]}>
+        <Tester/>
+        {/*<Button*/}
+          {/*onPress={() => this.props.navigation.goBack()}*/}
+          {/*title="Go back home"*/}
+        {/*/>*/}
+      </View>
     );
   }
 }

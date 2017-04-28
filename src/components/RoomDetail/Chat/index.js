@@ -21,15 +21,19 @@ const mapStateToProps = state => ({
 export default class Chat extends Component {
   constructor(props) {
     super(props)
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.state = {
       text: '',
-      ds: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+      ds: ds.cloneWithRows(this.props.messages, this.props.messages.map((row, index) => index).reverse())
     }
   }
-  _sendMessage = () => {
+  _sendMessage = async () => {
     if (this.state.text) {
-      this.props.dispatch(SendMessage({text: this.state.text})(this.props.roomId))
       this.setState({text: ''})
+      await this.props.dispatch(SendMessage({text: this.state.text})(this.props.roomId))
+      this.setState({
+        ds: this.state.ds.cloneWithRows(this.props.messages, this.props.messages.map((row, index) => index).reverse())
+      })
     }
   }
   render() {
@@ -41,7 +45,7 @@ export default class Chat extends Component {
             enableEmptySections={true}
             ref={listView => {_listView = listView}}
             renderScrollComponent={props => <InvertibleScrollView {...props} inverted/>}
-            dataSource={this.state.ds.cloneWithRows(this.props.messages)}
+            dataSource={this.state.ds}
             renderRow={(item, sectionID, rowID, highlightRow) => <ChatItem index={parseInt(rowID)} sender={item.sender} content={item.text}/>}
           />
           <View style={[styles.rowFlex, styles.flexCenter, localStyles.footer]}>

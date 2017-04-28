@@ -45,7 +45,7 @@ export default class Login extends Component {
   }
 
   visit = async () => {
-    this.props.dispatch(Visit)
+    // this.props.dispatch(Visit)
   }
 
   signup = async () => {
