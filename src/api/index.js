@@ -11,6 +11,16 @@ const getByToken = url => token => fetch(`${server}${url}`, {
 
 const getWithoutToken = url => fetch(`${server}${url}`)
 
+const putByToken = url => data => token => fetch(`${server}${url}`, {
+  method: 'PUT',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `token ${token}`
+  },
+  body: JSON.stringify(data)
+})
+
 const postByToken = url => data => token => fetch(`${server}${url}`, {
   method: 'POST',
   headers: {
@@ -140,7 +150,7 @@ export default {
       signature: string
     }
    */
-  editUserInfo: data => token => postByToken(`${server}/profile/edit/`)(data)(token),
+  editUserInfo: data => token => putByToken(`/profile/edit/`)(data)(token),
 
   /*
     data: {

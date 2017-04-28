@@ -41,6 +41,15 @@ export default (state=initialState, action) => {
         ...state,
         dislikes: action.dislikes
       }
+    case types.EDIT_USER_INFO:
+      console.log('EDIT_USER_INFO: ', action.userInfo)
+      return {
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          ...action.userInfo
+        }
+      }
     case types.SEND_MESSAGE:
       let message = {}
       message[action.roomId] = state.messages[action.roomId].concat([action.message])

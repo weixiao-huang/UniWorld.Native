@@ -25,6 +25,10 @@ export const UserLogin = opt => dispatch => (
   ))
 )
 
+export const EditUserInfo = data => (dispatch, getState) => (
+  composeHandle(api.editUserInfo(data))(types.EDIT_USER_INFO, 'userInfo')(dispatch, getState)
+)
+
 export const FetchUserInfo = (dispatch, getState) => (
   composeHandle(api.fetchUserInfo)(types.GET_USER_INFO, 'userInfo')(dispatch, getState)
 )
@@ -51,6 +55,10 @@ export const AddLabel = label => dispatch => (
 
 export const RemoveLabel = index => dispatch => (
   dispatch({type: types.REMOVE_LABEL, index})
+)
+
+export const SetUserInfo = data => dispatch => (
+  dispatch({type: types.EDIT_USER_INFO, userInfo: data})
 )
 
 export const SetNewRoomData = data => dispatch => (

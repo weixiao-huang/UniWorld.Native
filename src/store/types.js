@@ -27,6 +27,7 @@ export const SEND_MESSAGE = 'SEND_MESSAGE'
 export const SET_LOADING = 'SET_LOADING'
 export const SET_COMMON_DATA = 'SET_COMMON_DATA'
 
+export const EDIT_USER_INFO = 'EDIT_USER_INFO'
 export const GET_USER_INFO = 'GET_USER_INFO'
 
 export const GET_LATEST_ROOM_LIST = 'GET_LATEST_ROOM_LIST'

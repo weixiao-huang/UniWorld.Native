@@ -4,7 +4,8 @@
   },
   "Gender": {
     "male": "male",
-    "female": "female"
+    "female": "female",
+    "null": "none"
   },
   "yes": "Yes",
   "no": "No",
@@ -14,6 +15,7 @@
   "save": "Save",
   "cancel": "Cancel",
   "full": "Room is Full",
+  "confirm": "Confirm",
   "Login": {
     "username": "Tel",
     "password": "Password",
@@ -210,7 +212,15 @@
       "nickname": "Nickname",
       "signature": "Signature",
       "edit": "Edit",
-      "logout": "Logout"
+      "logout": "Logout",
+      "Logout": {
+        "title": "Logout",
+        "content": "You will logout, confirm?"
+      },
+      "Edit": {
+        "title": "Edit User Info",
+        "content": "Confirm your change?"
+      }
     },
     "follow": {
       "label": "Follow",
