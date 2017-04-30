@@ -6,7 +6,7 @@ import { server } from '../common/constants'
 
 const getByToken = url => token => fetch(`${server}${url}`, {
   method: 'GET',
-  headers: { Authorization: `token ${token}` }
+  headers: { 'Authorization': `token ${token}` }
 })
 
 const getWithoutToken = url => fetch(`${server}${url}`)

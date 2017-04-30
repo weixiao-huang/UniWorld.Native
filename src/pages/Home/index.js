@@ -8,7 +8,7 @@ import { TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
-import { MessagePolling } from '../../store/actions'
+import { MessagePolling, SetCommonData } from '../../store/actions'
 
 import World from './World'
 import NewRoom from './NewRoom'
@@ -91,33 +91,46 @@ const HomeRouter = TabNavigator({
   }
 })
 
-@connect(...[, dispatch => ({dispatch})])
+const mapStateToProps = state => ({
+  isPolling: state.common.isPolling,
+  common: state.common,
+  token: state.auth.token
+})
+
+@connect(mapStateToProps, dispatch => ({dispatch}))
 export default class Home extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isPolling: false
-    }
-  }
+  // constructor(props) {
+  //   super(props)
+  //   this.props.dispatch(SetCommonData('isPolling'), true)
+  // }
   _messagePolling = async () => {
-    console.log(this.state.isPolling)
-    if (this.state.isPolling) {
+    // console.log('_messagePolling::isPolling: ', this.props.isPolling)
+    // console.log('_messagePolling::token: ', this.props.token)
+    // console.log(this.props.token && this.props.isPolling)
+    if (this.props.token && this.props.isPolling) {
       try {
         console.log('开始轮训')
+        // console.log('_messagePolling::isPolling: ', this.props.isPolling)
+        // console.log('_messagePolling::token: ', this.props.token)
         await this.props.dispatch(MessagePolling)
         console.log('即将开始下一轮轮训')
         setTimeout(this._messagePolling, 1000)
+        // this._messagePolling()
       } catch (err) {
         Alert.alert('消息轮训错误', err)
         setTimeout(this._messagePolling, 1000)
+        // this._messagePolling()
       }
     }
   }
   componentWillMount() {
-    this.setState({isPolling: true})
+    console.log(this.props.common)
+    this.props.dispatch(SetCommonData('isPolling', true))
+    console.log(this.props.common)
   }
   componentDidMount() {
-    console.log('是否轮训？？？？', this.state.isPolling)
+    console.log('是否轮训？？？？', this.props.isPolling)
+    console.log(this.props.common)
     this._messagePolling()
   }
   componentWillUnmount() {

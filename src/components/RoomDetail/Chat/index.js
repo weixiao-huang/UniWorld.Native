@@ -31,10 +31,23 @@ export default class Chat extends Component {
     if (this.state.text) {
       this.setState({text: ''})
       await this.props.dispatch(SendMessage({text: this.state.text})(this.props.roomId))
+      console.log('set前', this.state.ds)
       this.setState({
-        ds: this.state.ds.cloneWithRows(this.props.messages, this.props.messages.map((row, index) => index).reverse())
+        ds: this.state.ds.cloneWithRows(
+          this.props.messages,
+          this.props.messages.map((row, index) => index).reverse()
+        )
       })
+      console.log('set后', this.state.ds)
     }
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      ds: this.state.ds.cloneWithRows(
+        nextProps.messages,
+        nextProps.messages.map((row, index) => index).reverse()
+      )
+    })
   }
   render() {
     let _listView = ListView

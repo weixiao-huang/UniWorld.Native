@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { View, StyleSheet, ScrollView, Text, Alert, TextInput, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, ScrollView, Text, Alert, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../../../common/styles'
@@ -13,7 +13,7 @@ import Button from '../../../../components/StyleButton'
 import LabelBox from './TextBox'
 import InputItem from '../../../../components/InputItem'
 
-import { UserLogout, GoToLogin, SetUserInfo, EditUserInfo } from '../../../../store/actions'
+import { UserLogout, GoToLogin, SetUserInfo, EditUserInfo, SetCommonData } from '../../../../store/actions'
 
 const mapStateToProps = state => ({
   userInfo: state.user.userInfo,
@@ -62,6 +62,7 @@ export default class UserInfo extends Component {
   }
 
   _logout = () => {
+    this.props.dispatch(SetCommonData('isPolling', false))
     this.props.dispatch(GoToLogin)
     this.props.dispatch(UserLogout)
   }
@@ -125,112 +126,114 @@ export default class UserInfo extends Component {
     const genderText = gender === true ? I18n.t('Gender.male') : gender === false ? I18n.t('Gender.female') : I18n.t('Gender.null')
 
     return (
-      <ScrollView style={[styles.flex1, localStyles.container]}>
-        <View style={[styles.flex4]}>
+        <ScrollView style={[styles.flex1, localStyles.container]}>
+          <KeyboardAvoidingView behavior={'position'} keyboardVerticalOffset={50}>
+            <View style={[styles.flex4]}>
 
-          {/* Block 1 */}
-          <View style={[styles.flex1, localStyles.wrap]}>
-            <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.phone')}>
-              <Text style={[styles.fullFlexWidth]}>{username}</Text>
-            </InputItem>
-            <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.name')}>
-              <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{name}</Text>
-            </InputItem>
-            <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.gender')}>
-              {this.state.isEditing ?
-                <TouchableOpacity onPress={this._showGenderPicker} style={[styles.fullFlexWidth]}>
-                  <Text style={[this.state.gender === '' ? {color: '#c7c7cd'} : {color: 'black'}]}>
-                    {genderText}
-                  </Text>
-                </TouchableOpacity> :
-                <Text style={[styles.fullFlexWidth]}>
-                  {genderText}
-                </Text>
-              }
-            </InputItem>
-          </View>
+              {/* Block 1 */}
+              <View style={[styles.flex1, localStyles.wrap]}>
+                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.phone')}>
+                  <Text style={[styles.fullFlexWidth]}>{username}</Text>
+                </InputItem>
+                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.name')}>
+                  <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{name}</Text>
+                </InputItem>
+                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.gender')}>
+                  {this.state.isEditing ?
+                    <TouchableOpacity onPress={this._showGenderPicker} style={[styles.fullFlexWidth]}>
+                      <Text style={[this.state.gender === '' ? {color: '#c7c7cd'} : {color: 'black'}]}>
+                        {genderText}
+                      </Text>
+                    </TouchableOpacity> :
+                    <Text style={[styles.fullFlexWidth]}>
+                      {genderText}
+                    </Text>
+                  }
+                </InputItem>
+              </View>
 
-          {/* Block 2 */}
-          <View style={[localStyles.wrap]}>
-            <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.school')}>
-              <Text style={[styles.fullFlexWidth]}>{university.name_ch}</Text>
-            </InputItem>
-            <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.department')}>
-              {this.state.isEditing ?
-                <TextInput
-                  style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}
-                  placeholder={department}
-                  onChangeText={department => this.setState({department})}
-                /> :
-                <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{department}</Text>
-              }
-            </InputItem>
-            <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.grade')}>
-              {this.state.isEditing ?
-                <TouchableOpacity onPress={this._showYearPicker} style={[styles.fullFlexWidth]}>
-                  <Text style={[this.state.year ? {color: 'black'} : {color: '#c7c7cd'}]}>
-                    {this.state.year ? this.state.year : year}
-                  </Text>
-                </TouchableOpacity> :
-                <Text style={[styles.fullFlexWidth]}>
-                  {year}
-                </Text>
-              }
-            </InputItem>
-          </View>
+              {/* Block 2 */}
+              <View style={[localStyles.wrap]}>
+                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.school')}>
+                  <Text style={[styles.fullFlexWidth]}>{university.name_ch}</Text>
+                </InputItem>
+                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.department')}>
+                  {this.state.isEditing ?
+                    <TextInput
+                      style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}
+                      placeholder={department}
+                      onChangeText={department => this.setState({department})}
+                    /> :
+                    <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{department}</Text>
+                  }
+                </InputItem>
+                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.grade')}>
+                  {this.state.isEditing ?
+                    <TouchableOpacity onPress={this._showYearPicker} style={[styles.fullFlexWidth]}>
+                      <Text style={[this.state.year ? {color: 'black'} : {color: '#c7c7cd'}]}>
+                        {this.state.year ? this.state.year : year}
+                      </Text>
+                    </TouchableOpacity> :
+                    <Text style={[styles.fullFlexWidth]}>
+                      {year}
+                    </Text>
+                  }
+                </InputItem>
+              </View>
 
-          {/* Block 3 */}
-          <View style={[localStyles.wrap]}>
-            <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.nickname')}>
-              {this.state.isEditing ?
-                <TextInput
-                  style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}
-                  placeholder={name}
-                  onChangeText={name => this.setState({name})}
-                /> :
-                <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{name}</Text>
-              }
-            </InputItem>
-            <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.signature')}>
-              {this.state.isEditing ?
-                <TextInput
-                  style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}
-                  placeholder={signature}
-                  onChangeText={signature => this.setState({signature})}
-                /> :
-                <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{signature}</Text>
-              }
-            </InputItem>
-          </View>
-        </View>
+              {/* Block 3 */}
+              <View style={[localStyles.wrap]}>
+                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.nickname')}>
+                  {this.state.isEditing ?
+                    <TextInput
+                      style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}
+                      placeholder={name}
+                      onChangeText={name => this.setState({name})}
+                    /> :
+                    <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{name}</Text>
+                  }
+                </InputItem>
+                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.signature')}>
+                  {this.state.isEditing ?
+                    <TextInput
+                      style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}
+                      placeholder={signature}
+                      onChangeText={signature => this.setState({signature})}
+                    /> :
+                    <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{signature}</Text>
+                  }
+                </InputItem>
+              </View>
+            </View>
 
-        {/* Edit Button */}
-        <View style={[styles.flex1, localStyles.buttonBox]}>
-          <Button
-            title={this.state.isEditing ? I18n.t('save') : I18n.t('Me.info.edit')}
-            onPress={this.state.isEditing ? this.save : this.edit}
-            inlineStyle={[localStyles.edit, localStyles.button]}
-            color="black"
-          />
-          {this.state.isEditing ?
-            <Button
-              title={I18n.t('cancel')}
-              onPress={() => {
-                this.setState({isEditing: false, name, gender, department, year, signature})
-              }}
-              inlineStyle={[localStyles.logout, localStyles.button]}
-              color="black"
-            />
-            : null
-          }
-          <Button
-            title={I18n.t('Me.info.logout')}
-            onPress={this.logout}
-            inlineStyle={[localStyles.logout, localStyles.button]}
-            color="black"
-          />
-        </View>
-      </ScrollView>
+            {/* Edit Button */}
+            <View style={[styles.flex1, localStyles.buttonBox]}>
+              <Button
+                title={this.state.isEditing ? I18n.t('save') : I18n.t('Me.info.edit')}
+                onPress={this.state.isEditing ? this.save : this.edit}
+                inlineStyle={[localStyles.edit, localStyles.button]}
+                color="black"
+              />
+              {this.state.isEditing ?
+                <Button
+                  title={I18n.t('cancel')}
+                  onPress={() => {
+                    this.setState({isEditing: false, name, gender, department, year, signature})
+                  }}
+                  inlineStyle={[localStyles.logout, localStyles.button]}
+                  color="black"
+                />
+                : null
+              }
+              <Button
+                title={I18n.t('Me.info.logout')}
+                onPress={this.logout}
+                inlineStyle={[localStyles.logout, localStyles.button]}
+                color="black"
+              />
+            </View>
+          </KeyboardAvoidingView>
+        </ScrollView>
     )
   }
 }

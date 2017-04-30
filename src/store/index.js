@@ -18,7 +18,7 @@ const logger = store => next => action => {
 
 const middlewares = [
   thunk,
-  logger
+  // logger
 ]
 
 const createAppStore = applyMiddleware(...middlewares)(createStore)
@@ -27,7 +27,8 @@ export default (onComplete: ()=>void) => {
   const store = autoRehydrate()(createAppStore)(reducers)
   const opt = {
     storage: AsyncStorage,
-    transform: []
+    transform: [],
+    blacklist: ['common']
   }
   persistStore(store, opt, onComplete)
   return store

@@ -9,7 +9,7 @@ import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
 import {
   Visit, UserLogin, FetchRoomList, FetchWorldRoomList, FetchRecommendRoomList,
-  FetchLatestRoomList, GoToHome, FetchUserInfo, SetLoading, FetchInitialLabels
+  FetchLatestRoomList, GoToHome, FetchUserInfo, SetCommonData, FetchInitialLabels
 } from '../../store/actions'
 
 import Input from './Input'
@@ -33,7 +33,7 @@ export default class Login extends Component {
   }
 
   login = async () => {
-    this.props.dispatch(SetLoading(true))
+    this.props.dispatch(SetCommonData('loading', true))
     await this.props.dispatch(UserLogin(this.state))
     await this.props.dispatch(FetchRoomList)
     await this.props.dispatch(FetchRecommendRoomList)
@@ -41,7 +41,8 @@ export default class Login extends Component {
     await this.props.dispatch(FetchWorldRoomList)
     await this.props.dispatch(FetchUserInfo)
     await this.props.dispatch(FetchInitialLabels)
-    this.props.dispatch(SetLoading(false))
+    this.props.dispatch(SetCommonData('loading', false))
+    this.props.dispatch(SetCommonData('isPolling', true))
     this.props.dispatch(GoToHome)
   }
 
