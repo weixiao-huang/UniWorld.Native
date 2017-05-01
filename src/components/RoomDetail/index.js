@@ -33,16 +33,14 @@ export default class RoomInfo extends Component {
     this.props.dispatch(SetLoading(false))
   }
   render() {
-    console.log('RoomDetails的props: ', this.props.navigation.state.params)
-    console.log(this.props.questionnaires)
     const isEmpty = !this.props.questionnaires || this.props.questionnaires.length <= 0
-    console.log(isEmpty)
     return (
       <View style={[styles.flex1, localStyles.container]}>
         {this.props.loading ?
           <Loading visible={this.props.loading}/> :
           isEmpty ? null :
           <ScrollTabView
+            initialPage={1}
             style={{flex: 2, marginTop: 20}}
             // tabBarBackgroundColor="#ec5367"
             // tabBarTextStyle={localStyles.tabBarText}

@@ -93,7 +93,6 @@ const HomeRouter = TabNavigator({
 
 const mapStateToProps = state => ({
   isPolling: state.common.isPolling,
-  common: state.common,
   token: state.auth.token
 })
 
@@ -118,25 +117,31 @@ export default class Home extends Component {
         // this._messagePolling()
       } catch (err) {
         Alert.alert('消息轮训错误', err)
+        console.log(err)
         setTimeout(this._messagePolling, 1000)
         // this._messagePolling()
       }
     }
   }
   componentWillMount() {
-    console.log(this.props.common)
+    // console.log(this.props.common)
     this.props.dispatch(SetCommonData('isPolling', true))
-    console.log(this.props.common)
+    // console.log(this.props.common)
   }
   componentDidMount() {
-    console.log('是否轮训？？？？', this.props.isPolling)
-    console.log(this.props.common)
+    // console.log('是否DidMount轮训？？？？', this.props.isPolling)
+    this._messagePolling()
+  }
+  componentWillReceiveProps(nextProps) {
+    // console.log('是否WillReceiveProps轮训？？？？', nextProps.isPolling)
+    // console.log(nextProps)
     this._messagePolling()
   }
   componentWillUnmount() {
     this.setState({isPolling: false})
   }
   render() {
+    // console.log(this.props.navigation.state.routeName)
     return (
       <HomeRouter/>
     )

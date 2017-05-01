@@ -114,9 +114,8 @@ export const CreateRoom = data => (dispatch, getState) => (
 )
 
 export const MessagePolling = (dispatch, getState) => (
-  actionHandle(() => {
-    console.log('auth token: ', getState().auth.token)
-    return tokenRequestHandle(api.messagePolling)(getState).then(async res => {
+  actionHandle(() => (
+    tokenRequestHandle(api.messagePolling)(getState).then(async res => {
       if (res.status !== 200) throw { message: res }
       try {
         const data = await res.json()
@@ -125,7 +124,7 @@ export const MessagePolling = (dispatch, getState) => (
       } catch (err) {
       }
     })
-  })
+  ))
 )
 
 export const UploadCover = data => roomId => (dispatch, getState) => (

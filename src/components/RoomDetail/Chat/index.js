@@ -7,6 +7,40 @@ import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 import InvertibleScrollView from 'react-native-invertible-scroll-view'
+// import PushNotification from 'react-native-push-notification'
+// PushNotification.configure({
+//   // (optional) Called when Token is generated (iOS and Android)
+//   onRegister: token => {
+//     console.log( 'TOKEN:', token );
+//   },
+//
+//   // (required) Called when a remote or local notification is opened or received
+//   onNotification: notification => {
+//     console.log( 'NOTIFICATION:', notification );
+//   },
+//
+//   // ANDROID ONLY: GCM Sender ID (optional - not required for local notifications, but is need to receive remote push notifications)
+//   senderID: "YOUR GCM SENDER ID",
+//
+//   // IOS ONLY (optional): default: all - Permissions to register.
+//   permissions: {
+//     alert: true,
+//     badge: true,
+//     sound: true
+//   },
+//
+//   // Should the initial notification be popped automatically
+//   // default: true
+//   popInitialNotification: true,
+//
+//   /**
+//    * (optional) default: true
+//    * - Specified if permissions (ios) and token (android and ios) will requested or not,
+//    * - if not, you must call PushNotificationsHandler.requestPermissions() later
+//    */
+//   requestPermissions: true,
+// })
+
 
 import ChatItem from './ChatItem'
 
@@ -27,27 +61,24 @@ export default class Chat extends Component {
       ds: ds.cloneWithRows(this.props.messages, this.props.messages.map((row, index) => index).reverse())
     }
   }
+  _updateNewMessages = messages => {
+    this.setState({
+      ds: this.state.ds.cloneWithRows(
+        messages,
+        messages.map((row, index) => index).reverse()
+      )
+    })
+  }
+
   _sendMessage = async () => {
     if (this.state.text) {
       this.setState({text: ''})
       await this.props.dispatch(SendMessage({text: this.state.text})(this.props.roomId))
-      console.log('set前', this.state.ds)
-      this.setState({
-        ds: this.state.ds.cloneWithRows(
-          this.props.messages,
-          this.props.messages.map((row, index) => index).reverse()
-        )
-      })
-      console.log('set后', this.state.ds)
+      this._updateNewMessages(this.props.messages)
     }
   }
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      ds: this.state.ds.cloneWithRows(
-        nextProps.messages,
-        nextProps.messages.map((row, index) => index).reverse()
-      )
-    })
+    this._updateNewMessages(nextProps.messages)
   }
   render() {
     let _listView = ListView
