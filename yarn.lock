@@ -2996,6 +2996,10 @@ react-native-i18n@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/react-native-i18n/download/react-native-i18n-1.0.0.tgz#0c407d9ebb846aae1aa5e05de6503008553f02fd"
 
+react-native-image-crop-picker@^0.13.0:
+  version "0.13.0"
+  resolved "http://registry.npm.taobao.org/react-native-image-crop-picker/download/react-native-image-crop-picker-0.13.0.tgz#946b31d2e50c8b658fd2e2488c3f2875b5896a66"
+
 react-native-image-picker@latest:
   version "0.26.3"
   resolved "http://registry.npm.taobao.org/react-native-image-picker/download/react-native-image-picker-0.26.3.tgz#0ad2eede49501a7046d8046a73813696539c3dcd"

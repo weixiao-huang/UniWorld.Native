@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 
 import Picker from 'react-native-picker'
 import ImagePicker from 'react-native-image-picker'
+import ImageCropPicker from 'react-native-image-crop-picker'
 import Icon from 'react-native-vector-icons/Entypo'
 
 import I18n from 'react-native-i18n'
@@ -48,6 +49,18 @@ export default class SecondStep extends Component {
       }
     })
     Picker.show()
+  }
+
+  _showCropPicker = () => {
+    ImageCropPicker.openPicker({
+      width: 400,
+      height: 300,
+      cropping: true
+    }).then(image => {
+      console.log(image);
+    }, err => {
+      console.log('取消')
+    })
   }
 
   _showUpload = () => {
@@ -137,7 +150,7 @@ export default class SecondStep extends Component {
                     <View style={[styles.fullFlexWidth, localStyles.cover]}>
                       <Text style={{color: '#c7c7c7'}}>{I18n.t('NewRoom.input.second.Cover.placeholder')}</Text>
                       <ActivityIndicator animating={this.state.isUploading}/>
-                      <TouchableOpacity onPress={this._showUpload}>
+                      <TouchableOpacity onPress={this._showCropPicker}>
                         {/*<Image source={this.state.cover ? this.state.cover : ''} style={[localStyles.cover__image]}>*/}
                         <Icon name="camera" size={20}/>
                         {/*</Image>*/}

@@ -38,7 +38,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Just for setting avatar or room cover</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Find people near you</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>For chatting with others</string>
 	<key>NSPhotoLibraryUsageDescription</key>
