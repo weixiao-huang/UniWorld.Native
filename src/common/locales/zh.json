@@ -9,6 +9,14 @@
     "visitor": "游客登录",
     "signup": "注册"
   },
+  "SignUp":{
+    "username": "手机号",
+    "password": "密码",
+    "login": "登录",
+    "visitor": "游客登录",
+    "signup": "注册",
+    "email":"邮箱"
+  },
   "Actions": {
     "loginError": "用户名或密码错误",
     "statusError": "状态码错误"
