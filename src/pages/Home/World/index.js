@@ -20,10 +20,10 @@ export default class World extends Component {
     return (
       <View style={[styles.flex1, localStyles.container]}>
         <ScrollTabView
-          style={{flex: 2}}
-          // tabBarBackgroundColor="#ec5367"
-          // tabBarTextStyle={localStyles.tabBarText}
-          // tabBarUnderlineStyle={localStyles.tabBarUnderline}
+          style={localStyles.tabStyle}
+          tabBarBackgroundColor="#ec5367"
+          tabBarTextStyle={localStyles.tabBarText}
+          tabBarUnderlineStyle={localStyles.tabBarUnderline}
         >
           <Square tabLabel={I18n.t('World.Square.label')}/>
           <Recommend tabLabel={I18n.t('World.Recommend.label')}/>
@@ -37,11 +37,17 @@ export default class World extends Component {
 const localStyles = StyleSheet.create({
   container: {
     paddingTop: 20,
+    backgroundColor: '#ec5367'
+  },
+  tabStyle: {
+    flex:2,
   },
   tabBarUnderline: {
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    height:1.5,
   },
   tabBarText:{
+    // paddingTop:20,
     color: 'white'
   }
 })

@@ -7,16 +7,24 @@ import { connect } from 'react-redux'
 import { addNavigationHelpers, StackNavigator, NavigationActions } from 'react-navigation'
 
 import Login from '../pages/Login'
+import SignUp from '../pages/SignUp'
 import Home from '../pages/Home'
 import RoomInfo from '../components/RoomInfo'
 import RoomDetail from '../components/RoomDetail'
 import User from '../components/User'
+
 
 const AppRouteConfigs = {
   Login: {
     screen: Login,
     navigationOptions: {
       title: 'Login'
+    }
+  },
+  SignUp: {
+    screen: SignUp,
+    navigationOptions: {
+      title: 'SignUp'
     }
   },
   Home: {

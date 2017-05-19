@@ -45,3 +45,5 @@ export const GET_PARTICIPANTS = 'GET_PARTICIPANTS'
 
 export const MARK_ROOM = 'MARK_ROOM'
 export const UNMARK_ROOM = 'UNMARK_ROOM'
+
+export const SIGN_UP = 'SIGN_UP'

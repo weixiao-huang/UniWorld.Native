@@ -20,6 +20,7 @@ const inputStyles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
+    resizeMode: 'contain',
     width: iconSize,
     height: iconSize,
     margin: parseInt((inputHeight - iconSize) / 2),

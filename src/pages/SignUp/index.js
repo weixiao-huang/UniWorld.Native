@@ -30,6 +30,7 @@ export default class SignUp extends Component {
       username: '',
       password: '',
       email:'',
+      passwordCheck:''
     }
   }
 
@@ -38,49 +39,59 @@ export default class SignUp extends Component {
   }
 
   signup = async () => {
-
   }
+
+  login = async () => {
+     this.props.dispatch(GoToLogin)
+  }
+
+  
 
   render () {
     return (
       <View style={{flex: 1}}>
         <Loading visible={this.props.loading}/>
-        <BackgroundImage bgUrl={require('../../assets/background.jpg')}>
+        <BackgroundImage bgUrl={require('../../assets/image/background.jpg')}>
           <View style={loginStyles.container}>
             <Image
               source={require('../../assets/Logo.png')}
               style={loginStyles.logo}
             />
             <Input
-              placeholder={I18n.t('Login.username')}
+              placeholder={I18n.t('SignUp.username')}
               icon={require('../../assets/icon/UserIcon.png')}
               onChangeText={text => this.setState({username: text})}
               keyboardType="numeric"
             />
             <Input
-              placeholder={I18n.t('Login.password')}
+              placeholder={I18n.t('SignUp.email')}
               icon={require('../../assets/icon/email.png')}
               onChangeText={text => this.setState({password: text})}
-              secureTextEntry={true}
             />
             <Input
-              placeholder={I18n.t('Login.password')}
+              placeholder={I18n.t('SignUp.password')}
               icon={require('../../assets/icon/PasswordIcon.png')}
               onChangeText={text => this.setState({password: text})}
               secureTextEntry={true}
             />
+            <Input
+              placeholder={I18n.t('SignUp.passwordAgain')}
+              icon={require('../../assets/icon/PasswordIcon.png')}
+              onChangeText={text => this.setState({passwordCheck: text})}
+              secureTextEntry={true}
+            />
             <LoginButton
-              title={I18n.t('Login.login')}
-              onPress={this.login}
+              title={I18n.t('SignUp.signUp')}
+              onPress={this.signUp}
               inlineStyle={loginStyles.loginButton}
             />
             <View style={{flexDirection: 'row'}}>
               <View style={loginStyles.otherView}>
                 <TouchableOpacity style={loginStyles.otherButton} onPress={this.visit}>
-                  <Text style={{color: 'white'}}>{I18n.t('Login.visitor')}</Text>
+                  <Text style={{color: 'white'}}>{I18n.t('SignUp.findPassword')}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={loginStyles.otherButton} onPress={this.signup}>
-                  <Text style={{color: 'white'}}>{I18n.t('Login.signup')}</Text>
+                <TouchableOpacity style={loginStyles.otherButton} onPress={this.login}>
+                  <Text style={{color: 'white'}}>{I18n.t('SignUp.login')}</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -94,8 +105,8 @@ export default class SignUp extends Component {
 
 const loginStyles = StyleSheet.create({
   loginButton: {
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 15,
+    marginBottom: 15,
     padding: 15,
   },
   otherButton: {
@@ -116,7 +127,7 @@ const loginStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 10,
-    marginLeft: 50,
-    marginRight: 50,
+    marginLeft: 40,
+    marginRight: 40,
   }
 })

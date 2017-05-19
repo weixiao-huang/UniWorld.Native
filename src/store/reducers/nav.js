@@ -41,6 +41,11 @@ export default (state, action) => {
         routeName: 'RoomDetail',
         params: { id: action.id }
       }), state)
+    case types.SIGN_UP:
+      console.log('SIGN_UP')
+      return AppNavigator.router.getStateForAction(NavigationActions.navigate({
+        routeName: 'SignUp'
+      }), state)
     default:
       return AppNavigator.router.getStateForAction(action, state)
   }

@@ -15,7 +15,8 @@
     "login": "登录",
     "visitor": "游客登录",
     "signup": "注册",
-    "email":"邮箱"
+    "email":"邮箱",
+    "findPassword":"找回密码"
   },
   "Actions": {
     "loginError": "用户名或密码错误",

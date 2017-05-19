@@ -12,7 +12,7 @@ import {
   FetchLatestRoomList, GoToHome, FetchUserInfo, SetCommonData, FetchInitialLabels, GoToSignUp
 } from '../../store/actions'
 
-import Input from './Input'
+import Input from './Login/Input'
 import LoginButton from '../../components/StyleButton'
 import BackgroundImage from '../../components/BackgroundImage'
 
@@ -28,30 +28,19 @@ export default class Login extends Component {
     super(props)
     this.state = {
       username: '',
-      password: '',
+      email: '',
     }
   }
 
   login = async () => {
-    this.props.dispatch(SetCommonData('loading', true))
-    await this.props.dispatch(UserLogin(this.state))
-    await this.props.dispatch(FetchRoomList)
-    await this.props.dispatch(FetchRecommendRoomList)
-    await this.props.dispatch(FetchLatestRoomList)
-    await this.props.dispatch(FetchWorldRoomList)
-    await this.props.dispatch(FetchUserInfo)
-    await this.props.dispatch(FetchInitialLabels)
-    this.props.dispatch(SetCommonData('loading', false))
-    this.props.dispatch(SetCommonData('isPolling', true))
-    this.props.dispatch(GoToHome)
   }
 
   visit = async () => {
     // this.props.dispatch(Visit)
   }
 
-  signup = () => {
-    this.props.dispatch(GoToSignUp)
+  login = () => {
+    //
   }
 
   render () {
@@ -65,29 +54,29 @@ export default class Login extends Component {
               style={loginStyles.logo}
             />
             <Input
-              placeholder={I18n.t('Login.username')}
+              placeholder={I18n.t('FindPassoword.username')}
               icon={require('../../assets/icon/UserIcon.png')}
               onChangeText={text => this.setState({username: text})}
               keyboardType="numeric"
             />
             <Input
-              placeholder={I18n.t('Login.password')}
-              icon={require('../../assets/icon/PasswordIcon.png')}
+              placeholder={I18n.t('FindPassoword.password')}
+              icon={require('../../assets/icon/email.png')}
               onChangeText={text => this.setState({password: text})}
               secureTextEntry={true}
             />
             <LoginButton
-              title={I18n.t('Login.login')}
+              title={I18n.t('FindPassoword.login')}
               onPress={this.login}
               inlineStyle={loginStyles.loginButton}
             />
             <View style={{flexDirection: 'row'}}>
               <View style={loginStyles.otherView}>
                 <TouchableOpacity style={loginStyles.otherButton} onPress={this.visit}>
-                  <Text style={{color: 'white'}}>{I18n.t('Login.visitor')}</Text>
+                  <Text style={{color: 'white'}}>{I18n.t('FindPassoword.visitor')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={loginStyles.otherButton} onPress={this.signup}>
-                  <Text style={{color: 'white'}}>{I18n.t('Login.signup')}</Text>
+                  <Text style={{color: 'white'}}>{I18n.t('FindPassoword.login')}</Text>
                 </TouchableOpacity>
               </View>
             </View>

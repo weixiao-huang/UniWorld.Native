@@ -81,6 +81,10 @@ export const GoToUser = id => dispatch => (
   dispatch({type: types.GO_TO_USER, id})
 )
 
+export const GoToSignUp = dispatch => (
+  dispatch({type: types.SIGN_UP})
+)
+
 export const SetEditStatus = isEditing => dispatch => (
   dispatch({type: types.SET_EDIT_STATUS, isEditing})
 )

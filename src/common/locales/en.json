@@ -20,8 +20,28 @@
     "username": "Tel",
     "password": "Password",
     "login": "Login",
-    "visitor": "visitor",
+    "visitor": "Visitor",
     "signup": "Sign Up"
+  },
+   "SignUp":{
+    "username": "Tel",
+    "password": "Password",
+    "login": "Login",
+    "visitor": "Visitor",
+    "signUp": "Sign Up",
+    "email":"Email",
+    "findPassword":"Forget password",
+    "passwordAgain":"Please input your password again",
+    "emailFail":"Please enter an email that ends with '.edu.cn'"
+  },
+   "FindPassword":{
+    "username": "Tel",
+    "login": "Login",
+    "visitor": "Visitor",
+    "signUp": "Sign Up",
+    "email":"Email",
+    "findPassword":"Find password",
+    "fail":"Sorry, your email doesn't match your tell number."
   },
   "Room": {
     "follow": "Follow",

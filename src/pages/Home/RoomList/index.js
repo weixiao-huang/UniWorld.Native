@@ -26,9 +26,9 @@ export default class RoomList extends Component {
       <View style={[styles.flex1, localStyles.container]}>
         <ScrollTabView
           style={{flex: 2}}
-          // tabBarBackgroundColor="#ec5367"
-          // tabBarTextStyle={localStyles.tabBarText}
-          // tabBarUnderlineStyle={localStyles.tabBarUnderline}
+          tabBarBackgroundColor="#ec5367"
+          tabBarTextStyle={localStyles.tabBarText}
+          tabBarUnderlineStyle={localStyles.tabBarUnderline}
         >
           <TabContainer title={I18n.t('RoomList.Star.title')} tabLabel={I18n.t('RoomList.Star.label')} roomList={roomList.marked}/>
           <TabContainer title={I18n.t('RoomList.JoinIn.title')} tabLabel={I18n.t('RoomList.JoinIn.label')} roomList={roomList.joined}/>
@@ -42,11 +42,15 @@ export default class RoomList extends Component {
 
 const localStyles = StyleSheet.create({
   container: {
-    paddingTop: 20,
-    backgroundColor: 'white'
+    paddingTop:20,
+    backgroundColor: '#ec5367'
+  },
+   tabStyle: {
+    flex:2,
   },
   tabBarUnderline: {
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    height:1.5,
   },
   tabBarText:{
     color: 'white'
