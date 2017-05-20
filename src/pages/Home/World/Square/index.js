@@ -9,11 +9,19 @@ import { connect } from 'react-redux'
 
 import WorldSwiper from './WorldSwiper'
 import Content from './Content'
+import ChannelList from './Channels'
 
-import { FetchLatestRoomList, FetchWorldRoomList } from '../../../../store/actions'
+import { FetchLatestRoomList, FetchWorldRoomList, FetchChannels, FetchTopRoomList, FetchPosters } from '../../../../store/actions'
 import api from '../../../../api'
 
-@connect(state=>({world: state.room.world, token: state.auth.token}), dispatch => ({dispatch}))
+const mapStateToProps = state => ({
+  world: state.room.world,
+  token: state.auth.token,
+  channels: state.room.channels,
+  posters: state.room.posters
+})
+
+@connect(mapStateToProps, dispatch => ({dispatch}))
 export default class Square extends Component {
   constructor(props) {
     super(props)
@@ -25,8 +33,16 @@ export default class Square extends Component {
     }
   }
 
+  async componentWillMount() {
+    await this.props.dispatch(FetchChannels)
+    await this.props.dispatch(FetchTopRoomList)
+    await this.props.dispatch(FetchPosters)
+
+  }
+
   _onRefresh = async () => {
     this.setState({refreshing: true})
+    await this.props.dispatch(FetchTopRoomList)
     await this.props.dispatch(FetchLatestRoomList)
     await this.props.dispatch(FetchWorldRoomList)
     this.setState({
@@ -67,7 +83,8 @@ export default class Square extends Component {
           />
         }
       >
-        <WorldSwiper/>
+        <WorldSwiper topPosters={this.props.posters.tops} />
+        <ChannelList channels={this.props.channels}/>
         <Content
           fetchNextRoomList={this._fetchNextRoomList}
           next={this.state.next}

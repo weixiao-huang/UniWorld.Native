@@ -152,6 +152,9 @@ export default class RoomInfo extends Component {
 
 
 const localStyles = StyleSheet.create({
+  container:{
+    paddingTop:20
+  },
   star: {
     flex: 1,
     backgroundColor: '#3555b6'
@@ -168,6 +171,6 @@ const localStyles = StyleSheet.create({
   footer__text: {
     padding: 16,
     color: 'white',
-    fontSize: 17
+    fontSize: 17,
   }
 })

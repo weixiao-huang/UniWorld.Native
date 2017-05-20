@@ -33,6 +33,9 @@ export const GET_USER_INFO = 'GET_USER_INFO'
 export const GET_LATEST_ROOM_LIST = 'GET_LATEST_ROOM_LIST'
 export const GET_WORLD_ROOM_LIST = 'GET_WORLD_ROOM_LIST'
 export const GET_RECOMMEND_ROOM_LIST = 'GET_RECOMMEND_ROOM_LIST'
+export const GET_TOP_ROOM_LIST = 'GET_TOP_ROOM_LIST'
+export const GET_POSTERS = 'GET_POSTERS'
+
 
 export const GET_INITIAL_LABELS = 'GET_INITIAL_LABELS'
 
@@ -47,3 +50,5 @@ export const MARK_ROOM = 'MARK_ROOM'
 export const UNMARK_ROOM = 'UNMARK_ROOM'
 
 export const SIGN_UP = 'SIGN_UP'
+
+export const SET_CHANNELS = 'SET_CHANNELS'

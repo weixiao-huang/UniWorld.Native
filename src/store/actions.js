@@ -37,12 +37,24 @@ export const FetchLatestRoomList = (dispatch, getState) => (
   composeHandle(api.fetchLatest)(types.GET_LATEST_ROOM_LIST, 'latest')(dispatch, getState)
 )
 
+export const FetchChannels = (dispatch, getState) => (
+  composeHandle(api.fetchChannels)(types.SET_CHANNELS, 'channels')(dispatch, getState)
+)
+
 export const FetchRecommendRoomList = (dispatch, getState) => (
   composeHandle(api.fetchRecommend)(types.GET_RECOMMEND_ROOM_LIST, 'recommend')(dispatch, getState)
 )
 
 export const FetchWorldRoomList = (dispatch, getState) => (
   composeHandle(api.fetchWorld)(types.GET_WORLD_ROOM_LIST, 'world')(dispatch, getState)
+)
+
+export const FetchTopRoomList = (dispatch, getState) => (
+  composeHandle(api.fetchTop)(types.GET_TOP_ROOM_LIST, 'top')(dispatch, getState)
+)
+
+export const FetchPosters = (dispatch, getState) => (
+  composeHandle(api.fetchPosters)(types.GET_POSTERS, 'posters')(dispatch, getState)
 )
 
 export const FetchInitialLabels = (dispatch, getState) => (

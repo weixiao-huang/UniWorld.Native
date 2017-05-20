@@ -116,7 +116,8 @@
       "recommend": "Recommend",
       "latest": "Latest",
       "world": "World",
-      "loadMore": "Click for loading more..."
+      "loadMore": "Click for loading more...",
+      "top": "Top"
     },
     "Recommend": {
       "label": "Discover"

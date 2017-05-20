@@ -67,10 +67,25 @@ export default {
   )(token) : getWithoutToken(
     `/plaza/latest/`
   ),
+  fetchChannels: token => token ? getByToken(
+    `/plaza/channels/`
+  )(token) : getWithoutToken(
+    `/plaza/channels/`
+  ),
   fetchWorld: token => token ? getByToken(
     `/plaza/random/`
   )(token) : getWithoutToken(
     `/plaza/random/`
+  ),
+  fetchTop: token => token ? getByToken(
+    `/plaza/top/`
+  )(token) : getWithoutToken(
+    `/plaza/top/`
+  ),
+  fetchPosters: token => token ? getByToken(
+    `/plaza/posters/`
+  )(token) : getWithoutToken(
+    `/plaza/posters/`
   ),
   fetchRoomInfo: id => token => token ? getByToken(
     `/room/${id}/`

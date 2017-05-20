@@ -12,6 +12,7 @@ import Button from '../../../../components/StyleButton'
 const mapStateToProps = state => ({
   latest: state.room.latest,
   world: state.room.world,
+  top: state.room.top
 })
 
 @connect(mapStateToProps)
@@ -29,8 +30,9 @@ export default class Content extends Component {
     return (
       <View>
         <View>
-          <RoomWrap title={I18n.t('World.Square.latest')} roomList={this.props.latest.results}/>
-          <RoomWrap title={I18n.t('World.Square.world')} roomList={this.props.world.results}/>
+          <RoomWrap title={I18n.t('World.Square.top')} titleLabel="TOP" roomList={this.props.top}/>
+          <RoomWrap title={I18n.t('World.Square.latest')} titleLabel="NEW" roomList={this.props.latest.results}/>
+          <RoomWrap title={I18n.t('World.Square.world')} titleLabel="HOT" roomList={this.props.world.results}/>
           {this.props.newRoomList.map((item, index) =>
             <RoomWrap key={index} title={item.title} roomList={item.content}/>)
           }

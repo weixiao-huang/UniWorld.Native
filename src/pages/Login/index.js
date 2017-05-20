@@ -9,7 +9,8 @@ import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
 import {
   Visit, UserLogin, FetchRoomList, FetchWorldRoomList, FetchRecommendRoomList,
-  FetchLatestRoomList, GoToHome, FetchUserInfo, SetCommonData, FetchInitialLabels, GoToSignUp
+  FetchLatestRoomList, GoToHome, FetchUserInfo, SetCommonData, FetchInitialLabels,
+  GoToSignUp, FetchChannels
 } from '../../store/actions'
 
 import Input from './Input'

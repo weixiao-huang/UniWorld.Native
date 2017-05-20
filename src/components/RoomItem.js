@@ -44,7 +44,6 @@ export default class RoomItem extends Component {
         start_min = start_min.toString()
       }
     }
-    console.log(today)
     if (timeRange[1] != null) {
       var end = new Date(timeRange[1])
       var end_month = (end.getMonth() + 1).toString()
@@ -78,7 +77,7 @@ export default class RoomItem extends Component {
       return [
       `${showTime}`,
     ]
-  
+
     }
     else if (timeRange[0] == null && timeRange[1] == null) {
       showTime = '待定'
@@ -100,7 +99,12 @@ export default class RoomItem extends Component {
     // const timeRange = this._transferTimeFormat(this.props.timeRange)
     const showTime = this._transferTimeFormat(this.props.timeRange)
     console.log(this.props)
-    const length = 20
+    console.log(this.props.title.length)
+    const length = 18
+    let showPeople = this.props.max_participants ? this.props.participant_count + '/' + this.props.max_participants : '不限'
+    if (showPeople.length>5)
+      showPeople = this.props.participant_count + '/..'
+
     return (
       <View style={[styles.fullFlexWidth, localStyles.container]}>
         <View style={[localStyles.cover_wrap]}>
@@ -112,7 +116,7 @@ export default class RoomItem extends Component {
               {/*<View style={[styles.flex1]}>*/}
                 <View style={[localStyles.tag_wrap]}>
                   <Text style={[localStyles.tag]}>
-                    HOT
+                    {this.props.titleLabel?this.props.titleLabel : 'HOT'}
                   </Text>
                 </View>
                 <Text style={[localStyles.title]}>
@@ -135,7 +139,7 @@ export default class RoomItem extends Component {
               <View style={[localStyles.people]}>
                 <Text style={[{color: 'white'}]}>
                   <Image style={[localStyles.icon]} source={require('../assets/icon/participants.png')}/>
-                  <Text> {this.props.max_participants ? this.props.participant_count + '/' + this.props.max_participants : '不限'}</Text>
+                  <Text> {showPeople}</Text>
                 </Text>
               </View>
             </View>
@@ -188,7 +192,7 @@ const localStyles = StyleSheet.create({
     borderRadius: 5,
     paddingLeft: 5,
     paddingRight: 5,
-    width:40, 
+    width:45,
   },
   tag: {
     justifyContent: 'center',

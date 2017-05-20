@@ -10,13 +10,31 @@ const initialState = {
   world: [],
   roomList: [],
   roomInfo: {},
+  channels: [],
   questionnaires: [],
   isMarked: false,
-  refreshing: false
+  refreshing: false,
+  top:[],
+  posters:[]
 }
 
 export default (state=initialState, action) => {
   switch (action.type) {
+    case types.GET_POSTERS:
+      return {
+        ...state,
+        posters: action.posters
+      }
+    case types.SET_CHANNELS:
+      return {
+        ...state,
+        channels: action.channels
+      }
+      case types.GET_TOP_ROOM_LIST:
+      return {
+        ...state,
+        top: action.top
+      }
     case types.GET_WORLD_ROOM_LIST:
       return {
         ...state,
