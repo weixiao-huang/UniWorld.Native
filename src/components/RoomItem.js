@@ -98,8 +98,6 @@ export default class RoomItem extends Component {
   render () {
     // const timeRange = this._transferTimeFormat(this.props.timeRange)
     const showTime = this._transferTimeFormat(this.props.timeRange)
-    console.log(this.props)
-    console.log(this.props.title.length)
     const length = 18
     let showPeople = this.props.max_participants ? this.props.participant_count + '/' + this.props.max_participants : '不限'
     if (showPeople.length>5)
@@ -108,7 +106,7 @@ export default class RoomItem extends Component {
     return (
       <View style={[styles.fullFlexWidth, localStyles.container]}>
         <View style={[localStyles.cover_wrap]}>
-          <Image source={{url: this.props.src}} style={[localStyles.cover]}/>
+          <Image source={{uri: this.props.src}} style={[localStyles.cover]}/>
         </View>
         <View style={[localStyles.wrap]}>
           <View style={[styles.flex2, styles.fullFlexWidth, {alignItems: 'flex-start'}]}>
@@ -185,6 +183,7 @@ const localStyles = StyleSheet.create({
   cover: {
     borderRadius: 10,
     width: '100%',
+    height: '100%',
     resizeMode: 'cover'
   },
   tag_wrap: {
