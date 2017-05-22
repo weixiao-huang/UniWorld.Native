@@ -113,7 +113,7 @@ export default class InputArea extends Component {
             onPress={this._showLabelPicker.bind(this)}
           />
         </InputItem>
-        <InputItem title={I18n.t('NewRoom.input.match.title')}>
+        {/*<InputItem title={I18n.t('NewRoom.input.match.title')}>
           <Text style={[styles.flex1, styles.gray, styles.contentFontSize]}>
             {I18n.t('NewRoom.input.match.placeholder')}
           </Text>
@@ -122,7 +122,7 @@ export default class InputArea extends Component {
             onValueChange={is_matchroom => this.props.dispatch(SetNewRoomData({is_matchroom}))}
             value={this.props.newRoom.is_matchroom}
           />
-        </InputItem>
+        </InputItem>*/}
       </View>
     )
   }

@@ -42,7 +42,7 @@ export default class SecondStep extends Component {
   _showPicker = () => {
     const threshold = 30
     Picker.init({
-      pickerData: ['NL'].concat(Object.keys(Array.from(new Array(threshold+1))).slice(2)),
+      pickerData: (Object.keys(Array.from(new Array(threshold+1))).slice(2)),
       pickerTitleText: I18n.t('NewRoom.input.second.max.pickerTitle'),
       onPickerConfirm: max_participants => {
         this.setState({max_participants: parseInt(max_participants[0])})
@@ -202,7 +202,7 @@ export default class SecondStep extends Component {
               <InputItem title={I18n.t('NewRoom.input.second.max.title')}>
                 <TouchableOpacity style={[styles.flex1]} onPress={this._showPicker}>
                   <Text style={[styles.contentFontSize, _.isNumber(this.state.max_participants) || isNaN(this.state.max_participants) ? {color: 'black'} : {color: '#c9c9c9'}]}>
-                    {this.state.max_participants ? this.state.max_participants : I18n.t('NewRoom.input.second.max.placeholder')}
+                    {this.state.max_participants ? this.state.max_participants : 2}
                   </Text>
                 </TouchableOpacity>
               </InputItem>

@@ -14,39 +14,44 @@ import Recommend from './Recommend/index'
 
 import styles from '../../../common/styles'
 
-@connect(...[, dispatch => ({dispatch})])
+@connect(...[, dispatch => ({ dispatch })])
 export default class World extends Component {
   render() {
     return (
       <View style={[styles.flex1, localStyles.container]}>
+        <View style={[localStyles.emptyTop]}></View>
         <ScrollTabView
           style={localStyles.tabStyle}
           tabBarBackgroundColor="#ec5367"
           tabBarTextStyle={localStyles.tabBarText}
           tabBarUnderlineStyle={localStyles.tabBarUnderline}
         >
-          <Square tabLabel={I18n.t('World.Square.label')}/>
-          <Recommend tabLabel={I18n.t('World.Recommend.label')}/>
-          <Search tabLabel={I18n.t('World.Search.label')}/>
+          <Square tabLabel={I18n.t('World.Square.label')} />
+          <Recommend tabLabel={I18n.t('World.Recommend.label')} />
+          <Search tabLabel={I18n.t('World.Search.label')} />
         </ScrollTabView>
       </View>
-    );
+    )
   }
 }
 
 const localStyles = StyleSheet.create({
   container: {
-    paddingTop: 20,
-    backgroundColor: '#ec5367'
+    // paddingTop: 20,
+    backgroundColor: 'white'
+  },
+  emptyTop: {
+    height: 20,
+    backgroundColor: '#ec5367',
   },
   tabStyle: {
-    flex:2,
+    flex: 2,
   },
   tabBarUnderline: {
     backgroundColor: 'white',
-    height:1.5,
+    height: 1.5,
   },
-  tabBarText:{
+  tabBarText: {
     // paddingTop:20,
     color: 'white'
   }
