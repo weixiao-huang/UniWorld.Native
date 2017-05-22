@@ -3,10 +3,11 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import { Image, ScrollView, View, StyleSheet, Dimensions, RefreshControl } from 'react-native'
+import { Image, ScrollView, View, StyleSheet, Dimensions, RefreshControl, Text } from 'react-native'
 import styles from '../../../common/styles'
 import { connect } from 'react-redux'
 import { FetchRoomList } from '../../../store/actions'
+import I18n from 'react-native-i18n'
 
 import RoomWrap from '../../../components/RoomWrap'
 
@@ -49,6 +50,7 @@ export default class TabContainer extends Component {
             />
           </View>
         }
+      <Text style={[localStyles.historyRecord]} onClick={this._showHistory}>{I18n.t('RoomList.historyRecord')}</Text>
       </ScrollView>
     )
   }

@@ -12,7 +12,8 @@ const getByToken = url => token => fetch(`${server}${url}`, {
 const getWithoutToken = url => fetch(`${server}${url}`)
 
 const putByToken = url => data => token => fetch(`${server}${url}`, {
-  method: 'PUT',
+  method: 'PUT',joined_page:app.globalData.server + '/profile/joined_history/',
+    hosted_page:app.globalData.server + '/profile/hosted_history/',
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',

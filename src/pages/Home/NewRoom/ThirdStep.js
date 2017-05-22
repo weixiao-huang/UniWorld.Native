@@ -131,7 +131,7 @@ export default class ThirdStep extends Component {
             <Text style={[{color: '#3555b6'}, localStyles.wrap__title__text]}>{I18n.t('NewRoom.input.third.preview')}</Text>
           </View>
           <View style={[localStyles.wrap__content]}>
-            <RoomItem src={this.props.newRoom.cover ? this.props.newRoom.cover : 'https://api.univord.com/static/image/default_avatar.jpg'} title={this.props.newRoom.title} place={this.props.newRoom.location_string} timeRange={[this.props.newRoom.date_time_start, this.props.newRoom.date_time_end]} max_participants={isNaN(max) ? null : max}/>
+            <RoomItem src={this.props.newRoom.cover ? this.props.newRoom.cover : 'https://api.theuniworld.net/static/image/default_avatar.jpg'} title={this.props.newRoom.title} place={this.props.newRoom.location_string} timeRange={[this.props.newRoom.date_time_start, this.props.newRoom.date_time_end]} max_participants={isNaN(max) ? null : max}/>
           </View>
         </View>
         <View style={[localStyles.wrap]}>

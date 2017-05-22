@@ -127,6 +127,9 @@
       "button": "Search"
     }
   },
+  "RoomList":{
+    "historyRecord":"Show history record"
+  },
   "NewRoom": {
     "label": "New Room",
     "button": "Start it",
