@@ -13,7 +13,7 @@ const labelWidth = 12
 const paddingLeft = labelWidth / 2
 const marginLeft = -paddingLeft
 const textPadding = paddingLeft / 2
-const textColor = '#fb6b6d'
+const textColor = 'rgba(255,50,50,1)'
 
 export default class Label extends Component {
   static propTypes = {

@@ -18,7 +18,7 @@ export default class LabelBox extends Component {
   render() {
     return (
       <View style={[localStyles.labelsWrap]}>
-        <InputItem inlineStyle={{borderBottomWidth: 0, paddingBottom: 5}} title={I18n.t('Room.Info.label')}>
+        <InputItem inlineStyle={{borderBottomWidth: 0, paddingBottom: 5}} title={I18n.t('Room.Info.label')} titleColor='#3555b6'>
           <View style={[styles.fullFlexWidth, styles.flexWrap]}>
             {this.props.labels.map((item, index) => (
               <Label key={index} title={item.name_en} close={false}/>

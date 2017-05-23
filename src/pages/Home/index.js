@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { Image, Alert } from 'react-native'
+import { Image, Alert, View, Text } from 'react-native'
 import { TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
@@ -24,10 +24,10 @@ const HomeRouter = TabNavigator({
       tabBar: {
         label: I18n.t('World.label', { defaultValue: 'World' }),
         // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-        icon: ({tintColor}) => (
+        icon: ({ tintColor }) => (
           <Image
             source={require('../../assets/icon/plazaR.png')}
-            style={[styles.icon, {tintColor: tintColor}]}
+            style={[styles.icon, { tintColor: tintColor }]}
           />
         ),
       }
@@ -41,7 +41,7 @@ const HomeRouter = TabNavigator({
         icon: ({ tintColor }) => (
           <Image
             source={require('../../assets/icon/newR.png')}
-            style={[styles.icon, {tintColor: tintColor}]}
+            style={[styles.icon, { tintColor: tintColor }]}
           />
         ),
       },
@@ -53,10 +53,15 @@ const HomeRouter = TabNavigator({
       tabBar: {
         label: I18n.t('RoomList.label', { defaultValue: 'List' }),
         icon: ({ tintColor }) => (
-          <Image
-            source={require('../../assets/icon/myRoomR.png')}
-            style={[styles.icon, {tintColor: tintColor}]}
-          />
+          <View>
+            <View style={[localStyles.messagesItem]}>
+            <Text style={[localStyles.messagesText]}>1</Text>
+            </View>
+            <Image
+              source={require('../../assets/icon/myRoomR.png')}
+              style={[styles.icon, { tintColor: tintColor }]}
+            />
+          </View>
         ),
       },
     }
@@ -69,24 +74,24 @@ const HomeRouter = TabNavigator({
         icon: ({ tintColor }) => (
           <Image
             source={require('../../assets/icon/myInfoR.png')}
-            style={[styles.icon, {tintColor: tintColor}]}
+            style={[styles.icon, { tintColor: tintColor }]}
           />
         ),
       },
     }
   },
-  },{
+}, {
     tabBarOptions: {
-        activeTintColor: '#ffffff', // 文字和图片选中颜色
-        inactiveTintColor: '#EC5367', // 文字和图片默认颜色
-        showIcon: true, // android 默认不显示 icon, 需要设置为 true 才会显示
-        indicatorStyle: {height: 0}, // android 中TabBar下面会显示一条线，高度设为 0 后就不显示线了， 不知道还有没有其它方法隐藏？？？
-        style: {
-            backgroundColor: '#3e3974', // TabBar 背景色
-        },
-        labelStyle: {
-            fontSize: 12, // 文字大小
-        },
+      activeTintColor: '#ffffff', // 文字和图片选中颜色
+      inactiveTintColor: '#EC5367', // 文字和图片默认颜色
+      showIcon: true, // android 默认不显示 icon, 需要设置为 true 才会显示
+      indicatorStyle: { height: 0 }, // android 中TabBar下面会显示一条线，高度设为 0 后就不显示线了， 不知道还有没有其它方法隐藏？？？
+      style: {
+        backgroundColor: '#3e3974', // TabBar 背景色
+      },
+      labelStyle: {
+        fontSize: 12, // 文字大小
+      },
     },
   })
 
@@ -95,7 +100,7 @@ const mapStateToProps = state => ({
   token: state.auth.token
 })
 
-@connect(mapStateToProps, dispatch => ({dispatch}))
+@connect(mapStateToProps, dispatch => ({ dispatch }))
 export default class Home extends Component {
   // constructor(props) {
   //   super(props)
@@ -137,12 +142,31 @@ export default class Home extends Component {
     this._messagePolling()
   }
   componentWillUnmount() {
-    this.setState({isPolling: false})
+    this.setState({ isPolling: false })
   }
   render() {
     // console.log(this.props.navigation.state.routeName)
     return (
-      <HomeRouter/>
+      <HomeRouter />
     )
+  }
+}
+
+const localStyles = {
+  messagesText: {
+    fontSize: 12,
+    color: 'white',
+    textAlign:'center',
+  },
+  messagesItem:{
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:'#FEAC4E',
+    left:22,
+    top:-4,
+    width:18,
+    height:18,
+    borderRadius:9,
   }
 }

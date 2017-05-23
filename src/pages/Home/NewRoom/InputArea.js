@@ -96,7 +96,7 @@ export default class InputArea extends Component {
   render () {
     return (
       <View style={{marginTop: 30, marginBottom: 20}}>
-        <InputItem title={I18n.t('NewRoom.input.name.title')}>
+        <InputItem title={I18n.t('NewRoom.input.name.title')} titleWidth={75}>
           <TextInput
             maxLength={50}
             style={[styles.flex1, styles.contentFontSize]}
@@ -106,6 +106,7 @@ export default class InputArea extends Component {
           />
         </InputItem>
         <InputItem
+        titleWidth={75}
           title={I18n.t('NewRoom.input.label.title')}
           inlineStyle={{alignItems: 'flex-start'}}
         >

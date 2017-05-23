@@ -119,6 +119,7 @@ export default class RoomInfo extends Component {
     const isEmpty = Object.keys(this.props.roomInfo).length <= 0
     return (
       <View style={[styles.flex1, localStyles.container]}>
+        <View style={[localStyles.empty]}/>
         <View style={[styles.flex1]}>
           {this.props.loading ?
             <Loading visible={this.props.loading}/> :
@@ -152,15 +153,20 @@ export default class RoomInfo extends Component {
 
 
 const localStyles = StyleSheet.create({
-  container:{
-    paddingTop:20
+  empty:{
+    height: 20,
+    backgroundColor :"#ec5367"
   },
   star: {
-    flex: 1,
+    // flex: 1,
+    height:50,
+    width:100,
     backgroundColor: '#3555b6'
   },
   join: {
-    flex: 2,
+    // flex: 2,
+    height:50,
+    width:275,
     backgroundColor: '#ec5367'
   },
   footer: {
@@ -169,7 +175,6 @@ const localStyles = StyleSheet.create({
     width: '100%'
   },
   footer__text: {
-    padding: 16,
     color: 'white',
     fontSize: 17,
   }

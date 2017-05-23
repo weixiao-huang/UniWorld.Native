@@ -35,7 +35,7 @@ export default class FirstStep extends Component {
   render() {
     return (
       <ScrollView>
-        <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 20}]}>
+        <View style={[styles.fullFlex, styles.grayBackground, {paddingTop: 20}, {paddingBottom:16}]}>
           <Image style={localStyles.cover} source={require('../../../assets/customCreate.png')}/>
           <Text style={localStyles.title}>{I18n.t('NewRoom.title')}</Text>
           <Text style={localStyles.subTitle}>{I18n.t('NewRoom.subTitle1')}</Text>
@@ -43,7 +43,7 @@ export default class FirstStep extends Component {
           <InputArea
             onChangeTitle={title => this.setState({title})}
           />
-          <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20}]}>
+          <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight: 20,marginTop:16}]}>
             <NewRoomButton
               disabled={!this._isCompleted() || this.state.disabled}
               title={I18n.t('NewRoom.button')}
@@ -60,12 +60,13 @@ export default class FirstStep extends Component {
 const localStyles = StyleSheet.create({
   cover: {
     resizeMode: 'contain',
+    marginTop:20,
     height: 130
   },
   subTitle: {
     color: '#95a8e2',
     fontSize: 14,
-    padding: 3,
+    padding: 5,
   },
   title: {
     color: '#3e3974',

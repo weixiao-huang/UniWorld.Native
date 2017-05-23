@@ -127,10 +127,10 @@ export default class SecondStep extends Component {
 
             {/* Name & Labels */}
             <View style={[localStyles.wrap]}>
-              <InputItem title={I18n.t('NewRoom.input.name.title')}>
+              <InputItem title={I18n.t('NewRoom.input.name.title')} titleWidth={75}>
                 <Text style={[styles.flex1]}>{this.state.title}</Text>
               </InputItem>
-              <InputItem title={I18n.t('NewRoom.input.label.title')}>
+              <InputItem title={I18n.t('NewRoom.input.label.title')} titleWidth={75}>
                 <View style={[styles.fullFlexWidth, styles.flexWrap, {alignItems: 'center'}]}>
                   {[...this.state.labels].map((item, index) => {
                     return (
@@ -144,7 +144,7 @@ export default class SecondStep extends Component {
 
             {/* Cover */}
             <View style={[localStyles.wrap]}>
-              <InputItem title={I18n.t('NewRoom.input.second.Cover.title')}>
+              <InputItem title={I18n.t('NewRoom.input.second.Cover.title')} titleWidth={75}>
                 <View style={[styles.fullFlexWidth]}>
                   <View style={[styles.flex1, localStyles.wrap__cover]}>
                     <View style={[styles.fullFlexWidth, localStyles.cover]}>
@@ -174,9 +174,9 @@ export default class SecondStep extends Component {
                 <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoBlue.png')}/>
                 <Text style={[{color: '#3555b6'}, localStyles.wrap__title__text]}>Required</Text>
               </View>
-              <InputItem title={I18n.t('NewRoom.input.second.intro.title')}>
+              <InputItem title={I18n.t('NewRoom.input.second.intro.title')} titleWidth={75}>
                 <TextInput
-                  style={[styles.flex1, styles.contentFontSize]}
+                  style={[styles.flex1, styles.contentFontSize,,localStyles.desInput]}
                   placeholder={I18n.t('NewRoom.input.second.intro.placeholder')}
                   multiline={true}
                   defaultValue={this.state.intro}
@@ -191,7 +191,7 @@ export default class SecondStep extends Component {
                 title={I18n.t('NewRoom.input.second.end.title')}
                 date={this.state.date_time_end}
                 onDateChange={date_time_end => this.setState({date_time_end})}/>
-              <InputItem title={I18n.t('NewRoom.input.second.location.title')}>
+              <InputItem title={I18n.t('NewRoom.input.second.location.title')} titleWidth={75}>
                 <TextInput
                   style={[styles.flex1]}
                   placeholder={I18n.t('NewRoom.input.second.location.placeholder')}
@@ -199,7 +199,7 @@ export default class SecondStep extends Component {
                   onChangeText={location_string => this.setState({location_string})}
                 />
               </InputItem>
-              <InputItem title={I18n.t('NewRoom.input.second.max.title')}>
+              <InputItem title={I18n.t('NewRoom.input.second.max.title')} titleWidth={75}>
                 <TouchableOpacity style={[styles.flex1]} onPress={this._showPicker}>
                   <Text style={[styles.contentFontSize, _.isNumber(this.state.max_participants) || isNaN(this.state.max_participants) ? {color: 'black'} : {color: '#c9c9c9'}]}>
                     {this.state.max_participants ? this.state.max_participants : 2}
@@ -215,7 +215,7 @@ export default class SecondStep extends Component {
                 <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoRed.png')}/>
                 <Text style={[{color: '#ec5367'}, localStyles.wrap__title__text]}>{I18n.t('NewRoom.input.second.options')}</Text>
               </View>
-              <InputItem title={I18n.t('NewRoom.input.second.private.title')}>
+              <InputItem title={I18n.t('NewRoom.input.second.private.title')} titleWidth={75}>
                 <Text style={[styles.flex1, styles.gray, styles.contentFontSize]}>
                   {I18n.t('NewRoom.input.second.private.placeholder')}
                 </Text>
@@ -225,7 +225,7 @@ export default class SecondStep extends Component {
                   value={this.state.isPrivate}
                 />
               </InputItem>
-              <InputItem title={I18n.t('NewRoom.input.second.welcome.title')}>
+              <InputItem title={I18n.t('NewRoom.input.second.welcome.title')} titleWidth={75}>
                 <TextInput
                   style={[styles.flex1]}
                   placeholder={I18n.t('NewRoom.input.second.welcome.placeholder')}
@@ -233,7 +233,7 @@ export default class SecondStep extends Component {
                   onChangeText={welcome => this.setState({welcome})}
                 />
               </InputItem>
-              <InputItem title={I18n.t('NewRoom.input.second.expense.title')}>
+              <InputItem title={I18n.t('NewRoom.input.second.expense.title')} titleWidth={75}>
                 <TextInput
                   style={[styles.flex1]}
                   placeholder={I18n.t('NewRoom.input.second.expense.placeholder')}
@@ -241,7 +241,7 @@ export default class SecondStep extends Component {
                   defaultValue={this.state.expense}
                 />
               </InputItem>
-              <InputItem title={I18n.t('NewRoom.input.second.rewards.title')}>
+              <InputItem title={I18n.t('NewRoom.input.second.rewards.title')} titleWidth={75}>
                 <TextInput
                   style={[styles.flex1]}
                   placeholder={I18n.t('NewRoom.input.second.rewards.placeholder')}
@@ -269,6 +269,9 @@ export default class SecondStep extends Component {
 
 const coverSize = 60
 const localStyles = StyleSheet.create({
+  desInput:{
+    height:150,
+  },
   wrap__cover: {
     marginRight: 20
   },

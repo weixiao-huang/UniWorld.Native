@@ -18,7 +18,7 @@ export default class DateTimePicker extends Component {
   }
   render() {
     return (
-      <InputItem title={this.props.title}>
+      <InputItem title={this.props.title} titleWidth={44}>
         <View style={[styles.fullFlexWidth]}>
           <DatePicker
             style={{width: 200}}

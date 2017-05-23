@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
   token: state.auth.token
 })
 
-@connect(mapStateToProps, dispatch => ({dispatch}))
+@connect(mapStateToProps, dispatch => ({ dispatch }))
 export default class ThirdStep extends Component {
   constructor(props) {
     super(props)
@@ -31,7 +31,7 @@ export default class ThirdStep extends Component {
     }
   }
 
-  _setLabelDict(name='name_ch') {
+  _setLabelDict(name = 'name_ch') {
     let labelDict = {}
     for (let firstLayer of this.props.initialLabels) {
       for (let secondLayer of firstLayer.children) {
@@ -67,7 +67,7 @@ export default class ThirdStep extends Component {
     await this.props.dispatch(CreateRoom(data))
     let formData = new FormData()
     if (newRoom.cover) {
-      formData.append('cover', {uri: newRoom.cover, name: 'cover'}) //, type: 'application/octet-stream'})
+      formData.append('cover', { uri: newRoom.cover, name: 'cover' }) //, type: 'application/octet-stream'})
       this.props.dispatch(UploadCover(formData)(this.props.newRoom.id))
     }
   }
@@ -127,33 +127,33 @@ export default class ThirdStep extends Component {
       <ScrollView style={[localStyles.container]}>
         <View style={[localStyles.wrap]}>
           <View style={[localStyles.wrap__title]}>
-            <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoBlue.png')}/>
-            <Text style={[{color: '#3555b6'}, localStyles.wrap__title__text]}>{I18n.t('NewRoom.input.third.preview')}</Text>
+            <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoBlue.png')} />
+            <Text style={[{ color: '#3555b6' }, localStyles.wrap__title__text]}>{I18n.t('NewRoom.input.third.preview')}</Text>
           </View>
           <View style={[localStyles.wrap__content]}>
-            <RoomItem src={this.props.newRoom.cover ? this.props.newRoom.cover : 'https://api.theuniworld.net/static/image/default_avatar.jpg'} title={this.props.newRoom.title} place={this.props.newRoom.location_string} timeRange={[this.props.newRoom.date_time_start, this.props.newRoom.date_time_end]} max_participants={isNaN(max) ? null : max}/>
+            <RoomItem src={this.props.newRoom.cover ? this.props.newRoom.cover : 'https://api.theuniworld.net/static/image/default_avatar.jpg'} title={this.props.newRoom.title} place={this.props.newRoom.location_string} timeRange={[this.props.newRoom.date_time_start, this.props.newRoom.date_time_end]} max_participants={isNaN(max) ? null : max} />
           </View>
         </View>
         <View style={[localStyles.wrap]}>
           <View style={[localStyles.wrap__title]}>
-            <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoRed.png')}/>
-            <Text style={[{color: '#ec5367'}, localStyles.wrap__title__text]}>{I18n.t('NewRoom.input.third.confirm')}</Text>
+            <Image style={[localStyles.wrap__icon]} source={require('../../../assets/icon/logoRed.png')} />
+            <Text style={[{ color: '#ec5367' }, localStyles.wrap__title__text]}>{I18n.t('NewRoom.input.third.confirm')}</Text>
           </View>
           <View style={[localStyles.wrap__content]}>
             {confirms.map((item, index) => {
               return (
                 item.content
-                ? <InputItem key={index} title={item.title}>
-                    <View style={[styles.fullFlexWidth]}>
-                      <Text>{item.content}</Text>
+                  ? <InputItem key={index} title={item.title} inlineStyle={{justifyContent: 'space-between'}} >
+                    <View style={{paddingRight: 15}}>
+                      <Text style={{textAlign: 'right'}}>{item.content}</Text>
                     </View>
                   </InputItem>
-                : null
+                  : null
               )
             })}
           </View>
 
-          <View style={[styles.fullFlexWidth, {margin: 20}]}>
+          <View style={[styles.fullFlexWidth, { margin: 20 }]}>
             <NewRoomButton
               title={I18n.t('NewRoom.button')}
               onPress={this._confirm}
@@ -209,5 +209,9 @@ const localStyles = StyleSheet.create({
     backgroundColor: '#ec5367',
     borderRadius: 5,
     padding: 15
+  },
+  content: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   }
 })

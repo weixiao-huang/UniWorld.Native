@@ -50,7 +50,7 @@ export default class TabContainer extends Component {
             />
           </View>
         }
-      <Text style={[localStyles.historyRecord]} onClick={this._showHistory}>{I18n.t('RoomList.historyRecord')}</Text>
+      {/*<Text style={[localStyles.historyRecord]} onClick={this._showHistory}>{I18n.t('RoomList.historyRecord')}</Text>*/}
       </ScrollView>
     )
   }

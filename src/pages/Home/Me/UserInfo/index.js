@@ -11,7 +11,7 @@ import Picker from 'react-native-picker'
 
 import Button from '../../../../components/StyleButton'
 import LabelBox from './TextBox'
-import InputItem from '../../../../components/InputItem'
+import { InputItem2 } from '../../../../components/InputItem'
 
 import { UserLogout, GoToLogin, SetUserInfo, EditUserInfo, SetCommonData } from '../../../../store/actions'
 
@@ -132,13 +132,13 @@ export default class UserInfo extends Component {
 
               {/* Block 1 */}
               <View style={[styles.flex1, localStyles.wrap]}>
-                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.phone')}>
+                <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.phone')}>
                   <Text style={[styles.fullFlexWidth]}>{username}</Text>
-                </InputItem>
-                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.name')}>
+                </InputItem2>
+                <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.name')}>
                   <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{name}</Text>
-                </InputItem>
-                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.gender')}>
+                </InputItem2>
+                <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.gender')}>
                   {this.state.isEditing ?
                     <TouchableOpacity onPress={this._showGenderPicker} style={[styles.fullFlexWidth]}>
                       <Text style={[this.state.gender === '' ? {color: '#c7c7cd'} : {color: 'black'}]}>
@@ -149,15 +149,15 @@ export default class UserInfo extends Component {
                       {genderText}
                     </Text>
                   }
-                </InputItem>
+                </InputItem2>
               </View>
 
               {/* Block 2 */}
               <View style={[localStyles.wrap]}>
-                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.school')}>
+                <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.school')}>
                   <Text style={[styles.fullFlexWidth]}>{university.name_ch}</Text>
-                </InputItem>
-                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.department')}>
+                </InputItem2>
+                <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.department')}>
                   {this.state.isEditing ?
                     <TextInput
                       style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}
@@ -166,8 +166,8 @@ export default class UserInfo extends Component {
                     /> :
                     <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{department}</Text>
                   }
-                </InputItem>
-                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.grade')}>
+                </InputItem2>
+                <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.grade')}>
                   {this.state.isEditing ?
                     <TouchableOpacity onPress={this._showYearPicker} style={[styles.fullFlexWidth]}>
                       <Text style={[this.state.year ? {color: 'black'} : {color: '#c7c7cd'}]}>
@@ -178,12 +178,12 @@ export default class UserInfo extends Component {
                       {year}
                     </Text>
                   }
-                </InputItem>
+                </InputItem2>
               </View>
 
               {/* Block 3 */}
               <View style={[localStyles.wrap]}>
-                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.nickname')}>
+                <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.nickname')}>
                   {this.state.isEditing ?
                     <TextInput
                       style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}
@@ -192,8 +192,8 @@ export default class UserInfo extends Component {
                     /> :
                     <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{name}</Text>
                   }
-                </InputItem>
-                <InputItem textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.signature')}>
+                </InputItem2>
+                <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.signature')}>
                   {this.state.isEditing ?
                     <TextInput
                       style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}
@@ -202,7 +202,7 @@ export default class UserInfo extends Component {
                     /> :
                     <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{signature}</Text>
                   }
-                </InputItem>
+                </InputItem2>
               </View>
             </View>
 

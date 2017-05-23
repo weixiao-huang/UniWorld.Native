@@ -70,7 +70,7 @@ export default class Info extends Component {
               item.content ?
                 <View style={[styles.rowFlex, localStyles.infoItem]} key={index}>
                   <Icon style={[localStyles.share__text__icon]} name={item.iconName} size={20}/>
-                  <Text> {item.content}</Text>
+                  <Text style={[localStyles.infoItemText]}>  {item.content}</Text>
                 </View> : null
             ))}
           </View> : null
@@ -92,6 +92,9 @@ export default class Info extends Component {
 }
 
 const localStyles = StyleSheet.create({
+  infoItemText:{
+    fontSize:14,
+  },
   cover: {
     width: Dimensions.get('window').width,
     height: 240

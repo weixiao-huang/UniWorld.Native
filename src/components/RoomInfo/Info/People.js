@@ -66,6 +66,6 @@ const localStyles = StyleSheet.create({
     borderColor: '#ec5367',
   },
   people: {
-    margin: containerGap
+    margin: 20
   },
 })

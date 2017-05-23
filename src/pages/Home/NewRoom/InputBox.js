@@ -26,8 +26,9 @@ export default class InputBox extends Component {
         </View>
         <View>
           {this.props.components.map(component => (
-            <InputItem title={component.title}>
+            <InputItem title={component.title} titleWidth={75}>
               {component.content}
+
             </InputItem>
           ))}
         </View>

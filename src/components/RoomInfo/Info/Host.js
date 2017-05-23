@@ -64,6 +64,7 @@ export default class Host extends Component {
           <View style={[localStyles.buttonBox]}>
             <Follow
               inlineStyle={localStyles.buttonBox__button}
+              textStyle={localStyles.buttonBox__text}
               title={this.state.isFollowed ? I18n.t('Room.unfollow') : I18n.t('Room.follow')}
               onPress={this.state.isFollowed ? this.unfollow : this.follow}/>
           </View>
@@ -77,14 +78,15 @@ const localStyles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 10,
+    // paddingTop: 10,
   },
   wrap: {
-    padding: 10
+    padding: 20
   },
   wrap__title__name: {
     fontSize: 20,
-    marginBottom: 14
+    marginBottom: 14,
+    fontWeight:'bold'
   },
   wrap__title__signature: {
     fontSize: 14,
@@ -97,10 +99,14 @@ const localStyles = StyleSheet.create({
     marginRight: 20
   },
   buttonBox__button: {
-    width: 80,
+    width: 100,
     paddingTop: 12,
     paddingBottom: 12,
     backgroundColor: '#ec5367',
-    borderRadius: 5
+    borderRadius: 5,
+  },
+  buttonBox__text:{
+    fontSize:18,
+    fontWeight:'500'
   }
 })
