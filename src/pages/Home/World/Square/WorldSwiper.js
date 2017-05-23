@@ -25,7 +25,7 @@ export default class WorldSwiper extends Component {
           <Swiper height={height} autoplay={true} autoplayTimeout={3} autoplayDirection={true}>
             {this.props.topPosters && this.props.topPosters.map((cover, index) => {
               return (
-                <Image key={index} source={{uri: cover.cover}} style={{height: height, width: '100%'}}/>
+                <Image key={index} source={{url: cover.cover}} style={{height: height, width: '100%'}}/>
               )
             })}
           </Swiper>

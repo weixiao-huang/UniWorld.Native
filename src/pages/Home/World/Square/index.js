@@ -35,9 +35,9 @@ export default class Square extends Component {
 
   async componentWillMount() {
     console.log('login')
+    await this.props.dispatch(FetchPosters)
     await this.props.dispatch(FetchChannels)
     await this.props.dispatch(FetchTopRoomList)
-    await this.props.dispatch(FetchPosters)
   }
 
   _onRefresh = async () => {

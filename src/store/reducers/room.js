@@ -14,7 +14,6 @@ const initialState = {
   questionnaires: [],
   isMarked: false,
   refreshing: false,
-  top:[],
   posters:[]
 }
 
