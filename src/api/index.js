@@ -33,10 +33,10 @@ const postByToken = url => data => token => fetch(`${server}${url}`, {
 })
 
 export default {
-  fetchDataFromUrl: url => token => fetch(url, {
+  fetchDataFromUrl: url => token => token ? fetch(url, {
     method: 'GET',
     headers: { Authorization: `token ${token}` }
-  }),
+  }) : fetch(url),
   userLogin: data => fetch(`${server}/token/`, {
     method: 'POST',
     headers: {

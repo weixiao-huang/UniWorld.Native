@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
   world: state.room.world,
   token: state.auth.token,
   channels: state.room.channels,
-  posters: state.room.posters
+  posters: state.room.posters,
 })
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
@@ -37,12 +37,12 @@ export default class Square extends Component {
     console.log('login')
     await this.props.dispatch(FetchPosters)
     await this.props.dispatch(FetchChannels)
-    await this.props.dispatch(FetchTopRoomList)
+    if (this.props.token) await this.props.dispatch(FetchTopRoomList)
   }
 
   _onRefresh = async () => {
     this.setState({refreshing: true})
-    await this.props.dispatch(FetchTopRoomList)
+    if (this.props.token) await this.props.dispatch(FetchTopRoomList)
     await this.props.dispatch(FetchLatestRoomList)
     await this.props.dispatch(FetchWorldRoomList)
     this.setState({

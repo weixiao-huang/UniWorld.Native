@@ -43,8 +43,9 @@ const mapStateToProps = state => ({
 export default class InputArea extends Component {
   constructor(props) {
     super(props)
+    console.log('222', this.props.initialLabels)
     this.state = {
-      initialLabels: this._createInitialLabels('name_ch')
+      initialLabels: this.props.initialLabels && this._createInitialLabels('name_ch')
     }
   }
   static propTypes = {
@@ -105,15 +106,17 @@ export default class InputArea extends Component {
             defaultValue={this.props.newRoom.title}
           />
         </InputItem>
-        <InputItem
-        titleWidth={75}
-          title={I18n.t('NewRoom.input.label.title')}
-          inlineStyle={{alignItems: 'flex-start'}}
-        >
-          <LabelItem
-            onPress={this._showLabelPicker.bind(this)}
-          />
-        </InputItem>
+        { this.state.initialLabels &&
+          <InputItem
+            titleWidth={75}
+            title={I18n.t('NewRoom.input.label.title')}
+            inlineStyle={{alignItems: 'flex-start'}}
+          >
+            <LabelItem
+              onPress={this._showLabelPicker.bind(this)}
+            />
+          </InputItem>
+        }
         {/*<InputItem title={I18n.t('NewRoom.input.match.title')}>
           <Text style={[styles.flex1, styles.gray, styles.contentFontSize]}>
             {I18n.t('NewRoom.input.match.placeholder')}

@@ -5,16 +5,16 @@
 import * as types from '../types'
 
 const initialState = {
-  recommend: [],
-  latest: [],
-  world: [],
-  roomList: [],
-  roomInfo: {},
-  channels: [],
-  questionnaires: [],
+  recommend: null,
+  latest: null,
+  world: null,
+  roomList: null,
+  roomInfo: null,
+  channels: null,
+  questionnaires: null,
   isMarked: false,
   refreshing: false,
-  posters:[]
+  posters: null
 }
 
 export default (state=initialState, action) => {

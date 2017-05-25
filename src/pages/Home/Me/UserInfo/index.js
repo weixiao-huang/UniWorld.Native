@@ -24,14 +24,13 @@ const mapStateToProps = state => ({
 export default class UserInfo extends Component {
   constructor(props) {
     super(props)
-    const { name, department, signature } = this.props.userInfo
     this.state = {
       isEditing: false,
-      name,
+      name: this.props.userInfo && this.props.userInfo.name,
       gender: '',
-      department,
+      department: this.props.userInfo && this.props.userInfo.department,
       year: '',
-      signature
+      signature: this.props.userInfo && this.props.userInfo.signature
     }
   }
   edit = () => {
@@ -78,7 +77,8 @@ export default class UserInfo extends Component {
   }
 
   _showGenderPicker = () => {
-    const gender = this.state.gender === '' ? this.props.userInfo.gender : this.state.gender
+    console.log('24214125125135', this.props.userInfo)
+    const gender = this.props.userInfo && this.state.gender === '' ? this.props.userInfo.gender : this.state.gender
     const genderText = gender === true ? I18n.t('Gender.male') : gender === false ? I18n.t('Gender.female') : I18n.t('Gender.null')
     Picker.init({
       pickerData: [I18n.t('Gender.male'), I18n.t('Gender.female'), I18n.t('Gender.null')],
@@ -119,24 +119,22 @@ export default class UserInfo extends Component {
   }
 
   render () {
-    const { username, university } = this.props.userInfo
-    const { name, department, year, signature } = this.props.userInfo
-
-    const gender = this.state.gender === '' ? this.props.userInfo.gender : this.state.gender
+    const gender = this.props.userInfo && this.state.gender === '' ? this.props.userInfo.gender : this.state.gender
     const genderText = gender === true ? I18n.t('Gender.male') : gender === false ? I18n.t('Gender.female') : I18n.t('Gender.null')
 
     return (
         <ScrollView style={[styles.flex1, localStyles.container]}>
+          {this.props.userInfo &&
           <KeyboardAvoidingView behavior={'position'} keyboardVerticalOffset={50}>
             <View style={[styles.flex4]}>
 
               {/* Block 1 */}
               <View style={[styles.flex1, localStyles.wrap]}>
                 <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.phone')}>
-                  <Text style={[styles.fullFlexWidth]}>{username}</Text>
+                  <Text style={[styles.fullFlexWidth]}>{this.props.userInfo.username}</Text>
                 </InputItem2>
                 <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.name')}>
-                  <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{name}</Text>
+                  <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{this.props.userInfo.name}</Text>
                 </InputItem2>
                 <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.gender')}>
                   {this.state.isEditing ?
@@ -155,27 +153,27 @@ export default class UserInfo extends Component {
               {/* Block 2 */}
               <View style={[localStyles.wrap]}>
                 <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.school')}>
-                  <Text style={[styles.fullFlexWidth]}>{university.name_ch}</Text>
+                  <Text style={[styles.fullFlexWidth]}>{this.props.userInfo.university.name_ch}</Text>
                 </InputItem2>
                 <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.department')}>
                   {this.state.isEditing ?
                     <TextInput
                       style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}
-                      placeholder={department}
+                      placeholder={this.props.userInfo.department}
                       onChangeText={department => this.setState({department})}
                     /> :
-                    <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{department}</Text>
+                    <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{this.props.userInfo.department}</Text>
                   }
                 </InputItem2>
                 <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.grade')}>
                   {this.state.isEditing ?
                     <TouchableOpacity onPress={this._showYearPicker} style={[styles.fullFlexWidth]}>
                       <Text style={[this.state.year ? {color: 'black'} : {color: '#c7c7cd'}]}>
-                        {this.state.year ? this.state.year : year}
+                        {this.state.year ? this.state.year : this.props.userInfo.year}
                       </Text>
                     </TouchableOpacity> :
                     <Text style={[styles.fullFlexWidth]}>
-                      {year}
+                      {this.props.userInfo.year}
                     </Text>
                   }
                 </InputItem2>
@@ -187,20 +185,20 @@ export default class UserInfo extends Component {
                   {this.state.isEditing ?
                     <TextInput
                       style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}
-                      placeholder={name}
+                      placeholder={this.props.userInfo.name}
                       onChangeText={name => this.setState({name})}
                     /> :
-                    <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{name}</Text>
+                    <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{this.props.userInfo.name}</Text>
                   }
                 </InputItem2>
                 <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.signature')}>
                   {this.state.isEditing ?
                     <TextInput
                       style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}
-                      placeholder={signature}
+                      placeholder={this.props.userInfo.signature}
                       onChangeText={signature => this.setState({signature})}
                     /> :
-                    <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{signature}</Text>
+                    <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{this.props.userInfo.signature}</Text>
                   }
                 </InputItem2>
               </View>
@@ -218,7 +216,14 @@ export default class UserInfo extends Component {
                 <Button
                   title={I18n.t('cancel')}
                   onPress={() => {
-                    this.setState({isEditing: false, name, gender, department, year, signature})
+                    this.setState({
+                      isEditing: false,
+                      name: this.props.userInfo.name,
+                      gender,
+                      department: this.props.userInfo.department,
+                      year: this.props.userInfo.year,
+                      signature: this.props.userInfo.signature
+                    })
                   }}
                   inlineStyle={[localStyles.logout, localStyles.button]}
                   color="black"
@@ -232,7 +237,7 @@ export default class UserInfo extends Component {
                 color="black"
               />
             </View>
-          </KeyboardAvoidingView>
+          </KeyboardAvoidingView>}
         </ScrollView>
     )
   }

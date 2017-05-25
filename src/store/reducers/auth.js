@@ -6,7 +6,7 @@ import * as types from '../types'
 
 const initialState = {
   isLoggedIn: false,
-  token: {},
+  token: null,
   status: null
 }
 
@@ -25,12 +25,7 @@ export default auth = (state=initialState, action) => {
         status: 'done'
       }
     case types.USER_LOGIN_ERROR:
-      return {
-        ...state,
-        isLoggedIn: false,
-        token: {},
-        status: null
-      }
+      return initialState
     case types.USER_LOGOUT:
       return initialState
     default:

@@ -18,10 +18,10 @@ import Reputation from './Reputation/index'
 
 import { FetchUserInfo } from '../../../store/actions'
 
-@connect(...[, dispatch => ({dispatch})])
+@connect(state => ({token: state.auth.token}), dispatch => ({dispatch}))
 export default class Me extends Component {
-  async componentWillMount() {
-    await this.props.dispatch(FetchUserInfo)
+  componentWillMount() {
+    if(this.props.token) this.props.dispatch(FetchUserInfo)
   }
 
   render() {

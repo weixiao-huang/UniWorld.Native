@@ -44,7 +44,7 @@ PushNotification.configure({
 });
 
 const initialState = {
-  userInfo: {},
+  userInfo: null,
   user: {},
   dislikes: [],
   messages: {},

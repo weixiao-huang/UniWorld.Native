@@ -48,13 +48,14 @@ export default class Login extends Component {
   }
 
   visit = async () => {
-    await this.props.dispatch(FetchRoomList)
+    this.props.dispatch(SetCommonData('loading', true))
+    // await this.props.dispatch(FetchRoomList)
     await this.props.dispatch(FetchRecommendRoomList)
     await this.props.dispatch(FetchLatestRoomList)
     await this.props.dispatch(FetchWorldRoomList)
-    await this.props.dispatch(FetchInitialLabels)
+    // await this.props.dispatch(FetchInitialLabels)
     this.props.dispatch(SetCommonData('loading', false))
-    this.props.dispatch(SetCommonData('isPolling', true))
+    // this.props.dispatch(SetCommonData('isPolling', true))
     this.props.dispatch(GoToHome)
   }
 

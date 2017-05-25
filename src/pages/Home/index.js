@@ -134,12 +134,12 @@ export default class Home extends Component {
   }
   componentDidMount() {
     // console.log('是否DidMount轮训？？？？', this.props.isPolling)
-    this._messagePolling()
+    if (this.props.token) this._messagePolling()
   }
   componentWillReceiveProps(nextProps) {
     // console.log('是否WillReceiveProps轮训？？？？', nextProps.isPolling)
     // console.log(nextProps)
-    this._messagePolling()
+    if (this.props.token) this._messagePolling()
   }
   componentWillUnmount() {
     this.setState({ isPolling: false })

@@ -5,7 +5,7 @@
 import * as types from '../types'
 
 const initialState = {
-  labels: []
+  labels: null
 }
 
 export default (state=initialState, action) => {

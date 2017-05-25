@@ -41,7 +41,7 @@ export default class TabContainer extends Component {
         }
         style={[localStyles.container]}
       >
-        {this.props.roomList.length ?
+        {this.props.roomList && this.props.roomList.length ?
           <RoomWrap title={this.props.title} roomList={this.props.roomList}/> :
           <View style={[styles.flexCenter]}>
             <Image

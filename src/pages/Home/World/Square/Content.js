@@ -32,34 +32,33 @@ export default class Content extends Component {
     return (
       <View>
         <View>
-          {this.props.top.length?<View>
-          <RoomWrap title={I18n.t('World.Square.top')} titleLabel="TOP" roomList={this.props.top} />
-          <Image style={[localStyles.smallPoster]} source={require('../../../../assets/poster/s_1.jpg')} />
-          </View>
-          :<View/>
+          {
+            this.props.top && this.props.top.length &&
+            <View>
+              <RoomWrap title={I18n.t('World.Square.top')} titleLabel="TOP" roomList={this.props.top} />
+              <Image style={[localStyles.smallPoster]} source={require('../../../../assets/poster/s_1.jpg')} />
+            </View>
           }
           <RoomWrap title={I18n.t('World.Square.latest')} titleLabel="NEW" roomList={this.props.latest.results} />
           <Image style={[localStyles.smallPoster]} source={require('../../../../assets/poster/s_2.jpg')} />
           <RoomWrap title={I18n.t('World.Square.world')} titleLabel="HOT" roomList={this.props.world.results} />
-          {this.props.newRoomList.map((item, index) =>
-            <RoomWrap key={index} title={item.title} roomList={item.content} />)
-          }
+          {this.props.newRoomList.map((item, index) => (
+            <RoomWrap key={index} title={item.title} roomList={item.content} />
+          ))}
         </View>
-        {this.props.isFetching ?
+        {this.props.isFetching &&
           <ActivityIndicator
             style={{ height: 40 }}
             animating={this.props.isFetching}
           />
-          : null
         }
-        {this.props.next && !this.props.isFetching ?
+        {this.props.next && !this.props.isFetching &&
           <Button
             textStyle={{ color: '#bcbcbc', fontSize: 16 }}
             inlineStyle={localStyles.button}
             title={I18n.t('World.Square.loadMore')}
             onPress={this.props.fetchNextRoomList}
           />
-          : null
         }
       </View>
     )
