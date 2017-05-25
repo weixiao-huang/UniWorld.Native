@@ -116,11 +116,12 @@ export default class RoomInfo extends Component {
     }
   }
   render() {
-    const isEmpty = Object.keys(this.props.roomInfo).length <= 0
+    console.log('1111111', this.props.roomInfo)
+    const isEmpty = this.props.roomInfo ? Object.keys(this.props.roomInfo).length <= 0 : true
     return (
       <View style={[styles.flex1, localStyles.container]}>
         <View style={[localStyles.empty]}/>
-        <View style={[styles.flex1]}>
+        {this.props.roomInfo && <View style={[styles.flex1]}>
           {this.props.loading ?
             <Loading visible={this.props.loading}/> :
             isEmpty ? null :
@@ -145,7 +146,7 @@ export default class RoomInfo extends Component {
               </Text>
             </TouchableOpacity>
           </View>
-        </View>
+        </View>}
       </View>
     )
   }

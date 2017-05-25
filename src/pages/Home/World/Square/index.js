@@ -83,7 +83,7 @@ export default class Square extends Component {
           />
         }
       >
-        <WorldSwiper topPosters={this.props.posters.tops} />
+        {this.props.posters && <WorldSwiper topPosters={this.props.posters.tops} />}
         <ChannelList channels={this.props.channels}/>
         <Content
           fetchNextRoomList={this._fetchNextRoomList}
