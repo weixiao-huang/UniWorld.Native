@@ -12,14 +12,20 @@ import ScrollTabView from 'react-native-scrollable-tab-view'
 
 import TabContainer from './TabContainer'
 
+import { SetCommonData } from '../../../store/actions'
+
 const items = ['Star', 'Mine', 'JoinIn']
 
 const mapStateToProps = state => ({
-  roomList: state.room.roomList
+  roomList: state.room.roomList,
+  token: state.auth.token
 })
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
 export default class RoomList extends Component {
+  componentWillMount() {
+    if (!this.props.token) this.props.dispatch(SetCommonData('showLoginDialog', true))
+  }
   render() {
     const roomList = this.props.roomList
     console.log('23423424', roomList)

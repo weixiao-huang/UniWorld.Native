@@ -77,6 +77,10 @@ export const SetNewRoomData = data => dispatch => (
   dispatch({type: types.SET_NEW_ROOM_DATA, data})
 )
 
+export const SetLoginDialog = loginDialog => dispatch => (
+  dispatch({type: types.SET_LOGIN_DIALOG, loginDialog})
+)
+
 export const GoToRoomInfo = id => dispatch => (
   dispatch({type: types.GO_TO_ROOM_INFO, id})
 )

@@ -16,12 +16,13 @@ import UserInfo from './UserInfo/index'
 import Follow from './Follow/index'
 import Reputation from './Reputation/index'
 
-import { FetchUserInfo } from '../../../store/actions'
+import { FetchUserInfo, SetCommonData } from '../../../store/actions'
 
 @connect(state => ({token: state.auth.token}), dispatch => ({dispatch}))
 export default class Me extends Component {
   componentWillMount() {
     if(this.props.token) this.props.dispatch(FetchUserInfo)
+    else this.props.dispatch(SetCommonData('showLoginDialog', true))
   }
 
   render() {

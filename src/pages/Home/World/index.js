@@ -14,8 +14,13 @@ import Recommend from './Recommend/index'
 
 import styles from '../../../common/styles'
 
-@connect(...[, dispatch => ({ dispatch })])
+import { SetCommonData } from '../../../store/actions'
+
+@connect(state => ({token: state.auth.token}), dispatch => ({ dispatch }))
 export default class World extends Component {
+  componentWillMount() {
+    this.props.dispatch(SetCommonData('showLoginDialog', false))
+  }
   render() {
     return (
       <View style={[styles.flex1, localStyles.container]}>

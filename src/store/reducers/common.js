@@ -7,7 +7,8 @@ import * as types from '../types'
 const initialState = {
   loading: false,
   isPolling: false,
-  showLoginModal: true
+  loginDialog: null,
+  showLoginDialog: false,
 }
 
 export default (state=initialState, action) => {
@@ -21,6 +22,11 @@ export default (state=initialState, action) => {
       return {
         ...state,
         ...action.data
+      }
+    case types.SET_LOGIN_DIALOG:
+      return {
+        ...state,
+        loginDialog: action.loginDialog
       }
     default:
       return state
