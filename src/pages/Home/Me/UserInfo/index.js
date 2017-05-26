@@ -77,7 +77,6 @@ export default class UserInfo extends Component {
   }
 
   _showGenderPicker = () => {
-    console.log('24214125125135', this.props.userInfo)
     const gender = this.props.userInfo && this.state.gender === '' ? this.props.userInfo.gender : this.state.gender
     const genderText = gender === true ? I18n.t('Gender.male') : gender === false ? I18n.t('Gender.female') : I18n.t('Gender.null')
     Picker.init({

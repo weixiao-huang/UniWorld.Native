@@ -14,8 +14,8 @@ import Avatar from '../../Avatar'
 import { FollowUser, UnfollowUser, FetchUserInfo } from '../../../store/actions'
 
 const mapStateToProps = state => ({
-  myFollows: state.user.userInfo.follows,
-  myId: state.user.userInfo.id
+  myFollows: state.user.userInfo && state.user.userInfo.follows,
+  myId: state.user.userInfo && state.user.userInfo.id
 })
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
@@ -23,7 +23,7 @@ export default class Host extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isFollowed: this._isFollowed()
+      isFollowed: this.props.myFollows && this._isFollowed()
     }
   }
   static propsTypes = {

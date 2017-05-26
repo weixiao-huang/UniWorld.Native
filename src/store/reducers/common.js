@@ -7,6 +7,7 @@ import * as types from '../types'
 const initialState = {
   loading: false,
   isPolling: false,
+  showLoginModal: true
 }
 
 export default (state=initialState, action) => {

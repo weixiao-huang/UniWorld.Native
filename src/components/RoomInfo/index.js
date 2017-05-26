@@ -20,8 +20,9 @@ import {
 
 const mapStateToProps = state => ({
   roomInfo: state.room.roomInfo,
-  myId: state.user.userInfo.id,
-  loading: state.common.loading
+  myId: state.user.userInfo && state.user.userInfo.id,
+  loading: state.common.loading,
+  token: state.auth.token
 })
 
 @connect(mapStateToProps, dispatch => ({dispatch}))

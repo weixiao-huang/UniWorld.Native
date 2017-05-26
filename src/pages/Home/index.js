@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { Image, Alert, View, Text } from 'react-native'
+import { Image, Alert, View, Text, Modal } from 'react-native'
 import { TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
@@ -15,6 +15,8 @@ import NewRoom from './NewRoom'
 import Smile from './Smile'
 import RoomList from './RoomList'
 import Me from './Me'
+
+import StyleButton from '../../components/StyleButton'
 
 
 const HomeRouter = TabNavigator({
@@ -97,7 +99,8 @@ const HomeRouter = TabNavigator({
 
 const mapStateToProps = state => ({
   isPolling: state.common.isPolling,
-  token: state.auth.token
+  token: state.auth.token,
+  showLoginModal: state.common.showLoginModal
 })
 
 @connect(mapStateToProps, dispatch => ({ dispatch }))
@@ -147,7 +150,9 @@ export default class Home extends Component {
   render() {
     // console.log(this.props.navigation.state.routeName)
     return (
-      <HomeRouter />
+      <View style={styles.flex1}>
+        <HomeRouter />
+      </View>
     )
   }
 }
