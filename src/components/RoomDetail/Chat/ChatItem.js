@@ -26,7 +26,9 @@ export default class ChatItem extends Component {
     await this.props.dispatch(FetchUser(this.props.sender.id))
     this.props.dispatch(GoToUser(this.props.sender.id))
   }
+ 
   render() {
+     console.log(this.props)
     return (
       <View
         style={[
@@ -38,7 +40,7 @@ export default class ChatItem extends Component {
       >
         <View style={[styles.rowFlex, styles.alignCenter, localStyles.sender, this._mine() ? localStyles.rowReverse : null]}>
           <TouchableOpacity onPress={this.user}>
-            <Image style={[localStyles.avatar__img]} source={{ url: this.props.sender.avatar }} />
+            <Image style={[localStyles.avatar__img]} source={{uri:this.props.sender.avatar} } />
           </TouchableOpacity>
           <View
             style={[
@@ -54,7 +56,7 @@ export default class ChatItem extends Component {
               <Text style={[localStyles.content__title]}>{this.props.sender.name}</Text>
             }
             {this.props.type ? <View style={[localStyles.content__text, this._mine() ? { backgroundColor: '#d5d9f0' } : null]}>
-              <Image style={[localStyles.content__text]} source={{url : this.props.image}} />
+              <Image style={[localStyles.content__image]} source={{ uri:this.props.image}} />
             </View> :
               <View style={[localStyles.content__text, this._mine() ? { backgroundColor: '#d5d9f0' } : null]}>
                 <Text>{this.props.content}</Text>
@@ -68,7 +70,7 @@ export default class ChatItem extends Component {
 }
 
 const labelWidth = 5
-const size = 40
+const size = 42
 const labelBgColor = 'white'
 const localStyles = StyleSheet.create({
   rowReverse: {
@@ -101,7 +103,8 @@ const localStyles = StyleSheet.create({
   },
   content__image: {
     resizeMode: 'cover',
-    width: 120,
+    width: 160,
+    height: 200
   },
   sender__triangle: {
     marginTop: 20,

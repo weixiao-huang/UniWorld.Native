@@ -26,12 +26,14 @@ const mapStateToProps = state => ({
 export default class RoomInfo extends Component {
   constructor(props) {
     super(props)
+
   }
   async componentWillMount() {
     this.props.dispatch(SetLoading(true))
     await this.props.dispatch(FetchQuestionnaires(this.props.navigation.state.params.id))
     this.props.dispatch(SetLoading(false))
   }
+
   render() {
     const isEmpty = !this.props.questionnaires || this.props.questionnaires.length <= 0
     return (

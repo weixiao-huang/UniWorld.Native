@@ -13,6 +13,7 @@ export default class NoticeItem extends Component {
   render() {
     const time = new Date(this.props.questionnaire.time)
     const { title, description } = this.props.questionnaire
+    if (!!this.props.questionnaire){
     return (
       <View style={[styles.rowFlex, localStyles.container]}>
         <View style={[styles.flexCenter, localStyles.time]}>
@@ -31,6 +32,7 @@ export default class NoticeItem extends Component {
         </View>
       </View>
     )
+  }
   }
 }
 

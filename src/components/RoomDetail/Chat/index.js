@@ -2,7 +2,7 @@
  * Created by huangwx on 18/04/2017.
  */
 import React, { Component } from 'react'
-import { StyleSheet, View, ListView, KeyboardAvoidingView, TextInput, Image } from 'react-native'
+import { StyleSheet, View, ListView, KeyboardAvoidingView, TextInput, Image, Text } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
@@ -58,7 +58,8 @@ export default class Chat extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.state = {
       text: '',
-      ds: ds.cloneWithRows(this.props.messages, this.props.messages.map((row, index) => index).reverse())
+      ds: ds.cloneWithRows(this.props.messages, this.props.messages.map((row, index) => index).reverse()),
+      plus: false,
     }
   }
   _updateNewMessages = messages => {
@@ -77,6 +78,11 @@ export default class Chat extends Component {
       this._updateNewMessages(this.props.messages)
     }
   }
+  _pressPlus(){
+    this.setState({
+      plus:true
+    })
+  }
   componentWillReceiveProps(nextProps) {
     this._updateNewMessages(nextProps.messages)
   }
@@ -94,6 +100,7 @@ export default class Chat extends Component {
           />
           <View style={[styles.rowFlex, styles.flexCenter, localStyles.footer]}>
             <Image style={[localStyles.footer__icon]} source={require('../../../assets/icon/logoBlue.png')}/>
+            <View style={{width:'78%'}}>
             <TextInput
               onChangeText={text => this.setState({text})}
               // multiline={true}
@@ -104,6 +111,11 @@ export default class Chat extends Component {
               style={[styles.fullFlexWidth, localStyles.footer__input]}
               onFocus={() => {_listView.scrollTo({y: 0, animated: true})}}
             />
+            </View>
+            <View style={[localStyles.plus]}>
+            
+            <Text style={[localStyles.plus_text]} onPress={this._pressPlus}>+</Text>
+            </View>
           </View>
         </KeyboardAvoidingView>
       </View>
@@ -115,21 +127,35 @@ const localStyles = StyleSheet.create({
   footer: {
     backgroundColor: '#f5f5f7',
     padding: 10,
-    height: 60
+    height: 60,
   },
   footer__icon: {
     width: 30,
     height: 30,
-    marginLeft: 5,
+    marginLeft: 10,
     resizeMode: 'contain'
   },
   footer__input: {
     backgroundColor: 'white',
-    marginLeft: 15,
+    marginLeft: 10,
     borderWidth: 1,
     borderColor: '#bababa',
     borderRadius: 5,
-    padding: 10,
-    fontSize: 16
+    padding: 20,
+    fontSize: 26,
+    
+  },
+  plus:{
+    width:'18%',
+    alignItems:'center'
+  },
+  plus_text:{
+    textAlign:'center',
+    backgroundColor:'#3555b6',
+    paddingLeft:10,
+    paddingRight:10,
+    fontSize: 26,
+    color: 'white',
+    width:'60%'
   }
 })

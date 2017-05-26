@@ -15,7 +15,7 @@ import Loading from '../../components/Loading'
 
 import {
   GoToRoomDetail, FetchRoomList, MarkRoom, UnmarkRoom,
-  JoinRoom, LeaveRoom, FetchRoomInfo, SetLoading
+  JoinRoom, LeaveRoom, FetchRoomInfo, SetLoading, FetchQuestionnaires
 } from '../../store/actions'
 
 const mapStateToProps = state => ({
@@ -38,6 +38,7 @@ export default class RoomInfo extends Component {
   async componentWillMount() {
     this.props.dispatch(SetLoading(true))
     await this.props.dispatch(FetchRoomInfo(this.props.navigation.state.params.id))
+    await this.props.dispatch(FetchQuestionnaires(this.props.navigation.state.params.id))
     this.setState({
       isMarked: this._isMarked(),
       isJoined: this._joined(),
@@ -117,7 +118,6 @@ export default class RoomInfo extends Component {
     }
   }
   render() {
-    console.log('1111111', this.props.roomInfo)
     const isEmpty = this.props.roomInfo ? Object.keys(this.props.roomInfo).length <= 0 : true
     return (
       <View style={[styles.flex1, localStyles.container]}>
