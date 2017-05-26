@@ -90,7 +90,7 @@ export default class Chat extends Component {
             ref={listView => {_listView = listView}}
             renderScrollComponent={props => <InvertibleScrollView {...props} inverted/>}
             dataSource={this.state.ds}
-            renderRow={(item, sectionID, rowID, highlightRow) => <ChatItem index={parseInt(rowID)} sender={item.sender} content={item.text}/>}
+            renderRow={(item, sectionID, rowID, highlightRow) => <ChatItem index={parseInt(rowID)} sender={item.sender} content={item.text} type={item.type} image={item.image}/>}
           />
           <View style={[styles.rowFlex, styles.flexCenter, localStyles.footer]}>
             <Image style={[localStyles.footer__icon]} source={require('../../../assets/icon/logoBlue.png')}/>

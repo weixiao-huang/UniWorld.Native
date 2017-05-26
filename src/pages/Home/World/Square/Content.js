@@ -33,7 +33,7 @@ export default class Content extends Component {
       <View>
         <View>
           {
-            this.props.top && this.props.top.length &&
+            !!this.props.top && !!this.props.top.length &&
             <View>
               <RoomWrap title={I18n.t('World.Square.top')} titleLabel="TOP" roomList={this.props.top} />
               <Image style={[localStyles.smallPoster]} source={require('../../../../assets/poster/s_1.jpg')} />
@@ -69,7 +69,7 @@ const localStyles = StyleSheet.create({
   smallPoster: {
     marginTop: 10,
     marginBottom: 10,
-    marginLeft: 15,
+    marginLeft: 30,
     height: 112.5,
     width: 345,
     borderRadius: 16,

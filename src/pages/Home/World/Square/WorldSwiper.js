@@ -30,7 +30,7 @@ export default class WorldSwiper extends Component {
             })}
           </Swiper>
           :
-          <Text></Text>
+          <Text>no</Text>
         }
       </View>
     )

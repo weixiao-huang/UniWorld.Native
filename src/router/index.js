@@ -62,7 +62,7 @@ const stackNavConfigs = {
 
 export const AppNavigator = StackNavigator(AppRouteConfigs, stackNavConfigs)
 
-@connect(state => ({ nav: state.nav, auth: state.auth }), dispatch => ({dispatch}))
+@connect(state => ({ nav: state.nav, auth: state.auth }), dispatch => ({ dispatch }))
 export default class AppWithNavigationState extends Component {
   // static propTypes = {
   //   dispatch: PropTypes.func.isRequired,

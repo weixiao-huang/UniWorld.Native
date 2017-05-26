@@ -12,12 +12,12 @@ const mapStateToProps = state => ({
   myId: state.user.userInfo.id
 })
 
-@connect(mapStateToProps, dispatch => ({dispatch}))
+@connect(mapStateToProps, dispatch => ({ dispatch }))
 export default class ChatItem extends Component {
   static propTypes = {
     sender: PropTypes.object.isRequired,
     content: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired
+    index: PropTypes.number.isRequired,
   }
   _mine = () => (
     this.props.myId === this.props.sender.id
@@ -32,30 +32,34 @@ export default class ChatItem extends Component {
         style={[
           styles.fullFlexWidth,
           localStyles.container,
-          this._mine() ? localStyles.rowReverse: null,
-          this.props.index > 0 ? {marginTop: 0} : null
+          this._mine() ? localStyles.rowReverse : null,
+          this.props.index > 0 ? { marginTop: 0 } : null
         ]}
       >
         <View style={[styles.rowFlex, styles.alignCenter, localStyles.sender, this._mine() ? localStyles.rowReverse : null]}>
           <TouchableOpacity onPress={this.user}>
-            <Image style={[localStyles.avatar__img]} source={{url: this.props.sender.avatar}}/>
+            <Image style={[localStyles.avatar__img]} source={{ url: this.props.sender.avatar }} />
           </TouchableOpacity>
           <View
             style={[
               localStyles.sender__triangle,
-              this._mine() ? {transform:[{rotate: '90deg'}], borderBottomColor: '#d5d9f0', marginTop: 0, marginRight: 5} : null]
+              this._mine() ? { transform: [{ rotate: '90deg' }], borderBottomColor: '#d5d9f0', marginTop: 0, marginRight: 5 } : null]
             }
           >
           </View>
         </View>
-        <View style={[styles.fullFlexWidth, this._mine() ? {justifyContent: 'flex-end', marginRight: -3} : null]}>
+        <View style={[styles.fullFlexWidth, this._mine() ? { justifyContent: 'flex-end', marginRight: -3 } : null]}>
           <View style={[localStyles.content]}>
             {this._mine() ? null :
               <Text style={[localStyles.content__title]}>{this.props.sender.name}</Text>
             }
-            <View style={[localStyles.content__text, this._mine() ? {backgroundColor: '#d5d9f0'} : null]}>
-              <Text>{this.props.content}</Text>
-            </View>
+            {this.props.type ? <View style={[localStyles.content__text, this._mine() ? { backgroundColor: '#d5d9f0' } : null]}>
+              <Image style={[localStyles.content__text]} source={{url : this.props.image}} />
+            </View> :
+              <View style={[localStyles.content__text, this._mine() ? { backgroundColor: '#d5d9f0' } : null]}>
+                <Text>{this.props.content}</Text>
+              </View>
+            }
           </View>
         </View>
       </View>
@@ -95,6 +99,10 @@ const localStyles = StyleSheet.create({
     marginLeft: -3,
     borderRadius: 5
   },
+  content__image: {
+    resizeMode: 'cover',
+    width: 120,
+  },
   sender__triangle: {
     marginTop: 20,
     width: 0,
@@ -108,7 +116,8 @@ const localStyles = StyleSheet.create({
     borderRightColor: 'transparent',
     borderBottomColor: labelBgColor,
     transform: [
-      {rotate: '-90deg'}
+      { rotate: '-90deg' }
     ]
   }
+
 })
