@@ -58,5 +58,22 @@
         "placeholder": "是否设为大型匹配房间"
       }
     }
+  },
+"SignInfo":{
+    "first":{
+      "message1":"Welcome to UniWorld",
+      "message2":"You may come across variant people here",
+      "message3":"Explore all possibilities",
+      "nextButton":"Continue"
+    },
+    "second":{
+      "title":"Complete your information",
+      "nickname":"Nickname",
+      "gender":"Gender",
+      "birthday":"Birthday",
+      "department":"Department",
+      "grade":"Grade",
+      "signature":"Signature"
+    }
   }
 }
