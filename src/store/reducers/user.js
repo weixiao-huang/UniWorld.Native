@@ -6,7 +6,7 @@
 import * as PushNotification from 'react-native-push-notification'
 import * as types from '../types'
 import { GoToRoomInfo } from '../actions'
-
+import configureStore from '../index'
 
 PushNotification.configure({
 
@@ -17,7 +17,9 @@ PushNotification.configure({
 
   // (required) Called when a remote or local notification is opened or received
   onNotification: function (notification) {
-    console.log('navigate')
+    console.log('111122223333navigate')
+    console.log(configureStore(() => {}))
+    configureStore(() => {}).dispatch(GoToRoomInfo(notification.roomId))
     // GoToRoomInfo(notification.roomId)()
   },
 

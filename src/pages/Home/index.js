@@ -133,6 +133,7 @@ export default class Home extends Component {
   }
   componentWillMount() {
     // console.log(this.props.common)
+    console.log('SETPOLLING')
     this.props.dispatch(SetCommonData('isPolling', true))
     // console.log(this.props.common)
   }

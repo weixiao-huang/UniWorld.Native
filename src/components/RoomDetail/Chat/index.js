@@ -2,7 +2,7 @@
  * Created by huangwx on 18/04/2017.
  */
 import React, { Component } from 'react'
-import { StyleSheet, View, ListView, KeyboardAvoidingView, TextInput, Image, Text } from 'react-native'
+import { StyleSheet, View, ListView, KeyboardAvoidingView, TextInput, Image, Text, Button} from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
@@ -42,6 +42,7 @@ import InvertibleScrollView from 'react-native-invertible-scroll-view'
 // })
 
 
+import ChatMenu from './ChatMenu'
 import ChatItem from './ChatItem'
 
 import { SendMessage } from '../../../store/actions'
@@ -112,10 +113,10 @@ export default class Chat extends Component {
               onFocus={() => {_listView.scrollTo({y: 0, animated: true})}}
             />
             </View>
-            <View style={[localStyles.plus]}>
-            
+            <Button style={[localStyles.plus]}>
             <Text style={[localStyles.plus_text]} onPress={this._pressPlus}>+</Text>
-            </View>
+            </Button>
+            <ChatMenu/>
           </View>
         </KeyboardAvoidingView>
       </View>
