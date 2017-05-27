@@ -56,84 +56,90 @@ export default class SecondPage extends Component{
   render(){
     return(
       <KeyboardAvoidingView behavior={'position'}>
-        <ScrollView>
+        <ScrollView style={{height: 700}}>
           <BackgroudImage
           bgUrl={require('../../assets/image/signInfoBg.png')}
+          style={{height: 700}}
           >
             <View style={[styles.fullFlex, styles.grayBackground, {paddingTop:50}]}>
               <Image style={localStyles.header} source={require('../../assets/image/signInfo2.png')}/>
             </View>
             <Text style={[styles.fullflex, localStyles.title]}>{I18n.t('SignInfo.second.title')}</Text>
 
-            <View style={localStyles.wrap}>
+            <View style={{paddingTop:40}}>
+              <View style={[localStyles.wrap]}>
               <InputItem
                 title={I18n.t('SignInfo.second.nickname')}
                 inlineStyle = {[localStyles.transparent, localStyles.input_flex]}
                 textStyle = {localStyles.inputTitle}
-                style = {{underlineColorAndroid : 'blue'}}
-                underlineColorAndroid = 'blue'
               >
-                <TextInput
-                  style={[styles.flex1, {borderColor: 'white'}]}
+                </InputItem>
+                 <TextInput
+                  style={[localStyles.inputWrap]}
                   defaultValue={this.state.nickname}
                   onChangeText={nickname => this.setState({nickname})}
                 />
-                </InputItem>
+                </View>
+                <View style={[localStyles.wrap]}>
               <InputItem
                 title = {I18n.t('SignInfo.second.gender')}
                 inlineStyle = {[localStyles.transparent, localStyles.input_flex]}
                 textStyle = {localStyles.inputTitle}
-              >
+              />
                 <TextInput
-                  style={[styles.flex1]}
+                  style={[localStyles.inputWrap]}
                   defaultValue={this.state.gender}
                   onChangeText={sex => this.setState({gender})}
                 />
-              </InputItem>
+              </View>
+              <View style={[localStyles.wrap]}>
               <InputItem
                 title = {I18n.t('SignInfo.second.birthday')}
                 inlineStyle = {[localStyles.transparent, localStyles.input_flex]}
                 textStyle = {localStyles.inputTitle}
-              >
+              />
                 <TextInput
-                  style={[styles.flex1]}
+                  style={[localStyles.inputWrap]}
                   defaultValue={this.state.birthday}
                   onChangeText={birthday => this.setState({birthday})}
                 />
-              </InputItem>
+              </View>
+              <View style={[localStyles.wrap]}>
               <InputItem
                 title = {I18n.t('SignInfo.second.department')}
                 inlineStyle = {[localStyles.transparent, localStyles.input_flex]}
                 textStyle = {localStyles.inputTitle}
-              >
+              />
                 <TextInput
                   style={styles.flex1}
                   defaultValue={this.state.department}
                   onChangeText={department => this.setState({department})}
                 />
-              </InputItem>
+              </View>
+              <View style={[localStyles.wrap]}>
               <InputItem
                 title = {I18n.t('SignInfo.second.grade')}
                 inlineStyle = {[localStyles.transparent, localStyles.input_flex]}
                 textStyle = {localStyles.inputTitle}
-              >
+              />
                 <TextInput
-                  style={[styles.flex1]}
+                  style={[localStyles.inputWrap]}
                   defaultValue={this.state.grade}
                   onChangeText={grade => this.setState({grade})}
                 />
-              </InputItem>
+              </View>
+              <View style={[localStyles.wrap]}>
               <InputItem
                 title = {I18n.t('SignInfo.second.signature')}
                 inlineStyle = {[localStyles.transparent, localStyles.input_flex]}
                 textStyle = {localStyles.inputTitle}
-              >
+              />
                 <TextInput
-                  style={[styles.flex1]}
+                  style={[localStyles.inputWrap]}
                   defaultValue={this.state.signature}
                   onChangeText={signature => this.setState({signature})}
                 />
-              </InputItem>
+              </View>
             </View>
 
             <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight:20}]}>
@@ -162,11 +168,16 @@ const localStyles = StyleSheet.create({
     marginTop: 2,
     marginBottom: 14,
     marginLeft: 20,
-    marginRight: 20
+    marginRight: 20,
+    // backgroundColor:'black',
+    height:48,
+    borderBottomColor:'#3555b6',
+    borderBottomWidth:1
   },
   header: {
     height: 115,
     resizeMode: 'contain',
+    backgroundColor:'transparent'
   },
   title: {
     color: '#3555B6',
@@ -175,7 +186,8 @@ const localStyles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center',
     textAlign:'center',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    backgroundColor:'transparent'
   },
   button: {
     marginTop: 22,
@@ -195,15 +207,23 @@ const localStyles = StyleSheet.create({
   input_flex: {
     flexDirection: 'column',
     alignItems: 'stretch',
-    borderColor: '#3555B6',
-    paddingTop: 5,
+    paddingTop: 0,
     paddingBottom: 0,
-
+     borderBottomWidth: 0,
   },
   inputTitle: {
-    marginTop: 18,
-    marginLeft: -10,
+    marginTop: 0,
+    marginLeft: 0,
+    marginRight:0,
+    lineHeight: 15,
     color: '#3555B6',
     fontSize: 15
+  },
+  inputWrap:{
+    paddingTop:4,
+    width:'100%',
+    height:25,
+    // backgroundColor:'#3555b6'
+
   }
 })
