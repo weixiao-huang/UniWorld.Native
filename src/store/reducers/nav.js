@@ -43,10 +43,11 @@ export default (state, action) => {
         params: { id: action.id }
       }), state)
     case types.SIGN_UP:
-      console.log('SIGN_UP')
       return AppNavigator.router.getStateForAction(NavigationActions.navigate({
         routeName: 'SignUp'
       }), state)
+    case types.NAVIGATE:
+      console.log('excute tab navigator ......',action.routeName);
     default:
       return AppNavigator.router.getStateForAction(action, state)
   }

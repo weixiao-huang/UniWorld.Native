@@ -14,7 +14,7 @@ const initialState = {
   questionnaires: null,
   isMarked: false,
   refreshing: false,
-  posters: null
+  posters: null,
 }
 
 export default (state=initialState, action) => {

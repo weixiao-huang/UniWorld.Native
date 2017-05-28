@@ -19,11 +19,11 @@ import Loading from "../Loading"
 const mapStateToProps = state => ({
   roomInfo: state.room.roomInfo,
   loading: state.common.loading,
-  questionnaires: state.room.questionnaires.questionnaires
+  questionnaires: state.room.questionnaires && state.room.questionnaires.questionnaires
 })
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
-export default class RoomInfo extends Component {
+export default class RoomDetails extends Component {
   constructor(props) {
     super(props)
 

@@ -16,7 +16,6 @@ import Smile from './Smile'
 import RoomList from './RoomList'
 import Me from './Me'
 
-import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog'
 import StyleButton from '../../components/StyleButton'
 
 export const HomeRouter = TabNavigator({
@@ -133,10 +132,7 @@ export default class Home extends Component {
     }
   }
   componentWillMount() {
-    // console.log(this.props.common)
 
-
-    // console.log(this.props.common)
   }
   async componentDidMount() {
     await this.props.dispatch(SetCommonData('isPolling', true))
@@ -152,26 +148,10 @@ export default class Home extends Component {
     this.setState({ isPolling: false })
   }
   render() {
-    console.log(this.props.navigation)
+    console.log('123456', this.props.navigation)
     return (
       <View style={styles.flex1}>
         <HomeRouter />
-        <PopupDialog
-          dialogTitle={<DialogTitle title="请登录" />}
-          actions={[
-            <DialogButton text="登录" />
-          ]}
-          dialogAnimation={
-            new SlideAnimation({ slideFrom: 'bottom' })
-          }
-          show={this.props.showLoginDialog}
-          onDismissed={() => {
-            console.log(this.props.navigation)
-            this.props.navigation.goBack()
-          }}
-        >
-          <Image style={{width: '100%', height: 160, resizeMode: 'contain'}} source={require("../../assets/customCreate.png")}/>
-        </PopupDialog>
       </View>
     )
   }

@@ -55,3 +55,6 @@ export const SIGN_UP = 'SIGN_UP'
 export const GET_CHANNELS = 'GET_CHANNELS'
 export const GET_UNREADROOMS = 'GET_UNREADROOMS'
 export const SET_LOGIN_DIALOG = 'SET_LOGIN_DIALOG'
+export const SET_HISTORY_ROOM_LIST = 'SET_HISTORY_ROOM_LIST'
+
+export const NAVIGATE = 'Navigation/NAVIGATE'
