@@ -137,7 +137,8 @@
     }
   },
   "RoomList":{
-    "historyRecord": "Show history record"
+    "historyRecord": "Show history record",
+    "searchNext": "Click here for more"
   },
   "NewRoom": {
     "label": "New Room",
