@@ -113,10 +113,10 @@ export default class Chat extends Component {
               onFocus={() => {_listView.scrollTo({y: 0, animated: true})}}
             />
             </View>
-            <Button style={[localStyles.plus]}>
+            <Button style={[localStyles.plus]} title='+'>
             <Text style={[localStyles.plus_text]} onPress={this._pressPlus}>+</Text>
             </Button>
-            <ChatMenu/>
+            {/*<ChatMenu/>*/}
           </View>
         </KeyboardAvoidingView>
       </View>
