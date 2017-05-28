@@ -15,6 +15,7 @@
   "save": "Save",
   "cancel": "Cancel",
   "full": "Room is Full",
+  "submit":"Submit",
   "confirm": "Confirm",
   "Login": {
     "username": "Tel",
@@ -83,9 +84,17 @@
         "edit": "Edit",
         "new": "New notification"
       },
+      "notice":"Notice",
+      "questionnaires":"Questionnaies",
+      "Image":"Image",
+      "content":"Content",
+      "defaultText1":"Anything to say?"
     },
     "Chat": {
-      "title": "Chat"
+      "title": "Chat",
+       "notice":"Notice",
+      "questionnaires":"Questionnaies",
+      "image":"Image"
     },
     "Member": {
       "title": "Member",

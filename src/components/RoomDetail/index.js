@@ -44,9 +44,9 @@ export default class RoomInfo extends Component {
           <ScrollTabView
             initialPage={1}
             style={{flex: 2, marginTop: 20}}
-            // tabBarBackgroundColor="#ec5367"
-            // tabBarTextStyle={localStyles.tabBarText}
-            // tabBarUnderlineStyle={localStyles.tabBarUnderline}
+            tabBarBackgroundColor="#ec5367"
+            tabBarTextStyle={localStyles.tabBarText}
+            tabBarUnderlineStyle={localStyles.tabBarUnderline}
           >
             <Notice questionnaires={this.props.questionnaires} tabLabel={I18n.t('Room.Notice.title')}/>
             <Chat tabLabel={I18n.t('Room.Chat.title')}/>
@@ -60,5 +60,11 @@ export default class RoomInfo extends Component {
 
 
 const localStyles = StyleSheet.create({
-
+  tabBarText:{
+    color: 'white'
+  },
+  tabBarUnderline:{
+  backgroundColor: 'white',
+  height: 2
+  }
 })

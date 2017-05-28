@@ -1,60 +1,76 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, ListView, Text, Image, Button } from 'react-native'
+import { StyleSheet, View, ListView, Text, Image, Button, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 
-const Icon={
-    notice:'./././assets/icon/trumpet.png',
-    quesstionnaires:'./././assets/icon/trumpet.png',
-    image:'./././assets/icon/trumpet.png'
-}
+
 export default class ChatMenu extends Component {
-    pressNotice(){
+  pressNotice() {
 
-    }
+  }
 
-     pressQuesstionnaires(){
-        
-    }
+  pressQuesstionnaires() {
 
-     pressImage(){
-        
-    }
-    render() {
-        return (
-            <View style={[localStyles.menu]}>
-                <MenuItem pressItem={this.pressNotice} icon={Icon.notice} itemText='公告' />
-                <MenuItem pressItem={this.pressQuesstionnaires} icon={Icon.quesstionnaires} itemText='问卷' />
-                <MenuItem pressItem={this.pressImage} icon={Icon.image} itemText='图片' />
-            </View>
+  }
+
+  pressImage() {
+
+  }
+  render() {
+    return (
+      <View style={[localStyles.menu]}>
+        <TouchableOpacity style={[localStyles.menuItem]} >
+        <View OnPress={this.pressNotice}>
+          <Image style={[localStyles.itemImage]} source={require('../../../assets/icon/trumpet.png'
+          )} />
+          <Text style={[localStyles.itemText]}>{I18n.t('Room.Chat.notice')}</Text>
+        </View>
+      </TouchableOpacity>
+
+        <TouchableOpacity style={[localStyles.menuItem]} >
+      <View OnPress={this.pressNotice}>
+          <Image style={[localStyles.itemImage]} source={require('../../../assets/icon/fill.png'
+          )} />
+          <Text style={[localStyles.itemText]}>{I18n.t('Room.Chat.questionnaires')}</Text>
+        </View>
+      </TouchableOpacity>
+
+        <TouchableOpacity style={[localStyles.menuItem]} >
+      <View OnPress={this.pressNotice}>
+          <Image style={[localStyles.itemImage]} source={require('../../../assets/icon/album.png'
+          )} />
+          <Text style={[localStyles.itemText]}>{I18n.t('Room.Chat.image')}</Text>
+        </View>
+      </TouchableOpacity>
+    </View >
         )
-    }
+  }
 }
 
-class MenuItem extends Component {
-    render() {
-        <Button style={[localStyles.menuItem]} OnPress={this.props.pressItem} title='123'>
-            <Image style={[localStyles.itemImage]} source={{uri: this.props.icon}} />
-            <Text style={[localStyles.itemText]}>{this.props.itemText}</Text>
-        </Button>
-    }
-}
+
 
 const localStyles = StyleSheet.create({
-    menu:{
-        position: 'absolute',
-        bottom:0,
-    },
-    menuItem:{
-        flexDirection: 'column', 
-    },
-    itemImage:{
-        resizeMode: 'cover',
-        width: '20%',
-        height: '10%',
-    },
-    itemText:{
-        fontSize: 16,
-    }
+  menu: {
+    flexDirection:'row',
+    justifyContent:'space-around'
+  },
+  menuItem: {
+    paddingTop: 5,
+    paddingBottom: 5,
+    alignItems:'center',
+    justifyContent:'center',
+    flexDirection: 'column',
+  },
+  itemImage: {
+    resizeMode: 'contain',
+    width: 40,
+    height: 40,
+    alignSelf:'center',
+  },
+  itemText: {
+    marginTop: 5,
+    alignSelf:'center',
+    fontSize: 16,
+  }
 })

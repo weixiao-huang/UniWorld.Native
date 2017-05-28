@@ -7,7 +7,9 @@ import { StyleSheet, View, ScrollView, Text, TouchableOpacity, Image } from 'rea
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
 
+
 import NoticeItem from './NoticeItem'
+import NoticeModal from './NoticeModal'
 
 export default class Notice extends Component {
   constructor(props) {
@@ -19,9 +21,19 @@ export default class Notice extends Component {
   static propTypes = {
     questionnaires: PropTypes.array.isRequired
   }
+
+  _cancel(){
+    console.log('cancel')
+    this.setState({
+      showModal:false
+    })
+  }
+  _send(){
+
+  }
   render() {
     return (
-      <View style={[styles.flex1]}>
+      <View style={[styles.flex1,{height: '100%'}]}>
         <ScrollView>
           {this.props.questionnaires.map((item, index) => (
             <View key={index}>
@@ -42,6 +54,9 @@ export default class Notice extends Component {
             {/*</TouchableOpacity>*/}
           {/*</Modal>*/}
         {/*</View>*/}
+        {this.state.showModal?
+        <NoticeModal cancel={this._cancel.bind(this)}/>
+        :
         <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
           <TouchableOpacity
             style={[styles.flexCenter, localStyles.star]}
@@ -54,12 +69,12 @@ export default class Notice extends Component {
             style={[styles.flexCenter, styles.fullFlexWidth, localStyles.join]}
             onPress={() => this.setState({showModal: true})}
           >
-              <Image style={[localStyles.footer__icon]} source={require('../../../assets/Logo.png')}/>
+              {/*<Image style={[localStyles.footer__icon]} source={require('../../../assets/Logo.png')}/>*/}
               <Text style={[localStyles.footer__text]}>
                 {I18n.t('Room.Notice.Footer.new')}
               </Text>
           </TouchableOpacity>
-        </View>
+        </View>}
       </View>
     )
   }

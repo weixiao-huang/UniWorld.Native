@@ -8,7 +8,7 @@ import styles from '../../../common/styles'
 
 export default class NoticeItem extends Component {
   static propTypes = {
-    questionnaire: PropTypes.object.isRequired
+    questionnaire: PropTypes.object.isRequired,
   }
   render() {
     const time = new Date(this.props.questionnaire.time)

@@ -2,7 +2,7 @@
  * Created by huangwx on 18/04/2017.
  */
 import React, { Component } from 'react'
-import { StyleSheet, View, ListView, KeyboardAvoidingView, TextInput, Image, Text, Button} from 'react-native'
+import { StyleSheet, View, ListView, KeyboardAvoidingView, TextInput, Image, Text, Button } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
@@ -52,16 +52,23 @@ const mapStateToProps = state => ({
   roomId: state.room.roomInfo.id
 })
 
-@connect(mapStateToProps, dispatch => ({dispatch}))
+@connect(mapStateToProps, dispatch => ({ dispatch }))
 export default class Chat extends Component {
   constructor(props) {
     super(props)
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
     this.state = {
       text: '',
       ds: ds.cloneWithRows(this.props.messages, this.props.messages.map((row, index) => index).reverse()),
       plus: false,
+      showMenu: false
     }
+  }
+
+  _showMenu(){
+    this.setState({
+      showMenu:!this.state.showMenu
+    })
   }
   _updateNewMessages = messages => {
     this.setState({
@@ -74,16 +81,12 @@ export default class Chat extends Component {
 
   _sendMessage = async () => {
     if (this.state.text) {
-      this.setState({text: ''})
-      await this.props.dispatch(SendMessage({text: this.state.text})(this.props.roomId))
+      this.setState({ text: '' })
+      await this.props.dispatch(SendMessage({ text: this.state.text })(this.props.roomId))
       this._updateNewMessages(this.props.messages)
     }
   }
-  _pressPlus(){
-    this.setState({
-      plus:true
-    })
-  }
+
   componentWillReceiveProps(nextProps) {
     this._updateNewMessages(nextProps.messages)
   }
@@ -94,30 +97,31 @@ export default class Chat extends Component {
         <KeyboardAvoidingView keyboardVerticalOffset={70} behavior={'padding'} style={[styles.flex1]}>
           <ListView
             enableEmptySections={true}
-            ref={listView => {_listView = listView}}
-            renderScrollComponent={props => <InvertibleScrollView {...props} inverted/>}
+            ref={listView => { _listView = listView }}
+            renderScrollComponent={props => <InvertibleScrollView {...props} inverted />}
             dataSource={this.state.ds}
-            renderRow={(item, sectionID, rowID, highlightRow) => <ChatItem index={parseInt(rowID)} sender={item.sender} content={item.text} type={item.type} image={item.image}/>}
+            renderRow={(item, sectionID, rowID, highlightRow) => <ChatItem index={parseInt(rowID)} sender={item.sender} content={item.text} type={item.type} image={item.image} />}
           />
           <View style={[styles.rowFlex, styles.flexCenter, localStyles.footer]}>
-            <Image style={[localStyles.footer__icon]} source={require('../../../assets/icon/logoBlue.png')}/>
-            <View style={{width:'78%'}}>
-            <TextInput
-              onChangeText={text => this.setState({text})}
-              // multiline={true}
-              autoFocus={true}
-              blurOnSubmit={false}
-              value={this.state.text}
-              onSubmitEditing={this._sendMessage}
-              style={[styles.fullFlexWidth, localStyles.footer__input]}
-              onFocus={() => {_listView.scrollTo({y: 0, animated: true})}}
-            />
+            <Image style={[localStyles.footer__icon]} source={require('../../../assets/icon/logoBlue.png')} />
+            <View style={{ width: '78%' }}>
+              <TextInput
+                onChangeText={text => this.setState({ text })}
+                // multiline={true}
+                autoFocus={true}
+                blurOnSubmit={false}
+                value={this.state.text}
+                onSubmitEditing={this._sendMessage}
+                style={[styles.fullFlexWidth, localStyles.footer__input]}
+                onFocus={() => { _listView.scrollTo({ y: 0, animated: true }) }}
+              />
             </View>
-            <Button style={[localStyles.plus]} title='+'>
-            <Text style={[localStyles.plus_text]} onPress={this._pressPlus}>+</Text>
-            </Button>
-            {/*<ChatMenu/>*/}
+
+            <Button style={[localStyles.plusButton]} title='+' onPress={this._showMenu.bind(this)}>+</Button>
+
+
           </View>
+          {this.state.showMenu?<ChatMenu/>:<View/>}
         </KeyboardAvoidingView>
       </View>
     )
@@ -127,13 +131,15 @@ export default class Chat extends Component {
 const localStyles = StyleSheet.create({
   footer: {
     backgroundColor: '#f5f5f7',
-    padding: 10,
+    // padding: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
     height: 60,
   },
   footer__icon: {
     width: 30,
     height: 30,
-    marginLeft: 10,
+    // marginLeft: 10,
     resizeMode: 'contain'
   },
   footer__input: {
@@ -142,21 +148,21 @@ const localStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#bababa',
     borderRadius: 5,
-    padding: 20,
+    paddingLeft: 10,
     fontSize: 26,
-    
+    height: '100%'
   },
-  plus:{
-    width:'18%',
-    alignItems:'center'
+  plus: {
+    alignItems: 'center',
+    backgroundColor: '#3555b6',
   },
-  plus_text:{
-    textAlign:'center',
-    backgroundColor:'#3555b6',
-    paddingLeft:10,
-    paddingRight:10,
+  plusButton: {
+    textAlign: 'center',
+    backgroundColor: 'white',
+    paddingLeft: 10,
+    paddingRight: 10,
     fontSize: 26,
     color: 'white',
-    width:'60%'
+    width: '60%'
   }
 })

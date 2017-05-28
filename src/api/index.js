@@ -213,4 +213,9 @@ export default {
     }
    */
   sendMessage: data => roomId => token => postByToken(`/room/${roomId}/send_message/`)(data)(token),
+
+  sendAnnouncement: data => roomId => token => postByToken(`/room/${roomId}/send_announcement/`)(data)(token),
+
 }
+
+
