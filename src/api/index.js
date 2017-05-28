@@ -96,6 +96,9 @@ export default {
   fetchUserInfo: token => getByToken(
     `/profile/`
   )(token),
+  fetchHistoryRoomList: name => token => getByToken(
+    `/profile/${name}_history/`
+  )(token),
   fetchUser: id => token => getByToken(
     `/user/${id}/`
   )(token),

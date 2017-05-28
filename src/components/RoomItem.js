@@ -4,8 +4,14 @@
 
 import React, { Component, PropTypes } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import styles from '../common/styles'
 
+const mapStateToProps = state => ({
+  myFollows: state.user.userInfo && state.user.userInfo.follows
+})
+
+@connect(mapStateToProps)
 export default class RoomItem extends Component {
   static propTypes = {
     src: PropTypes.string.isRequired,
@@ -17,6 +23,13 @@ export default class RoomItem extends Component {
   static defaultProps = {
     max_participants: null,
     participant_count: 1
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      roomFollows: this.props.myFollows && this._getRoomFollows()
+    }
   }
 
   _transferTimeFormat(timeRange) {
@@ -95,6 +108,16 @@ export default class RoomItem extends Component {
     ]
   }
 
+  _getRoomFollows = () => {
+    let roomFollows = []
+    for (let follow of this.props.myFollows) {
+      if (this.props.participant_ids.indexOf(follow.id) !== -1) {
+        roomFollows.push(follow)
+      }
+    }
+    return roomFollows
+  }
+
   render () {
     // const timeRange = this._transferTimeFormat(this.props.timeRange)
     const showTime = this._transferTimeFormat(this.props.timeRange)
@@ -104,41 +127,53 @@ export default class RoomItem extends Component {
       showPeople = this.props.participant_count + '/..'
 
     return (
-      <View style={[styles.fullFlexWidth, localStyles.container]}>
-        <View style={[localStyles.cover_wrap]}>
-          <Image source={{uri: this.props.src}} style={[localStyles.cover]}/>
-        </View>
-        <View style={[localStyles.wrap]}>
-          <View style={[styles.flex2, styles.fullFlexWidth, {alignItems: 'flex-start'}]}>
-            <View style={[styles.fullFlexWidth, localStyles.header]}>
-              {/*<View style={[styles.flex1]}>*/}
-                <View style={[localStyles.tag_wrap]}>
-                  <Text style={[localStyles.tag]}>
-                    {this.props.titleLabel?this.props.titleLabel : 'HOT'}
+      <View>
+        {this.state.roomFollows && this.state.roomFollows.length > 0 && <View>
+          <View style={[styles.fullFlexWidth, localStyles.avatar_wrap]}>
+            {this.state.roomFollows.slice(0, 3).map((item, index) => (
+              <Image key={index} style={[localStyles.avatar]} source={{uri: item.avatar}} />
+            ))}
+            <Text style={[localStyles.header__text]}>
+              Your friends {this.state.roomFollows.length > 2 ? this.state.roomFollows[0].name.slice(0, 5) : this.state.roomFollows[0].name} {this.state.roomFollows.length > 1 ? `...` : null} joined this room
+            </Text>
+          </View>
+        </View>}
+        <View style={[styles.fullFlexWidth, localStyles.container]}>
+          <View style={[localStyles.cover_wrap]}>
+            <Image source={{uri: this.props.src}} style={[localStyles.cover]}/>
+          </View>
+          <View style={[localStyles.wrap]}>
+            <View style={[styles.flex2, styles.fullFlexWidth, {alignItems: 'flex-start'}]}>
+              <View style={[styles.fullFlexWidth, localStyles.header]}>
+                {/*<View style={[styles.flex1]}>*/}
+                  <View style={[localStyles.tag_wrap]}>
+                    <Text style={[localStyles.tag]}>
+                      {this.props.titleLabel?this.props.titleLabel : 'HOT'}
+                    </Text>
+                  </View>
+                  <Text style={[localStyles.title]}>
+                    {this.props.title.length > length ? this.props.title.slice(0, length) + '...' : this.props.title}
+                  </Text>
+                {/*</View>*/}
+              </View>
+            </View>
+            <View style={[styles.flex1, {justifyContent: 'flex-end'}]}>
+              <Text style={[localStyles.text]}>
+                {this.props.place}
+              </Text>
+              <View style={[localStyles.footer]}>
+                <View>
+                  <Text style={[localStyles.time, localStyles.text]}>
+                    {/*{timeRange[0]}*/}
+                    {showTime}
                   </Text>
                 </View>
-                <Text style={[localStyles.title]}>
-                  {this.props.title.length > length ? this.props.title.slice(0, length) + '...' : this.props.title}
-                </Text>
-              {/*</View>*/}
-            </View>
-          </View>
-          <View style={[styles.flex1, {justifyContent: 'flex-end'}]}>
-            <Text style={[localStyles.text]}>
-              {this.props.place}
-            </Text>
-            <View style={[localStyles.footer]}>
-              <View>
-                <Text style={[localStyles.time, localStyles.text]}>
-                  {/*{timeRange[0]}*/}
-                  {showTime}
-                </Text>
-              </View>
-              <View style={[localStyles.people]}>
-                <Text style={[{color: 'white'}]}>
-                  <Image style={[localStyles.icon]} source={require('../assets/icon/participants.png')}/>
-                  <Text> {showPeople}</Text>
-                </Text>
+                <View style={[localStyles.people, this.props.max_participants && this.props.participant_count >= this.props.max_participants && {backgroundColor: '#aaa'}]}>
+                  <Text style={[{color: 'white'}]}>
+                    <Image style={[localStyles.icon]} source={require('../assets/icon/participants.png')}/>
+                    <Text> {showPeople}</Text>
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
@@ -148,11 +183,29 @@ export default class RoomItem extends Component {
   }
 }
 
+const avatarSize = 24
+
 const localStyles = StyleSheet.create({
   header: {
     alignItems: "center",
     flexDirection: 'row',
     flex: 1,
+  },
+  avatar_wrap: {
+    marginLeft: 14,
+    marginTop: 10,
+    marginBottom: -6,
+    alignItems: 'center'
+  },
+  avatar: {
+    width: avatarSize,
+    height: avatarSize,
+    borderRadius: avatarSize / 2,
+    margin: 2
+  },
+  header__text: {
+    paddingLeft: 10,
+    color: '#ccc'
   },
   text: {
     color: '#ec5367',

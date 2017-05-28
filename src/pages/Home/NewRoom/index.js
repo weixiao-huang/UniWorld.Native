@@ -40,12 +40,8 @@ const mapStateToProps = state => ({
   token: state.auth.token
 })
 
-
 @connect(mapStateToProps, dispatch => ({dispatch}))
 export default class NewRoom extends Component {
-  componentWillMount() {
-    if (!this.props.token) this.props.dispatch(SetCommonData('showLoginDialog', true))
-  }
   render() {
     return (
       <Router/>

@@ -28,21 +28,18 @@ export default class RoomList extends Component {
   }
   render() {
     const roomList = this.props.roomList
-    console.log('23423424', roomList)
     return (
       <View style={[styles.flex1, localStyles.container]}>
-        { roomList &&
-          <ScrollTabView
-            style={{flex: 2}}
-            tabBarBackgroundColor="#ec5367"
-            tabBarTextStyle={localStyles.tabBarText}
-            tabBarUnderlineStyle={localStyles.tabBarUnderline}
-          >
-            <TabContainer tabLabel={I18n.t('RoomList.Star.label')} roomList={roomList.marked}/>
-            <TabContainer tabLabel={I18n.t('RoomList.JoinIn.label')} roomList={roomList.joined}/>
-            <TabContainer tabLabel={I18n.t('RoomList.Mine.label')} roomList={roomList.hosted}/>
-          </ScrollTabView>
-        }
+        {roomList && <ScrollTabView
+          style={{flex: 2}}
+          tabBarBackgroundColor="#ec5367"
+          tabBarTextStyle={localStyles.tabBarText}
+          tabBarUnderlineStyle={localStyles.tabBarUnderline}
+        >
+          <TabContainer name="marked" tabLabel={I18n.t('RoomList.Star.label')} roomList={roomList.marked}/>
+          <TabContainer name="joined" tabLabel={I18n.t('RoomList.JoinIn.label')} roomList={roomList.joined}/>
+          <TabContainer name="hosted" tabLabel={I18n.t('RoomList.Mine.label')} roomList={roomList.hosted}/>
+        </ScrollTabView>}
       </View>
     )
   }
