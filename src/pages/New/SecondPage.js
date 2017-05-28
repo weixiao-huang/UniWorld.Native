@@ -12,7 +12,8 @@ import {
   TouchableOpacity,
   Switch,
   ActivityIndicator,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Picker
 } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -24,6 +25,7 @@ import styles from '../../common/styles'
 import SignInfoButton from '../../components/StyleButton'
 import InputItem from '../../components/InputItem'
 import BackgroudImage from '../../components/BackgroundImage'
+import DatePicker from 'react-native-datepicker'
 
 const mapStateToProps = state =>({
     signInfo: state.signInfo
@@ -84,10 +86,45 @@ export default class SecondPage extends Component{
                 inlineStyle = {[localStyles.transparent, localStyles.input_flex]}
                 textStyle = {localStyles.inputTitle}
               >
+                <Picker
+                  selectedValue={this.state.language}
+                  onValueChange={(lang)=>this.setState({language:lang})}>
+                  <Picker.Item label=""/>
+                </Picker>
+              </InputItem>
+              <InputItem
+                title = {I18n.t('SignInfo.second.gender')}
+                inlineStyle = {[localStyles.transparent, localStyles.input_flex]}
+                textStyle = {localStyles.inputTitle}
+              >
                 <TextInput
                   style={[styles.flex1]}
                   defaultValue={this.state.gender}
                   onChangeText={sex => this.setState({gender})}
+                />
+              </InputItem>
+              <InputItem
+                title = {I18n.t('SignInfo.second.birthday')}
+                inlineStyle = {[localStyles.transparent, localStyles.input_flex]}
+                textStyle = {localStyles.inputTitle}
+                >
+                <DatePicker
+                  mode = "date"
+                  date = {this.state.birthday}
+                  style={{width:200}}
+                  placeholder ={I18n.t('SighInfo.second.birthday')}
+                  format="YYYY-MM-DD"
+                  minDate="1960-01-01"
+                  maxDate="2020-01-01"
+                  confirmBtnText="Confirm"
+                  cancelBtnText="Cancel"
+                  showIcon={false}
+                  customStyles={{
+                    dateInput:{
+                      borderWidth:0
+                    }
+                  }}
+                  onDateChange={birthday=>this.setState({birthday})}
                 />
               </InputItem>
               <InputItem
