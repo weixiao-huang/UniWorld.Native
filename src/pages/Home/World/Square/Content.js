@@ -69,7 +69,7 @@ const localStyles = StyleSheet.create({
   smallPoster: {
     marginTop: 10,
     marginBottom: 10,
-    marginLeft: 30,
+    marginLeft: 15,
     height: 112.5,
     width: 345,
     borderRadius: 16,

@@ -12,6 +12,7 @@ import Home from '../pages/Home'
 import RoomInfo from '../components/RoomInfo'
 import RoomDetail from '../components/RoomDetail'
 import User from '../components/User'
+import Channel from '../pages/Channel'
 
 
 const AppRouteConfigs = {
@@ -52,6 +53,13 @@ const AppRouteConfigs = {
     path: 'room/:id/detail',
     navigationOptions: {
       title: 'RoomDetail'
+    }
+  },
+  Channel:{
+    screen: Channel,
+    path: 'channel/:id',
+    navigationOptions: {
+      title: 'Channel'
     }
   }
 }

@@ -89,6 +89,10 @@ export const GoToRoomInfo = id => dispatch => (
   dispatch({type: types.GO_TO_ROOM_INFO, id})
 )
 
+export const GoToChannel = id => dispatch => (
+  dispatch({type: types.GO_TO_CHANNEL, id})
+)
+
 export const FetchRoomInfo = id => (dispatch, getState) => (
   composeHandle(api.fetchRoomInfo(id))(types.GET_ROOM_INFO, 'roomInfo')(dispatch, getState)
 )

@@ -18,8 +18,9 @@ PushNotification.configure({
   // (required) Called when a remote or local notification is opened or received
   onNotification: function (notification) {
     const store = configureStore(() => {})
-    console.log(global.navigateId)
-    store.dispatch(GoToRoomDetail(global.navigateId))
+    // console.log(global.navigateId)
+    // console.log(store.getState())
+    store.dispatch(GoToRoomInfo(global.navigateId))
     // GoToRoomInfo(notification.roomId)()
   },
 

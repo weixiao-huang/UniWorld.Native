@@ -29,7 +29,7 @@ export default (state=initialState, action) => {
         ...state,
         posters: action.posters
       }
-    case types.SET_CHANNELS:
+    case types.GET_CHANNELS:
       return {
         ...state,
         channels: action.channels

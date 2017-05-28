@@ -1,22 +1,25 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Image, Text } from 'react-native'
+import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native'
 
+import { GoToChannel } from '../../../../store/actions'
+import { connect } from 'react-redux'
+
+@connect(dispatch => ({dispatch}))
 class ChannelItem extends Component {
   constructor(props) {
     super(props)
   }
   onPress() {
-    let id = this.channel.id
-    //跳转到频道
+    global.channelId = this.props.channel.id
+    this.props.dispatch(GoToChannel(global.channelId))
   }
 
   render() {
     return (
-      <View onPress={this.goToChannel} style={[localStyles.channelItem]}>
+      <TouchableOpacity onPress={this.onPress.bind(this)} style={[localStyles.channelItem]}>
         <Image source={{ url: this.props.channel.icon }} style={[localStyles.channelCover]} />
         <Text style={[localStyles.channelName]}>{this.props.channel.title}</Text>
-      </View>
-
+      </TouchableOpacity>
     )
   }
 }

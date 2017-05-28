@@ -27,7 +27,7 @@ export default (state, action) => {
         actions: [ NavigationActions.navigate({routeName: 'Login'}) ]
       }), state)
     case types.GO_TO_ROOM_INFO:
-      console.log("xxxxxxxxxxxxxxxxxxxxxxx")
+
       return AppNavigator.router.getStateForAction(NavigationActions.navigate({
         routeName: 'RoomInfo',
         params: { id: action.id }
@@ -38,10 +38,16 @@ export default (state, action) => {
         params: { id: action.id }
       }), state)
     case types.GO_TO_ROOM_DETAIL:
+
       return AppNavigator.router.getStateForAction(NavigationActions.navigate({
         routeName: 'RoomDetail',
         params: { id: action.id }
       }), state)
+    case types.GO_TO_CHANNEL:
+    return AppNavigator.router.getStateForAction(NavigationActions.navigate({
+      routeName: 'Channel',
+      params: { id: action.id }
+    }), state)
     case types.SIGN_UP:
       return AppNavigator.router.getStateForAction(NavigationActions.navigate({
         routeName: 'SignUp'
