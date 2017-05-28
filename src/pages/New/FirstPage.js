@@ -18,11 +18,11 @@ import styles from '../../common/styles'
 import SecondPageButton from '../../components/StyleButton'
 import BackgroundImage from '../../components/BackgroundImage'
 
-const mapStateToProps = state =>({
-  userInfo: state.user.userInfo,
-})
+// const mapStateToProps = state =>({
+//   userInfo: state.userInfo,
+// })
 
-// @connect(mapStateToProps, dispatch => {{dispatch}})
+//@connect(mapStateToProps, dispatch => {{dispatch}})
 export default class FirstPage extends Component {
   constructor(props) {
     super(props)
@@ -33,8 +33,8 @@ export default class FirstPage extends Component {
 
   next = () => {
     this.setState({disabled:true})
-  //  this.props.navigation.navigate('SecondPage')
     setTimeout(()=>this.setState({disabled:false}),1000)
+    //this.props.navigation.navigate('SecondPage')
   }
 
 

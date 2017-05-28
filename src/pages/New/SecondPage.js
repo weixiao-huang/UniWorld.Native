@@ -18,7 +18,7 @@ import {
 import { connect } from 'react-redux'
 
 import I18n from 'react-native-i18n'
-import { SetSignInfoData } from '../../store/actions'
+import { EditUserInfo } from '../../store/actions'
 
 import styles from '../../common/styles'
 
@@ -28,9 +28,8 @@ import BackgroudImage from '../../components/BackgroundImage'
 import DatePicker from 'react-native-datepicker'
 
 const mapStateToProps = state =>({
-    signInfo: state.signInfo
+    userInfo: state.signInfo
 })
-
 @connect(mapStateToProps, dispatch =>({dispatch}))
 export default class SecondPage extends Component{
   constructor(props){
@@ -38,27 +37,48 @@ export default class SecondPage extends Component{
     this.state={
       isuploading:false,
       disabled:false,
-      nickname:'',
-      gender:0,
-      birthday:'1199-11-11',
-      deparment:'ee',
-      grade:'1',
-      signature:'1111'
+      signInfo:{
+        nickname:'',
+        gender:'lgbt',
+        birthday:'1996-12-26',
+        deparment:'EE',
+        grade:'2015',
+        signature:'I AM WILL'
+      },
+      agreement:false
     }
   }
 
   _isCompleted = () => (
-    this.state.nickname.length > 0 &&
-    this.state.nickname.length <30
+    this.state.signInfo.nickname.length > 0 &&
+    this.state.signInfo.nickname.length <30
   )
   next = () =>{
-    this.props.dispatch(SetSignInfoData(this.state))
+    this.props.dispatch(EditUserInfo(this.state))
+    this.setState({disabled:true})
+    setTimeout(()=>this.setState({disabled:false}),1000)
 //   this.props.navigation.navigate(Third)
   }
   render(){
     return(
       <KeyboardAvoidingView behavior={'position'}>
         <ScrollView style={{height: 700}}>
+          {!state.agreement?'':
+          <View>
+            <TextInput
+              style = {localStyles.agreement}
+            >
+              agreement
+            </TextInput>
+          </View>
+          <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight:20}]}>
+              <SignInfoButton
+                title={I18n.t('SignInfo.second.back')}
+                onPress={()=>{this.setstate({agreement:false})}}
+              />
+            </View>
+          }
+
           <BackgroudImage
           bgUrl={require('../../assets/image/signInfoBg.png')}
           style={{height: 700}}
@@ -73,13 +93,13 @@ export default class SecondPage extends Component{
                 <TextInput
                 style={[localStyles.inputWrap]}
                 defaultValue={this.state.nickname}
-                onChangeText={nickname => this.setState({nickname})}
+                onChangeText={nickname => this.setState({nickname:nickname})}
               />
               </View>
             <View style={[localStyles.wrap]}>
               <Picker
                 selectedValue={this.state.language}
-                onValueChange={(lang)=>this.setState({language:lang})}>
+                onValueChange={(language)=>this.setState({language:language})}>
                 <Picker.Item
                   label="male"
                   value={I18n.t('SignInfo.second.male')}
@@ -88,13 +108,17 @@ export default class SecondPage extends Component{
                   label="female"
                   value={I18n.t('SignInfo.second.female')}
                 />
+                <Picker.Item
+                  label="female"
+                  value={I18n.t('SignInfo.secod.lsbt')}
+                />
               </Picker>
             </View>
             <View>
               <TextInput
                 style={[localStyles.inputWrap]}
                 defaultValue={this.state.gender}
-                onChangeText={sex => this.setState({gender})}
+                onChangeText={sex => this.setState({gender:gender})}
               />
             </View>
             <View style={[localStyles.wrap]}>
@@ -114,37 +138,56 @@ export default class SecondPage extends Component{
                       borderWidth:0
                     }
                   }}
-                  onDateChange={birthday=>this.setState({birthday})}
+                  onDateChange={birthday=>this.setState({birthday:birthday})}
                 />
               </View>
               <View>
                 <TextInput
                   style={[localStyles.inputWrap]}
                   defaultValue={this.state.birthday}
-                  onChangeText={birthday => this.setState({birthday})}
+                  onChangeText={birthday => this.setState({birthday:birthday})}
                 />
               </View>
               <View style={[localStyles.wrap]}>
                 <TextInput
                   style={styles.flex1}
                   defaultValue={this.state.department}
-                  onChangeText={department => this.setState({department})}
+                  onChangeText={department => this.setState({department:department})}
                 />
+              </View>
+              <View>
+                <Picker
+                  selectedValue={this.state.grade}
+                  onValueChange={(grade)=>this.setstate({grade:grade})}
+                >
+                  <Picker.Item label="2013" value="2013"/>
+                  <Picker.Item label="2014" value="2014"/>
+                  <Picker.Item lable="2015" value="2015"/>
+                  <Picker.Item label="2016" value="2016"/>
+                </Picker>
               </View>
               <View style={[localStyles.wrap]}>
                 <TextInput
                   style={[localStyles.inputWrap]}
                   defaultValue={this.state.grade}
-                  onChangeText={grade => this.setState({grade})}
+                  onChangeText={grade => this.setState({grade:grade})}
                 />
               </View>
               <View style={[localStyles.wrap]}>
                 <TextInput
                   style={[localStyles.inputWrap]}
                   defaultValue={this.state.signature}
-                  onChangeText={signature => this.setState({signature})}
+                  onChangeText={signature => this.setState({signature:signature})}
                 />
               </View>
+            </View>
+
+            <View>
+              <TouchableOpacity
+                onPress= {()=>{this.setState({agreement:true})}}
+              >
+                {I18n.t('SignInfo.second.agreement')}
+              </TouchableOpacity>
             </View>
 
             <View style={[styles.fullFlexWidth, {marginLeft: 20, marginRight:20}]}>
@@ -229,6 +272,8 @@ const localStyles = StyleSheet.create({
     width:'100%',
     height:25,
     // backgroundColor:'#3555b6'
-
+  },
+  agreement:{
+    position: "absolute"
   }
 })

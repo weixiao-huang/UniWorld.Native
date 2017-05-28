@@ -216,11 +216,14 @@
       "gender":"Gender",
       "male":"male",
       "female":"female",
-      "female":"female",
+      "lsbt":"lsbt",
       "birthday":"Birthday",
       "department":"Department",
       "grade":"Grade",
-      "signature":"Signature"
+      "signature":"Signature",
+      "continue":"Accept the User Agreement",
+      "agreement":"User's Agreement",
+      "back":"Back"
     }
   },
 
