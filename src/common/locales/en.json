@@ -82,7 +82,7 @@
       "Footer": {
         "edit": "Edit",
         "new": "New notification"
-      },
+      }
     },
     "Chat": {
       "title": "Chat"
@@ -203,6 +203,27 @@
       }
     }
   },
+  "SignInfo":{
+    "first":{
+      "message1":"Welcome to UniWorld",
+      "message2":"You may come across variant people here",
+      "message3":"Explore all possibilities",
+      "nextButton":"Continue"
+    },
+    "second":{
+      "title":"Complete your information",
+      "nickname":"Nickname",
+      "gender":"Gender",
+      "male":"male",
+      "female":"female",
+      "female":"female",
+      "birthday":"Birthday",
+      "department":"Department",
+      "grade":"Grade",
+      "signature":"Signature"
+    }
+  },
+
   "RoomList": {
     "label": "List",
     "Star": {

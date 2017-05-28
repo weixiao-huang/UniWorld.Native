@@ -82,7 +82,8 @@ const localStyles = StyleSheet.create({
     fontSize: 16,
     padding: 5,
     fontWeight: '500',
-    lineHeight: 24
+    lineHeight: 24,
+    backgroundColor: 'transparent'
   },
   title: {
     color: '#3e3974',

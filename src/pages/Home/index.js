@@ -15,13 +15,14 @@ import NewRoom from './NewRoom'
 import Smile from './Smile'
 import RoomList from './RoomList'
 import Me from './Me'
+import SecondPage from '../New/SecondPage'
 
 import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog'
 import StyleButton from '../../components/StyleButton'
 
 export const HomeRouter = TabNavigator({
   World: {
-    screen: World,
+    screen: SecondPage,
     navigationOptions: {
       tabBar: {
         label: I18n.t('World.label', { defaultValue: 'World' }),
