@@ -10,7 +10,7 @@ import styles from '../../common/styles'
 import {
   Visit, UserLogin, FetchRoomList, FetchWorldRoomList, FetchRecommendRoomList,
   FetchLatestRoomList, GoToHome, FetchUserInfo, SetCommonData, FetchInitialLabels,
-  GoToSignUp, FetchChannels
+  GoToSignUp, FetchChannels, FetchUnreadRooms
 } from '../../store/actions'
 
 import Input from './Input'

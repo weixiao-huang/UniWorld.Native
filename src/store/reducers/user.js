@@ -5,7 +5,7 @@
 
 import * as PushNotification from 'react-native-push-notification'
 import * as types from '../types'
-import { GoToRoomInfo } from '../actions'
+import { GoToRoomInfo, GoToRoomDetail } from '../actions'
 import configureStore from '../index'
 
 PushNotification.configure({
@@ -17,9 +17,9 @@ PushNotification.configure({
 
   // (required) Called when a remote or local notification is opened or received
   onNotification: function (notification) {
-    console.log('111122223333navigate')
-    console.log(configureStore(() => {}))
-    configureStore(() => {}).dispatch(GoToRoomInfo(notification.roomId))
+    const store = configureStore(() => {})
+    console.log(global.navigateId)
+    store.dispatch(GoToRoomDetail(global.navigateId))
     // GoToRoomInfo(notification.roomId)()
   },
 
@@ -103,12 +103,15 @@ export default (state = initialState, action) => {
       }
     case types.SET_ROOM_MESSAGES:
       let messages = {}
+      let navigateId
       for (let roomId in action.messages) {
         if (state.messages.hasOwnProperty(roomId)) {
           // messages[roomId] = action.messages[roomId].reverse().concat(state.messages[roomId])
           messages[roomId] = state.messages[roomId].concat(action.messages[roomId])
+          navigateId = roomId
         } else {
           messages[roomId] = action.messages[roomId]
+          navigateId = roomId
           // messages[roomId] = action.messages[roomId].reverse()
         }
         PushNotification.localNotification({
@@ -141,15 +144,16 @@ export default (state = initialState, action) => {
           //number: '10', // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
           repeatType: 'day', // (Android only) Repeating interval. Could be one of `week`, `day`, `hour`, `minute, `time`. If specified as time, it should be accompanied by one more parameter 'repeatTime` which should the number of milliseconds between each interval
           //actions: '["Yes", "No"]',  // (Android only) See the doc for notification actions to know more
-          roomId: roomId,
+
         });
       }
+      global.navigateId = Number(navigateId)
       return {
         ...state,
         messages: {
           ...state.messages,
           ...messages
-        }
+        },
       }
     case types.USER_LOGOUT:
       return initialState

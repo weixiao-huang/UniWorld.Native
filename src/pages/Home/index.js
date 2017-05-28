@@ -8,7 +8,7 @@ import { TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
-import { MessagePolling, SetCommonData } from '../../store/actions'
+import { MessagePolling, SetCommonData, FetchUnreadRooms } from '../../store/actions'
 
 import World from './World'
 import NewRoom from './NewRoom'
@@ -120,6 +120,7 @@ export default class Home extends Component {
         // console.log('_messagePolling::isPolling: ', this.props.isPolling)
         // console.log('_messagePolling::token: ', this.props.token)
         await this.props.dispatch(MessagePolling)
+        // await this.props.dispatch(FetchUnreadRooms)
         console.log('即将开始下一轮轮训')
         setTimeout(this._messagePolling, 1000)
         // this._messagePolling()
@@ -133,8 +134,8 @@ export default class Home extends Component {
   }
   componentWillMount() {
     // console.log(this.props.common)
-   
-    
+
+
     // console.log(this.props.common)
   }
   async componentDidMount() {

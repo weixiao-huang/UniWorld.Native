@@ -19,6 +19,11 @@ const initialState = {
 
 export default (state=initialState, action) => {
   switch (action.type) {
+    case types.GET_UNREADROOMS:
+      return {
+        ...state,
+        unreadRooms: action.unreadRooms
+      }
     case types.GET_POSTERS:
       return {
         ...state,

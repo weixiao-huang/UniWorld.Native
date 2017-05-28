@@ -38,7 +38,11 @@ export const FetchLatestRoomList = (dispatch, getState) => (
 )
 
 export const FetchChannels = (dispatch, getState) => (
-  composeHandle(api.fetchChannels)(types.SET_CHANNELS, 'channels')(dispatch, getState)
+  composeHandle(api.fetchChannels)(types.GET_CHANNELS, 'channels')(dispatch, getState)
+)
+
+export const FetchUnreadRooms = (dispatch, getState) => (
+  composeHandle(api.fetchUnreadRooms(id))(types.GET_UNREADROOMS, 'unreadRooms')(dispatch, getState)
 )
 
 export const FetchRecommendRoomList = (dispatch, getState) => (

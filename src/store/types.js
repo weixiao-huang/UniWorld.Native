@@ -52,6 +52,6 @@ export const UNMARK_ROOM = 'UNMARK_ROOM'
 
 export const SIGN_UP = 'SIGN_UP'
 
-export const SET_CHANNELS = 'SET_CHANNELS'
-
+export const GET_CHANNELS = 'GET_CHANNELS'
+export const GET_UNREADROOMS = 'GET_UNREADROOMS'
 export const SET_LOGIN_DIALOG = 'SET_LOGIN_DIALOG'

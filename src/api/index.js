@@ -108,6 +108,9 @@ export default {
   fetchRoomList: token => getByToken(
     `/profile/rooms/`
   )(token),
+  fetchUnreadRooms: token => getByToken(
+    `/receive_unread/?id=${id}`
+  )(token),
   fetchQuestionnaires: id => token => getByToken(
     `/room/${id}/questionnaires/`
   )(token),
