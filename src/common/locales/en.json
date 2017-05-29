@@ -223,7 +223,8 @@
       "signature":"Signature",
       "continue":"Accept the User Agreement",
       "agreement":"User's Agreement",
-      "back":"Back"
+      "back":"Back",
+      "nextButton":"Accept the User's Agreement"
     }
   },
 
