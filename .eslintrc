@@ -1,0 +1,13 @@
+{
+  "extends": ["airbnb", "plugin:react-native/all"],
+  "plugins": [
+    "react-native"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": [0],
+    "semi": [0],
+    "react-native/no-color-literals": [0]
+  },
+  "parser": "babel-eslint"
+}
