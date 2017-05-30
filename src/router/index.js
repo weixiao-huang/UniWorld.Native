@@ -4,9 +4,9 @@ import { addNavigationHelpers } from 'react-navigation'
 
 import AppNavigator from './page'
 
-const AppWithNavigationState = ({ dispatch, nav }) => (
-  <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
-)
+const AppWithNavigationState = ({ dispatch, nav }) => {
+  return <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
+}
 
 AppWithNavigationState.propTypes = {
   dispatch: PropTypes.func.isRequired,

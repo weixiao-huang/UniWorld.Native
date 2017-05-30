@@ -12,6 +12,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(() => (
-  <Page {...this.props} />
+export default connect(mapStateToProps, mapDispatchToProps)(props => (
+  <Page {...props} />
 ))

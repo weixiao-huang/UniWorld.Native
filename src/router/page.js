@@ -19,8 +19,8 @@ const AppRouteConfigs = {
 }
 
 const StackNavigatorConfigs = {
-  headerMode: 'screed',
-  initialRouteName: 'homeTab',
+  headerMode: 'screen',
+  initialRouteName: 'login',
 }
 
 export default StackNavigator(AppRouteConfigs, StackNavigatorConfigs)

@@ -3,7 +3,7 @@ import * as types from './types'
 
 import AppNavigator from './page'
 
-// const tabbarAction = AppNavigator.router.getActionForPathAndParams('tabbar');
+// const tabbarAction = AppNavigator.router.getActionForPathAndParams('homeTab');
 // const tempNavState = AppNavigator.router.getStateForAction(tabbarAction);
 // const loginAction = AppNavigator.router.getActionForPathAndParams('login');
 

@@ -18,7 +18,7 @@ const passIcon = require('./img/PasswordIcon.png')
 
 export default class Login extends Component {
   login = () => {
-
+    this.props.navigation.navigate('homeTab')
   }
   render() {
     return (
