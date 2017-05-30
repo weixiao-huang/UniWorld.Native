@@ -10,19 +10,19 @@ import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
 import { MessagePolling, SetCommonData } from '../../store/actions'
 
+import SignInfo from '../New'
 import World from './World'
 import NewRoom from './NewRoom'
 import Smile from './Smile'
 import RoomList from './RoomList'
 import Me from './Me'
-import SecondPage from '../New/SecondPage'
 
 import PopupDialog, { SlideAnimation, DialogTitle, DialogButton } from 'react-native-popup-dialog'
 import StyleButton from '../../components/StyleButton'
 
 export const HomeRouter = TabNavigator({
   World: {
-    screen: SecondPage,
+    screen: World,
     navigationOptions: {
       tabBar: {
         label: I18n.t('World.label', { defaultValue: 'World' }),

@@ -34,18 +34,19 @@ export default class FirstPage extends Component {
   next = () => {
     this.setState({disabled:true})
     setTimeout(()=>this.setState({disabled:false}),1000)
-    //this.props.navigation.navigate('SecondPage')
+    this.props.navigation.navigate('Second')
   }
 
 
   render(){
+    console.log('1111111', this.props.navigation)
     return (
-      <ScrollView style={{flex: 1}}>
+      <ScrollView >
         <BackgroundImage
           bgUrl={require('../../assets/image/signInfoBg.png')}
-          inlineStyle={{height: Dimensions.get('window').height}}
+          inlineStyle={{height: Dimensions.get('window').height*0.9}}
         >
-          <View style={[styles.fullFlex, localStyles.container,{paddingTop:100}]}>
+          <View style={[styles.flex1, localStyles.container,{paddingTop:100}]}>
             <Image style={[localStyles.cover,{marginBottom:20}]} source={require('../../assets/image/logoPink.png')}/>
             <Text style={localStyles.subTitle}>{I18n.t('SignInfo.first.message1')}</Text>
             <Text style={localStyles.subTitle}>{I18n.t('SignInfo.first.message2')}</Text>
@@ -68,9 +69,10 @@ export default class FirstPage extends Component {
 
 const localStyles = StyleSheet.create({
   container:{
-    alignItems:'center',
-    justifyContent: 'center',
-    height:'100%'
+     alignItems:'center',
+    // justifyContent: 'center',
+    height: 100,
+    flexDirection: 'column'
   },
   cover: {
     resizeMode: 'contain',
@@ -91,7 +93,7 @@ const localStyles = StyleSheet.create({
     padding: 16,
   },
   button: {
-    marginTop: 10,
+    // marginTop: 10,
     marginBottom: 30,
     borderRadius: 5,
     padding: 15

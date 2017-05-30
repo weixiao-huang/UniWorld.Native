@@ -6,8 +6,8 @@ import { StackNavigator } from 'react-navigation'
 import { Text } from 'react-native'
 
 import FirstPage from './FirstPage'
-// import SecondPage from './SecondPage'
-// import ThirdPage from './ThirdPage'
+import SecondPage from './SecondPage'
+import ThirdPage from './ThirdPage'
 
 const Router = StackNavigator({
   First: {
@@ -16,20 +16,23 @@ const Router = StackNavigator({
       title: 'First'
     }
   },
-  // Second: {
-  //   screen: SecondPage,
-  //   navigationOptions: {
-  //     title: 'Second'
-  //   }
-  // },
-  // Third: {
-  //   screen: ThirdPage,
-  //   navigationOptions: {
-  //     title: 'Third'
-  //   }
-  // },
+  Second: {
+    screen: SecondPage,
+    navigationOptions: {
+      title: 'Second'
+    }
+  },
+  Third: {
+    screen: ThirdPage,
+    navigationOptions: {
+      title: 'Third'
+    }
+  },
 }, {
   headerMode: 'screen',
-  initialState: 'First'
+  initialState: 'First1'
 })
 
+export default (props) => (
+  <Router />
+)

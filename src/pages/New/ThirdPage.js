@@ -34,5 +34,11 @@ export default class ThirdPage extends Component{
       labels: []
     }
   }
-
+  render () {
+    return (
+      <View>
+        <Text>test</Text>
+      </View>
+    )
+  }
 }
