@@ -9,7 +9,8 @@ import Me from '../../pages/me'
 
 const styles = StyleSheet.create({
   icon: {
-
+    height: '100%',
+    resizeMode: 'contain',
   },
 })
 
@@ -26,21 +27,26 @@ const setTabItem = (screen, label, icon) => ({
   },
 })
 
+const worldIcon = require('../img/world.png')
+const newIcon = require('../img/new.png')
+const listIcon = require('../img/myRoom.png')
+const meIcon = require('../img/me.png')
+
 const RouteConfigs = {
-  world: setTabItem(World, 'World', require('../img/world.png')),
-  new: setTabItem(NewRoom, 'New Room', require('../img/new.png')),
-  list: setTabItem(MyRoomList, 'My Room List', require('../img/myRoom.png')),
-  me: setTabItem(Me, 'Me', require('../img/me.png')),
+  world: setTabItem(World, 'World', worldIcon),
+  new: setTabItem(NewRoom, 'New Room', newIcon),
+  list: setTabItem(MyRoomList, 'My Room List', listIcon),
+  me: setTabItem(Me, 'Me', meIcon),
 }
 
 const TabNavigatorConfig = {
   tabBarOptions: {
-    activeTintColor: '#444', // 文字和图片选中颜色
-    inactiveTintColor: '#aaa', // 文字和图片默认颜色
+    activeTintColor: '#ffffff', // 文字和图片选中颜色
+    inactiveTintColor: '#EC5367', // 文字和图片默认颜色
     showIcon: true, // android 默认不显示 icon, 需要设置为 true 才会显示
     indicatorStyle: { height: 0 }, // android 中TabBar下面会显示一条线，高度设为 0 后就不显示线了， 不知道还有没有其它方法隐藏？？？
     style: {
-      backgroundColor: '#eee', // TabBar 背景色
+      backgroundColor: '#3e3974', // TabBar 背景色
     },
     labelStyle: {
       fontSize: 12, // 文字大小
