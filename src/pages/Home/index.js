@@ -10,6 +10,7 @@ import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
 import { MessagePolling, SetCommonData, FetchUnreadRooms } from '../../store/actions'
 
+import SignInfo from '../New'
 import World from './World'
 import NewRoom from './NewRoom'
 import Smile from './Smile'

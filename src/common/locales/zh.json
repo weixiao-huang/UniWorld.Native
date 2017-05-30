@@ -58,5 +58,27 @@
         "placeholder": "是否设为大型匹配房间"
       }
     }
+  },
+"SignInfo":{
+    "first":{
+      "message1":"欢迎来到 UniWorld",
+      "message2":"在这里，遇见一切有趣的人",
+      "message3":"探索一切未知的可能",
+      "nextButton":"继续"
+    },
+    "second":{
+      "title":"请完善你的注册信息",
+      "nickname":"昵称",
+      "gender":"性别",
+      "male":"男",
+      "female":"女",
+      "birthday":"生日",
+      "department":"院系",
+      "grade":"年级",
+      "signature":"个性签名",
+      "continue":"我已阅读并同意用户协议",
+      "agreement":"用户协议",
+      "back":"返回"
+    }
   }
 }

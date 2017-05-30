@@ -2,7 +2,7 @@
  * Created by huangwx on 11/04/2017.
  */
 import React, { Component } from 'react'
-import { View, StyleSheet, Image, Text } from 'react-native'
+import { View, StyleSheet, Image, Text, TouchableOpacity  } from 'react-native'
 
 import Swiper from 'react-native-swiper'
 
@@ -15,6 +15,9 @@ export default class WorldSwiper extends Component {
 
   }
 
+  _goToPoster(id){
+
+  }
   render () {
     // let click = this.onClick
     console.log(this.props.topPosters)
@@ -25,7 +28,10 @@ export default class WorldSwiper extends Component {
           <Swiper height={height} autoplay={true} autoplayTimeout={3} autoplayDirection={true}>
             {this.props.topPosters && this.props.topPosters.map((cover, index) => {
               return (
-                <Image key={index} source={{url: cover.cover}} style={{height: height, width: '100%'}}/>
+
+                <TouchableOpacity onPress={this._goToPoster(cover.url)}>
+                  <Image key={index} source={{url: cover.cover}} style={{height: height, width: '100%'}}/>
+                </TouchableOpacity>
               )
             })}
           </Swiper>

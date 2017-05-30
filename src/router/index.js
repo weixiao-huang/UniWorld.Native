@@ -14,12 +14,19 @@ import RoomDetail from '../components/RoomDetail'
 import User from '../components/User'
 import Channel from '../pages/Channel'
 
+import SignInfo from '../pages/New'
 
 const AppRouteConfigs = {
   Login: {
     screen: Login,
     navigationOptions: {
       title: 'Login'
+    }
+  },
+  SignInfo: {
+    screen: SignInfo,
+    navigationOptions: {
+      title: 'SignInfo'
     }
   },
   SignUp: {

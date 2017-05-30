@@ -213,6 +213,31 @@
       }
     }
   },
+  "SignInfo":{
+    "first":{
+      "message1":"Welcome to UniWorld",
+      "message2":"You may come across variant people here",
+      "message3":"Explore all possibilities",
+      "nextButton":"Continue"
+    },
+    "second":{
+      "title":"Complete your information",
+      "nickname":"Nickname",
+      "gender":"Gender",
+      "male":"male",
+      "female":"female",
+      "lsbt":"lsbt",
+      "birthday":"Birthday",
+      "department":"Department",
+      "grade":"Grade",
+      "signature":"Signature",
+      "continue":"Accept the User Agreement",
+      "agreement":"User's Agreement",
+      "back":"Back",
+      "nextButton":"Accept the User's Agreement"
+    }
+  },
+
   "RoomList": {
     "label": "List",
     "Star": {

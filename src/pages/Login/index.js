@@ -20,7 +20,8 @@ import BackgroundImage from '../../components/BackgroundImage'
 import Loading from '../../components/Loading'
 
 const mapStateToProps = state => ({
-  loading: state.common.loading
+  loading: state.common.loading,
+  user: state.user.userInfo
 })
 
 @connect(mapStateToProps, dispatch=>({dispatch}))
@@ -44,7 +45,7 @@ export default class Login extends Component {
     await this.props.dispatch(FetchInitialLabels)
     this.props.dispatch(SetCommonData('loading', false))
     this.props.dispatch(SetCommonData('isPolling', true))
-    this.props.dispatch(GoToHome)
+    this.props.user.name.length>0?this.props.dispatch(GoToHome):this.props.dispatch(GoToSignInfo)
   }
 
   visit = async () => {
