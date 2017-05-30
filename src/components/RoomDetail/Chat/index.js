@@ -80,6 +80,12 @@ export default class Chat extends Component {
   }
 
   _sendMessage = async () => {
+    global.ws.send(JSON.stringify({
+      text: this.state.text,
+      type: 0,
+      room: this.props.roomId
+    }))
+    console.log('xxxxxxx')
     if (this.state.text) {
       this.setState({ text: '' })
       await this.props.dispatch(SendMessage({ text: this.state.text })(this.props.roomId))

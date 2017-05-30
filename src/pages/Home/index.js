@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
 import { MessagePolling, SetCommonData, FetchUnreadRooms } from '../../store/actions'
+import { wsByToken } from '../../ws'
 
 import SignInfo from '../New'
 import World from './World'
@@ -114,6 +115,7 @@ export default class Home extends Component {
     // console.log('_messagePolling::isPolling: ', this.props.isPolling)
     // console.log('_messagePolling::token: ', this.props.token)
     // console.log(this.props.token && this.props.isPolling)
+    /*
     if (this.props.token && this.props.isPolling) {
       try {
         console.log('开始轮训')
@@ -130,7 +132,17 @@ export default class Home extends Component {
         setTimeout(this._messagePolling, 1000)
         // this._messagePolling()
       }
+    }*/
+    global.ws=new WebSocket('wss://api.theuniworld.net/ws/?token='+this.props.token)
+    console.log(this.props.token)
+    global.ws.onopen = () => {
+      ws.send('dd?')
+      console.log('!!!!!!!!!!')
     }
+    global.ws.onmessage = (message) => {
+      console.log(message)
+    }
+
   }
   componentWillMount() {
 
@@ -143,7 +155,7 @@ export default class Home extends Component {
   componentWillReceiveProps(nextProps) {
     // console.log('是否WillReceiveProps轮训？？？？', nextProps.isPolling)
     // console.log(nextProps)
-    if (this.props.token) this._messagePolling()
+    //if (this.props.token) this._messagePolling()
   }
   componentWillUnmount() {
     this.setState({ isPolling: false })

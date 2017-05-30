@@ -30,7 +30,7 @@ export default class UserInfo extends Component {
       gender: '',
       department: this.props.userInfo && this.props.userInfo.department,
       year: '',
-      signature: this.props.userInfo && this.props.userInfo.signature
+      signature: this.props.userInfo && this.props.userInfo.signaturef
     }
   }
   edit = () => {
@@ -133,7 +133,7 @@ export default class UserInfo extends Component {
                   <Text style={[styles.fullFlexWidth]}>{this.props.userInfo.username}</Text>
                 </InputItem2>
                 <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.name')}>
-                  <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}>{this.props.userInfo.name}</Text>
+                  <Text style={[styles.fullFlexWidth, localStyles.wrap__item__edit]}></Text>
                 </InputItem2>
                 <InputItem2 textStyle={localStyles.wrap__item__title} title={I18n.t('Me.info.gender')}>
                   {this.state.isEditing ?
