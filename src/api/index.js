@@ -134,9 +134,12 @@ export default {
   fetchRoomList: token => getByToken(
     `/profile/rooms/`
   )(token),
-  fetchUnreadRooms: token => getByToken(
-    `/receive_unread/?id=${id}`
-  )(token),
+  checkMailbox: pmid => token => {
+    console.log('!!?!??!?!?!')
+    return getByToken(
+    `/check_mb/?pmid=${pmid}`
+  )(token)
+  },
   fetchQuestionnaires: id => token => getByToken(
     `/room/${id}/questionnaires/`
   )(token),

@@ -51,7 +51,7 @@ import { SendMessage } from '../../../store/actions'
 
 const mapStateToProps = state => ({
   messages: state.user.messages[state.room.roomInfo.id] || [],
-  roomId: state.room.roomInfo.id
+  roomId: state.room.roomInfo.id,
 })
 
 @connect(mapStateToProps, dispatch => ({ dispatch }))
@@ -82,10 +82,16 @@ export default class Chat extends Component {
   }
 
   _sendMessage = async () => {
+    global.ws.send(JSON.stringify({
+      text: this.state.text,
+      type: 0,
+      room: this.props.roomId
+    }))
+    console.log('xxxxxxx')
     if (this.state.text) {
       this.setState({ text: '' })
-      await this.props.dispatch(SendMessage({ text: this.state.text })(this.props.roomId))
-      this._updateNewMessages(this.props.messages)
+      //await this.props.dispatch(SendMessage({ text: this.state.text })(this.props.roomId))
+      //this._updateNewMessages(this.props.messages)
     }
   }
 

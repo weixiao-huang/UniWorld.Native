@@ -202,7 +202,7 @@ export default class SecondPage extends Component {
                   </Text>
                   <TextInput
                     style={[localStyles.inputWrap]}
-                    defaultValue={this.state.name}
+                    defaultValue={this.state.signInfo.name}
                     onChangeText={name =>
                       this.setState({
                         signInfo: {
@@ -284,7 +284,7 @@ export default class SecondPage extends Component {
                   </Text>
                   <TextInput
                     style={localStyles.inputWrap}
-                    defaultValue={this.state.department}
+                    defaultValue={this.state.signInfo.department}
                     placeholder={I18n.t('SignInfo.second.department')}
                     onChangeText={department =>
                       this.setState({
@@ -301,7 +301,7 @@ export default class SecondPage extends Component {
                   </Text>
                   <TextInput
                     style={[localStyles.inputWrap]}
-                    defaultValue={this.state.signature}
+                    defaultValue={this.state.signInfo.signature}
                     placeholder={I18n.t('SignInfo.second.signature')}
                     onChangeText={signature =>
                       this.setState({

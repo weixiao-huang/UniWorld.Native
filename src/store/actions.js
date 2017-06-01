@@ -157,6 +157,19 @@ export const MessagePolling = (dispatch, getState) => (
   ))
 )
 
+export const SetRoomMessage = (message) => (dispatch, getState) => {
+  console.log(message,'iiii')
+  return dispatch({type: types.SET_ROOM_MESSAGES, message})
+}
+
+export const CheckMailbox  = (pmid) => (dispatch, getState) => {
+  //composeHandle(api.checkMailbox(pmid))(types.CHECK_MAILBOX, 'data')(dispatch, getState)
+  console.log('?????')
+  return actionHandle(() => (
+    tokenRequestHandle(api.checkMailbox(pmid))(getState))
+  )
+}
+
 export const UploadCover = data => roomId => (dispatch, getState) => (
   actionHandle(() => (
     tokenRequestHandle(api.uploadCover(data)(roomId))(getState).then(res => {
