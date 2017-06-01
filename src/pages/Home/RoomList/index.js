@@ -30,6 +30,7 @@ export default class RoomList extends Component {
     const roomList = this.props.roomList
     return (
       <View style={[styles.flex1, localStyles.container]}>
+        <View style={{backgroundColor: '#ec5367', height: 20, width: '100%'}}/>
         {roomList && <ScrollTabView
           style={{flex: 2}}
           tabBarBackgroundColor="#ec5367"
@@ -48,8 +49,7 @@ export default class RoomList extends Component {
 
 const localStyles = StyleSheet.create({
   container: {
-    paddingTop:20,
-    backgroundColor: '#ec5367'
+    backgroundColor: 'white'
   },
    tabStyle: {
     flex:2,

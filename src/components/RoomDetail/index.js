@@ -19,7 +19,8 @@ import Loading from "../Loading"
 const mapStateToProps = state => ({
   roomInfo: state.room.roomInfo,
   loading: state.common.loading,
-  questionnaires: state.room.questionnaires && state.room.questionnaires.questionnaires
+  questionnaires: state.room.questionnaires && state.room.questionnaires.questionnaires,
+  userId: state.user.userInfo.id
 })
 
 @connect(mapStateToProps, dispatch => ({dispatch}))
@@ -36,6 +37,8 @@ export default class RoomDetails extends Component {
 
   render() {
     const isEmpty = !this.props.questionnaires || this.props.questionnaires.length <= 0
+    const isHost = this.props.roomInfo.host.id == this.props.userId
+    console.log(this.props.userId)
     return (
       <View style={[styles.flex1, localStyles.container]}>
         {this.props.loading ?
@@ -48,9 +51,9 @@ export default class RoomDetails extends Component {
             tabBarTextStyle={localStyles.tabBarText}
             tabBarUnderlineStyle={localStyles.tabBarUnderline}
           >
-            <Notice questionnaires={this.props.questionnaires} tabLabel={I18n.t('Room.Notice.title')}/>
-            <Chat tabLabel={I18n.t('Room.Chat.title')}/>
-            <Member tabLabel={I18n.t('Room.Member.title')}/>
+            <Notice questionnaires={this.props.questionnaires} tabLabel={I18n.t('Room.Notice.title')} isHost={isHost}/>
+            <Chat tabLabel={I18n.t('Room.Chat.title')} isHost={isHost}/>
+            <Member tabLabel={I18n.t('Room.Member.title')} isHost={isHost}/>
           </ScrollTabView>
         }
       </View>

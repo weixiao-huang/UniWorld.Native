@@ -54,7 +54,7 @@ export default class Notice extends Component {
             {/*</TouchableOpacity>*/}
           {/*</Modal>*/}
         {/*</View>*/}
-        {this.state.showModal?
+        {this.props.isHost?this.state.showModal?
         <NoticeModal cancel={this._cancel.bind(this)}/>
         :
         <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
@@ -74,7 +74,8 @@ export default class Notice extends Component {
                 {I18n.t('Room.Notice.Footer.new')}
               </Text>
           </TouchableOpacity>
-        </View>}
+        </View>:
+        null}
       </View>
     )
   }

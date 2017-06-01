@@ -19,28 +19,29 @@ export default class NoticeModal extends Component {
     this.state = {
       title: '',
       description: '',
-      is_annoucement: true,
+      is_announcement: true,
     }
   }
   _pressNotice(){
     console.log('press')
     this.setState({
-      is_annoucement: true,
+      is_announcement: true,
     })
   }
   _pressQuestionnaires(){
     this.setState({
-      is_annoucement: false,
+      is_announcement: false,
     })
   }
   async _submit(){
     console.log(this.state)
     if (this.state.title && this.state.description) {
+      await this.props.dispatch(SendAnnouncement({ text: this.state })(this.props.roomId))
+      console.log(this.state)
       this.setState({
         text: '',
         description: ''
       })
-      await this.props.dispatch(SendAnnouncement({ text: this.state })(this.props.roomId))
       this.props.cancel()
     }
   }
@@ -49,7 +50,7 @@ export default class NoticeModal extends Component {
     <Modal transparent={true} visible={true}>
       <View style={localStyles.upperBg}/>
       <View style={[styles.flex1, localStyles.menu]}>
-        {this.state.is_annoucement?
+        {this.state.is_announcement?
         <View style={localStyles.header}>
           <View style={{flexDirection:'row',alignItems:'center'}}>
             <Image source={require('../../../assets/icon/trumpet.png')} style={localStyles.titleIcon}/>
@@ -94,7 +95,7 @@ export default class NoticeModal extends Component {
           />
         </View>
         <View style={[localStyles.btnWrap]}>
-          {this.state.is_annoucement?
+          {this.state.is_announcement?
           <TouchableOpacity style={[styles.flex1,localStyles.selectItem,{backgroundColor:'white'}]} >
             <Image source={require('../../../assets/icon/trumP.png')} style={localStyles.icon}/>
           </TouchableOpacity>:
@@ -102,7 +103,7 @@ export default class NoticeModal extends Component {
             <Image source={require('../../../assets/icon/trumW.png')} style={localStyles.icon}/>
           </TouchableOpacity>
           }
-          {!this.state.is_annoucement?
+          {!this.state.is_announcement?
           <TouchableOpacity style={[styles.flex1,localStyles.selectItem,{backgroundColor:'white'}]}>
             <Image source={require('../../../assets/icon/fillP.png')} style={localStyles.icon}/>
           </TouchableOpacity>:

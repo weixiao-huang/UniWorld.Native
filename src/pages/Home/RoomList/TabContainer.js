@@ -54,7 +54,6 @@ export default class TabContainer extends Component {
       console.log(res)
       if (res.status === 200) {
         const history = await res.json()
-        console.log('1111', history)
         this.setState({history: this.state.history.concat(history.results), next: history.next})
       }
     } catch (e) {
@@ -73,7 +72,7 @@ export default class TabContainer extends Component {
         }
         style={[localStyles.container]}
       >
-        {this.props.roomList && this.props.roomList.length > 0 ?
+        {this.props.roomList && (this.props.roomList.length>0 || this.state.history.length) > 0 ?
           <RoomWrap title={this.props.title} roomList={this.props.roomList}/> :
           <View style={[styles.flexCenter]}>
             <Image

@@ -182,9 +182,16 @@ export default {
       required: true (if it is questionnaires, show whether it's required)
     }
    */
-  createAnnouncement: data => roomId => token => (
-    postByToken(`/room/${roomId}/create_announcement/`)(data)(token)
-  ),
+
+  sendAnnouncement: data => roomId => token =>fetch(`${server}/room/${roomId}/create_announcement/`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `token ${token}`,
+    },
+    body: JSON.stringify(data)
+  }),
 
   /*
     data: {
@@ -242,8 +249,6 @@ export default {
     }
    */
   sendMessage: data => roomId => token => postByToken(`/room/${roomId}/send_message/`)(data)(token),
-
-  sendAnnouncement: data => roomId => token => postByToken(`/room/${roomId}/send_announcement/`)(data)(token),
 
 }
 
