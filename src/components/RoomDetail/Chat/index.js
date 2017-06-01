@@ -47,7 +47,7 @@ import InvertibleScrollView from 'react-native-invertible-scroll-view'
 import ChatMenu from './ChatMenu'
 import ChatItem from './ChatItem'
 
-import { SendMessage } from '../../../store/actions'
+import { SendMessage, SetUnreadZero } from '../../../store/actions'
 
 const mapStateToProps = state => ({
   messages: state.user.messages[state.room.roomInfo.id] || [],
@@ -67,7 +67,8 @@ export default class Chat extends Component {
       showMenu: false
     }
     global.unread-=this.props.unreadMessages[this.props.roomId]
-    this.props.unreadMessages[this.props.roomId] = 0
+    console.log(global.unread)
+    this.props.dispatch(SetUnreadZero(this.props.roomId))
   }
 
   _showMenu(){
@@ -105,6 +106,7 @@ export default class Chat extends Component {
       cropping: true
     }).then(image => {
       console.log(image);
+
     }, err => {
       console.log('取消')
     })

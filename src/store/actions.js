@@ -27,6 +27,8 @@ export const UserLogin = opt => dispatch => (
   ))
 )
 
+
+
 export const EditUserInfo = data => (dispatch, getState) => (
   composeHandle(api.editUserInfo(data))(types.EDIT_USER_INFO, 'userInfo')(dispatch, getState)
 )
@@ -77,6 +79,10 @@ export const RemoveLabel = index => dispatch => (
 
 export const SetUserInfo = data => dispatch => (
   dispatch({type: types.EDIT_USER_INFO, userInfo: data})
+)
+
+export const SetUnreadZero = roomId => dispatch => (
+  dispatch({type: types.SET_UNREAD_ZERO, id: roomId})
 )
 
 export const SetNewRoomData = data => dispatch => (
@@ -194,7 +200,6 @@ export const SendMessage = data => roomId => (dispatch, getState) => (
     ).catch(err => {throw err})
   ))
 )
-
 
 export const SendAnnouncement = data => roomId => (dispatch, getState) => (
   actionHandle(() => (

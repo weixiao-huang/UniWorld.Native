@@ -65,8 +65,9 @@ export const HomeRouter = TabNavigator({
     navigationOptions: {
       tabBar: {
         label: I18n.t('RoomList.label', { defaultValue: 'List' }),
-        icon: ({ tintColor }) => (
-          <View>
+        icon: ({ tintColor }) => {
+          console.log('123123231231312312', global.unread)
+          return <View>
             {global.unread?<View style={[localStyles.messagesItem]}>
               <Text style={[localStyles.messagesText]}>{global.unread}</Text>
             </View>:null}
@@ -75,7 +76,7 @@ export const HomeRouter = TabNavigator({
               style={[styles.icon, { tintColor: tintColor }]}
             />
           </View>
-        ),
+        },
       },
     }
   },
@@ -166,7 +167,9 @@ export default class Home extends Component {
     }
   }
   componentWillMount() {
-
+    this.setState({
+        renew: true,
+      })
   }
   async componentDidMount() {
     await this.props.dispatch(SetCommonData('isPolling', true))
@@ -182,10 +185,12 @@ export default class Home extends Component {
     this.setState({ isPolling: false })
   }
   render() {
-    console.log('123456', this.props.navigation)
+    console.log('123456', this.props.unreadMessages)
     return (
       <View style={styles.flex1}>
-        <HomeRouter />
+        <HomeRouter
+          props={this.props}
+        />
       </View>
     )
   }

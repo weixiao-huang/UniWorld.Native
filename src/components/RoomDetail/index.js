@@ -38,7 +38,6 @@ export default class RoomDetails extends Component {
   render() {
     const isEmpty = !this.props.questionnaires || this.props.questionnaires.length <= 0
     const isHost = this.props.roomInfo.host.id == this.props.userId
-    console.log(this.props.userId)
     return (
       <View style={[styles.flex1, localStyles.container]}>
         {this.props.loading ?

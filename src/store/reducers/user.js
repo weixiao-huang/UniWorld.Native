@@ -63,6 +63,14 @@ export default (state = initialState, action) => {
         ...state,
         userInfo: action.userInfo
       }
+      case types.SET_UNREAD_ZERO:
+      return {
+        ...state,
+        unreadMessages: {
+          ...state.unreadMessages,
+          [action.id]: 0
+        }
+      }
     case types.SET_EDIT_STATUS:
       return {
         ...state,

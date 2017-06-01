@@ -15,18 +15,20 @@ import BackgroundImage from '../../../components/BackgroundImage'
 import { FetchUserInfo, SetCommonData } from '../../../store/actions'
 
 
-@connect(state => ({userInfo: state.user.userInfo}), dispatch => ({ dispatch }))
+@connect(state => ({userInfo: state.user.userInfo, token: state.auth.token}), dispatch => ({ dispatch }))
 export default class UserCover extends Component {
 
   async _uploadAvatar(){
-    await ImageCropPicker.openPicker({
+    ImageCropPicker.openPicker({
       width: 400,
       height: 300,
       cropping: true
-    }).then(image => {
-      console.log(image);
-      api.upload_avatar(image)
-
+    }).then(async image => {
+      console.log('hello', image);
+      let formData = new FormData()
+      formData.append('avatar', image)
+      const res = await api.upload_avatar(formData)(this.props.token)
+      console.log(res)
     }, err => {
       console.log('取消')
     })
@@ -37,7 +39,7 @@ export default class UserCover extends Component {
     return (
       <BackgroundImage bgUrl={require('../../../assets/infoImage.jpg')}>
         {this.props.userInfo && <View style={[styles.flex1, coverStyles.container]}>
-          <TouchableOpacity onPress={this._uploadAvatar}>
+          <TouchableOpacity onPress={this._uploadAvatar.bind(this)}>
           <Image style={[coverStyles.avatar]} source={{uri: this.props.userInfo.avatar_thumbnail}} />
           </TouchableOpacity>
           <View style={[styles.flex1, coverStyles.box]}>
