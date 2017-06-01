@@ -8,11 +8,11 @@ import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
 import {
-  Visit, UserLogin, FetchRoomList, FetchWorldRoomList, FetchRecommendRoomList,
-  FetchLatestRoomList, GoToHome, FetchUserInfo, SetCommonData, FetchInitialLabels, GoToSignUp
+  Visit, UserLogin, GoToLogin
 } from '../../store/actions'
 
-import Input from './Login/Input'
+import api from '../../api'
+import Input from '../Login/Input'
 import LoginButton from '../../components/StyleButton'
 import BackgroundImage from '../../components/BackgroundImage'
 
@@ -33,14 +33,18 @@ export default class Login extends Component {
   }
 
   login = async () => {
+    this.props.dispatch(GoToLogin)
   }
 
   visit = async () => {
-    // this.props.dispatch(Visit)
+    this.props.dispatch(Visit)
   }
 
-  login = () => {
-    //
+  findPassword = () => {
+    console.log(this.state)
+    if (this.state.username.length==11 && this.state.email.length>5){
+      api.findPassword(this.state)
+    }
   }
 
   render () {
@@ -54,29 +58,29 @@ export default class Login extends Component {
               style={loginStyles.logo}
             />
             <Input
-              placeholder={I18n.t('FindPassoword.username')}
+              placeholder={I18n.t('Login.username')}
               icon={require('../../assets/icon/UserIcon.png')}
               onChangeText={text => this.setState({username: text})}
               keyboardType="numeric"
             />
             <Input
-              placeholder={I18n.t('FindPassoword.password')}
+              placeholder={I18n.t('SignUp.email')}
               icon={require('../../assets/icon/email.png')}
-              onChangeText={text => this.setState({password: text})}
-              secureTextEntry={true}
+              onChangeText={text => this.setState({email: text})}
+
             />
             <LoginButton
-              title={I18n.t('FindPassoword.login')}
-              onPress={this.login}
+              title={I18n.t('SignUp.findpassword')}
+              onPress={this.findPassword}
               inlineStyle={loginStyles.loginButton}
             />
             <View style={{flexDirection: 'row'}}>
               <View style={loginStyles.otherView}>
                 <TouchableOpacity style={loginStyles.otherButton} onPress={this.visit}>
-                  <Text style={{color: 'white'}}>{I18n.t('FindPassoword.visitor')}</Text>
+                  <Text style={{color: 'white'}}>{I18n.t('SignUp.visitor')}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={loginStyles.otherButton} onPress={this.signup}>
-                  <Text style={{color: 'white'}}>{I18n.t('FindPassoword.login')}</Text>
+                <TouchableOpacity style={loginStyles.otherButton} onPress={this.login}>
+                  <Text style={{color: 'white'}}>{I18n.t('SignUp.login')}</Text>
                 </TouchableOpacity>
               </View>
             </View>

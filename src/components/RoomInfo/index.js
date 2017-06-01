@@ -84,7 +84,7 @@ export default class RoomInfo extends Component {
 
   _isFull = () => {
     const { max_participants, participants } = this.props.roomInfo
-    return max_participants && participants.length >= max_participants
+    return (!this.state.isJoined && max_participants && participants.length >= max_participants)
   }
 
   join = async () => {
@@ -142,7 +142,7 @@ export default class RoomInfo extends Component {
               disabled={this._isFull() || this.state.disabled}
             >
               <Text style={[localStyles.footer__text]}>
-                {this._isFull() ? I18n.t('full') : this.state.isJoined ? I18n.t('Room.Footer.room') : I18n.t('Room.Footer.join')}
+                { this.state.isJoined ? I18n.t('Room.Footer.room') : this._isFull() ? I18n.t('full') :I18n.t('Room.Footer.join')}
               </Text>
             </TouchableOpacity>
           </View>

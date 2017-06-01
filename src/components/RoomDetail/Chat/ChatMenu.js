@@ -15,33 +15,34 @@ export default class ChatMenu extends Component {
   }
 
   pressImage() {
-
+    console.log(this.props)
+    this.props.sendImage()
   }
   render() {
     return (
       <View style={[localStyles.menu]}>
-        <TouchableOpacity style={[localStyles.menuItem]} >
-        <View OnPress={this.pressNotice}>
+        <TouchableOpacity style={[localStyles.menuItem]} onPress={this.pressNotice}>
+
           <Image style={[localStyles.itemImage]} source={require('../../../assets/icon/trumpet.png'
           )} />
           <Text style={[localStyles.itemText]}>{I18n.t('Room.Chat.notice')}</Text>
-        </View>
+
       </TouchableOpacity>
 
-        <TouchableOpacity style={[localStyles.menuItem]} >
-      <View OnPress={this.pressNotice}>
+        <TouchableOpacity style={[localStyles.menuItem]} onPress={this.pressQuesstionnaires}>
+
           <Image style={[localStyles.itemImage]} source={require('../../../assets/icon/fill.png'
           )} />
           <Text style={[localStyles.itemText]}>{I18n.t('Room.Chat.questionnaires')}</Text>
-        </View>
+
       </TouchableOpacity>
 
-        <TouchableOpacity style={[localStyles.menuItem]} >
-      <View OnPress={this.pressNotice}>
+        <TouchableOpacity style={[localStyles.menuItem]} onPress={this.pressImage.bind(this)}>
+
           <Image style={[localStyles.itemImage]} source={require('../../../assets/icon/album.png'
           )} />
           <Text style={[localStyles.itemText]}>{I18n.t('Room.Chat.image')}</Text>
-        </View>
+
       </TouchableOpacity>
     </View >
         )

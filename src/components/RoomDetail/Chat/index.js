@@ -6,6 +6,8 @@ import { StyleSheet, View, ListView, KeyboardAvoidingView, TextInput, Image, Tex
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
+import ImagePicker from 'react-native-image-picker'
+import ImageCropPicker from 'react-native-image-crop-picker'
 import InvertibleScrollView from 'react-native-invertible-scroll-view'
 // import PushNotification from 'react-native-push-notification'
 // PushNotification.configure({
@@ -87,6 +89,23 @@ export default class Chat extends Component {
     }
   }
 
+  _sendImage(){
+    console.log(123)
+    ImageCropPicker.openPicker({
+      width: 400,
+      height: 300,
+      cropping: true
+    }).then(image => {
+      console.log(image);
+    }, err => {
+      console.log('取消')
+    })
+    this.setState({
+      showMenu: false
+    })
+  }
+
+
   componentWillReceiveProps(nextProps) {
     this._updateNewMessages(nextProps.messages)
   }
@@ -121,7 +140,7 @@ export default class Chat extends Component {
 
 
           </View>
-          {this.state.showMenu?<ChatMenu/>:<View/>}
+          {this.state.showMenu?<ChatMenu sendImage={this._sendImage.bind(this)}/>:<View/>}
         </KeyboardAvoidingView>
       </View>
     )

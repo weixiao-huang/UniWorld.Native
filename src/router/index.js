@@ -13,7 +13,7 @@ import RoomInfo from '../components/RoomInfo'
 import RoomDetail from '../components/RoomDetail'
 import User from '../components/User'
 import Channel from '../pages/Channel'
-
+import FindPassword from '../pages/FindPassword'
 import SignInfo from '../pages/New'
 
 const AppRouteConfigs = {
@@ -67,6 +67,13 @@ const AppRouteConfigs = {
     path: 'channel/:id',
     navigationOptions: {
       title: 'Channel'
+    }
+  },
+  FindPassword:{
+    screen: FindPassword,
+    path: 'FindPassword',
+    navigationOptions: {
+      title: 'FindPassword'
     }
   }
 }

@@ -10,6 +10,7 @@ import { actionHandle, composeHandle, statusCodeHandle, tokenRequestHandle } fro
 
 export const GoToHome = dispatch => dispatch({type: types.GO_TO_HOME})
 export const GoToLogin = dispatch => dispatch({type: types.GO_TO_LOGIN})
+export const GoToForgetPassword = dispatch => dispatch({type: types.GO_TO_FORGETPASSWORD})
 export const GoToSignInfo = dispatch => dispatch({type: types.GO_TO_SIGNINFO})
 
 export const Visit = dispatch => dispatch({type: types.USER_LOGIN, token: null})

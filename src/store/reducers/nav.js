@@ -26,6 +26,11 @@ export default (state, action) => {
         index: 0,
         actions: [ NavigationActions.navigate({routeName: 'Login'}) ]
       }), state)
+      case types.GO_TO_FORGETPASSWORD:
+      return AppNavigator.router.getStateForAction(NavigationActions.navigate({
+        routeName: 'FindPassword',
+        params: { id: action.id }
+      }), state)
     case types.GO_TO_SIGNINFO:
       return AppNavigator.router.getStateForAction(NavigationActions.navigate({
         routeName: 'SignInfo',

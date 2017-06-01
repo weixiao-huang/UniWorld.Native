@@ -3,21 +3,43 @@
  */
 
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Text } from 'react-native'
+import { Image, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import ImagePicker from 'react-native-image-picker'
+import ImageCropPicker from 'react-native-image-crop-picker'
 import I18n from 'react-native-i18n'
 
+import api from '../../../api'
 import styles from '../../../common/styles'
 import BackgroundImage from '../../../components/BackgroundImage'
+import { FetchUserInfo, SetCommonData } from '../../../store/actions'
 
 
-@connect(state => ({userInfo: state.user.userInfo}))
+@connect(state => ({userInfo: state.user.userInfo}), dispatch => ({ dispatch }))
 export default class UserCover extends Component {
+
+  async _uploadAvatar(){
+    await ImageCropPicker.openPicker({
+      width: 400,
+      height: 300,
+      cropping: true
+    }).then(image => {
+      console.log(image);
+      api.upload_avatar(image)
+
+    }, err => {
+      console.log('取消')
+    })
+    // this.props.dispatch(FetchUserInfo)
+  }
+
   render () {
     return (
       <BackgroundImage bgUrl={require('../../../assets/infoImage.jpg')}>
         {this.props.userInfo && <View style={[styles.flex1, coverStyles.container]}>
+          <TouchableOpacity onPress={this._uploadAvatar}>
           <Image style={[coverStyles.avatar]} source={{uri: this.props.userInfo.avatar_thumbnail}} />
+          </TouchableOpacity>
           <View style={[styles.flex1, coverStyles.box]}>
             <View style={[styles.transparent, coverStyles.titleBox]}>
               <Image

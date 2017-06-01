@@ -31,6 +31,15 @@ const postByToken = url => data => token => fetch(`${server}${url}`, {
   body: JSON.stringify(data)
 })
 
+const postWithoutToken = url => data  => fetch(`${server}${url}`, {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(data)
+})
+
 export default {
   fetchDataFromUrl: url => token => token ? fetch(url, {
     method: 'GET',
@@ -44,6 +53,7 @@ export default {
     },
     body: JSON.stringify(data)
   }),
+
   uploadCover: data => roomId => token => fetch(`${server}/room/${roomId}/upload_avatar/`, {
     method: 'POST',
     headers: {
@@ -53,6 +63,20 @@ export default {
     },
     body: data,
   }),
+
+  upload_avatar: data => token => fetch(`${server}/profile/upload_avatar/`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'multipart/form-data',// ; boundary=6ff46e0b6b5148d984f148b6542e5a5d',
+      'Authorization': `token ${token}`,
+    },
+    body: data,
+  }),
+
+  signUp: data => postWithoutToken(`/register/`)(data),
+
+  findPassword: data => postWithoutToken(`/find_password/`)(data),
   /*
     GET METHODS
    */

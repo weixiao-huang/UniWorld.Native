@@ -25,6 +25,7 @@
     "signup": "Sign Up"
   },
    "SignUp":{
+     "findpassword":"Find password",
     "username": "Tel",
     "password": "Password",
     "login": "Login",
@@ -135,10 +136,6 @@
       "label": "Search",
       "button": "Search"
     }
-  },
-  "RoomList":{
-    "historyRecord": "Show history record",
-    "searchNext": "Click here for more"
   },
   "NewRoom": {
     "label": "New Room",
@@ -251,7 +248,9 @@
     "Mine": {
       "label": "Mine",
       "title": "My rooms"
-    }
+    },
+    "history": "Show history record",
+    "searchNext": "Click here for more"
   },
   "Me": {
     "label": "Me",

@@ -95,7 +95,7 @@ export default class TabContainer extends Component {
               style={[localStyles.historyRecord]}
               onPress={this._showHistory}
             >
-              {I18n.t('RoomList.historyRecord')}
+              {I18n.t('RoomList.history')}
             </Text>
           </TouchableOpacity>
         }

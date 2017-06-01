@@ -4,6 +4,7 @@
 
 export const GO_TO_HOME = 'GO_TO_HOME'
 export const GO_TO_LOGIN = 'GO_TO_LOGIN'
+export const GO_TO_FORGETPASSWORD = 'GO_TO_FORGETPASSWORD'
 export const GO_TO_SIGNINFO = 'GO_TO_SIGNINFO'
 
 export const GET_ROOM_LIST = 'GET_ROOM_LIST'

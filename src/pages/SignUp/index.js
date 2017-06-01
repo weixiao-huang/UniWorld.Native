@@ -8,10 +8,10 @@ import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
 import {
-  Visit, UserLogin, FetchRoomList, FetchWorldRoomList, FetchRecommendRoomList,
-  FetchLatestRoomList, GoToHome, FetchUserInfo, SetCommonData, FetchInitialLabels
+  Visit, UserLogin, GoToHome, FetchUserInfo, SetCommonData, GoToLogin, GoToForgetPassword
 } from '../../store/actions'
 
+import api from '../../api'
 import Input from '../Login/Input'
 import LoginButton from '../../components/StyleButton'
 import BackgroundImage from '../../components/BackgroundImage'
@@ -34,18 +34,25 @@ export default class SignUp extends Component {
     }
   }
 
-  visit = async () => {
-    // this.props.dispatch(Visit)
+  forgetPassword = async () => {
+    this.props.dispatch(GoToForgetPassword)
   }
 
-  signup = async () => {
+  signUp = async () => {
+    let data = {
+      username: this.state.username,
+      password: this.state.password,
+      email:this.state.email
+    }
+    console.log(data)
+    api.signUp(data)
   }
 
   login = async () => {
      this.props.dispatch(GoToLogin)
   }
 
-  
+
 
   render () {
     return (
@@ -66,7 +73,7 @@ export default class SignUp extends Component {
             <Input
               placeholder={I18n.t('SignUp.email')}
               icon={require('../../assets/icon/email.png')}
-              onChangeText={text => this.setState({password: text})}
+              onChangeText={text => this.setState({email: text})}
             />
             <Input
               placeholder={I18n.t('SignUp.password')}
@@ -87,7 +94,7 @@ export default class SignUp extends Component {
             />
             <View style={{flexDirection: 'row'}}>
               <View style={loginStyles.otherView}>
-                <TouchableOpacity style={loginStyles.otherButton} onPress={this.visit}>
+                <TouchableOpacity style={loginStyles.otherButton} onPress={this.forgetPassword}>
                   <Text style={{color: 'white'}}>{I18n.t('SignUp.findPassword')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={loginStyles.otherButton} onPress={this.login}>
