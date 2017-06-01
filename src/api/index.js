@@ -135,7 +135,6 @@ export default {
     `/profile/rooms/`
   )(token),
   checkMailbox: pmid => token => {
-    console.log('!!?!??!?!?!')
     return getByToken(
     `/check_mb/?pmid=${pmid}`
   )(token)

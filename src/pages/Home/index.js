@@ -8,7 +8,7 @@ import { TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
-import { MessagePolling, SetCommonData, FetchUnreadRooms, SetRoomMessage, CheckMailbox} from '../../store/actions'
+import { MessagePolling, SetCommonData, FetchUnreadRooms, SetRoomMessage, CheckMailbox } from '../../store/actions'
 import { wsByToken } from '../../ws'
 import * as PushNotification from 'react-native-push-notification'
 import SignInfo from '../New'
@@ -20,6 +20,16 @@ import Me from './Me'
 
 import StyleButton from '../../components/StyleButton'
 
+function getUnread() {
+  let count = 0
+  console.log('123123123123123')
+  console.log(state)
+  for (let room in state.unreadMessages) {
+    count += state.unreadMessages[room]
+  }
+  console.log(count)
+  reutrn(count)
+}
 export const HomeRouter = TabNavigator({
   World: {
     screen: World,
@@ -57,9 +67,9 @@ export const HomeRouter = TabNavigator({
         label: I18n.t('RoomList.label', { defaultValue: 'List' }),
         icon: ({ tintColor }) => (
           <View>
-            <View style={[localStyles.messagesItem]}>
-              <Text style={[localStyles.messagesText]}>1</Text>
-            </View>
+            {global.unread?<View style={[localStyles.messagesItem]}>
+              <Text style={[localStyles.messagesText]}>{global.unread}</Text>
+            </View>:null}
             <Image
               source={require('../../assets/icon/myRoomR.png')}
               style={[styles.icon, { tintColor: tintColor }]}
@@ -104,13 +114,18 @@ const mapStateToProps = state => ({
   loginDialog: state.common.loginDialog,
   showLoginDialog: state.common.showLoginDialog,
   pmid: state.user.pmid,
+  unreadMessages: state.user.unreadMessages
 })
 
 @connect(mapStateToProps, dispatch => ({ dispatch }))
 export default class Home extends Component {
   constructor(props) {
     super(props)
-
+    let count = 0
+    for (let room in this.props.unreadMessages) {
+      count += this.props.unreadMessages[room]
+    }
+    global.unread = count
   }
   _messagePolling = async () => {
     // console.log('_messagePolling::isPolling: ', this.props.isPolling)
@@ -137,14 +152,18 @@ export default class Home extends Component {
     global.ws = new WebSocket('wss://api.theuniworld.net/ws/?token=' + this.props.token)
     global.ws.onopen = () => {
       //check mailbox
-      console.log('!!!!!!!!!!!!!!!!!???',this.props.pmid)
       this.props.dispatch(CheckMailbox(this.props.pmid))
     }
     global.ws.onmessage = (message) => {
-      console.log(message, 'ssss')
+      console.log('sssssssssssssss')
       this.props.dispatch(SetRoomMessage(message))
+      let count = 0
+      for (let room in this.props.unreadMessages) {
+        count += this.props.unreadMessages[room]
+      }
+      global.unread = count
+      console.log(global.unread)
     }
-
   }
   componentWillMount() {
 
@@ -185,8 +204,8 @@ const localStyles = {
     backgroundColor: '#FEAC4E',
     left: 22,
     top: -4,
-    width: 18,
-    height: 18,
-    borderRadius: 9,
+    width: 21,
+    height: 21,
+    borderRadius: 10,
   }
 }

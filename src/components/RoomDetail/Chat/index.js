@@ -52,6 +52,7 @@ import { SendMessage } from '../../../store/actions'
 const mapStateToProps = state => ({
   messages: state.user.messages[state.room.roomInfo.id] || [],
   roomId: state.room.roomInfo.id,
+  unreadMessages: state.user.unreadMessages
 })
 
 @connect(mapStateToProps, dispatch => ({ dispatch }))
@@ -65,6 +66,8 @@ export default class Chat extends Component {
       plus: false,
       showMenu: false
     }
+    global.unread-=this.props.unreadMessages[this.props.roomId]
+    this.props.unreadMessages[this.props.roomId] = 0
   }
 
   _showMenu(){
@@ -87,7 +90,7 @@ export default class Chat extends Component {
       type: 0,
       room: this.props.roomId
     }))
-    console.log('xxxxxxx')
+    console.log('发消息啦啦啦啦啦啦啦啦啦啦啦啦啦')
     if (this.state.text) {
       this.setState({ text: '' })
       //await this.props.dispatch(SendMessage({ text: this.state.text })(this.props.roomId))
@@ -96,7 +99,6 @@ export default class Chat extends Component {
   }
 
   _sendImage(){
-    console.log(123)
     ImageCropPicker.openPicker({
       width: 400,
       height: 300,

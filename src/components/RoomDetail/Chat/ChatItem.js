@@ -26,9 +26,8 @@ export default class ChatItem extends Component {
     await this.props.dispatch(FetchUser(this.props.sender.id))
     this.props.dispatch(GoToUser(this.props.sender.id))
   }
- 
+
   render() {
-     console.log(this.props)
     return (
       <View
         style={[
