@@ -17,7 +17,6 @@ import NewRoom from './NewRoom'
 import Smile from './Smile'
 import RoomList from './RoomList'
 import Me from './Me'
-
 import StyleButton from '../../components/StyleButton'
 
 function getUnread() {
@@ -66,11 +65,10 @@ export const HomeRouter = TabNavigator({
       tabBar: {
         label: I18n.t('RoomList.label', { defaultValue: 'List' }),
         icon: ({ tintColor }) => {
-          console.log('123123231231312312', global.unread)
           return <View>
-            {global.unread?<View style={[localStyles.messagesItem]}>
+            {global.unread ? <View style={[localStyles.messagesItem]}>
               <Text style={[localStyles.messagesText]}>{global.unread}</Text>
-            </View>:null}
+            </View> : null}
             <Image
               source={require('../../assets/icon/myRoomR.png')}
               style={[styles.icon, { tintColor: tintColor }]}
@@ -127,6 +125,8 @@ export default class Home extends Component {
       count += this.props.unreadMessages[room]
     }
     global.unread = count
+
+
   }
   _messagePolling = async () => {
     // console.log('_messagePolling::isPolling: ', this.props.isPolling)
@@ -158,18 +158,19 @@ export default class Home extends Component {
     global.ws.onmessage = (message) => {
       console.log('sssssssssssssss')
       this.props.dispatch(SetRoomMessage(message))
-      let count = 0
-      for (let room in this.props.unreadMessages) {
-        count += this.props.unreadMessages[room]
+      if (global.unread < 99) {
+        let count = 0
+        for (let room in this.props.unreadMessages) {
+          count += this.props.unreadMessages[room]
+        }
+        global.unread = count
       }
-      global.unread = count
-      console.log(global.unread)
     }
   }
   componentWillMount() {
     this.setState({
-        renew: true,
-      })
+      renew: true,
+    })
   }
   async componentDidMount() {
     await this.props.dispatch(SetCommonData('isPolling', true))
@@ -185,7 +186,6 @@ export default class Home extends Component {
     this.setState({ isPolling: false })
   }
   render() {
-    console.log('123456', this.props.unreadMessages)
     return (
       <View style={styles.flex1}>
         <HomeRouter

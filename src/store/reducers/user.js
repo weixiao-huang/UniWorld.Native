@@ -7,21 +7,22 @@ import * as PushNotification from 'react-native-push-notification'
 import * as types from '../types'
 import { GoToRoomInfo, GoToRoomDetail } from '../actions'
 import configureStore from '../index'
+import { NavigationActions } from 'react-navigation'
+import { AppNavigator } from '../../router'
 
 PushNotification.configure({
 
-  // (optional) Called when Token is generated (iOS and Android)
   onRegister: function (token) {
     console.log('TOKEN:', token);
   },
-
-  // (required) Called when a remote or local notification is opened or received
   onNotification: function (notification) {
-    const store = configureStore(() => { })
-    // console.log(global.navigateId)
-    // console.log(store.getState())
-    store.dispatch(GoToRoomInfo(Number(notification.data.roomId || notification.id)))
+    // const store = configureStore(() => { })
+    // store.dispatch(GoToRoomInfo(Number(notification.data.roomId || notification.id)))
     // GoToRoomInfo(notification.roomId)()
+    AppNavigator.router.getStateForAction(NavigationActions.navigate({
+        routeName: 'RoomDetail',
+        params: { id: Number(notification.data.roomId || notification.id)}
+      }))
   },
 
   // ANDROID ONLY: GCM Sender ID (optional - not required for local notifications, but is need to receive remote push notifications)
@@ -64,6 +65,7 @@ export default (state = initialState, action) => {
         userInfo: action.userInfo
       }
       case types.SET_UNREAD_ZERO:
+      PushNotification.setApplicationIconBadgeNumber(global.unread?global.unread:0)
       return {
         ...state,
         unreadMessages: {
@@ -162,11 +164,12 @@ export default (state = initialState, action) => {
         message: data.sender.name + '：' + data.text, // (required)
         //playSound: true, // (optional) default: true
         soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
-        //number: roomId, // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
+        // number: global.unread, // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
         repeatType: 'day', // (Android only) Repeating interval. Could be one of `week`, `day`, `hour`, `minute, `time`. If specified as time, it should be accompanied by one more parameter 'repeatTime` which should the number of milliseconds between each interval
         //actions: '["Yes", "No"]',  // (Android only) See the doc for notification actions to know more
 
       });
+      PushNotification.setApplicationIconBadgeNumber(global.unread)
       //global.navigateId = Number(navigateId)
       return {
         ...state,

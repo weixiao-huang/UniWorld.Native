@@ -28,7 +28,6 @@ export const UserLogin = opt => dispatch => (
 )
 
 
-
 export const EditUserInfo = data => (dispatch, getState) => (
   composeHandle(api.editUserInfo(data))(types.EDIT_USER_INFO, 'userInfo')(dispatch, getState)
 )
@@ -204,8 +203,10 @@ export const SendMessage = data => roomId => (dispatch, getState) => (
 export const SendAnnouncement = data => roomId => (dispatch, getState) => (
   actionHandle(() => (
     tokenRequestHandle(api.sendAnnouncement(data)(roomId))(getState).then(res =>
-      statusCodeHandle(res, 201)(data => dispatch({type: types.SEND_ANNOUNCEMENT, message: data, roomId}))
-    ).catch(err => {throw err})
+      {
+        console.log(res)
+        return statusCodeHandle(res, 201)(data => dispatch({type: types.SEND_ANNOUNCEMENT, message: data, roomId}))
+      }).catch(err => {throw err})
   ))
 )
 

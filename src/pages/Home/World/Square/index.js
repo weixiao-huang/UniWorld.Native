@@ -28,7 +28,7 @@ export default class Square extends Component {
     this.state = {
       refreshing: false,
       isFetching: false,
-      next: this.props.world.next,
+      next: this.props.world?this.props.world.next:null,
       data: []
     }
   }
@@ -37,6 +37,8 @@ export default class Square extends Component {
     console.log('login')
     await this.props.dispatch(FetchPosters)
     await this.props.dispatch(FetchChannels)
+    await this.props.dispatch(FetchLatestRoomList)
+    await this.props.dispatch(FetchWorldRoomList)
     if (this.props.token) await this.props.dispatch(FetchTopRoomList)
   }
 

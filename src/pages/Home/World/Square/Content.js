@@ -39,9 +39,9 @@ export default class Content extends Component {
               <Image style={[localStyles.smallPoster]} source={require('../../../../assets/poster/s_1.jpg')} />
             </View>
           }
-          <RoomWrap title={I18n.t('World.Square.latest')} titleLabel="NEW" roomList={this.props.latest.results} />
+          {this.props.latest?<RoomWrap title={I18n.t('World.Square.latest')} titleLabel="NEW" roomList={this.props.latest.results} />:null}
           <Image style={[localStyles.smallPoster]} source={require('../../../../assets/poster/s_2.jpg')} />
-          <RoomWrap title={I18n.t('World.Square.world')} titleLabel="HOT" roomList={this.props.world.results} />
+          {this.props.world?<RoomWrap title={I18n.t('World.Square.world')} titleLabel="HOT" roomList={this.props.world.results} />:null}
           {this.props.newRoomList.map((item, index) => (
             <RoomWrap key={index} title={item.title} roomList={item.content} />
           ))}

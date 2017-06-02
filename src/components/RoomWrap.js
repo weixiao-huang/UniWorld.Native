@@ -31,7 +31,10 @@ export default class RoomWrap extends Component {
 
   _gotoRoomInfo = id => () => {
     this.setState({disabled: true})
-    this.props.Chat?this.props.dispatch(GoToRoomInfo(id)):this.props.dispatch(GoToRoomDetail(id))
+    if (!!this.props.Chat)
+      global.toChat = 1
+    this.props.dispatch(FetchRoomInfo(id))
+    this.props.dispatch(GoToRoomInfo(id))
     setTimeout(() => this.setState({disabled: false}), 1000)
   }
 

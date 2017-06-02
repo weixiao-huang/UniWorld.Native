@@ -10,7 +10,7 @@ import styles from '../../common/styles'
 import {
   Visit, UserLogin, FetchRoomList, FetchWorldRoomList, FetchRecommendRoomList,
   FetchLatestRoomList, GoToHome, GoToSignInfo, FetchUserInfo, SetCommonData, FetchInitialLabels,
-  GoToSignUp, FetchChannels, FetchUnreadRooms
+  GoToSignUp, FetchChannels, FetchUnreadRooms, UserLogin2
 } from '../../store/actions'
 
 import Input from './Input'
@@ -37,10 +37,7 @@ export default class Login extends Component {
   login = async () => {
     this.props.dispatch(SetCommonData('loading', true))
     await this.props.dispatch(UserLogin(this.state))
-    await this.props.dispatch(FetchRoomList)
     await this.props.dispatch(FetchRecommendRoomList)
-    await this.props.dispatch(FetchLatestRoomList)
-    await this.props.dispatch(FetchWorldRoomList)
     await this.props.dispatch(FetchUserInfo)
     await this.props.dispatch(FetchInitialLabels)
     this.props.dispatch(SetCommonData('loading', false))
@@ -52,8 +49,8 @@ export default class Login extends Component {
     this.props.dispatch(SetCommonData('loading', true))
     // await this.props.dispatch(FetchRoomList)
     await this.props.dispatch(FetchRecommendRoomList)
-    await this.props.dispatch(FetchLatestRoomList)
-    await this.props.dispatch(FetchWorldRoomList)
+    // await this.props.dispatch(FetchLatestRoomList)
+    // await this.props.dispatch(FetchWorldRoomList)
     // await this.props.dispatch(FetchInitialLabels)
     this.props.dispatch(SetCommonData('loading', false))
     // this.props.dispatch(SetCommonData('isPolling', true))

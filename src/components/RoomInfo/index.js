@@ -29,6 +29,10 @@ const mapStateToProps = state => ({
 export default class RoomInfo extends Component {
   constructor(props) {
     super(props)
+    if (global.toChat==1){
+      global.toChat=0
+      this.props.dispatch(GoToRoomDetail(this.props.roomInfo.id))
+    }
     this.state = {
       isMarked: false,
       isJoined: false,

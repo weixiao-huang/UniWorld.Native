@@ -23,7 +23,6 @@ export default class NoticeModal extends Component {
     }
   }
   _pressNotice(){
-    console.log('press')
     this.setState({
       is_announcement: true,
     })

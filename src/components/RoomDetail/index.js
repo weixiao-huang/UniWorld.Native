@@ -27,7 +27,8 @@ const mapStateToProps = state => ({
 export default class RoomDetails extends Component {
   constructor(props) {
     super(props)
-
+    global.chatTime = new Date()
+    console.log(global.chatTime)
   }
   async componentWillMount() {
     this.props.dispatch(SetLoading(true))

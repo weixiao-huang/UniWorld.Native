@@ -67,8 +67,31 @@ export default class Chat extends Component {
       showMenu: false
     }
     global.unread-=this.props.unreadMessages[this.props.roomId]
-    console.log(global.unread)
     this.props.dispatch(SetUnreadZero(this.props.roomId))
+  }
+
+  _getShowTime(){
+    let showTime = null
+    let time1 = null
+    let time2 = null
+    for (let index in this.state.ds._dataBlob){
+      if (time1 == null){
+        time1 = new Date (this.state.ds._dataBlob[index].time)
+        this.state.ds._dataBlob[index].showTime = time1.toTimeString().split(':').splice(0, 2).join(':')
+      }
+      else {
+        time2 = new Date(this.state.ds._dataBlob[index].time)
+        if (time2 - time1 > 600000){
+          time2 = time1
+          this.state.ds._dataBlob[index].showTime = time1.toTimeString().split(':').splice(0, 2).join(':')
+        }
+      }
+    }
+  }
+
+  componentWillMount(){
+    // this._getShowTime()
+
   }
 
   _showMenu(){
@@ -121,6 +144,7 @@ export default class Chat extends Component {
   }
   render() {
     let _listView = ListView
+    console.log(this.state.ds)
     return (
       <View style={[styles.flex1]}>
         <KeyboardAvoidingView keyboardVerticalOffset={70} behavior={'padding'} style={[styles.flex1]}>
@@ -129,7 +153,7 @@ export default class Chat extends Component {
             ref={listView => { _listView = listView }}
             renderScrollComponent={props => <InvertibleScrollView {...props} inverted />}
             dataSource={this.state.ds}
-            renderRow={(item, sectionID, rowID, highlightRow) => <ChatItem index={parseInt(rowID)} sender={item.sender} content={item.text} type={item.type} image={item.image} />}
+            renderRow={(item, sectionID, rowID, highlightRow) => <ChatItem index={parseInt(rowID)} sender={item.sender} content={item.text} type={item.type} image={item.image} showTime={item.showTime?item.showTime:null} />}
           />
           <View style={[styles.rowFlex, styles.flexCenter, localStyles.footer]}>
             <Image style={[localStyles.footer__icon]} source={require('../../../assets/icon/logoBlue.png')} />

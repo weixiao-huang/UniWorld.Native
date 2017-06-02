@@ -73,7 +73,7 @@ export default class TabContainer extends Component {
         style={[localStyles.container]}
       >
         {this.props.roomList && (this.props.roomList.length>0 || this.state.history.length) > 0 ?
-          <RoomWrap title={this.props.title} roomList={this.props.roomList} toChat={1}/> :
+          <RoomWrap title={this.props.title} roomList={this.props.roomList} Chat='1'/> :
           <View style={[styles.flexCenter]}>
             <Image
               style={[localStyles.empty]}
@@ -82,7 +82,7 @@ export default class TabContainer extends Component {
           </View>
         }
         {this.state.history && this.state.history.length > 0 &&
-          <RoomWrap roomList={this.state.history} />
+          <RoomWrap roomList={this.state.history} Chat='1'/>
         }
         {this.state.isFetching ?
           <ActivityIndicator
