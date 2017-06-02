@@ -66,6 +66,13 @@ export default (state = initialState, action) => {
       }
       case types.SET_UNREAD_ZERO:
       PushNotification.setApplicationIconBadgeNumber(global.unread?global.unread:0)
+      if (global.unread < 99) {
+        let count = 0
+        for (let room in unreadMessages) {
+          count += unreadMessages[room]
+        }
+        global.unread = count
+      }
       return {
         ...state,
         unreadMessages: {
@@ -114,13 +121,12 @@ export default (state = initialState, action) => {
           ...message
         }
       }
-    case types.SET_ROOM_MESSAGES:
+    case types.SET_ROOM_MESSAGE:
       let messages = {}
       let unreadMessages = {}
-      let navigateId
       let data = JSON.parse(action.message.data)
       console.log(data)
-      roomId = data.room
+      let roomId = data.room
       if (state.messages.hasOwnProperty(roomId)) {
         // messages[roomId] = action.messages[roomId].reverse().concat(state.messages[roomId])
         messages[roomId] = state.messages[roomId].concat(data)

@@ -37,7 +37,7 @@ export default class Login extends Component {
   login = async () => {
     this.props.dispatch(SetCommonData('loading', true))
     await this.props.dispatch(UserLogin(this.state))
-    await this.props.dispatch(FetchRecommendRoomList)
+    // await this.props.dispatch(FetchRecommendRoomList)
     await this.props.dispatch(FetchUserInfo)
     await this.props.dispatch(FetchInitialLabels)
     this.props.dispatch(SetCommonData('loading', false))
@@ -48,7 +48,7 @@ export default class Login extends Component {
   visit = async () => {
     this.props.dispatch(SetCommonData('loading', true))
     // await this.props.dispatch(FetchRoomList)
-    await this.props.dispatch(FetchRecommendRoomList)
+    // await this.props.dispatch(FetchRecommendRoomList)
     // await this.props.dispatch(FetchLatestRoomList)
     // await this.props.dispatch(FetchWorldRoomList)
     // await this.props.dispatch(FetchInitialLabels)

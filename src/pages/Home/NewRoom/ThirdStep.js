@@ -14,7 +14,7 @@ import NewRoomButton from '../../../components/StyleButton'
 import RoomItem from '../../../components/RoomItem'
 import InputItem from '../../../components/InputItem'
 
-import { CreateRoom, UploadCover } from '../../../store/actions'
+import { CreateRoom, UploadCover, FetchRoomInfo, GoToRoomInfo, ResetNewRoomData } from '../../../store/actions'
 
 const mapStateToProps = state => ({
   newRoom: state.newRoom,
@@ -64,12 +64,18 @@ export default class ThirdStep extends Component {
       show: !newRoom.isPrivate,
       labels: newRoom.labels.map(item => this.state.labelDict[item])
     }
-    await this.props.dispatch(CreateRoom(data))
+    let res = await this.props.dispatch(CreateRoom(data))
     let formData = new FormData()
     if (newRoom.cover) {
       formData.append('cover', { uri: newRoom.cover, name: 'cover' }) //, type: 'application/octet-stream'})
-      this.props.dispatch(UploadCover(formData)(this.props.newRoom.id))
+      await this.props.dispatch(UploadCover(formData)(this.props.newRoom.id))
     }
+    await this.props.dispatch(FetchRoomInfo(this.props.newRoom.id))
+    await this.props.dispatch(GoToRoomInfo(this.props.newRoom.id))
+  }
+
+  componentWillUnmount(){
+    this.props.dispatch(ResetNewRoomData)
   }
 
   render() {
@@ -86,7 +92,7 @@ export default class ThirdStep extends Component {
       },
       {
         title: I18n.t('NewRoom.input.second.intro.title'),
-        content: newRoom.intro
+        content: newRoom.description
       },
       {
         title: I18n.t('NewRoom.input.second.start.title'),
@@ -121,8 +127,8 @@ export default class ThirdStep extends Component {
         content: newRoom.rewards
       }
     ]
-    console.log(newRoom.date_time_start)
-    console.log(newRoom.date_time_end)
+    // console.log(newRoom.date_time_start)
+    // console.log(newRoom.date_time_end)
     return (
       <ScrollView style={[localStyles.container]}>
         <View style={[localStyles.wrap]}>

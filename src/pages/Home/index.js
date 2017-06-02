@@ -168,6 +168,7 @@ export default class Home extends Component {
     }
   }
   componentWillMount() {
+    console.log('global',global.unread)
     this.setState({
       renew: true,
     })

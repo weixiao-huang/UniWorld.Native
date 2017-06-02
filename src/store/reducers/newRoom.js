@@ -14,7 +14,7 @@ const initialState = {
   labels: [],
   is_matchroom: false,
   cover: '',
-  intro: '',
+  description: '',
   date_time_start: '',
   date_time_end: '',
   location_string: '',
@@ -48,6 +48,23 @@ export default (state=initialState, action) => {
       return {
         ...state,
         id: action.id
+      }
+      case types.RESET_NEW_ROOM_DATA:
+      return {
+
+  title: '',
+
+  is_matchroom: false,
+  cover: '',
+  description: '',
+  date_time_start: '',
+  date_time_end: '',
+  location_string: '',
+  max_participants: '',
+  isPrivate: false,
+  welcome: '',
+  expense: '',
+  rewards: ''
       }
     case types.USER_LOGOUT:
       return initialState

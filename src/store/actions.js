@@ -88,6 +88,10 @@ export const SetNewRoomData = data => dispatch => (
   dispatch({type: types.SET_NEW_ROOM_DATA, data})
 )
 
+export const ResetNewRoomData = dispatch => (
+  dispatch({type: types.RESET_NEW_ROOM_DATA})
+)
+
 export const SetLoginDialog = loginDialog => dispatch => (
   dispatch({type: types.SET_LOGIN_DIALOG, loginDialog})
 )
@@ -164,7 +168,7 @@ export const MessagePolling = (dispatch, getState) => (
 
 export const SetRoomMessage = (message) => (dispatch, getState) => {
   console.log(message,'iiii')
-  return dispatch({type: types.SET_ROOM_MESSAGES, message})
+  return dispatch({type: types.SET_ROOM_MESSAGE, message})
 }
 
 export const CheckMailbox  = (pmid) => (dispatch, getState) => {
@@ -179,7 +183,7 @@ export const UploadCover = data => roomId => (dispatch, getState) => (
   actionHandle(() => (
     tokenRequestHandle(api.uploadCover(data)(roomId))(getState).then(res => {
       if (res.status !== 200) throw { message: res }
-      Alert.alert('', '上传成功')
+
     })
   ))
 )

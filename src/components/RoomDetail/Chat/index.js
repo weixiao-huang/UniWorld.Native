@@ -9,6 +9,7 @@ import styles from '../../../common/styles'
 import ImagePicker from 'react-native-image-picker'
 import ImageCropPicker from 'react-native-image-crop-picker'
 import InvertibleScrollView from 'react-native-invertible-scroll-view'
+import api from '../../../api'
 // import PushNotification from 'react-native-push-notification'
 // PushNotification.configure({
 //   // (optional) Called when Token is generated (iOS and Android)
@@ -66,7 +67,6 @@ export default class Chat extends Component {
       plus: false,
       showMenu: false
     }
-    global.unread-=this.props.unreadMessages[this.props.roomId]
     this.props.dispatch(SetUnreadZero(this.props.roomId))
   }
 
@@ -122,16 +122,39 @@ export default class Chat extends Component {
     }
   }
 
-  _sendImage(){
-    ImageCropPicker.openPicker({
-      width: 400,
-      height: 300,
-      cropping: true
-    }).then(image => {
-      console.log(image);
-
-    }, err => {
-      console.log('取消')
+  _sendImage =  () => {
+    const options = {
+      title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
+      cancelButtonTitle: 'Cancel',
+      takePhotoButtonTitle: 'Take Photo...',
+      chooseFromLibraryButtonTitle: 'Choose from Library...',
+      returnBase64Image: true,
+      returnIsVertical: false
+    }
+    this.setState({isUploading: true})
+    ImagePicker.showImagePicker(options, async res => {
+      if (res.didCancel) {
+        console.log('User cancelled image picker')
+        this.setState({isUploading: false})
+      }
+      else if (res.error) {
+        console.log('ImagePicker Error: ', res.error)
+        this.setState({isUploading: false})
+      }
+      else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton)
+        this.setState({isUploading: false})
+      }
+      else {
+        console.log(res)
+        let formData = new FormData()
+        formData.append('image', {
+        uri: res.uri,
+        name: 'image',
+    })
+        const res2 =await api.uploadImage(formData)(this.props.roomId)(this.props.token)
+        console.log(res2)
+      }
     })
     this.setState({
       showMenu: false

@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
-import { FetchQuestionnaires, SetLoading } from '../../store/actions'
+import { FetchQuestionnaires, SetLoading,SetUnreadZero } from '../../store/actions'
 
 import Notice from './Notice/index'
 import Chat from './Chat/index'
@@ -28,12 +28,15 @@ export default class RoomDetails extends Component {
   constructor(props) {
     super(props)
     global.chatTime = new Date()
-    console.log(global.chatTime)
   }
   async componentWillMount() {
     this.props.dispatch(SetLoading(true))
     await this.props.dispatch(FetchQuestionnaires(this.props.navigation.state.params.id))
     this.props.dispatch(SetLoading(false))
+  }
+
+  componentWillUnmount(){
+    this.props.dispatch(SetUnreadZero(this.props.roomInfo.id))
   }
 
   render() {

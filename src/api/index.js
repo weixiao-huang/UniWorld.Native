@@ -64,6 +64,16 @@ export default {
     body: data,
   }),
 
+  uploadImage: data => roomId => token => fetch(`${server}/room/${roomId}/send_message/`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'multipart/form-data',// ; boundary=6ff46e0b6b5148d984f148b6542e5a5d',
+      'Authorization': `token ${token}`,
+    },
+    body: data,
+  }),
+
   upload_avatar: data => token => fetch(`${server}/profile/upload_avatar/`, {
     method: 'POST',
     headers: {
@@ -73,6 +83,8 @@ export default {
     },
     body: data,
   }),
+
+
 
   signUp: data => postWithoutToken(`/register/`)(data),
 
