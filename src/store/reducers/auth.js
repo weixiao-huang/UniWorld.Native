@@ -10,12 +10,19 @@ const initialState = {
   status: null
 }
 
-export default auth = (state=initialState, action) => {
+export default auth = (state = initialState, action) => {
   switch (action.type) {
     case types.USER_LOGIN_DOING:
       return {
         ...state,
         status: 'doing'
+      }
+    case types.SET_TOKEN:
+      return {
+        ...state,
+        isLoggedIn: true,
+        token: action.token,
+        status: 'done'
       }
     case types.USER_LOGIN:
       return {
