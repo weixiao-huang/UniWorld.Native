@@ -31,7 +31,7 @@ function getUnread() {
 }
 export const HomeRouter = TabNavigator({
   World: {
-    screen: World,
+    screen: SignInfo,
     navigationOptions: {
       tabBar: {
         label: I18n.t('World.label', { defaultValue: 'World' }),

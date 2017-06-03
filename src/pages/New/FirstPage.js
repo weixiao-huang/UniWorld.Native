@@ -6,7 +6,7 @@ import {
   Image,
   StyleSheet,
   View,
-   Text,
+  Text,
   ScrollView,
   Dimensions,
   KeyboardAvoidingView
@@ -18,11 +18,7 @@ import styles from '../../common/styles'
 import SecondPageButton from '../../components/StyleButton'
 import BackgroundImage from '../../components/BackgroundImage'
 
-// const mapStateToProps = state =>({
-//   userInfo: state.userInfo,
-// })
 
-//@connect(mapStateToProps, dispatch => {{dispatch}})
 export default class FirstPage extends Component {
   constructor(props) {
     super(props)
@@ -32,27 +28,26 @@ export default class FirstPage extends Component {
   }
 
   next = () => {
-    this.setState({disabled:true})
-    setTimeout(()=>this.setState({disabled:false}),1000)
+    this.setState({ disabled: true })
+    setTimeout(() => this.setState({ disabled: false }), 1000)
     this.props.navigation.navigate('Second')
   }
 
 
-  render(){
-    console.log('1111111', this.props.navigation)
+  render() {
     return (
       <ScrollView >
         <BackgroundImage
           bgUrl={require('../../assets/image/signInfoBg.png')}
-          inlineStyle={{height: Dimensions.get('window').height*0.9}}
+          inlineStyle={{ height: Dimensions.get('window').height * 0.9 }}
         >
-          <View style={[styles.flex1, localStyles.container,{paddingTop:100}]}>
-            <Image style={[localStyles.cover,{marginBottom:20}]} source={require('../../assets/image/logoPink.png')}/>
+          <View style={[styles.flex1, localStyles.container, { paddingTop: 100 }]}>
+            <Image style={[localStyles.cover, { marginBottom: 20 }]} source={require('../../assets/image/logoPink.png')} />
             <Text style={localStyles.subTitle}>{I18n.t('SignInfo.first.message1')}</Text>
             <Text style={localStyles.subTitle}>{I18n.t('SignInfo.first.message2')}</Text>
             <Text style={localStyles.subTitle}>{I18n.t('SignInfo.first.message3')}</Text>
           </View>
-          <View style={[{marginLeft: 20, marginRight: 20}]}>
+          <View style={[{ marginLeft: 20, marginRight: 20 }]}>
             <SecondPageButton
               disabled={this.state.disabled}
               title={I18n.t('SignInfo.first.nextButton')}
@@ -62,22 +57,19 @@ export default class FirstPage extends Component {
           </View>
         </BackgroundImage>
       </ScrollView>
-
     )
   }
 }
 
 const localStyles = StyleSheet.create({
-  container:{
-     alignItems:'center',
-    // justifyContent: 'center',
+  container: {
+    alignItems: 'center',
     height: 100,
     flexDirection: 'column'
   },
   cover: {
     resizeMode: 'contain',
     height: 200,
-
   },
   subTitle: {
     color: '#95a8e2',

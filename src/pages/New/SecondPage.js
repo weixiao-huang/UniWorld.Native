@@ -15,10 +15,10 @@ import {
   KeyboardAvoidingView
 } from 'react-native'
 import { connect } from 'react-redux'
-
+import ImagePicker from 'react-native-image-picker'
 import I18n from 'react-native-i18n'
 import { EditUserInfo, GoToHome } from '../../store/actions'
-
+import api from '../../api'
 import styles from '../../common/styles'
 
 import SignInfoButton from '../../components/StyleButton'
@@ -90,7 +90,8 @@ const agreementText = `
 `
 
 const mapStateToProps = state => ({
-  userInfo: state.signInfo
+  userInfo: state.signInfo,
+  token: state.auth.token
 })
 @connect(mapStateToProps, dispatch => ({ dispatch }))
 export default class SecondPage extends Component {
@@ -129,6 +130,12 @@ export default class SecondPage extends Component {
       signature: this.state.signInfo.signature,
       grade: this.state.signInfo.grade[0]
     }
+    let formData = new FormData()
+    formData.append('avatar', {
+      uri: this.state.signInfo.avatar,
+      name: 'avatar'
+    })
+    api.upload_avatar(formData)(this.props.token)
     this.props.dispatch(EditUserInfo(data))
     this.setState({ disabled: true })
     setTimeout(() => this.setState({ disabled: false }), 1000)
@@ -180,6 +187,39 @@ export default class SecondPage extends Component {
     Picker.show()
   }
 
+  _showUpload = () => {
+    const options = {
+      title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
+      cancelButtonTitle: 'Cancel',
+      takePhotoButtonTitle: 'Take Photo...',
+      chooseFromLibraryButtonTitle: 'Choose from Library...',
+      returnBase64Image: true,
+      returnIsVertical: false
+    }
+    this.setState({ isUploading: true })
+    ImagePicker.showImagePicker(options, async res => {
+      if (res.didCancel) {
+        console.log('User cancelled image picker')
+        this.setState({ isUploading: false })
+      }
+      else if (res.error) {
+        console.log('ImagePicker Error: ', res.error)
+        this.setState({ isUploading: false })
+      }
+      else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton)
+        this.setState({ isUploading: false })
+      }
+      else {
+        this.setState({
+          signInfo: {
+            ...this.state.signInfo,
+            avatar: res.uri
+          }
+        })
+      }
+    })
+  }
 
   render() {
     return (
@@ -194,6 +234,10 @@ export default class SecondPage extends Component {
                 <Image style={localStyles.header} source={require('../../assets/image/signInfo2.png')} />
               </View>
               <Text style={[styles.fullflex, localStyles.title]}>{I18n.t('SignInfo.second.title')}</Text>
+
+              <TouchableOpacity onPress={this._showUpload.bind(this)} style={{alignItems: 'center', marginTop: 40}}>
+                <Image style={[localStyles.avatar]} source={{ uri: this.state.signInfo.avatar }} />
+              </TouchableOpacity>
 
               <View style={{ paddingTop: 40 }}>
                 <View style={[localStyles.wrap]}>
@@ -338,8 +382,8 @@ export default class SecondPage extends Component {
             </BackgroudImage>
           </View> :
             <View>
-              <View style={{textAlign: 'center',paddingTop: 40,}}>
-                <Text style={[localStyles.agreement,{textAlign: 'center'}]} >
+              <View style={{ paddingTop: 40, }}>
+                <Text style={[localStyles.agreement, { textAlign: 'center' }]} >
                   {I18n.t('SignInfo.second.agreement')}
                 </Text>
               </View>
@@ -368,7 +412,15 @@ export default class SecondPage extends Component {
 }
 
 const coverSize = 60
+const avatarSize = 80
 const localStyles = StyleSheet.create({
+  avatar: {
+    width: avatarSize,
+    height: avatarSize,
+    borderRadius: 40,
+    borderWidth: 2,
+    borderColor: '#3555b6',
+  },
   cover: {
     margin: 4,
     alignItems: 'center',
