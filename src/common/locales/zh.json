@@ -16,13 +16,16 @@
   "cancel": "取消",
   "full": "房间已满",
   "submit":"提交",
+  "tips":"提示",
   "confirm": "确认",
   "Login": {
     "username": "手机号",
     "password": "密码",
     "login": "登录",
     "visitor": "游客登录",
-    "signup": "注册"
+    "signup": "注册",
+    "fillInfo":"请输入正确的手机号以及密码",
+    "wrong":"请检查你的手机号以及密码"
   },
   "SignUp":{
     "findpassword":"找回密码",
@@ -34,7 +37,18 @@
     "email":"邮箱",
     "findPassword":"找回密码",
     "passwordAgain":"请再次输入你的密码",
-    "emailFail":"请输入结尾为.edu.cn的邮箱地址"
+    "emailFail":"请输入结尾为.edu.cn的邮箱地址",
+    "succeedTitle":"最后一步！",
+    "succeedText":"检查你的激活邮件.\n现在就加入Uniworld！",
+    "failTitle":"注册失败",
+    "failTextInfoTel":"请使用正确的手机号",
+    "failPassword":"密码错误！",
+    "failPassword2":"密码长度应该为6-20",
+    "failEmailEdu":"请使用以.edu.cn结尾的邮箱进行注册",
+    "failTextTel":"抱歉，该手机号已经被注册",
+    "failTextSchool":"抱歉，该学校尚未加入Uniworld大家庭",
+    "failTextEmail":"抱歉，您的邮箱地址无效",
+    "failTextDefault":"抱歉，请检查您的网络连接"
   },
   "FindPassword":{
     "username": "电话",
@@ -43,7 +57,11 @@
     "signUp": "注册",
     "email":"邮箱",
     "findPassword":"找回密码",
-    "fail":"抱歉，您的电话与密码并不匹配."
+    "fail":"失败",
+    "failReason":"抱歉，您的手机号与邮箱不匹配",
+    "succeedTitle":"最后一步！",
+    "secceedText":"请登录您的邮箱并重置您的密码",
+    "fillInfo":"请输入您的信息"
   },
   "Room": {
     "follow": "关注",
@@ -125,7 +143,9 @@
       "label": "广场",
       "recommend": "强力推荐",
       "latest": "当下",
-      "world": "世界"
+      "world": "世界",
+      "loadMore":"点击以加载更多...",
+      "top":"置顶"
     },
     "Recommend": {
       "label": "推荐"
@@ -148,7 +168,8 @@
       },
       "label": {
         "title": "房间标签",
-        "placeholder": "选择房间标签"
+        "placeholder": "点击这里来添加类别",
+        "selectTitle":"选择你的房间标签"
       },
       "match": {
         "title": "大型匹配",

@@ -28,7 +28,7 @@
     "wrong":"Please check your tel number and password"
   },
    "SignUp":{
-     "findpassword":"Find password",
+    "findpassword":"Find password",
     "username": "Tel",
     "password": "Password",
     "login": "Login",
@@ -252,7 +252,6 @@
       "nextButton":"Accept the User's Agreement"
     }
   },
-
   "RoomList": {
     "label": "List",
     "Star": {
