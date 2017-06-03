@@ -15,7 +15,6 @@ export default class ChatMenu extends Component {
   }
 
   pressImage() {
-    console.log(this.props)
     this.props.sendImage()
   }
   render() {

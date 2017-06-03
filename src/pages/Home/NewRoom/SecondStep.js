@@ -57,7 +57,9 @@ export default class SecondStep extends Component {
       height: 300,
       cropping: true
     }).then(image => {
-      console.log(image);
+      this.setState({
+          cover: image.path, // 'data:image/jpeg;base64,' + res.data, //  cover.uri,
+        })
     }, err => {
       console.log('取消')
     })
@@ -100,7 +102,7 @@ export default class SecondStep extends Component {
   }
 
   _isCompleted = () => (
-    this.state.intro.length > 0 &&
+    this.state.description.length > 0 &&
     this.state.date_time_start.length > 0 &&
     this.state.date_time_end.length > 0 &&
     this.state.location_string.length > 0 &&
@@ -147,18 +149,19 @@ export default class SecondStep extends Component {
               <InputItem title={I18n.t('NewRoom.input.second.Cover.title')} titleWidth={75}>
                 <View style={[styles.fullFlexWidth]}>
                   <View style={[styles.flex1, localStyles.wrap__cover]}>
-                    <View style={[styles.fullFlexWidth, localStyles.cover]}>
+                    <TouchableOpacity  onPress={this._showCropPicker} style={[styles.fullFlexWidth, localStyles.cover]}>
                       <Text style={{color: '#c7c7c7'}}>{I18n.t('NewRoom.input.second.Cover.placeholder')}</Text>
                       <ActivityIndicator animating={this.state.isUploading}/>
-                      <TouchableOpacity onPress={this._showCropPicker}>
+
                         {/*<Image source={this.state.cover ? this.state.cover : ''} style={[localStyles.cover__image]}>*/}
                         <Icon name="camera" size={20}/>
                         {/*</Image>*/}
-                      </TouchableOpacity>
-                    </View>
+
+                    </TouchableOpacity>
                     {this.state.cover ?
+
                       <View style={[styles.rowFlex, localStyles.wrap__cover__wrap]}>
-                        <Image style={[localStyles.wrap__cover__wrap__img]} source={{url: this.state.cover}}/>
+                        <Image style={[localStyles.wrap__cover__wrap__img]} source={{uri: this.state.cover}}/>
                       </View>
                       : null
                     }
@@ -179,8 +182,8 @@ export default class SecondStep extends Component {
                   style={[styles.flex1, styles.contentFontSize,,localStyles.desInput]}
                   placeholder={I18n.t('NewRoom.input.second.intro.placeholder')}
                   multiline={true}
-                  defaultValue={this.state.intro}
-                  onChangeText={intro => this.setState({intro})}
+                  defaultValue={this.state.description}
+                  onChangeText={description => this.setState({description})}
                 />
               </InputItem>
               <DateTimePicker

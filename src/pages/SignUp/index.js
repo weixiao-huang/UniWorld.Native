@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, TouchableOpacity, Text, Modal, Platform } from 'react-native'
+import { StyleSheet, View, Image, TouchableOpacity, Text, Modal, Platform, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
@@ -45,7 +45,8 @@ export default class SignUp extends Component {
       email:this.state.email
     }
     console.log(data)
-    api.signUp(data)
+    const res = await api.signUp(data)
+    Alert.alert
   }
 
   login = async () => {

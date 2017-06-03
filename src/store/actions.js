@@ -27,6 +27,7 @@ export const UserLogin = opt => dispatch => (
   ))
 )
 
+
 export const EditUserInfo = data => (dispatch, getState) => (
   composeHandle(api.editUserInfo(data))(types.EDIT_USER_INFO, 'userInfo')(dispatch, getState)
 )
@@ -79,8 +80,16 @@ export const SetUserInfo = data => dispatch => (
   dispatch({type: types.EDIT_USER_INFO, userInfo: data})
 )
 
+export const SetUnreadZero = roomId => dispatch => (
+  dispatch({type: types.SET_UNREAD_ZERO, id: roomId})
+)
+
 export const SetNewRoomData = data => dispatch => (
   dispatch({type: types.SET_NEW_ROOM_DATA, data})
+)
+
+export const ResetNewRoomData = dispatch => (
+  dispatch({type: types.RESET_NEW_ROOM_DATA})
 )
 
 export const SetLoginDialog = loginDialog => dispatch => (
@@ -159,7 +168,7 @@ export const MessagePolling = (dispatch, getState) => (
 
 export const SetRoomMessage = (message) => (dispatch, getState) => {
   console.log(message,'iiii')
-  return dispatch({type: types.SET_ROOM_MESSAGES, message})
+  return dispatch({type: types.SET_ROOM_MESSAGE, message})
 }
 
 export const CheckMailbox  = (pmid) => (dispatch, getState) => {
@@ -174,7 +183,7 @@ export const UploadCover = data => roomId => (dispatch, getState) => (
   actionHandle(() => (
     tokenRequestHandle(api.uploadCover(data)(roomId))(getState).then(res => {
       if (res.status !== 200) throw { message: res }
-      Alert.alert('', '上传成功')
+
     })
   ))
 )
@@ -195,12 +204,13 @@ export const SendMessage = data => roomId => (dispatch, getState) => (
   ))
 )
 
-
 export const SendAnnouncement = data => roomId => (dispatch, getState) => (
   actionHandle(() => (
     tokenRequestHandle(api.sendAnnouncement(data)(roomId))(getState).then(res =>
-      statusCodeHandle(res, 201)(data => dispatch({type: types.SEND_ANNOUNCEMENT, message: data, roomId}))
-    ).catch(err => {throw err})
+      {
+        console.log(res)
+        return statusCodeHandle(res, 201)(data => dispatch({type: types.SEND_ANNOUNCEMENT, message: data, roomId}))
+      }).catch(err => {throw err})
   ))
 )
 

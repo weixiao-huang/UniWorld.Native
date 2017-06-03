@@ -14,6 +14,12 @@ const mapStateToProps = state => ({
 
 @connect(mapStateToProps, dispatch => ({ dispatch }))
 export default class ChatItem extends Component {
+  constructor(props){
+    super(props)
+    // this.state = {
+    //   timeShow : null
+    // }
+  }
   static propTypes = {
     sender: PropTypes.object.isRequired,
     content: PropTypes.string.isRequired,
@@ -27,6 +33,27 @@ export default class ChatItem extends Component {
     this.props.dispatch(GoToUser(this.props.sender.id))
   }
 
+  // async componentWillMount(){
+  //   if (!global.chatTime) {
+  //     global.chatTime = new Date()
+  //     console.log(global.chatTime)
+  //   }
+  //   if (this.props.time) {
+  //     console.log(this.props.time)
+  //     console.log(global.chatTime)
+  //     mesTime = new Date(this.props.time)
+  //     if (mesTime - global.chatTime > 600000 || mesTime - global.chatTime < -600000) {
+  //       await this.setState({
+  //         timeShow: mesTime.toTimeString().split(':').splice(0, 2).join(':')
+  //       })
+  //       console.log("ttttttttttttttttttttt")
+  //       console.log(mesTime.toTimeString().split(':').splice(0, 2).join(':'))
+  //       console.log(this.state)
+  //       global.chatTime = this.props.time
+  //     }
+  //   }
+  // }
+
   render() {
     return (
       <View
@@ -37,9 +64,19 @@ export default class ChatItem extends Component {
           this.props.index > 0 ? { marginTop: 0 } : null
         ]}
       >
+        {/*{this.state.timeShow ? <View style={[localStyles.timeWrap, styles.alignCenter]}>
+          <Text style={[localStyles.timeWrapText]}>
+            {this.state.timeShow}
+          </Text>
+        </View> : <View style={[localStyles.timeWrap, styles.alignCenter]}>
+          <Text style={[localStyles.timeWrapText]}>
+            678
+          </Text>
+        </View>}*/}
+
         <View style={[styles.rowFlex, styles.alignCenter, localStyles.sender, this._mine() ? localStyles.rowReverse : null]}>
           <TouchableOpacity onPress={this.user}>
-            <Image style={[localStyles.avatar__img]} source={{uri:this.props.sender.avatar} } />
+            <Image style={[localStyles.avatar__img]} source={{ uri: this.props.sender.avatar }} />
           </TouchableOpacity>
           <View
             style={[
@@ -55,7 +92,7 @@ export default class ChatItem extends Component {
               <Text style={[localStyles.content__title]}>{this.props.sender.name}</Text>
             }
             {this.props.type ? <View style={[localStyles.content__text, this._mine() ? { backgroundColor: '#d5d9f0' } : null]}>
-              <Image style={[localStyles.content__image]} source={{ uri:this.props.image}} />
+              <Image style={[localStyles.content__image]} source={{ uri: this.props.image }} />
             </View> :
               <View style={[localStyles.content__text, this._mine() ? { backgroundColor: '#d5d9f0' } : null]}>
                 <Text>{this.props.content}</Text>
@@ -63,6 +100,7 @@ export default class ChatItem extends Component {
             }
           </View>
         </View>
+
       </View>
     )
   }
@@ -78,6 +116,11 @@ const localStyles = StyleSheet.create({
   container: {
     alignItems: 'flex-start',
     margin: 20,
+  },
+  timeWrap: {
+    width: 150,
+    height: 100,
+    backgroundColor:"#ec5367"
   },
   sender: {
   },

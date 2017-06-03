@@ -109,6 +109,7 @@ export default class RoomItem extends Component {
   }
 
   _getRoomFollows = () => {
+    if (this.props.participant_ids){
     let roomFollows = []
     for (let follow of this.props.myFollows) {
       if (this.props.participant_ids.indexOf(follow.id) !== -1) {
@@ -116,6 +117,7 @@ export default class RoomItem extends Component {
       }
     }
     return roomFollows
+    }
   }
 
   render () {

@@ -7,7 +7,7 @@ import { View, ListView, Text, Image, StyleSheet, TouchableOpacity } from 'react
 import { connect } from 'react-redux'
 import styles from '../common/styles'
 
-import { GoToRoomInfo, FetchRoomInfo } from '../store/actions'
+import { GoToRoomInfo, FetchRoomInfo, GoToRoomDetail } from '../store/actions'
 
 import RoomItem from './RoomItem'
 
@@ -31,6 +31,9 @@ export default class RoomWrap extends Component {
 
   _gotoRoomInfo = id => () => {
     this.setState({disabled: true})
+    if (!!this.props.Chat)
+      global.toChat = 1
+    this.props.dispatch(FetchRoomInfo(id))
     this.props.dispatch(GoToRoomInfo(id))
     setTimeout(() => this.setState({disabled: false}), 1000)
   }

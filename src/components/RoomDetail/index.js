@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
-import { FetchQuestionnaires, SetLoading } from '../../store/actions'
+import { FetchQuestionnaires, SetLoading,SetUnreadZero } from '../../store/actions'
 
 import Notice from './Notice/index'
 import Chat from './Chat/index'
@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
 export default class RoomDetails extends Component {
   constructor(props) {
     super(props)
-
+    global.chatTime = new Date()
   }
   async componentWillMount() {
     this.props.dispatch(SetLoading(true))
@@ -35,10 +35,13 @@ export default class RoomDetails extends Component {
     this.props.dispatch(SetLoading(false))
   }
 
+  componentWillUnmount(){
+    this.props.dispatch(SetUnreadZero(this.props.roomInfo.id))
+  }
+
   render() {
     const isEmpty = !this.props.questionnaires || this.props.questionnaires.length <= 0
     const isHost = this.props.roomInfo.host.id == this.props.userId
-    console.log(this.props.userId)
     return (
       <View style={[styles.flex1, localStyles.container]}>
         {this.props.loading ?

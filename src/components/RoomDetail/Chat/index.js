@@ -9,6 +9,7 @@ import styles from '../../../common/styles'
 import ImagePicker from 'react-native-image-picker'
 import ImageCropPicker from 'react-native-image-crop-picker'
 import InvertibleScrollView from 'react-native-invertible-scroll-view'
+import api from '../../../api'
 // import PushNotification from 'react-native-push-notification'
 // PushNotification.configure({
 //   // (optional) Called when Token is generated (iOS and Android)
@@ -47,7 +48,7 @@ import InvertibleScrollView from 'react-native-invertible-scroll-view'
 import ChatMenu from './ChatMenu'
 import ChatItem from './ChatItem'
 
-import { SendMessage } from '../../../store/actions'
+import { SendMessage, SetUnreadZero } from '../../../store/actions'
 
 const mapStateToProps = state => ({
   messages: state.user.messages[state.room.roomInfo.id] || [],
@@ -66,8 +67,31 @@ export default class Chat extends Component {
       plus: false,
       showMenu: false
     }
-    global.unread-=this.props.unreadMessages[this.props.roomId]
-    this.props.unreadMessages[this.props.roomId] = 0
+    this.props.dispatch(SetUnreadZero(this.props.roomId))
+  }
+
+  _getShowTime(){
+    let showTime = null
+    let time1 = null
+    let time2 = null
+    for (let index in this.state.ds._dataBlob){
+      if (time1 == null){
+        time1 = new Date (this.state.ds._dataBlob[index].time)
+        this.state.ds._dataBlob[index].showTime = time1.toTimeString().split(':').splice(0, 2).join(':')
+      }
+      else {
+        time2 = new Date(this.state.ds._dataBlob[index].time)
+        if (time2 - time1 > 600000){
+          time2 = time1
+          this.state.ds._dataBlob[index].showTime = time1.toTimeString().split(':').splice(0, 2).join(':')
+        }
+      }
+    }
+  }
+
+  componentWillMount(){
+    // this._getShowTime()
+
   }
 
   _showMenu(){
@@ -98,15 +122,39 @@ export default class Chat extends Component {
     }
   }
 
-  _sendImage(){
-    ImageCropPicker.openPicker({
-      width: 400,
-      height: 300,
-      cropping: true
-    }).then(image => {
-      console.log(image);
-    }, err => {
-      console.log('取消')
+  _sendImage =  () => {
+    const options = {
+      title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
+      cancelButtonTitle: 'Cancel',
+      takePhotoButtonTitle: 'Take Photo...',
+      chooseFromLibraryButtonTitle: 'Choose from Library...',
+      returnBase64Image: true,
+      returnIsVertical: false
+    }
+    this.setState({isUploading: true})
+    ImagePicker.showImagePicker(options, async res => {
+      if (res.didCancel) {
+        console.log('User cancelled image picker')
+        this.setState({isUploading: false})
+      }
+      else if (res.error) {
+        console.log('ImagePicker Error: ', res.error)
+        this.setState({isUploading: false})
+      }
+      else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton)
+        this.setState({isUploading: false})
+      }
+      else {
+        console.log(res)
+        let formData = new FormData()
+        formData.append('image', {
+        uri: res.uri,
+        name: 'image',
+    })
+        const res2 =await api.uploadImage(formData)(this.props.roomId)(this.props.token)
+        console.log(res2)
+      }
     })
     this.setState({
       showMenu: false
@@ -119,6 +167,7 @@ export default class Chat extends Component {
   }
   render() {
     let _listView = ListView
+    console.log(this.state.ds)
     return (
       <View style={[styles.flex1]}>
         <KeyboardAvoidingView keyboardVerticalOffset={70} behavior={'padding'} style={[styles.flex1]}>
@@ -127,7 +176,7 @@ export default class Chat extends Component {
             ref={listView => { _listView = listView }}
             renderScrollComponent={props => <InvertibleScrollView {...props} inverted />}
             dataSource={this.state.ds}
-            renderRow={(item, sectionID, rowID, highlightRow) => <ChatItem index={parseInt(rowID)} sender={item.sender} content={item.text} type={item.type} image={item.image} />}
+            renderRow={(item, sectionID, rowID, highlightRow) => <ChatItem index={parseInt(rowID)} sender={item.sender} content={item.text} type={item.type} image={item.image} showTime={item.showTime?item.showTime:null} />}
           />
           <View style={[styles.rowFlex, styles.flexCenter, localStyles.footer]}>
             <Image style={[localStyles.footer__icon]} source={require('../../../assets/icon/logoBlue.png')} />

@@ -15,29 +15,50 @@ import BackgroundImage from '../../../components/BackgroundImage'
 import { FetchUserInfo, SetCommonData } from '../../../store/actions'
 
 
-@connect(state => ({userInfo: state.user.userInfo}), dispatch => ({ dispatch }))
+@connect(state => ({userInfo: state.user.userInfo, token: state.auth.token}), dispatch => ({ dispatch }))
 export default class UserCover extends Component {
 
-  async _uploadAvatar(){
-    await ImageCropPicker.openPicker({
-      width: 400,
-      height: 300,
-      cropping: true
-    }).then(image => {
-      console.log(image);
-      api.upload_avatar(image)
-
-    }, err => {
-      console.log('取消')
+  _showUpload =  () => {
+    const options = {
+      title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
+      cancelButtonTitle: 'Cancel',
+      takePhotoButtonTitle: 'Take Photo...',
+      chooseFromLibraryButtonTitle: 'Choose from Library...',
+      returnBase64Image: true,
+      returnIsVertical: false
+    }
+    this.setState({isUploading: true})
+    ImagePicker.showImagePicker(options, async res => {
+      if (res.didCancel) {
+        console.log('User cancelled image picker')
+        this.setState({isUploading: false})
+      }
+      else if (res.error) {
+        console.log('ImagePicker Error: ', res.error)
+        this.setState({isUploading: false})
+      }
+      else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton)
+        this.setState({isUploading: false})
+      }
+      else {
+        console.log(res)
+        let formData = new FormData()
+        formData.append('avatar', {
+        uri: res.uri,
+        name: 'avatar',
     })
-    // this.props.dispatch(FetchUserInfo)
+        const res2 =await api.upload_avatar(formData)(this.props.token)
+        this.props.dispatch(FetchUserInfo)
+      }
+    })
   }
 
   render () {
     return (
       <BackgroundImage bgUrl={require('../../../assets/infoImage.jpg')}>
         {this.props.userInfo && <View style={[styles.flex1, coverStyles.container]}>
-          <TouchableOpacity onPress={this._uploadAvatar}>
+          <TouchableOpacity onPress={this._showUpload.bind(this)}>
           <Image style={[coverStyles.avatar]} source={{uri: this.props.userInfo.avatar_thumbnail}} />
           </TouchableOpacity>
           <View style={[styles.flex1, coverStyles.box]}>

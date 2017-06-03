@@ -23,7 +23,6 @@ export default class NoticeModal extends Component {
     }
   }
   _pressNotice(){
-    console.log('press')
     this.setState({
       is_announcement: true,
     })
@@ -36,10 +35,10 @@ export default class NoticeModal extends Component {
   async _submit(){
     console.log(this.state)
     if (this.state.title && this.state.description) {
-      await this.props.dispatch(SendAnnouncement({ text: this.state })(this.props.roomId))
+      await this.props.dispatch(SendAnnouncement(this.state)(this.props.roomId))
       console.log(this.state)
       this.setState({
-        text: '',
+        title: '',
         description: ''
       })
       this.props.cancel()

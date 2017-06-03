@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Image } from 'react-native'
 import I18n from 'react-native-i18n'
 import { connect } from 'react-redux'
 
@@ -12,7 +12,7 @@ import ScrollTabView from 'react-native-scrollable-tab-view'
 
 import TabContainer from './TabContainer'
 
-import { SetCommonData } from '../../../store/actions'
+import { SetCommonData, FetchRoomList} from '../../../store/actions'
 
 const items = ['Star', 'Mine', 'JoinIn']
 
@@ -25,6 +25,7 @@ const mapStateToProps = state => ({
 export default class RoomList extends Component {
   componentWillMount() {
     if (!this.props.token) this.props.dispatch(SetCommonData('showLoginDialog', true))
+    else this.props.dispatch(FetchRoomList)
   }
   render() {
     const roomList = this.props.roomList
@@ -36,6 +37,7 @@ export default class RoomList extends Component {
           tabBarBackgroundColor="#ec5367"
           tabBarTextStyle={localStyles.tabBarText}
           tabBarUnderlineStyle={localStyles.tabBarUnderline}
+          initialPage={1}
         >
           <TabContainer name="marked" tabLabel={I18n.t('RoomList.Star.label')} roomList={roomList.marked}/>
           <TabContainer name="joined" tabLabel={I18n.t('RoomList.JoinIn.label')} roomList={roomList.joined}/>
@@ -60,5 +62,21 @@ const localStyles = StyleSheet.create({
   },
   tabBarText:{
     color: 'white'
+  },
+  messagesText: {
+    fontSize: 12,
+    color: 'white',
+    textAlign: 'center',
+  },
+  messagesItem: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FEAC4E',
+    left: 22,
+    top: -4,
+    width: 21,
+    height: 21,
+    borderRadius: 10,
   }
 })

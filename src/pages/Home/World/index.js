@@ -32,7 +32,7 @@ export default class World extends Component {
           tabBarUnderlineStyle={localStyles.tabBarUnderline}
         >
           <Square tabLabel={I18n.t('World.Square.label')} />
-          <Recommend tabLabel={I18n.t('World.Recommend.label')} />
+          {/*<Recommend tabLabel={I18n.t('World.Recommend.label')} />*/}
           <Search tabLabel={I18n.t('World.Search.label')} />
         </ScrollTabView>
       </View>
