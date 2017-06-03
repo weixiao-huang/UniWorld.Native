@@ -49,7 +49,9 @@ export default class UserCover extends Component {
         name: 'avatar',
     })
         const res2 =await api.upload_avatar(formData)(this.props.token)
-        this.props.dispatch(FetchUserInfo)
+        if (res2.status==200)
+          this.props.dispatch(FetchUserInfo)
+
       }
     })
   }

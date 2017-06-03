@@ -16,7 +16,6 @@ getShowTime(startTime, endTime){
   var showTime = ''
   if (startTime != null) {
     var start = new Date(startTime)
-    console.log(start)
     var start_month = (start.getMonth() + 1).toString()
     var start_date = (start.getDate()).toString()
     var start_hour = (start.getHours()).toString()

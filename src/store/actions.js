@@ -185,10 +185,11 @@ export const UploadCover = data => roomId => (dispatch, getState) => (
   actionHandle(() => (
     tokenRequestHandle(api.uploadCover(data)(roomId))(getState).then(res => {
       if (res.status !== 200) throw { message: res }
-
     })
   ))
 )
+
+
 
 export const MarkRoom = roomId => (dispatch, getState) => (
   actionHandle(() => (

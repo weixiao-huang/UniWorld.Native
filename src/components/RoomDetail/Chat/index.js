@@ -2,7 +2,7 @@
  * Created by huangwx on 18/04/2017.
  */
 import React, { Component } from 'react'
-import { StyleSheet, View, ListView, KeyboardAvoidingView, TextInput, Image, Text, Button } from 'react-native'
+import { StyleSheet, View, ListView, KeyboardAvoidingView, TextInput, Image, Text, Button, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../../common/styles'
@@ -53,7 +53,8 @@ import { SendMessage, SetUnreadZero } from '../../../store/actions'
 const mapStateToProps = state => ({
   messages: state.user.messages[state.room.roomInfo.id] || [],
   roomId: state.room.roomInfo.id,
-  unreadMessages: state.user.unreadMessages
+  unreadMessages: state.user.unreadMessages,
+  token: state.auth.token
 })
 
 @connect(mapStateToProps, dispatch => ({ dispatch }))
@@ -148,12 +149,11 @@ export default class Chat extends Component {
       else {
         console.log(res)
         let formData = new FormData()
-        formData.append('image', {
+        formData.append('image',{
         uri: res.uri,
         name: 'image',
     })
         const res2 =await api.uploadImage(formData)(this.props.roomId)(this.props.token)
-        console.log(res2)
       }
     })
     this.setState({
@@ -237,7 +237,7 @@ const localStyles = StyleSheet.create({
     backgroundColor: 'white',
     paddingLeft: 10,
     paddingRight: 10,
-    fontSize: 26,
+    fontSize: 30,
     color: 'white',
     width: '60%'
   }

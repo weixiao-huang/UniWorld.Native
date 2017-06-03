@@ -18,11 +18,13 @@ export default class WorldSwiper extends Component {
 
   }
 
-  async _goToPoster(url){
+  _goToPoster(url){
+    console.log('66776677')
+
     const id = url.split('?id=')[1]
     console.log(id)
-    await this.props.dispatch(FetchRoomInfo(id))
-    await this.porps.dispatch(GoToRoomInfo(id))
+    // this.props.dispatch(FetchRoomInfo(id))
+    // this.props.dispatch(GoToRoomInfo(id))
   }
   render () {
     console.log(this.props.topPosters)
@@ -32,13 +34,13 @@ export default class WorldSwiper extends Component {
           this.props.topPosters ?
           <Swiper height={height} autoplay={true} autoplayTimeout={3} autoplayDirection={true}>
             {this.props.topPosters && this.props.topPosters.map((cover, index) => {
-              if (cover.url!=null)
+              {/*if (cover.url!=null)
               return (
                 <TouchableOpacity onPress={this._goToPoster(cover.url)}>
                   <Image key={index} source={{url: cover.cover}} style={{height: height, width: '100%'}}/>
                 </TouchableOpacity>
               )
-              else
+              else*/}
               return(<Image key={index} source={{url: cover.cover}} style={{height: height, width: '100%'}}/>)
             })}
           </Swiper>
