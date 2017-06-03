@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, TouchableOpacity, Text, Modal, Platform } from 'react-native'
+import { StyleSheet, View, Image, TouchableOpacity, Text, Modal, Platform, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
   loading: state.common.loading
 })
 
-@connect(mapStateToProps, dispatch=>({dispatch}))
+@connect(mapStateToProps, dispatch => ({ dispatch }))
 export default class Login extends Component {
   constructor(props) {
     super(props)
@@ -40,17 +40,48 @@ export default class Login extends Component {
     this.props.dispatch(Visit)
   }
 
-  findPassword = () => {
-    console.log(this.state)
-    if (this.state.username.length==11 && this.state.email.length>5){
-      api.findPassword(this.state)
+  findPassword = async () => {
+
+    if (this.state.username.length == 11 && this.state.email.length > 5) {
+      const res = await api.findPassword(this.state)
+      switch (res.status) {
+        case 200: {
+          Alert.alert(
+            I18n.t('FindPassword.succeedTitle'),
+            I18n.t('FindPassword.succeedText'),
+            [
+              { text: 'OK', onPress: () => { this.props.dispatch(GoToLogin) } },
+            ]
+          )
+          break;
+        }
+        default: {
+          Alert.alert(
+            I18n.t('FindPassword.fail'),
+            I18n.t('FindPassword.failReason'),
+            [
+              { text: 'OK', onPress: () => { } },
+            ]
+          )
+          break;
+        }
+      }
+    }
+    else{
+      Alert.alert(
+            I18n.t('tips'),
+            I18n.t('FindPassword.fillInfo'),
+            [
+              { text: 'OK', onPress: () => { } },
+            ]
+          )
     }
   }
 
-  render () {
+  render() {
     return (
-      <View style={{flex: 1}}>
-        <Loading visible={this.props.loading}/>
+      <View style={{ flex: 1 }}>
+        <Loading visible={this.props.loading} />
         <BackgroundImage bgUrl={require('../../assets/image/background.jpg')}>
           <View style={loginStyles.container}>
             <Image
@@ -60,13 +91,13 @@ export default class Login extends Component {
             <Input
               placeholder={I18n.t('Login.username')}
               icon={require('../../assets/icon/UserIcon.png')}
-              onChangeText={text => this.setState({username: text})}
+              onChangeText={text => this.setState({ username: text })}
               keyboardType="numeric"
             />
             <Input
               placeholder={I18n.t('SignUp.email')}
               icon={require('../../assets/icon/email.png')}
-              onChangeText={text => this.setState({email: text})}
+              onChangeText={text => this.setState({ email: text })}
 
             />
             <LoginButton
@@ -74,13 +105,13 @@ export default class Login extends Component {
               onPress={this.findPassword}
               inlineStyle={loginStyles.loginButton}
             />
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
               <View style={loginStyles.otherView}>
                 <TouchableOpacity style={loginStyles.otherButton} onPress={this.visit}>
-                  <Text style={{color: 'white'}}>{I18n.t('SignUp.visitor')}</Text>
+                  <Text style={{ color: 'white' }}>{I18n.t('SignUp.visitor')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={loginStyles.otherButton} onPress={this.login}>
-                  <Text style={{color: 'white'}}>{I18n.t('SignUp.login')}</Text>
+                  <Text style={{ color: 'white' }}>{I18n.t('SignUp.login')}</Text>
                 </TouchableOpacity>
               </View>
             </View>

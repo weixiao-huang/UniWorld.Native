@@ -17,6 +17,8 @@ export const Visit = dispatch => dispatch({type: types.USER_LOGIN, token: null})
 
 export const UserLogout = dispatch => dispatch({type: types.USER_LOGOUT})
 
+export const SetToken = data => dispatch => dispatch({type: types.SET_TOKEN, token: data.token})
+
 export const UserLogin = opt => dispatch => (
   actionHandle(() => (
     api.userLogin(opt).then(res => (
