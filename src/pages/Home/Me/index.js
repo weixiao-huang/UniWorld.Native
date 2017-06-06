@@ -47,10 +47,6 @@ export default class Me extends Component {
 const meStyles = StyleSheet.create({
   tabBarUnderline: {
     backgroundColor: 'black',
-    // backgroundColor: 'white',
-    // height: 2,
-    // borderTopColor: 'black',
-    // borderTopWidth: 2
   },
   tabBarText: {
   }

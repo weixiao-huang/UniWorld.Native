@@ -48,7 +48,10 @@
     "failTextTel":"Sorry, the tel number you used has been registered.",
     "failTextSchool":"Sorry, your school has not joined Uniworld.",
     "failTextEmail":"Sorry, your email address is not valid.",
-    "failTextDefault":"Sorry, please check your network connections"
+    "failTextDefault":"Sorry, please check your network connections",
+    "imageAuth":"Stu-card Authorization",
+    "emailAuth":"Email Authorization",
+    "addImage":"Click to upload stu-card photo"
   },
    "FindPassword":{
     "username": "Tel",
