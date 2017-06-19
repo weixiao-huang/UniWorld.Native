@@ -10,5 +10,8 @@
     "react-native/no-color-literals": [0]
   },
   "parser": "babel-eslint",
-  "globals": { "fetch": false }
+  "globals": {
+    "fetch": false,
+    "window": false
+  }
 }

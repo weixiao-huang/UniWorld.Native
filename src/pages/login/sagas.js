@@ -1,6 +1,5 @@
 import { take, fork, cancel, call, put, cancelled } from 'redux-saga/effects'
 import Reactotron from 'reactotron-react-native'
-import { AsyncStorage } from 'react-native'
 
 import { handleApiErrors } from '../../lib/api-errors'
 
@@ -24,19 +23,20 @@ function loginApi(username, password) {
   return api.userLogin({ username, password })
     .then(handleApiErrors)
     .then(response => response.json())
-    .then(data => AsyncStorage.setItem('token', data.token))
+    // .then(data => AsyncStorage.setItem('token', data.token))
 }
 
 function* logout() {
   yield put(unSetClient())
-  AsyncStorage.removeItem('token')
+  // AsyncStorage.removeItem('token')
   yield put({ type: navTypes.RESET_TO_LOGIN })
 }
 
 function* loginFlow(username, password) {
   let token
   try {
-    token = yield call(loginApi, username, password)
+    const data = yield call(loginApi, username, password)
+    token = data.token
     yield put(setClient(token))
     yield put({ type: LOGIN_SUCCESS })
     yield put({ type: navTypes.RESET_TO_HOME })

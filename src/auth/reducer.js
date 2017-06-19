@@ -1,8 +1,8 @@
-import { CLIENT_SET, CLIENT_UNSET } from './constants';
+import { CLIENT_SET, CLIENT_UNSET } from './types'
 
 const initialState = {
   // id: null,
-  token: null
+  token: null,
 }
 
 const reducer = function clientReducer(state = initialState, action) {
@@ -15,7 +15,7 @@ const reducer = function clientReducer(state = initialState, action) {
     case CLIENT_UNSET:
       return {
         // id: null,
-        token: null
+        token: null,
       }
     default:
       return state
