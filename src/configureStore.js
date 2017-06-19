@@ -23,10 +23,14 @@ if (process.env.NODE_ENV === 'development') {
 
 export default function configureStore(initialState) {
   // const store = createStoreWithMiddleware(rootReducer, initialState);
-  const store = Reactotron.createStore(rootReducer, initialState, applyMiddleware(...middlewares));
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+  const store = Reactotron.createStore(
+    rootReducer,
+    initialState,
+    applyMiddleware(...middlewares),
+  )
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   // install saga run
-  store.runSaga = sagaMiddleware.run;
-  store.close = () => store.dispatch(END);
-  return store;
+  store.runSaga = sagaMiddleware.run
+  store.close = () => store.dispatch(END)
+  return store
 }

@@ -10,7 +10,7 @@ import {
 
 export default class World extends Component {
   onPress = () => {
-    console.log(this.props.navigation.navigate('me'))
+    this.props.navigation.navigate('me')
   }
   render() {
     return (

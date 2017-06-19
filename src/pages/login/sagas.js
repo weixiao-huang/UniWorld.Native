@@ -10,7 +10,13 @@ import {
   LOGIN_ERROR,
 } from './types'
 
+import {
+  setClient,
+  unSetClient,
+} from '../../auth/actions'
+
 import * as navTypes from '../../router/types'
+import * as authTypes from '../../auth/types'
 
 import api from '../../api'
 
@@ -21,10 +27,17 @@ function loginApi(username, password) {
     .then(data => AsyncStorage.setItem('token', data.token))
 }
 
+function* logout() {
+  yield put(unSetClient())
+  AsyncStorage.removeItem('token')
+  yield put({ type: navTypes.RESET_TO_LOGIN })
+}
+
 function* loginFlow(username, password) {
   let token
   try {
     token = yield call(loginApi, username, password)
+    yield put(setClient(token))
     yield put({ type: LOGIN_SUCCESS })
     yield put({ type: navTypes.RESET_TO_HOME })
   } catch (error) {
@@ -41,5 +54,8 @@ export default function* loginWatch() {
   while (true) {
     const { username, password } = yield take(LOGIN_REQUEST)
     const task = yield fork(loginFlow, username, password)
+    const action = yield take([authTypes.CLIENT_UNSET, LOGIN_ERROR])
+    if (action.type === authTypes.CLIENT_UNSET) yield cancel(task)
+    yield call(logout)
   }
 }

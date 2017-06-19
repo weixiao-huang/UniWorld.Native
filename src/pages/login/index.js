@@ -1,17 +1,19 @@
-import React from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { reduxForm } from 'redux-form'
+import { loginRequest } from './actions'
 
 import Page from './page'
 
 const mapStateToProps = state => ({
-
+  login: state.login,
 })
 
-const mapDispatchToProps = dispatch => ({
-  dispatch,
-})
+const mapDispatchToProps = (dispatch) => {
+  const loginAction = bindActionCreators(loginRequest, dispatch)
+  return { loginAction }
+}
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(props => (
-  <Page {...props} />
-))
+export default reduxForm({
+  form: 'login',
+})(connect(mapStateToProps, mapDispatchToProps)(Page))

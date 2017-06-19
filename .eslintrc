@@ -9,5 +9,6 @@
     "semi": [0],
     "react-native/no-color-literals": [0]
   },
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "globals": { "fetch": false }
 }
