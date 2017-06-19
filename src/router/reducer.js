@@ -24,7 +24,7 @@ export default (state, action) => {
         state,
       );
       break;
-    case types.RESET_TO_TABBAR:
+    case types.RESET_TO_HOME:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.reset({
           index: 0,

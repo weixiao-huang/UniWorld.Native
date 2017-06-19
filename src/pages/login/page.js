@@ -41,22 +41,20 @@ export default class Login extends Component {
   }
   login = (values) => {
     const { loginAction } = this.props
-    loginAction(values.username, values.passowrd)
+    loginAction(values.username, values.password)
     // this.props.navigation.navigate('homeTab')
   }
 
   render() {
     const {
-      // login: {
-      //   requesting,
-      //   successful,
-      //   messages,
-      //   errors,
-      // },
-      login,
+      login: {
+        requesting,
+        successful,
+        messages,
+        errors,
+      },
       handleSubmit,
     } = this.props
-    console.log('login:', login)
     return (
       <MainView>
         <BackgroundImage bgUrl={bgUrl}>
@@ -70,7 +68,7 @@ export default class Login extends Component {
             />
             <Field
               name="password"
-              placeholder="passowrd"
+              placeholder="password"
               secureTextEntry
               icon={userIcon}
               component={renderInput}

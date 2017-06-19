@@ -44,6 +44,7 @@ function* loginFlow(username, password) {
     yield put({ type: LOGIN_ERROR, error })
   } finally {
     if (yield cancelled()) {
+      console.log('cancelled')
       yield put({ type: navTypes.RESET_TO_LOGIN })
     }
   }
