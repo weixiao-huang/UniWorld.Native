@@ -1,23 +1,23 @@
 import { take, fork, cancel, call, put, cancelled } from 'redux-saga/effects'
 import Reactotron from 'reactotron-react-native'
 
-import { handleApiErrors } from '../../lib/api-errors'
+import { handleApiErrors } from '@/lib/api-errors'
+
+import {
+  setClient,
+  unSetClient,
+} from '@/auth/actions'
+
+import * as authTypes from '@/auth/types'
+import * as navTypes from '@/router/types'
+
+import api from '@/api'
 
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
 } from './types'
-
-import {
-  setClient,
-  unSetClient,
-} from '../../auth/actions'
-
-import * as navTypes from '../../router/types'
-import * as authTypes from '../../auth/types'
-
-import api from '../../api'
 
 function loginApi(username, password) {
   return api.userLogin({ username, password })
@@ -44,7 +44,6 @@ function* loginFlow(username, password) {
     yield put({ type: LOGIN_ERROR, error })
   } finally {
     if (yield cancelled()) {
-      console.log('cancelled')
       yield put({ type: navTypes.RESET_TO_LOGIN })
     }
   }

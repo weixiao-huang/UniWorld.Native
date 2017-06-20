@@ -1,6 +1,7 @@
 import { StackNavigator } from 'react-navigation'
 
-import Login from '../pages/login'
+import Login from '@/pages/login'
+
 import HomeTab from './components/home'
 
 const AppRouteConfigs = {

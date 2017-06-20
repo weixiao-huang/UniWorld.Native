@@ -2,14 +2,15 @@ import React, { Component, PropTypes } from 'react'
 import { View } from 'react-native'
 import { Field } from 'redux-form'
 
+import Button from '@/components/Button'
+import BackgroundImage from '@/components/BackgroundImage'
+
 import {
   MainView,
   BackgroundView,
   LogoImage,
 } from './style'
 
-import Button from '../../components/Button'
-import BackgroundImage from '../../components/BackgroundImage'
 import Input from './components/Input'
 
 const bgUrl = require('./img/background.jpg')
@@ -70,7 +71,7 @@ export default class Login extends Component {
               name="password"
               placeholder="password"
               secureTextEntry
-              icon={userIcon}
+              icon={passIcon}
               component={renderInput}
             />
             <Button

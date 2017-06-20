@@ -9,6 +9,11 @@
     "semi": [0],
     "react-native/no-color-literals": [0]
   },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
   "parser": "babel-eslint",
   "globals": {
     "fetch": false,
