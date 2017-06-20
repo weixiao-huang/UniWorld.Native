@@ -1,24 +1,24 @@
-import { applyMiddleware, compose } from 'redux';
-import Reactotron from 'reactotron-react-native';
-import createSagaMiddleware, { END } from 'redux-saga';
+import { applyMiddleware, compose } from 'redux'
+import Reactotron from 'reactotron-react-native'
+import createSagaMiddleware, { END } from 'redux-saga'
 import { createLogger } from 'redux-logger'
 import { persistStore, autoRehydrate } from 'redux-persist'
 import { AsyncStorage } from 'react-native'
 
-import rootReducer from './index-reducer';
+import rootReducer from './index-reducer'
 
-const middlewares = [];
+const middlewares = []
 
 // create our new saga monitor
-const sagaMonitor = Reactotron.createSagaMonitor();
+const sagaMonitor = Reactotron.createSagaMonitor()
 
 // configure saga middleware
-const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
-middlewares.push(sagaMiddleware);
+const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
+middlewares.push(sagaMiddleware)
 
 if (process.env.NODE_ENV === 'development') {
-  const logger = createLogger();
-  middlewares.push(logger);
+  const logger = createLogger()
+  middlewares.push(logger)
 }
 // const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
 

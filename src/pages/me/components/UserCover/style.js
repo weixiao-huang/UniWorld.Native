@@ -13,6 +13,7 @@ const RowAlign = css`
 export const MainView = styled.View`
   ${RowAlign}
   justify-content: center;
+  flex: 1;
 `
 
 const avatarSize = 80

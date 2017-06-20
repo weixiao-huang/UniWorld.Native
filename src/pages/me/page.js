@@ -1,11 +1,14 @@
 import React, { Component, PropTypes } from 'react'
+import ScrollTabView from 'react-native-scrollable-tab-view'
 
 import {
   MainView,
-  MainText,
 } from './style'
 
 import UserCover from './components/UserCover'
+import UserInfo from './components/UserInfo/'
+import Follow from './components/Follow/'
+import Reputation from './components/Reputation/'
 
 import { userInfo } from './mocks'
 
@@ -14,7 +17,13 @@ export default class Me extends Component {
     return (
       <MainView>
         <UserCover userInfo={userInfo} />
-        <MainText>This is Me Page</MainText>
+        <ScrollTabView
+          style={{ flex: 2 }}
+        >
+          <UserInfo tabLabel={'Info'} />
+          <Follow tabLabel={'Follow'} />
+          <Reputation tabLabel={'Reputation'} />
+        </ScrollTabView>
       </MainView>
     )
   }

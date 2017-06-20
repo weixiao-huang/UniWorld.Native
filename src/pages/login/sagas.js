@@ -1,4 +1,4 @@
-import { take, fork, cancel, call, put, cancelled } from 'redux-saga/effects'
+import { take, fork, cancel, call, put, cancelled, select } from 'redux-saga/effects'
 import Reactotron from 'reactotron-react-native'
 
 import { handleApiErrors } from '@/lib/api-errors'
@@ -17,6 +17,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
+  LOGOUT_REQUEST,
 } from './types'
 
 function loginApi(username, password) {
@@ -29,6 +30,7 @@ function loginApi(username, password) {
 function* logout() {
   yield put(unSetClient())
   // AsyncStorage.removeItem('token')
+  console.log('logout')
   yield put({ type: navTypes.RESET_TO_LOGIN })
 }
 
@@ -51,11 +53,23 @@ function* loginFlow(username, password) {
 }
 
 export default function* loginWatch() {
+  yield take('persist/REHYDRATE')
   while (true) {
-    const { username, password } = yield take(LOGIN_REQUEST)
-    const task = yield fork(loginFlow, username, password)
-    const action = yield take([authTypes.CLIENT_UNSET, LOGIN_ERROR])
-    if (action.type === authTypes.CLIENT_UNSET) yield cancel(task)
-    yield call(logout)
+    const state = yield select()
+    if (!state.auth.token) {
+      const { username, password } = yield take(LOGIN_REQUEST)
+      const task = yield fork(loginFlow, username, password)
+      const action = yield take([authTypes.CLIENT_UNSET, LOGIN_ERROR, LOGOUT_REQUEST])
+      if (action.type === authTypes.CLIENT_UNSET) yield cancel(task)
+      yield call(logout)
+    } else {
+      yield take([authTypes.CLIENT_UNSET, LOGIN_ERROR, LOGOUT_REQUEST])
+      yield call(logout)
+    }
+    // const { username, password } = yield take(LOGIN_REQUEST)
+    // const task = yield fork(loginFlow, username, password)
+    // const action = yield take([authTypes.CLIENT_UNSET, LOGIN_ERROR])
+    // if (action.type === authTypes.CLIENT_UNSET) yield cancel(task)
+    // yield call(logout)
   }
 }
