@@ -191,6 +191,7 @@ export const UploadCover = data => roomId => (dispatch, getState) => (
 
 
 
+
 export const MarkRoom = roomId => (dispatch, getState) => (
   actionHandle(() => (
     tokenRequestHandle(api.markRoom(roomId))(getState).then(res => {

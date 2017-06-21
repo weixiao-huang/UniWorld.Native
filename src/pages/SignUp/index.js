@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
 import {
-  Visit, UserLogin, GoToHome, FetchUserInfo, SetCommonData, GoToLogin, GoToForgetPassword
+  Visit, UserLogin, GoToHome, FetchUserInfo, SetCommonData, GoToLogin, GoToForgetPassword, UploadIdCard
 } from '../../store/actions'
 
 import ImagePicker from 'react-native-image-picker'
@@ -16,7 +16,6 @@ import api from '../../api'
 import Input from '../Login/Input'
 import LoginButton from '../../components/StyleButton'
 import BackgroundImage from '../../components/BackgroundImage'
-
 import Loading from '../../components/Loading'
 
 const mapStateToProps = state => ({
@@ -31,7 +30,8 @@ export default class SignUp extends Component {
       username: '',
       password: '',
       email: '',
-      passwordCheck: ''
+      passwordCheck: '',
+      emailAuth:true
     }
   }
 
@@ -54,10 +54,19 @@ export default class SignUp extends Component {
         ]
       )
     }
-    else if ((email.substr(email.search('edu.cn')) != 'edu.cn') && !this.state.stuCard) {
+    else if ((email.substr(email.search('edu.cn')) != 'edu.cn') && this.state.emailAuth) {
       Alert.alert(
         I18n.t('tips'),
         I18n.t('SignUp.failEmailEdu'),
+        [
+          { text: 'OK', onPress: () => { } },
+        ]
+      )
+    }
+    else if (!this.state.stuCard && !this.state.emailAuth) {
+      Alert.alert(
+        I18n.t('tips'),
+        I18n.t('SignUp.failIdCard'),
         [
           { text: 'OK', onPress: () => { } },
         ]
@@ -82,13 +91,30 @@ export default class SignUp extends Component {
       )
     }
     else {
-      let data = {
-        username: this.state.username,
-        password: this.state.password,
-        email: this.state.email
+      let res
+      if (this.state.emailAuth) {
+        let data = {
+          username: this.state.username,
+          password: this.state.password,
+          email: this.state.email
+        }
+        res = await api.signUp(data)
+        console.log(res)
+        console.log(res.json())
       }
-      const res = await api.signUp(data)
-      console.log(res)
+      else {
+        let formData = new FormData()
+        formData.append('id_card', {
+          uri: this.state.stuCard,
+          name: 'id_card',
+        }) //, type: 'application/octet-stream'})
+        formData.append('username',this.state.username)
+        formData.append('password',this.state.password)
+        console.log(formData)
+        res = await api.uploadIdCard(formData)
+        console.log(res)
+        console.log(res.json())
+      }
       switch (res.status) {
         //成功
         case 201: {
@@ -99,6 +125,7 @@ export default class SignUp extends Component {
               { text: 'OK', onPress: () => { this.props.dispatch(GoToLogin) } },
             ]
           )
+          break
         }
 
         //账号重复
@@ -173,19 +200,19 @@ export default class SignUp extends Component {
       returnBase64Image: true,
       returnIsVertical: false
     }
-    this.setState({isUploading: true})
+    this.setState({ isUploading: true })
     ImagePicker.showImagePicker(options, res => {
       if (res.didCancel) {
         console.log('User cancelled image picker')
-        this.setState({isUploading: false})
+        this.setState({ isUploading: false })
       }
       else if (res.error) {
         console.log('ImagePicker Error: ', res.error)
-        this.setState({isUploading: false})
+        this.setState({ isUploading: false })
       }
       else if (res.customButton) {
         console.log('User tapped custom button: ', res.customButton)
-        this.setState({isUploading: false})
+        this.setState({ isUploading: false })
       }
       else {
         this.setState({
@@ -201,7 +228,7 @@ export default class SignUp extends Component {
     return (
       <ScrollView style={{ flex: 1 }}>
         <Loading visible={this.props.loading} />
-        <BackgroundImage bgUrl={require('../../assets/image/registerBg.jpg')}>
+        <BackgroundImage bgUrl={require('../../assets/image/registerBg.jpg')} inlineStyle={{height: this.state.emailAuth?null:900}}>
           <View style={localStyles.container}>
             <Image
               source={require('../../assets/Logo.png')}
@@ -232,10 +259,10 @@ export default class SignUp extends Component {
               /> :
               <TouchableOpacity onPress={this._showUpload.bind(this)} style={[localStyles.imageWrap]}>
 
-                <Image source={require('../../assets/icon/card.png')} style={localStyles.icon3}/>
+                <Image source={require('../../assets/icon/card.png')} style={localStyles.icon3} />
                 <View >
-                {this.state.stuCard?<Image style={[localStyles.chooseImage]} source={{uri: this.state.stuCard}} />:null}
-                <Text style={[localStyles.chooseImageText]}>{I18n.t('SignUp.addImage')}</Text>
+                  {this.state.stuCard ? <Image style={[localStyles.chooseImage]} source={{ uri: this.state.stuCard }} /> : null}
+                  <Text style={[localStyles.chooseImageText]}>{I18n.t('SignUp.addImage')}</Text>
                 </View>
               </TouchableOpacity>
             }
@@ -285,6 +312,7 @@ const localStyles = StyleSheet.create({
   },
   otherButton: {
     backgroundColor: 'transparent',
+    marginBottom: 20
   },
   otherView: {
     flexDirection: 'row',
@@ -294,15 +322,16 @@ const localStyles = StyleSheet.create({
   logo: {
     width: 130,
     height: 130,
-    marginBottom: 60
+    marginBottom: 30
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
+
     alignItems: 'center',
     margin: 10,
     marginLeft: 40,
     marginRight: 40,
+    paddingTop: 30
   },
   icon1: {
     width: 42,
@@ -310,7 +339,7 @@ const localStyles = StyleSheet.create({
     resizeMode: "contain"
   },
   icon2: {
-    marginTop:2,
+    marginTop: 2,
     width: 42,
     height: 38,
     resizeMode: "contain"
@@ -324,11 +353,11 @@ const localStyles = StyleSheet.create({
     margin: 13,
   },
   chooseArea: {
-    width:'100%',
+    width: '100%',
     justifyContent: 'space-between',
-    flexDirection:'row',
-    marginBottom:10,
-    marginTop:10,
+    flexDirection: 'row',
+    marginBottom: 10,
+    marginTop: 10,
   },
   chooseItem: {
     flexDirection: 'column',
@@ -353,19 +382,19 @@ const localStyles = StyleSheet.create({
     marginLeft: 5,
   },
   imageWrap: {
-    marginTop:10,
+    marginTop: 10,
     marginBottom: 10,
     backgroundColor: 'white',
     width: '100%',
     borderRadius: 5,
-    flexDirection:'row'
+    flexDirection: 'row'
   },
   chooseText: {
-    textAlign:'center',
+    textAlign: 'center',
     color: '#888888',
     fontSize: 15,
     // lineHeight: 50,
     // width:'100%',
-    margin:6,
+    margin: 6,
   }
 })

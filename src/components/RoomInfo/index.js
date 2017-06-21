@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react'
-import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, Alert, StatusBar } from 'react-native'
 
 import { connect } from 'react-redux'
 import ScrollTabView from 'react-native-scrollable-tab-view'
@@ -124,6 +124,10 @@ export default class RoomInfo extends Component {
     const isEmpty = this.props.roomInfo ? Object.keys(this.props.roomInfo).length <= 0 : true
     return (
       <View style={[styles.flex1, localStyles.container]}>
+        <StatusBar
+    backgroundColor="white"
+    barStyle="light-content"
+  />
         <View style={[localStyles.empty]}/>
         {this.props.roomInfo && <View style={[styles.flex1]}>
           {this.props.loading ?

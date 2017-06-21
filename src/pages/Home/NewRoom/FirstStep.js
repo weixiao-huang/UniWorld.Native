@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Text, ScrollView, Dimensions, KeyboardAvoidingView } from 'react-native'
+import { Image, StyleSheet, View, Text, ScrollView, Dimensions, KeyboardAvoidingView, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 
 import I18n from 'react-native-i18n'

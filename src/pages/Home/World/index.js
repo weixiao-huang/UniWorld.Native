@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { View, Image, StyleSheet } from 'react-native'
+import { View, Image, StyleSheet, StatusBar } from 'react-native'
 import ScrollTabView from 'react-native-scrollable-tab-view'
 import I18n from 'react-native-i18n'
 import { connect } from 'react-redux'
@@ -24,6 +24,10 @@ export default class World extends Component {
   render() {
     return (
       <View style={[styles.flex1, localStyles.container]}>
+        <StatusBar
+    backgroundColor="white"
+    barStyle="light-content"
+  />
         <View style={[localStyles.emptyTop]}></View>
         <ScrollTabView
           style={localStyles.tabStyle}

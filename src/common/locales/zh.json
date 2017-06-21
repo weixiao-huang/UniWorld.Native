@@ -25,7 +25,8 @@
     "visitor": "游客登录",
     "signup": "注册",
     "fillInfo":"请输入正确的手机号以及密码",
-    "wrong":"请检查你的手机号以及密码"
+    "wrong":"请检查你的手机号以及密码",
+    "changeLanguage":"中文 => English"
   },
   "SignUp":{
     "findpassword":"找回密码",
@@ -51,7 +52,8 @@
     "failTextDefault":"抱歉，请检查您的网络连接",
     "imageAuth":"学生证验证",
     "emailAuth":"教育邮箱验证",
-    "addImage":"点击上传学生证照片"
+    "addImage":"点击上传学生证照片",
+    "failIdCard":"请上传您的学生证照片",
   },
   "FindPassword":{
     "username": "电话",
@@ -276,7 +278,7 @@
     "label": "我",
     "cover": {
       "friends": "朋友",
-      "joined": "放假",
+      "joined": "参与",
       "thumb_ups": "点赞"
     },
     "info": {

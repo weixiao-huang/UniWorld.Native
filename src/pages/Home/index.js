@@ -8,7 +8,7 @@ import { TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
-import { MessagePolling, SetCommonData, FetchUnreadRooms, SetRoomMessage, CheckMailbox } from '../../store/actions'
+import { MessagePolling, SetCommonData, FetchUnreadRooms, SetRoomMessage, CheckMailbox, StatusBar } from '../../store/actions'
 import { wsByToken } from '../../ws'
 import * as PushNotification from 'react-native-push-notification'
 import SignInfo from '../New'
@@ -31,7 +31,7 @@ function getUnread() {
 }
 export const HomeRouter = TabNavigator({
   World: {
-    screen: SignInfo,
+    screen: World,
     navigationOptions: {
       tabBar: {
         label: I18n.t('World.label', { defaultValue: 'World' }),
@@ -189,6 +189,7 @@ export default class Home extends Component {
   render() {
     return (
       <View style={styles.flex1}>
+
         <HomeRouter
           props={this.props}
         />

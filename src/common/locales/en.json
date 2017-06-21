@@ -25,7 +25,8 @@
     "visitor": "Visitor",
     "signup": "Sign Up",
     "fillInfo":"Please enter the right tel number and password",
-    "wrong":"Please check your tel number and password"
+    "wrong":"Please check your tel number and password",
+    "changeLanguage":"English => 中文"
   },
    "SignUp":{
     "findpassword":"Find password",
@@ -51,7 +52,8 @@
     "failTextDefault":"Sorry, please check your network connections",
     "imageAuth":"Stu-card Authorization",
     "emailAuth":"Email Authorization",
-    "addImage":"Click to upload stu-card photo"
+    "addImage":"Click to upload stu-card photo",
+    "failIdCard":"Please upload your stu-card"
   },
    "FindPassword":{
     "username": "Tel",

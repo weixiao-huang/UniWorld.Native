@@ -44,12 +44,13 @@ export default class RoomDetails extends Component {
     const isHost = this.props.roomInfo.host.id == this.props.userId
     return (
       <View style={[styles.flex1, localStyles.container]}>
+        <View style={{height: 20, width: '100%', backgroundColor: '#ec5367'}}/>
         {this.props.loading ?
           <Loading visible={this.props.loading}/> :
           isEmpty ? null :
           <ScrollTabView
             initialPage={1}
-            style={{flex: 2, marginTop: 20}}
+            style={{flex: 2}}
             tabBarBackgroundColor="#ec5367"
             tabBarTextStyle={localStyles.tabBarText}
             tabBarUnderlineStyle={localStyles.tabBarUnderline}
@@ -72,5 +73,5 @@ const localStyles = StyleSheet.create({
   tabBarUnderline:{
   backgroundColor: 'white',
   height: 2
-  }
+}
 })

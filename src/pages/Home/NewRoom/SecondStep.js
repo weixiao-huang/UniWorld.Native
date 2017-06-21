@@ -179,7 +179,7 @@ export default class SecondStep extends Component {
               </View>
               <InputItem title={I18n.t('NewRoom.input.second.intro.title')} titleWidth={75}>
                 <TextInput
-                  style={[styles.flex1, styles.contentFontSize,,localStyles.desInput]}
+                  style={[styles.flex1, styles.contentFontSize,localStyles.desInput]}
                   placeholder={I18n.t('NewRoom.input.second.intro.placeholder')}
                   multiline={true}
                   defaultValue={this.state.description}
@@ -196,7 +196,7 @@ export default class SecondStep extends Component {
                 onDateChange={date_time_end => this.setState({date_time_end})}/>
               <InputItem title={I18n.t('NewRoom.input.second.location.title')} titleWidth={75}>
                 <TextInput
-                  style={[styles.flex1]}
+                  style={[styles.flex1,styles.contentFontSize]}
                   placeholder={I18n.t('NewRoom.input.second.location.placeholder')}
                   defaultValue={this.state.location_string}
                   onChangeText={location_string => this.setState({location_string})}
@@ -230,7 +230,7 @@ export default class SecondStep extends Component {
               </InputItem>
               <InputItem title={I18n.t('NewRoom.input.second.welcome.title')} titleWidth={75}>
                 <TextInput
-                  style={[styles.flex1]}
+                  style={[styles.flex1,styles.contentFontSize]}
                   placeholder={I18n.t('NewRoom.input.second.welcome.placeholder')}
                   defaultValue={this.state.welcome}
                   onChangeText={welcome => this.setState({welcome})}
@@ -238,7 +238,7 @@ export default class SecondStep extends Component {
               </InputItem>
               <InputItem title={I18n.t('NewRoom.input.second.expense.title')} titleWidth={75}>
                 <TextInput
-                  style={[styles.flex1]}
+                  style={[styles.flex1,styles.contentFontSize]}
                   placeholder={I18n.t('NewRoom.input.second.expense.placeholder')}
                   onChangeText={expense => this.setState({expense})}
                   defaultValue={this.state.expense}
@@ -246,7 +246,7 @@ export default class SecondStep extends Component {
               </InputItem>
               <InputItem title={I18n.t('NewRoom.input.second.rewards.title')} titleWidth={75}>
                 <TextInput
-                  style={[styles.flex1]}
+                  style={[styles.flex1,styles.contentFontSize]}
                   placeholder={I18n.t('NewRoom.input.second.rewards.placeholder')}
                   onChangeText={rewards => this.setState({rewards})}
                   defaultValue={this.state.rewards}

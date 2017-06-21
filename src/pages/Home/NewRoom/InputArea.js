@@ -110,7 +110,7 @@ export default class InputArea extends Component {
           <InputItem
             titleWidth={75}
             title={I18n.t('NewRoom.input.label.title')}
-            inlineStyle={{alignItems: 'flex-start'}}
+            inlineStyle={{alignItems: 'center'}}
           >
             <LabelItem
               onPress={this._showLabelPicker.bind(this)}

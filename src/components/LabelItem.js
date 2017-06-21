@@ -57,7 +57,7 @@ const localStyles = StyleSheet.create({
   container: {
     borderColor: '#f2f0f4',
     borderBottomWidth: 1,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   button: {
     color: '#c7c7cd',

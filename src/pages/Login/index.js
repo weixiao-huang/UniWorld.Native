@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, TouchableOpacity, Text, Modal, Platform, Alert } from 'react-native'
+import { StyleSheet, View, Image, TouchableOpacity, Text, Modal, Platform, Alert, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 import I18n from 'react-native-i18n'
 import styles from '../../common/styles'
@@ -19,6 +19,7 @@ import LoginButton from '../../components/StyleButton'
 import BackgroundImage from '../../components/BackgroundImage'
 
 import Loading from '../../components/Loading'
+
 
 const mapStateToProps = state => ({
   loading: state.common.loading,
@@ -59,7 +60,7 @@ export default class Login extends Component {
           await this.props.dispatch(FetchInitialLabels)
           this.props.dispatch(SetCommonData('loading', false))
           this.props.dispatch(SetCommonData('isPolling', true))
-          this.props.user.name.length>0?this.props.dispatch(GoToHome):this.props.dispatch(GoToSignInfo)
+          this.props.user.name.length > 0 ? this.props.dispatch(GoToHome) : this.props.dispatch(GoToSignInfo)
           break
         }
         default: {
@@ -92,9 +93,30 @@ export default class Login extends Component {
     this.props.dispatch(GoToSignUp)
   }
 
+  _changeLanguage() {
+    if (I18n.t('Login.login') == 'Login') {
+      I18n.locale = 'zh'
+      I18n.currentLocale()
+      this.setState({
+        lan: 'zh'
+      })
+    }
+    else {
+      I18n.locale = 'en'
+      I18n.currentLocale()
+      this.setState({
+        lan: 'en'
+      })
+    }
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
+        <StatusBar
+    backgroundColor="white"
+    barStyle="light-content"
+  />
         <Loading visible={this.props.loading} />
         <BackgroundImage bgUrl={require('../../assets/image/background.jpg')}>
           <View style={loginStyles.container}>
@@ -102,6 +124,11 @@ export default class Login extends Component {
               source={require('../../assets/image/Logo.png')}
               style={loginStyles.logo}
             />
+            <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'flex-end' }}>
+              <TouchableOpacity onPress={this._changeLanguage.bind(this)} style={loginStyles.language}>
+                <Text style={{ color: 'white' }}>{I18n.t('Login.changeLanguage')}</Text>
+              </TouchableOpacity>
+            </View>
             <Input
               placeholder={I18n.t('Login.username')}
               icon={require('../../assets/icon/UserIcon.png')}
@@ -160,10 +187,14 @@ const loginStyles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
+    paddingTop: 100,
     alignItems: 'center',
     margin: 10,
     marginLeft: 40,
     marginRight: 40,
+  },
+  language: {
+    alignItems: 'center',
+    backgroundColor: 'transparent'
   }
 })
