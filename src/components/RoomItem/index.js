@@ -56,7 +56,9 @@ const RoomItem = ({
                   {dateTimeStart} - {dateTimeEnd}
                 </RoomContentTimeText>
               </RoomContentTimeView>
-              <RoomContentPeopleView>
+              <RoomContentPeopleView
+                grayBg={maxParticipants && participantCount > maxParticipants}
+              >
                 <RoomContentPeopleText>
                   <RoomContentPeopleImage
                     source={participantIcon}
