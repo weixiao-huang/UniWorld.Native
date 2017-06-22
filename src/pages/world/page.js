@@ -36,7 +36,12 @@ export default class World extends Component {
           tabBarTextStyle={styles.tabBarText}
           tabBarUnderlineStyle={styles.tabBarUnderline}
         >
-          <Square tabLabel="Square" world={this.props.world} />
+          <Square
+            tabLabel="Square"
+            world={this.props.world}
+            latest={this.props.latest}
+            recommend={this.props.recommend}
+          />
         </StyledScrollTabView>
       </MainView>
     )

@@ -12,6 +12,8 @@ import {
   RoomListView,
 } from './style'
 
+import starIcon from '@/img/icon/starIcon.png'
+
 const RoomWrap = ({ roomList, title, titleLabel }) => {
   const gotoRoomInfo = id => () => {
 
@@ -19,7 +21,9 @@ const RoomWrap = ({ roomList, title, titleLabel }) => {
   return (
     <MainView>
       {title && <MainTitleView>
-        <MainTitleImage />
+        <MainTitleImage
+          source={starIcon}
+        />
         <MainTitleText>{title}</MainTitleText>
       </MainTitleView>}
       <MainWrapView>

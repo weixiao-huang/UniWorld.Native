@@ -10,7 +10,7 @@ import {
 
 function fetchApi(token) {
   return Promise.all([
-    api.fetchRecommend(token),
+    api.fetchTop(token),
     api.fetchLatest(token),
     api.fetchWorld(token),
   ]).then(item => item.map(handleApiErrors))

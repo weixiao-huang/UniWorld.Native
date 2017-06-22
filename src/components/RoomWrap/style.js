@@ -16,6 +16,7 @@ export const MainTitleView = styled.View`
 export const MainTitleImage = styled.Image`
   width: 18px;
   height: 18px;
+  margin-right: 8px;
 `
 
 export const MainTitleText = styled.Text`

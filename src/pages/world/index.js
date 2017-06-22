@@ -5,6 +5,8 @@ import Page from './page'
 
 const mapStateToProps = state => ({
   world: state.world.world,
+  latest: state.world.latest,
+  recommend: state.world.recommend,
 })
 
 const mapDispatchToProps = dispatch => ({

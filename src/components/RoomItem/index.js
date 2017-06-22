@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import participantIcon from '@/img/icon/participant.png'
+import { transferTimeFormat } from '@/utils'
 
 import {
   MainView,
@@ -32,6 +33,7 @@ const RoomItem = ({
   if (showPeople.length > 5) {
     showPeople = participantCount.concat('/..')
   }
+  const showTime = transferTimeFormat([dateTimeStart, dateTimeEnd])
   return (
     <MainView>
       <RoomView>
@@ -53,7 +55,7 @@ const RoomItem = ({
             <RoomContentFooterView>
               <RoomContentTimeView>
                 <RoomContentTimeText>
-                  {dateTimeStart} - {dateTimeEnd}
+                  {showTime}
                 </RoomContentTimeText>
               </RoomContentTimeView>
               <RoomContentPeopleView
