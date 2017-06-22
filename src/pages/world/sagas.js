@@ -13,6 +13,7 @@ function fetchApi(token) {
     api.fetchTop(token),
     api.fetchLatest(token),
     api.fetchWorld(token),
+    api.fetchPosters(token),
   ]).then(item => item.map(handleApiErrors))
     .then(responses => Promise.all(
       responses.map(item => item.json())),
@@ -29,7 +30,8 @@ export default function* worldWatch() {
         state.nav.routes[0].index === index &&
         (!state.world.world ||
         !state.world.recommend ||
-        !state.world.latest)
+        !state.world.latest ||
+        !state.world.posters)
     ) {
       // TODO: fetch data and add them into reducer
       try {
@@ -41,6 +43,7 @@ export default function* worldWatch() {
             recommend: data[0],
             latest: data[1],
             world: data[2],
+            posters: data[3],
           },
         })
       } catch (error) {

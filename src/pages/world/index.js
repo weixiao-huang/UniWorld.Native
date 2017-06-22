@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
   world: state.world.world,
   latest: state.world.latest,
   recommend: state.world.recommend,
+  posters: state.world.posters,
 })
 
 const mapDispatchToProps = dispatch => ({

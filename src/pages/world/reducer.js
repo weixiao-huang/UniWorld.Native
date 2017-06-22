@@ -7,6 +7,7 @@ const initialState = {
   world: null,
   recommend: null,
   latest: null,
+  posters: null,
 }
 
 export default (state = initialState, action) => {
