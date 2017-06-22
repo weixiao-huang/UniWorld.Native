@@ -2,14 +2,18 @@ import React, { Component, PropTypes } from 'react'
 
 import {
   MainView,
-  MainText
+  TabView,
+  StyledScrollTabView,
+  MainText,
 } from './style'
 
 export default class MyRoomList extends Component {
   render() {
     return (
       <MainView>
-        <MainText>This is MyRoomList Page</MainText>
+        <TabView>
+
+        </TabView>
       </MainView>
     )
   }

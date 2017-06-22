@@ -20,15 +20,6 @@ const logoUrl = require('./img/Logo.png')
 const userIcon = require('./img/UserIcon.png')
 const passIcon = require('./img/PasswordIcon.png')
 
-const renderInput = ({ input: { onChange }, ...props }) => {
-  return (
-    <Input
-      {...props}
-      onChangeText={onChange}
-    />
-  )
-}
-
 export default class Login extends Component {
   static propTypes = {
     login: PropTypes.object.isRequired,

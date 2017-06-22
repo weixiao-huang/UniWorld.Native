@@ -1,6 +1,5 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { reduxForm } from 'redux-form'
 import { loginRequest, fetchUserInfo } from './actions'
 
 import Page from './page'
