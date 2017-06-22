@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { View } from 'react-native'
-import { Field } from 'redux-form'
+// import { Field } from 'redux-form'
 
 import Button from '@/components/Button'
 import BackgroundImage from '@/components/BackgroundImage'
@@ -41,9 +41,10 @@ export default class Login extends Component {
       password: '',
     }
   }
-  login = (values) => {
+  login = () => {
     const { loginAction } = this.props
-    loginAction(values.username, values.password)
+    console.log(this.state.username, this.state.password)
+    loginAction(this.state.username, this.state.password)
     // this.props.navigation.navigate('homeTab')
   }
 
@@ -55,7 +56,6 @@ export default class Login extends Component {
         messages,
         errors,
       },
-      handleSubmit,
     } = this.props
     return (
       <MainView>
@@ -63,7 +63,18 @@ export default class Login extends Component {
           <Loading visible={requesting} />
           <BackgroundView>
             <LogoImage source={logoUrl} />
-            <Field
+            <Input
+              onChangeText={username => this.setState({ username })}
+              placeholder="username"
+              icon={userIcon}
+            />
+            <Input
+              onChangeText={password => this.setState({ password })}
+              placeholder="password"
+              secureTextEntry
+              icon={passIcon}
+            />
+            {/* <Field
               name="username"
               placeholder="username"
               icon={userIcon}
@@ -75,10 +86,10 @@ export default class Login extends Component {
               secureTextEntry
               icon={passIcon}
               component={renderInput}
-            />
+            />*/}
             <Button
               title="login"
-              onPress={handleSubmit(this.login)}
+              onPress={this.login}
               inlineStyle={{ marginTop: 10 }}
             />
           </BackgroundView>

@@ -1,0 +1,309 @@
+{
+  "App": {
+    "version": "Version"
+  },
+  "Gender": {
+    "male": "male",
+    "female": "female",
+    "null": "none"
+  },
+  "yes": "Yes",
+  "no": "No",
+  "dislikes": "Dislikes",
+  "title": "Title",
+  "content": "Content",
+  "save": "Save",
+  "cancel": "Cancel",
+  "full": "Room is Full",
+  "submit":"Submit",
+  "tips":"Tips",
+  "confirm": "Confirm",
+  "Login": {
+    "username": "Tel",
+    "password": "Password",
+    "login": "Login",
+    "visitor": "Visitor",
+    "signup": "Sign Up",
+    "fillInfo":"Please enter the right tel number and password",
+    "wrong":"Please check your tel number and password"
+  },
+   "SignUp":{
+    "findpassword":"Find password",
+    "username": "Tel",
+    "password": "Password",
+    "login": "Login",
+    "visitor": "Visitor",
+    "signUp": "Sign Up",
+    "email":"Email",
+    "findPassword":"Forget password",
+    "passwordAgain":"Please input your password again",
+    "emailFail":"Please enter an email that ends with '.edu.cn'",
+    "succeedTitle":"Last step!",
+    "succeedText":"Check your activation email.\nJoin Uniworld now",
+    "failTitle":"Fail to register",
+    "failTextInfoTel":"Please use the right tel number",
+    "failPassword":"You entered different passwords",
+    "failPassword2":"The length of your password should between 6 and 20",
+    "failEmailEdu":"Please use the email that ends with '.edu.cn'",
+    "failTextTel":"Sorry, the tel number you used has been registered.",
+    "failTextSchool":"Sorry, your school has not joined Uniworld.",
+    "failTextEmail":"Sorry, your email address is not valid.",
+    "failTextDefault":"Sorry, please check your network connections"
+  },
+   "FindPassword":{
+    "username": "Tel",
+    "login": "Login",
+    "visitor": "Visitor",
+    "signUp": "Sign Up",
+    "email":"Email",
+    "findPassword":"Find password",
+    "fail":"Fail",
+    "failReason":"Sorry, your email doesn't match your tell number.",
+    "succeedTitle":"Last Step!",
+    "succeedText":"Please check your email and change your password",
+    "fillInfo":"Please fill in your info"
+  },
+  "Room": {
+    "follow": "Follow",
+    "unfollow": "Unfollow",
+    "share": "Share this room and invite your friends to join",
+    "website": "Please browse our website for more details",
+    "Info": {
+      "title": "Info",
+      "label": "Label",
+      "Participants": {
+        "space1": "people have joined",
+        "space2": "place left"
+      }
+    },
+    "Detail": {
+      "title": "Details",
+      "Member": {
+        "title": "All participants",
+        "reportRoom": "Report room",
+        "reportUser": "Report user"
+      }
+    },
+    "Footer": {
+      "star": "Mark",
+      "unstar": "Unmark",
+      "join": "Join In",
+      "leave": "Leave",
+      "room": "Room",
+      "Leave": {
+        "title": "Leave room",
+        "content": "You will leave this room, confirm?",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+      }
+    },
+    "Notice": {
+      "title": "Notice",
+      "Footer": {
+        "edit": "Edit",
+        "new": "New notification"
+      },
+      "notice":"Notice",
+      "questionnaires":"Questionnaies",
+      "Image":"Image",
+      "content":"Content",
+      "defaultText1":"Anything to say?"
+    },
+    "Chat": {
+      "title": "Chat",
+       "notice":"Notice",
+      "questionnaires":"Questionnaies",
+      "image":"Image"
+    },
+    "Member": {
+      "title": "Member",
+      "Footer": {
+        "likeRoom": "Like room",
+        "likeAll": "Like all participants"
+      }
+    }
+  },
+  "Actions": {
+    "loginError": "Username or password Error",
+    "statusError": "Status code Error"
+  },
+  "User": {
+    "info": "Info",
+    "rooms": "Rooms",
+    "interests": "Interests",
+    "likes": "Likes",
+    "follow": "Follow",
+    "followed": "Followed",
+    "follows": "Follows",
+    "followers": "Followers"
+  },
+  "World": {
+    "label": "World",
+    "Square": {
+      "label": "Plaza",
+      "recommend": "Recommend",
+      "latest": "Latest",
+      "world": "World",
+      "loadMore": "Click for loading more...",
+      "top": "Top"
+    },
+    "Recommend": {
+      "label": "Discover"
+    },
+    "Search": {
+      "label": "Search",
+      "button": "Search"
+    }
+  },
+  "NewRoom": {
+    "label": "New Room",
+    "button": "Start it",
+    "title": "Create New Room",
+    "subTitle1": "Wherever you are",
+    "subTitle2": "Use UniWorld to define your world",
+    "input": {
+      "name": {
+        "title": "Name",
+        "placeholder": "Outing in Beijing"
+      },
+      "label": {
+        "title": "Labels",
+        "placeholder": "Click here to add type",
+        "selectTitle": "Select your room labels"
+      },
+      "match": {
+        "title": "Auto Match",
+        "placeholder": "Set as an automatch room?"
+      },
+      "second": {
+        "title": "Define Your World",
+        "Cover": {
+          "title": "Cover",
+          "placeholder": "Please upload your room cover",
+          "uploadTitle": "Select room cover"
+        },
+        "name": "Name",
+        "intro": {
+          "title": "Intro",
+          "placeholder": "Outing in Beijing"
+        },
+        "timePlaceholder": "Select Date and Time",
+        "start": {
+          "title": "Start"
+        },
+        "end": {
+          "title": "End"
+        },
+        "location": {
+          "title": "Location",
+          "placeholder": "anywhere"
+        },
+        "max": {
+          "title": "Max",
+          "pickerTitle": "Select Max Participants",
+          "placeholder": "NL"
+        },
+        "required": "Required",
+        "options": "Options",
+        "private": {
+          "title": "Private",
+          "placeholder": "Allowed only by invitations"
+        },
+        "welcome": {
+          "title": "Welcome",
+          "placeholder": "someone you want to meet"
+        },
+        "expense": {
+          "title": "Expense",
+          "placeholder": "any expense"
+        },
+        "rewards": {
+          "title": "Rewards",
+          "placeholder": "rewards for joining"
+        }
+      },
+      "third": {
+        "preview": "Preview",
+        "confirm": "Confirm"
+      }
+    }
+  },
+  "SignInfo":{
+    "first":{
+      "message1":"Welcome to UniWorld",
+      "message2":"You may come across variant people here",
+      "message3":"Explore all possibilities",
+      "nextButton":"Continue"
+    },
+    "second":{
+      "title":"Complete your information",
+      "nickname":"Nickname",
+      "gender":"Gender",
+      "male":"male",
+      "female":"female",
+      "lsbt":"lsbt",
+      "birthday":"Birthday",
+      "department":"Department",
+      "grade":"Grade",
+      "signature":"Signature",
+      "continue":"Accept the User Agreement",
+      "agreement":"User's Agreement",
+      "back":"Back",
+      "nextButton":"Accept the User's Agreement"
+    }
+  },
+  "RoomList": {
+    "label": "List",
+    "Star": {
+      "label": "Star",
+      "title": "Rooms you have marked"
+    },
+    "JoinIn": {
+      "label": "Joined",
+      "title": "Rooms you have joined in"
+    },
+    "Mine": {
+      "label": "Mine",
+      "title": "My rooms"
+    },
+    "history": "Show history record",
+    "searchNext": "Click here for more"
+  },
+  "Me": {
+    "label": "Me",
+    "cover": {
+      "friends": "Friends",
+      "joined": "Rooms",
+      "thumb_ups": "Likes"
+    },
+    "info": {
+      "label": "Info",
+      "phone": "Phone",
+      "name": "Name",
+      "gender": "Gender",
+      "school": "University",
+      "department": "Dept.",
+      "grade": "Grade",
+      "nickname": "Nickname",
+      "signature": "Signature",
+      "edit": "Edit",
+      "logout": "Logout",
+      "Logout": {
+        "title": "Logout",
+        "content": "You will logout, confirm?"
+      },
+      "Edit": {
+        "title": "Edit User Info",
+        "content": "Confirm your change?"
+      }
+    },
+    "follow": {
+      "label": "Follow",
+      "title": "Follow people"
+    },
+    "credit": {
+      "label": "Reputation",
+      "likes": "Likes"
+    }
+  }
+}

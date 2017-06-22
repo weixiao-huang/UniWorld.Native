@@ -15,6 +15,8 @@ const mapDispatchToProps = (dispatch) => {
   return { loginAction, fetchUserInfoAction }
 }
 
-export default reduxForm({
-  form: 'login',
-})(connect(mapStateToProps, mapDispatchToProps)(Page))
+// export default reduxForm({
+//   form: 'login',
+// })(connect(mapStateToProps, mapDispatchToProps)(Page))
+
+export default connect(mapStateToProps, mapDispatchToProps)(Page)

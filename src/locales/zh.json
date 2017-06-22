@@ -1,0 +1,309 @@
+{
+  "App": {
+    "version": "版本"
+  },
+  "Gender":{
+    "male":"男",
+    "female":"女",
+    "null":"none"
+  },
+  "yes":"是",
+  "no":"不",
+  "dislikes":"不喜欢",
+  "title": "标题",
+  "content": "内容",
+  "save": "保存",
+  "cancel": "取消",
+  "full": "房间已满",
+  "submit":"提交",
+  "tips":"提示",
+  "confirm": "确认",
+  "Login": {
+    "username": "手机号",
+    "password": "密码",
+    "login": "登录",
+    "visitor": "游客登录",
+    "signup": "注册",
+    "fillInfo":"请输入正确的手机号以及密码",
+    "wrong":"请检查你的手机号以及密码"
+  },
+  "SignUp":{
+    "findpassword":"找回密码",
+    "username": "手机号",
+    "password": "密码",
+    "login": "登录",
+    "visitor": "游客登录",
+    "signup": "注册",
+    "email":"邮箱",
+    "findPassword":"找回密码",
+    "passwordAgain":"请再次输入你的密码",
+    "emailFail":"请输入结尾为.edu.cn的邮箱地址",
+    "succeedTitle":"最后一步！",
+    "succeedText":"检查你的激活邮件.\n现在就加入Uniworld！",
+    "failTitle":"注册失败",
+    "failTextInfoTel":"请使用正确的手机号",
+    "failPassword":"密码错误！",
+    "failPassword2":"密码长度应该为6-20",
+    "failEmailEdu":"请使用以.edu.cn结尾的邮箱进行注册",
+    "failTextTel":"抱歉，该手机号已经被注册",
+    "failTextSchool":"抱歉，该学校尚未加入Uniworld大家庭",
+    "failTextEmail":"抱歉，您的邮箱地址无效",
+    "failTextDefault":"抱歉，请检查您的网络连接"
+  },
+  "FindPassword":{
+    "username": "电话",
+    "login": "登录",
+    "visitor": "游客登录",
+    "signUp": "注册",
+    "email":"邮箱",
+    "findPassword":"找回密码",
+    "fail":"失败",
+    "failReason":"抱歉，您的手机号与邮箱不匹配",
+    "succeedTitle":"最后一步！",
+    "secceedText":"请登录您的邮箱并重置您的密码",
+    "fillInfo":"请输入您的信息"
+  },
+  "Room": {
+    "follow": "关注",
+    "unfollow": "取消关注",
+    "share": "分享这个房间并邀请朋友加入",
+    "website": "请登录网站获取更多信息",
+    "Info": {
+      "title": "信息",
+      "label": "标签",
+      "Participants": {
+        "space1": "已加入的人",
+        "space2": "剩余位置"
+      }
+  },
+  "Detail": {
+    "title": "详情",
+    "Member": {
+      "title": "所有参与者",
+      "reportRoom": "评价房间",
+      "reportUser": "评价用户"
+    }
+  },
+  "Footer": {
+    "star": "点赞",
+    "unstar": "取消点赞",
+    "join": "加入",
+    "leave": "离开",
+    "room": "房间",
+    "Leave": {
+      "title": "离开房间",
+      "content": "确认要离开这个房间？",
+      "confirm": "确认",
+      "cancel": "取消"
+    }
+  },
+    "Notice": {
+      "title": "通知",
+      "Footer": {
+        "edit": "编辑",
+        "new": "新的通知"
+      },
+      "notice":"通知",
+      "questionnaires":"问卷",
+      "Image":"图片",
+      "content":"内容",
+      "defaultText1":"想说什么吗？"
+    },
+    "Chat": {
+      "title": "聊天",
+       "notice":"通知",
+      "questionnaires":"问卷",
+      "image":"图片"
+    },
+    "Member": {
+      "title": "成员",
+      "Footer": {
+        "likeRoom": "给房间点赞",
+        "likeAll": "给房间所有成员点赞"
+      }
+    }
+  },
+  "Actions": {
+    "loginError": "用户名或密码错误",
+    "statusError": "状态码错误"
+  },
+  "User": {
+    "info": "信息",
+    "rooms": "房间",
+    "interests": "兴趣",
+    "likes": "喜欢",
+    "follow": "关注",
+    "followed": "已关注的",
+    "follows": "关注者",
+    "followers": "关注他的人"
+  },
+  "World": {
+    "label": "世界",
+    "Square": {
+      "label": "广场",
+      "recommend": "强力推荐",
+      "latest": "当下",
+      "world": "世界",
+      "loadMore":"点击以加载更多...",
+      "top":"置顶"
+    },
+    "Recommend": {
+      "label": "推荐"
+    },
+    "Search": {
+      "label": "搜索",
+      "button": "搜索"
+    }
+  },
+  "NewRoom": {
+    "label": "新房间",
+    "button": "创建房间",
+    "title": "创建新房间",
+    "subTitle1": "无论是烧烤之夜还是雪球大战",
+    "subTitle2": "用UniWorld定义一个属于你的世界",
+    "input": {
+      "name": {
+        "title": "房间名称",
+        "placeholder": "周六去北海划船吧"
+      },
+      "label": {
+        "title": "房间标签",
+        "placeholder": "点击这里来添加类别",
+        "selectTitle":"选择你的房间标签"
+      },
+      "match": {
+        "title": "大型匹配",
+        "placeholder": "是否设为大型匹配房间"
+      },
+      "second": {
+        "title": "定义你的世界",
+        "Cover": {
+          "title": "封面",
+          "placeholder": "请上传你的封面",
+          "uploadTitle": "选择封面"
+        },
+        "name": "姓名",
+        "intro": {
+          "title": "信息",
+          "placeholder": "北京漫游"
+        },
+        "timePlaceholder": "选择日期与时间",
+        "start": {
+          "title": "开始"
+        },
+        "end": {
+          "title": "结束"
+        },
+        "location": {
+          "title": "地点",
+          "placeholder": "任何地方"
+        },
+        "max": {
+          "title": "人数上限",
+          "pickerTitle": "选择人数上限",
+          "placeholder": "2"
+        },
+        "required": "必填项",
+        "options": "选填项",
+        "private": {
+          "title": "私密",
+          "placeholder": "私密房间只能通过邀请加入"
+        },
+        "welcome": {
+          "title": "欢迎",
+          "placeholder": "期待摄影师..."
+        },
+        "expense": {
+          "title": "费用",
+          "placeholder": "车票/门票"
+        },
+        "rewards": {
+          "title": "礼品奖励",
+          "placeholder": "参与者可获得..."
+        }
+      },
+      "third": {
+        "preview": "上一页",
+        "confirm": "确认"
+      }
+    }
+  },
+"SignInfo":{
+    "first":{
+      "message1":"欢迎来到 UniWorld",
+      "message2":"在这里，遇见一切有趣的人",
+      "message3":"探索一切未知的可能",
+      "nextButton":"继续"
+    },
+    "second":{
+      "title":"请完善你的注册信息",
+      "nickname":"昵称",
+      "gender":"性别",
+      "male":"男",
+      "female":"女",
+      "lsbt":"lsbt",
+      "birthday":"生日",
+      "department":"院系",
+      "grade":"年级",
+      "signature":"个性签名",
+      "continue":"我已阅读并同意用户协议",
+      "agreement":"用户协议",
+      "back":"返回",
+      "nextButton":"接收用户协议"
+    }
+  },
+  "RoomList": {
+    "label": "列表",
+    "Star": {
+      "label": "收藏",
+      "title": "已关注的房间"
+    },
+    "JoinIn": {
+      "label": "加入",
+      "title": "已加入的房间"
+    },
+    "Mine": {
+      "label": "建立",
+      "title": "我建立的房间"
+    },
+    "history": "查看历史记录",
+    "searchNext": "点击这里以查看更多"
+  },
+  "Me": {
+    "label": "我",
+    "cover": {
+      "friends": "朋友",
+      "joined": "放假",
+      "thumb_ups": "点赞"
+    },
+    "info": {
+      "label": "信息",
+      "phone": "手机",
+      "name": "姓名",
+      "gender": "性别",
+      "school": "学校",
+      "department": "院系",
+      "grade": "年级",
+      "nickname": "昵称",
+      "signature": "签名",
+      "edit": "编辑",
+      "logout": "登出",
+      "Logout": {
+        "title": "登出",
+        "content": "确认登出?"
+      },
+      "Edit": {
+        "title": "修改你的个人信息",
+        "content": "确认修改？"
+      }
+    },
+    "follow": {
+      "label": "关注",
+      "title": "已关注的人"
+    },
+    "credit": {
+      "label": "信誉",
+      "likes": "赞"
+    }
+  }
+}
