@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
-import { loginRequest } from './actions'
+import { loginRequest, fetchUserInfo } from './actions'
 
 import Page from './page'
 
@@ -11,7 +11,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
   const loginAction = bindActionCreators(loginRequest, dispatch)
-  return { loginAction }
+  const fetchUserInfoAction = bindActionCreators(fetchUserInfo, dispatch)
+  return { loginAction, fetchUserInfoAction }
 }
 
 export default reduxForm({

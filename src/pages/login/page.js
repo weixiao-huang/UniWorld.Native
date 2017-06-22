@@ -4,6 +4,7 @@ import { Field } from 'redux-form'
 
 import Button from '@/components/Button'
 import BackgroundImage from '@/components/BackgroundImage'
+import Loading from '@/components/Loading'
 
 import {
   MainView,
@@ -59,6 +60,7 @@ export default class Login extends Component {
     return (
       <MainView>
         <BackgroundImage bgUrl={bgUrl}>
+          <Loading visible={requesting} />
           <BackgroundView>
             <LogoImage source={logoUrl} />
             <Field

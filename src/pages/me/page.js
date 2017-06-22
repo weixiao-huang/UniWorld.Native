@@ -10,13 +10,11 @@ import UserInfo from './components/UserInfo/'
 import Follow from './components/Follow/'
 import Reputation from './components/Reputation/'
 
-import { userInfo } from './mocks'
-
 export default class Me extends Component {
   render() {
     return (
       <MainView>
-        <UserCover userInfo={userInfo} />
+        <UserCover userInfo={this.props.userInfo} />
         <ScrollTabView
           style={{ flex: 2 }}
         >

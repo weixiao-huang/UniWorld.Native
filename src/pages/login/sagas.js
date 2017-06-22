@@ -10,6 +10,7 @@ import {
 
 import * as authTypes from '@/auth/types'
 import * as navTypes from '@/router/types'
+import * as types from '@/types'
 
 import api from '@/api'
 
@@ -18,6 +19,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_ERROR,
   LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
 } from './types'
 
 function loginApi(username, password) {
@@ -30,8 +32,9 @@ function loginApi(username, password) {
 function* logout() {
   yield put(unSetClient())
   // AsyncStorage.removeItem('token')
-  console.log('logout')
   yield put({ type: navTypes.RESET_TO_LOGIN })
+  yield put({ type: types.CLEAR_DATA })
+  yield put({ type: LOGOUT_SUCCESS })
 }
 
 function* loginFlow(username, password) {
@@ -66,10 +69,5 @@ export default function* loginWatch() {
       yield take([authTypes.CLIENT_UNSET, LOGIN_ERROR, LOGOUT_REQUEST])
       yield call(logout)
     }
-    // const { username, password } = yield take(LOGIN_REQUEST)
-    // const task = yield fork(loginFlow, username, password)
-    // const action = yield take([authTypes.CLIENT_UNSET, LOGIN_ERROR])
-    // if (action.type === authTypes.CLIENT_UNSET) yield cancel(task)
-    // yield call(logout)
   }
 }

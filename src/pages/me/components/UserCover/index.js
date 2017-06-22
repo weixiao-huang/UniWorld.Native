@@ -20,9 +20,9 @@ import infoImg from '../../img/infoImage.jpg'
 
 const UserCover = ({ userInfo }) => (
   <BackgroundImage bgUrl={infoImg}>
-    <MainView>
+    {userInfo && <MainView>
       <TouchableOpacity onPress={() => {}}>
-        <CoverImage source={userInfo.avatar_thumbnail} />
+        <CoverImage source={{ uri: userInfo.avatar_thumbnail }} />
       </TouchableOpacity>
       <ContentView>
         <ContentLineView>
@@ -31,12 +31,12 @@ const UserCover = ({ userInfo }) => (
         </ContentLineView>
         <SignatureText>{userInfo.signature}</SignatureText>
         <FollowWrapText>
-          {userInfo.followers.length + userInfo.follows.length} friends |
-          {userInfo.joined_count} joined |
-          {userInfo.p_thumb_ups + userInfo.h_thumb_ups} thumb_ups
+          {userInfo.followers.length + userInfo.follows.length} friends
+          | {userInfo.joined_count} joined
+          | {userInfo.p_thumb_ups + userInfo.h_thumb_ups} thumb_ups
         </FollowWrapText>
       </ContentView>
-    </MainView>
+    </MainView>}
   </BackgroundImage>
 )
 

@@ -1,5 +1,6 @@
 import {
   LOGIN_REQUEST,
+  FETCH_USER_INFO,
 } from './types'
 
 
@@ -13,4 +14,9 @@ export const loginRequest = (username, password) => ({
   type: LOGIN_REQUEST,
   username,
   password,
+})
+
+export const fetchUserInfo = token => ({
+  type: FETCH_USER_INFO,
+  token,
 })
