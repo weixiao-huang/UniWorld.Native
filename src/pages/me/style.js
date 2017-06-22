@@ -11,3 +11,5 @@ export const MainView = styled.View`
 export const MainText = styled.Text`
 
 `
+export const PlaceholderView = styled.View`
+`

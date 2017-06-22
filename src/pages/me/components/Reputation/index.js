@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 import {
-  MainView,
-  MainText,
+  MainScrollView,
 } from './style'
 
-export default props => (
-  <MainView>
-    <MainText>Reputation</MainText>
-  </MainView>
+import ThumbUps from './ThumbUps'
+import ThumbDowns from './ThumbDowns'
+
+const Reputation = ({ thumbUps, thumbDowns }) => (
+  <MainScrollView>
+    <ThumbUps thumbUps={thumbUps} />
+    <ThumbDowns thumbDowns={thumbDowns} />
+  </MainScrollView>
 )
+
+Reputation.propTypes = {
+  thumbUps: PropTypes.number.isRequired,
+  thumbDowns: PropTypes.number.isRequired,
+}
+
+export default Reputation

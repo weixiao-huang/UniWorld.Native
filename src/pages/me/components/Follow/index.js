@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 import {
   MainView,
-  MainText,
+  MainTitleText,
+  MainContentView,
 } from './style'
 
-export default props => (
+const Follow = ({ follows }) => (
   <MainView>
-    <MainText>Follow</MainText>
+    <MainTitleText>Follow</MainTitleText>
+    <MainContentView>
+    </MainContentView>
   </MainView>
 )
+
+Follow.propTypes = {
+  follows: PropTypes.array.isRequired,
+}
+
+export default Follow

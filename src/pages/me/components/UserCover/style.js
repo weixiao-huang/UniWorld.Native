@@ -19,15 +19,15 @@ export const MainView = styled.View`
 const avatarSize = 80
 
 export const CoverImage = styled.Image`
-  width: ${avatarSize};
-  height: ${avatarSize};
-  border-radius: 40;
-  border-width: 3;
+  width: ${avatarSize}px;
+  height: ${avatarSize}px;
+  border-radius: 40px;
+  border-width: 3px;
   border-color: white;
 `
 
 export const ContentView = styled.View`
-  margin-left: 30;
+  margin-left: 30px;
 `
 
 export const ContentLineView = styled.View`
@@ -35,23 +35,23 @@ export const ContentLineView = styled.View`
 `
 
 export const GenderIconImage = styled.Image`
-  width: 20;
-  height: 20;
+  width: 20px;
+  height: 20px;
 `
 
 export const UsernameText = styled.Text`
   ${TransparentBG}
-  margin-left: 10;
-  font-size: 20;
+  margin-left: 10px;
+  font-size: 20px;
   font-weight: bold;
 `
 
 export const SignatureText = styled.Text`
   ${TransparentBG}
-  margin-top: 5;
+  margin-top: 5px;
 `
 
 export const FollowWrapText = styled.Text`
   ${TransparentBG}
-  margin-top: 20;
+  margin-top: 20px;
 `
