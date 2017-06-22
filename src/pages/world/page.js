@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import Reactotron from 'reactotron-react-native'
 
@@ -7,9 +7,21 @@ import Square from './components/Square'
 
 import {
   MainView,
+  EmptyView,
   MainText,
   StyledScrollTabView,
 } from './style'
+
+const styles = StyleSheet.create({
+  tabBarUnderline: {
+    backgroundColor: 'white',
+    height: 1.5,
+  },
+  tabBarText: {
+    // paddingTop:20,
+    color: 'white',
+  },
+})
 
 export default class World extends Component {
   onPress = () => {
@@ -18,12 +30,11 @@ export default class World extends Component {
   render() {
     return (
       <MainView>
-        <MainText>This is World Page</MainText>
-        <TouchableOpacity onPress={this.onPress}>
-          <MainText>Test</MainText>
-        </TouchableOpacity>
+        <EmptyView />
         <StyledScrollTabView
           tabBarBackgroundColor="#ec5367"
+          tabBarTextStyle={styles.tabBarText}
+          tabBarUnderlineStyle={styles.tabBarUnderline}
         >
           <Square tabLabel="Square" world={this.props.world} />
         </StyledScrollTabView>

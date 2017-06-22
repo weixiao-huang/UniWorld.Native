@@ -20,7 +20,7 @@ const AppRouteConfigs = {
 }
 
 const StackNavigatorConfigs = {
-  headerMode: 'screen',
+  headerMode: 'none',
   initialRouteName: 'login',
 }
 
