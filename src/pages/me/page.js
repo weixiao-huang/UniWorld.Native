@@ -16,23 +16,22 @@ export default class Me extends Component {
     return (
       <MainView>
         <UserCover userInfo={this.props.userInfo} />
-        {this.props.userInfo ? <ScrollTabView
-          style={{ flex: 2 }}
-        >
-          <UserInfo tabLabel={'Info'} />
-          <Follow
-            tabLabel={'Follow'}
-            follows={this.props.userInfo.follows}
-          />
-          <Reputation
-            tabLabel={'Reputation'}
-            thumbUps={this.props.userInfo.p_thumb_ups}
-            thumbDowns={this.props.userInfo.p_thumb_downs}
-          />
-        </ScrollTabView> :
-        <PlaceholderView style={{ flex: 2 }}>
+        {this.props.userInfo ?
+          <ScrollTabView style={{ flex: 2 }}>
+            <UserInfo tabLabel={'Info'} />
+            <Follow
+              tabLabel={'Follow'}
+              follows={this.props.userInfo.follows}
+            />
+            <Reputation
+              tabLabel={'Reputation'}
+              thumbUps={this.props.userInfo.p_thumb_ups}
+              thumbDowns={this.props.userInfo.p_thumb_downs}
+            />
+          </ScrollTabView> :
+          <PlaceholderView style={{ flex: 2 }}>
 
-        </PlaceholderView>
+          </PlaceholderView>
         }
       </MainView>
     )

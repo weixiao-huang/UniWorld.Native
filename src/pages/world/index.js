@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Page from './page'
 
 const mapStateToProps = state => ({
-
+  world: state.world.world,
 })
 
 const mapDispatchToProps = dispatch => ({
