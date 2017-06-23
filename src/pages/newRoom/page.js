@@ -1,16 +1,31 @@
-import React, { Component, PropTypes } from 'react'
+import { StackNavigator } from 'react-navigation'
 
-import {
-  MainView,
-  MainText,
-} from './style'
+import FirstStep from './pages/firstStep'
+import SecondStep from './pages/secondStep'
+import ThirdStep from './pages/thirdStep'
 
-export default class NewRoom extends Component {
-  render() {
-    return (
-      <MainView>
-        <MainText>This is NewRoom Page</MainText>
-      </MainView>
-    )
-  }
-}
+const Router = StackNavigator({
+  First: {
+    screen: FirstStep,
+    navigationOptions: {
+      title: 'First',
+    },
+  },
+  Second: {
+    screen: SecondStep,
+    navigationOptions: {
+      title: 'Second',
+    },
+  },
+  Third: {
+    screen: ThirdStep,
+    navigationOptions: {
+      title: 'Third',
+    },
+  },
+}, {
+  headerMode: 'screen',
+  initialState: 'First',
+})
+
+export default Router

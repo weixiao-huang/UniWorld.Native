@@ -3,6 +3,7 @@ import nav from './router/reducer'
 import auth from './auth/reducer'
 import login from './pages/login/reducer'
 import world from './pages/world/reducer'
+import newRoom from './pages/newRoom/reducer'
 import myRoomList from './pages/myRoomList/reducer'
 import me from './pages/me/reducer'
 
@@ -11,6 +12,7 @@ export default combineReducers({
   auth,
   login,
   world,
+  newRoom,
   myRoomList,
   me,
 })
