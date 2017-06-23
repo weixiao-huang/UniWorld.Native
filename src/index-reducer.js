@@ -6,6 +6,7 @@ import world from './pages/world/reducer'
 import newRoom from './pages/newRoom/reducer'
 import myRoomList from './pages/myRoomList/reducer'
 import me from './pages/me/reducer'
+import roomInfo from './pages/roomInfo/reducer'
 
 export default combineReducers({
   nav,
@@ -15,4 +16,5 @@ export default combineReducers({
   newRoom,
   myRoomList,
   me,
+  roomInfo,
 })

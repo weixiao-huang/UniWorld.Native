@@ -1,57 +1,19 @@
-import React, { PropTypes } from 'react'
-import { TouchableOpacity } from 'react-native'
-import starIcon from '@/img/icon/starIcon.png'
+import { PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { NavigateToRoomInfo } from '@/router/actions'
 
-import RoomItem from '../RoomItem'
+import Page from './page'
 
-import {
-  MainView,
-  MainTitleView,
-  MainTitleImage,
-  MainTitleText,
-  MainWrapView,
-  RoomListView,
-} from './style'
+const mapStateToProps = state => ({
 
+})
 
-const RoomWrap = ({ roomList, title, titleLabel }) => {
-  const gotoRoomInfo = id => () => {
+const mapDispatchToProps = dispatch => ({
+  navigateAction: bindActionCreators(NavigateToRoomInfo, dispatch),
+})
 
-  }
-  return (
-    <MainView>
-      {!!title && <MainTitleView>
-        <MainTitleImage
-          source={starIcon}
-        />
-        <MainTitleText>{title}</MainTitleText>
-      </MainTitleView>}
-      <MainWrapView>
-        {roomList.map(item => (
-          <RoomListView key={item.id}>
-            <TouchableOpacity
-              onPress={gotoRoomInfo(item.id)}
-            >
-              <RoomItem
-                src={item.cover}
-                title={item.title}
-                place={item.location_string}
-                dateTimeStart={item.date_time_start}
-                dateTimeEnd={item.date_time_end}
-                maxParticipants={item.max_participants}
-                participantCount={item.participant_count}
-                participantIds={item.participant_ids}
-                titleLabel={titleLabel}
-              />
-            </TouchableOpacity>
-          </RoomListView>
-        ))}
-      </MainWrapView>
-    </MainView>
-  )
-}
-
-RoomWrap.propTypes = {
+Page.propTypes = {
   title: PropTypes.string,
   roomList: PropTypes.arrayOf(
     PropTypes.shape({
@@ -69,8 +31,8 @@ RoomWrap.propTypes = {
   ).isRequired,
 }
 
-RoomWrap.defaultProps = {
+Page.defaultProps = {
   title: '',
 }
 
-export default RoomWrap
+export default connect(mapStateToProps, mapDispatchToProps)(Page)

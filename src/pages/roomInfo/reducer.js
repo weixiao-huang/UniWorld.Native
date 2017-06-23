@@ -1,23 +1,21 @@
 import * as types from '@/types'
 import {
-  SET_WORLD_DATA,
+  SET_ROOM_INFO,
+  CLEAR_ROOM_INFO,
 } from './types'
 
 const initialState = {
-  world: null,
-  recommend: null,
-  latest: null,
-  posters: null,
+  roomInfo: null,
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_WORLD_DATA:
+    case SET_ROOM_INFO:
       return {
         ...state,
-        ...action.data,
+        roomInfo: action.roomInfo,
       }
-    case types.CLEAR_DATA:
+    case CLEAR_ROOM_INFO:
       return initialState
     default:
       return state

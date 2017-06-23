@@ -22,8 +22,8 @@ export default (state, action) => {
           actions: [NavigationActions.navigate({ routeName: 'login' })],
         }),
         state,
-      );
-      break;
+      )
+      break
     case types.RESET_TO_HOME:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.reset({
@@ -31,11 +31,20 @@ export default (state, action) => {
           actions: [NavigationActions.navigate({ routeName: 'homeTab' })],
         }),
         state,
-      );
-      break;
+      )
+      break
+    case types.NAVIGATE_TO_ROOM_INFO:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: 'roomInfo',
+          params: { id: action.id },
+        }),
+        state,
+      )
+      break
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);
-      break;
+      break
   }
   return nextState || state;
 };

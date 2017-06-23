@@ -1,2 +1,4 @@
 export const RESET_TO_LOGIN = 'RESET_TO_LOGIN'
 export const RESET_TO_HOME = 'RESET_TO_HOME'
+
+export const NAVIGATE_TO_ROOM_INFO = 'NAVIGATE_TO_ROOM_INFO'

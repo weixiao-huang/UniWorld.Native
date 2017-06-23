@@ -4,10 +4,7 @@ import { connect } from 'react-redux'
 import Page from './page'
 
 const mapStateToProps = state => ({
-  world: state.world.world,
-  latest: state.world.latest,
-  recommend: state.world.recommend,
-  posters: state.world.posters,
+  roomInfo: state.roomInfo.roomInfo,
 })
 
 const mapDispatchToProps = dispatch => ({
