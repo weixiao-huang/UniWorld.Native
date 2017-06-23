@@ -44,7 +44,11 @@ export default class TabContainer extends Component {
   }
 
   onRefresh = async () => {
-    this.setState({ refreshing: true, history: null })
+    this.setState({
+      refreshing: true,
+      history: [],
+      next: `${server}/profile/${this.props.name}_history/`,
+    })
     // await this.props.dispatch(FetchRoomList)
     this.setState({ refreshing: false })
   }
@@ -66,17 +70,16 @@ export default class TabContainer extends Component {
     }
     this.setState({ isFetching: false })
   }
+
   render() {
     const { roomList } = this.props
     return (
-      <MainScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this.onRefresh}
-          />
-        }
-      >
+      <MainScrollView refreshControl={
+        <RefreshControl
+          refreshing={this.state.refreshing}
+          onRefresh={this.onRefresh}
+        />
+      }>
         {!!roomList &&
          ((roomList.length > 0 ||
           this.state.history.length > 0) ?

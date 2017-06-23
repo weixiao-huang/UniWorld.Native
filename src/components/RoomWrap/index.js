@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { TouchableOpacity } from 'react-native'
+import starIcon from '@/img/icon/starIcon.png'
 
 import RoomItem from '../RoomItem'
 
@@ -12,7 +13,6 @@ import {
   RoomListView,
 } from './style'
 
-import starIcon from '@/img/icon/starIcon.png'
 
 const RoomWrap = ({ roomList, title, titleLabel }) => {
   const gotoRoomInfo = id => () => {

@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { StyleSheet } from 'react-native'
 
+import EmptyHeader from '@/components/EmptyHeader'
+
 import {
   MainView,
   TabView,
@@ -24,6 +26,7 @@ export default class MyRoomList extends Component {
     const roomList = this.props.roomList
     return (
       <MainView>
+        <EmptyHeader />
         {!!roomList && <StyledScrollTabView
           tabBarBackgroundColor="#ec5367"
           tabBarTextStyle={styles.tabBarText}
