@@ -1,5 +1,6 @@
 import { Alert, ToastAndroid, Platform } from 'react-native'
 import shortid from 'shortid'
+import _ from 'lodash'
 
 export const addShortid = objArray => objArray.map(item => ({
   ...item, id: shortid.generate(),
@@ -14,6 +15,25 @@ export const toastShort = (content, isAlert) => {
   } else {
     ToastAndroid.show(content.toString(), ToastAndroid.SHORT)
   }
+}
+
+export function replaceKeysDeep(obj, replaceKey) {
+  const replacedKey = 'children'
+  const newKey = obj[replaceKey]
+  if (_.isArray(obj)) {
+    return _.transform(obj, (result, value, key) => {
+      result[key] = _.isObject(value) ? replaceKeysDeep(value, replaceKey) : value
+    })
+  }
+  if (Object.keys(obj[replacedKey]).length > 0) {
+    return _.transform(obj, (result, value, key) => { // transform to a new object
+      const currentKey = key === replacedKey ? newKey : key
+      if (key === replacedKey || !isNaN(parseInt(key, 10))) {
+        result[currentKey] = _.isObject(value) ? replaceKeysDeep(value, replaceKey) : value
+      }
+    })
+  }
+  return obj[replaceKey]
 }
 
 export const transferTimeFormat = (timeRange) => {

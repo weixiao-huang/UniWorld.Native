@@ -62,6 +62,11 @@ export default class FirstStep extends Component {
                 defaultValue={this.props.title}
               />
             </InputItem>
+            <InputItem
+              titleWidth="75px"
+              title={I18n.t('NewRoom.input.label.title')}
+            >
+            </InputItem>
           </InputWrapView>
           <ButtonView>
             <StyledButton

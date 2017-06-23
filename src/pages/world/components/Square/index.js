@@ -1,8 +1,8 @@
 import React from 'react'
 import { RefreshControl } from 'react-native'
-import WorldSwiper from './WorldSwiper'
 import RoomWrap from '@/components/RoomWrap'
 import styled from 'styled-components/native'
+import WorldSwiper from './WorldSwiper'
 import {
   MainScrollView,
   ContentView,

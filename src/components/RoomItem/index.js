@@ -84,7 +84,7 @@ RoomItem.propTypes = {
   place: PropTypes.string.isRequired,
   dateTimeStart: PropTypes.string.isRequired,
   dateTimeEnd: PropTypes.string.isRequired,
-  myFollows: PropTypes.array.isRequired,
+  // myFollows: PropTypes.array.isRequired,
 }
 
 RoomItem.defaultProps = {

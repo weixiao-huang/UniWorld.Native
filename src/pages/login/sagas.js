@@ -29,6 +29,12 @@ function loginApi(username, password) {
     // .then(data => AsyncStorage.setItem('token', data.token))
 }
 
+function fetchInitialApi(token) {
+  return api.fetchInitialLabels(token)
+    .then(handleApiErrors)
+    .then(res => res.json())
+}
+
 function* logout() {
   yield put(unSetClient())
   // AsyncStorage.removeItem('token')
@@ -43,6 +49,8 @@ function* loginFlow(username, password) {
     const data = yield call(loginApi, username, password)
     token = data.token
     yield put(setClient(token))
+    const initialLabels = yield call(fetchInitialApi, token)
+    yield put({ type: authTypes.SET_INITIAL_LABELS, initialLabels })
     yield put({ type: LOGIN_SUCCESS })
     yield put({ type: navTypes.RESET_TO_HOME })
   } catch (error) {

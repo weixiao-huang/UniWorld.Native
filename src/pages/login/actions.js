@@ -1,6 +1,5 @@
 import {
   LOGIN_REQUEST,
-  FETCH_USER_INFO,
 } from './types'
 
 

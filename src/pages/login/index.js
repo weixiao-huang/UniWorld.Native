@@ -21,13 +21,13 @@ Page.propTypes = {
     messages: PropTypes.arrayOf(
       PropTypes.shape({
         body: PropTypes.string.isRequired,
-        time: PropTypes.instanceOf(Date).isRequired,
+        time: PropTypes.any.isRequired,
       }),
     ),
     errors: PropTypes.arrayOf(
       PropTypes.shape({
         body: PropTypes.string.isRequired,
-        time: PropTypes.instanceOf(Date).isRequired,
+        time: PropTypes.any.isRequired,
       }),
     ),
   }).isRequired,
