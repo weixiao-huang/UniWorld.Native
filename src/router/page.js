@@ -2,6 +2,7 @@ import { StackNavigator } from 'react-navigation'
 
 import Login from '@/pages/login'
 import RoomInfo from '@/pages/roomInfo'
+import UserInfo from '@/pages/userInfo'
 import HomeTab from './components/home'
 
 const AppRouteConfigs = {
@@ -21,6 +22,12 @@ const AppRouteConfigs = {
     screen: RoomInfo,
     navigationOptions: {
       title: 'RoomInfo',
+    },
+  },
+  userInfo: {
+    screen: UserInfo,
+    navigationOptions: {
+      title: 'UserInfo',
     },
   },
 }

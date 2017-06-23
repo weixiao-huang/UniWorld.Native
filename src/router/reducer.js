@@ -42,6 +42,15 @@ export default (state, action) => {
         state,
       )
       break
+    case types.NAVIGATE_TO_USER_INFO:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: 'userInfo',
+          params: { id: action.id },
+        }),
+        state,
+      )
+      break
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);
       break

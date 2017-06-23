@@ -4,6 +4,7 @@ import WorldSaga from './pages/world/sagas'
 import MyRoomListSaga from './pages/myRoomList/sagas'
 import MeSaga from './pages/me/sagas'
 import RoomInfoSaga from './pages/roomInfo/sagas'
+import UserInfoSaga from './pages/userInfo/sagas'
 
 export default function* IndexSaga() {
   yield all([
@@ -12,5 +13,6 @@ export default function* IndexSaga() {
     fork(MyRoomListSaga),
     fork(MeSaga),
     fork(RoomInfoSaga),
+    fork(UserInfoSaga),
   ])
 }

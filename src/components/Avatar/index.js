@@ -1,32 +1,26 @@
 import React, { PropTypes } from 'react'
-import { TouchableOpacity } from 'react-native'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { NavigateToUserInfo } from '@/router/actions'
 
-import {
-  MainView,
-  MainImage,
-} from './style'
+import Page from './page'
 
-const Avatar = ({ id, avatar, size, onPress }) => {
-  const gotoUser = id => () => {
+const mapStateToProps = state => ({
 
-  }
-  return (
-    <TouchableOpacity onPress={onPress && gotoUser(id)}>
-      <MainImage
-        size={size}
-        source={{ uri: avatar }}
-      />
-    </TouchableOpacity>
-  )
-}
+})
 
-Avatar.propTypes = {
+const mapDispatchToProps = dispatch => ({
+  navigateAction: bindActionCreators(NavigateToUserInfo, dispatch),
+})
+
+
+Page.propTypes = {
   id: PropTypes.number.isRequired,
   avatar: PropTypes.string.isRequired,
 }
 
-Avatar.defaultProps = {
+Page.defaultProps = {
   size: 70,
 }
 
-export default Avatar
+export default connect(mapStateToProps, mapDispatchToProps)(Page)
