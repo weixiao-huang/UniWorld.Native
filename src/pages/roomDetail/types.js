@@ -1,0 +1,1 @@
+export const SET_WORLD_DATA = 'SET_WORLD_DATA'
