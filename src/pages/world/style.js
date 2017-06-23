@@ -9,12 +9,6 @@ export const MainView = styled.View`
   ${FlexView}
   background-color: white;
 `
-
-export const EmptyView = styled.View`
-  height: 20px;
-  background-color: #ec5367;
-`
-
 export const MainText = styled.Text`
 
 `
