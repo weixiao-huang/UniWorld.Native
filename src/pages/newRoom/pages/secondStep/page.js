@@ -1,29 +1,20 @@
 import React, { Component } from 'react'
-import { KeyboardAvoidingView, ActivityIndicator } from 'react-native'
-import Icon from 'react-native-vector-icons/Entypo'
+import { KeyboardAvoidingView } from 'react-native'
 import I18n from '@/locales'
 
 import InputItem from '@/components/InputItem'
-import Label from '@/components/Label'
 
 import coverImg from '@/img/customCreate2.png'
 import logoBlueImg from '@/img/icon/logoBlue.png'
+
+import TitleLabelView from './components/TitleLabelView'
+import CoverView from './components/CoverView'
 
 import {
   MainScrollView,
   MainView,
   HeaderImage,
   HeaderText,
-  TitleLabelView,
-  TitleText,
-  LabelView,
-  CoverWrapView,
-  CoverOuterView,
-  CoverInnerView,
-  CoverTouch,
-  CoverPlaceholderText,
-  CoverPreviewView,
-  CoverPreviewImage,
   RequiredView,
   RequiredTitleView,
   RequiredTitleImage,
@@ -55,53 +46,16 @@ export default class SecondStep extends Component {
             <HeaderText>
               {I18n.t('NewRoom.input.second.title')}
             </HeaderText>
-            <TitleLabelView>
-              <InputItem
-                title={I18n.t('NewRoom.input.name.title')}
-                titleWidth="75px"
-              >
-                <TitleText>
-                  {this.props.title}
-                </TitleText>
-              </InputItem>
-              <InputItem
-                title={I18n.t('NewRoom.input.label.title')}
-                titleWidth="75px"
-              >
-                <LabelView>
-                  {this.props.labels.map(item => (
-                    <Label key={item} title={item} />
-                  ))}
-                </LabelView>
-              </InputItem>
-            </TitleLabelView>
-            <CoverWrapView>
-              <InputItem
-                title={I18n.t('NewRoom.input.second.Cover.title')}
-                titleWidth="75px"
-              >
-                <CoverOuterView>
-                  <CoverInnerView>
-                    <CoverTouch
-                      onPress={this.showImgPicker}
-                    >
-                      <CoverPlaceholderText>
-                        {I18n.t('NewRoom.input.second.Cover.placeholder')}
-                      </CoverPlaceholderText>
-                      <ActivityIndicator
-                        animating={this.state.isUploading}
-                      />
-                      <Icon name="camera" size={20} />
-                    </CoverTouch>
-                    {!!this.state.cover && <CoverPreviewView>
-                      <CoverPreviewImage
-                        source={{ uri: this.state.cover }}
-                      />
-                    </CoverPreviewView>}
-                  </CoverInnerView>
-                </CoverOuterView>
-              </InputItem>
-            </CoverWrapView>
+            <TitleLabelView
+              title={this.props.title}
+              labels={this.props.labels}
+            />
+            <CoverView
+              cover={this.state.cover}
+              isUploading={this.state.isUploading}
+              onChangeUpload={isUploading => this.setState({ isUploading })}
+              onChangeCover={cover => this.setState({ cover })}
+            />
             <RequiredView>
               <RequiredTitleView>
                 <RequiredTitleImage source={logoBlueImg} />

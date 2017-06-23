@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components/native'
 
-const wrap = css`
+export const wrap = css`
   margin-top: 10px;
   margin-bottom: 14px;
 `
@@ -25,59 +25,6 @@ export const HeaderText = styled.Text`
   color: #95a8e2;
   font-size: 18px;
   padding: 18px;
-`
-
-export const TitleLabelView = styled.View`
-  ${wrap}
-`
-
-export const TitleText = styled.Text`
-  flex: 1;
-`
-
-export const LabelView = styled.View`
-  flex: 1;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-`
-
-export const CoverWrapView = styled.View`
-  ${wrap}
-`
-
-export const CoverOuterView = styled.View`
-  flex: 1;
-  flex-direction: row;
-`
-
-export const CoverInnerView = styled.View`
-  flex: 1;
-  margin-right: 20px;
-`
-
-export const CoverTouch = styled.TouchableOpacity`
-  flex: 1;
-  flex-direction: row;
-  margin: 4px;
-  align-items: center;
-  justify-content: space-between;
-`
-
-export const CoverPlaceholderText = styled.Text`
-  color: #c7c7c7;
-`
-
-export const CoverPreviewView = styled.View`
-  flex-direction: row;
-  padding-top: 10px;
-  padding-bottom: 20px;
-`
-
-export const CoverPreviewImage = styled.Image`
-  width: 100%;
-  height: 200px;
-  border-radius: 10px;
 `
 
 export const RequiredView = styled.View`
