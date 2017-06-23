@@ -4,13 +4,12 @@ import { connect } from 'react-redux'
 import Page from './page'
 
 const mapStateToProps = state => ({
-  roomList: state.myRoomList.roomList,
+  token: state.auth.token,
 })
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
 })
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(props => (
   <Page {...props} />

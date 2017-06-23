@@ -1,4 +1,4 @@
-const server = 'https://api.theuniworld.net'
+export const server = 'https://api.theuniworld.net'
 
 const getByToken = url => token => fetch(`${server}${url}`, {
   method: 'GET',

@@ -9,10 +9,6 @@ export const MainView = styled.View`
   ${FlexView}
 `
 
-export const MainText = styled.Text`
-
-`
-
 export const TabView = styled.View`
 `
 

@@ -20,7 +20,7 @@ const RoomWrap = ({ roomList, title, titleLabel }) => {
   }
   return (
     <MainView>
-      {title && <MainTitleView>
+      {!!title && <MainTitleView>
         <MainTitleImage
           source={starIcon}
         />
