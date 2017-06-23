@@ -40,14 +40,8 @@ export default class Login extends Component {
   }
 
   render() {
-    const {
-      login: {
-        requesting,
-        successful,
-        messages,
-        errors,
-      },
-    } = this.props
+    const { login } = this.props
+    const requesting = login.get('requesting')
     return (
       <MainView>
         <BackgroundImage bgUrl={bgUrl}>

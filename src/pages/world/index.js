@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import Page from './page'
 
 const mapStateToProps = state => ({
-  world: state.world.world,
-  latest: state.world.latest,
-  recommend: state.world.recommend,
+  world: state.getIn(['world', 'world']),
+  latest: state.getIn(['world', 'latest']),
+  recommend: state.getIn(['world', 'recommend']),
 })
 
 const mapDispatchToProps = dispatch => ({

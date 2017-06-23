@@ -5,7 +5,7 @@ import { loginRequest, fetchUserInfo } from './actions'
 import Page from './page'
 
 const mapStateToProps = state => ({
-  login: state.login,
+  login: state.get('login'),
 })
 
 const mapDispatchToProps = (dispatch) => {

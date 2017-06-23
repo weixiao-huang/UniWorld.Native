@@ -59,7 +59,9 @@ export default function* loginWatch() {
   yield take('persist/REHYDRATE')
   while (true) {
     const state = yield select()
-    if (!state.auth.token) {
+    console.log('login saga')
+    if (!state.getIn(['auth', 'token'])) {
+      console.log('test')
       const { username, password } = yield take(LOGIN_REQUEST)
       const task = yield fork(loginFlow, username, password)
       const action = yield take([authTypes.CLIENT_UNSET, LOGIN_ERROR, LOGOUT_REQUEST])

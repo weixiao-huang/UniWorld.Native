@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Page from './page'
 
 const mapStateToProps = state => ({
-  userInfo: state.me.userInfo,
+  userInfo: state.getIn(['me', 'userInfo']),
 })
 
 const mapDispatchToProps = dispatch => ({

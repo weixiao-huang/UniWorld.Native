@@ -13,6 +13,7 @@ import Reputation from './components/Reputation/'
 
 export default class Me extends Component {
   render() {
+    console.log('userInfo', this.props.userInfo)
     return (
       <MainView>
         <UserCover userInfo={this.props.userInfo} />

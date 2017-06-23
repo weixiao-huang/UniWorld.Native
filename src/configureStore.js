@@ -2,7 +2,7 @@ import { applyMiddleware, compose } from 'redux'
 import Reactotron from 'reactotron-react-native'
 import createSagaMiddleware, { END } from 'redux-saga'
 import { createLogger } from 'redux-logger'
-import { persistStore, autoRehydrate } from 'redux-persist'
+import { persistStore, autoRehydrate } from 'redux-persist-immutable'
 import { AsyncStorage } from 'react-native'
 
 import rootReducer from './index-reducer'
@@ -43,7 +43,6 @@ export default (initialState) => {
   store.close = () => store.dispatch(END)
   const opt = {
     storage: AsyncStorage,
-    transform: [],
   }
   persistStore(store, opt)
   return store

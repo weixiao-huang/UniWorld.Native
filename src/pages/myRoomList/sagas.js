@@ -20,13 +20,14 @@ export default function* () {
   yield take('persist/REHYDRATE')
   while (true) {
     const state = yield select()
-    if (state.nav.routes[0].routeName === 'homeTab' &&
-        state.nav.routes[0].index === index &&
-        !state.myRoomList.roomList
+    console.log('myroomlist saga')
+    if (state.getIn(['nav', 'routes', 0, 'routeName']) === 'homeTab' &&
+        state.getIn(['nav', 'routes', 0, 'index']) === index &&
+        !state.getIn(['myRoomList', 'roomList'])
     ) {
       // TODO: fetch data and add them into reducer
       try {
-        const token = state.auth.token
+        const token = state.getIn(['auth', 'token'])
         const data = yield call(fetchApi, token)
         yield put({
           type: SET_MY_ROOM_LIST,

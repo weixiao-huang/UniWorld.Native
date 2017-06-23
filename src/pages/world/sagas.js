@@ -1,4 +1,5 @@
 import { take, select, call, put } from 'redux-saga/effects'
+import { Map } from 'immutable'
 
 import api from '@/api'
 
@@ -25,23 +26,24 @@ export default function* worldWatch() {
   yield take('persist/REHYDRATE')
   while (true) {
     const state = yield select()
-    if (state.nav.routes[0].routeName === 'homeTab' &&
-        state.nav.routes[0].index === index &&
-        (!state.world.world ||
-        !state.world.recommend ||
-        !state.world.latest)
+    console.log('world saga')
+    if (state.getIn(['nav', 'routes', 0, 'routeName']) === 'homeTab' &&
+        state.getIn(['nav', 'routes', 0, 'index']) === index &&
+        (!state.getIn(['world', 'world']) ||
+         !state.getIn(['world', 'recomment']) ||
+         !state.getIn(['world', 'latest']))
     ) {
       // TODO: fetch data and add them into reducer
       try {
-        const token = state.auth.token
+        const token = state.getIn(['auth', 'token'])
         const data = yield call(fetchApi, token)
         yield put({
           type: SET_WORLD_DATA,
-          data: {
+          data: Map({
             recommend: data[0],
             latest: data[1],
             world: data[2],
-          },
+          }),
         })
       } catch (error) {
         // Error handle

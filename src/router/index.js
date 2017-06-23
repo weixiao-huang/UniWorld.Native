@@ -5,7 +5,7 @@ import { addNavigationHelpers } from 'react-navigation'
 import AppNavigator from './page'
 
 const AppWithNavigationState = ({ dispatch, nav }) => {
-  return <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
+  return <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav.toJS() })} />
 }
 
 AppWithNavigationState.propTypes = {
@@ -13,7 +13,7 @@ AppWithNavigationState.propTypes = {
   nav: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = state => ({ nav: state.nav })
+const mapStateToProps = state => ({ nav: state.get('nav') })
 
 const mapDispatchToProps = dispatch => ({ dispatch })
 

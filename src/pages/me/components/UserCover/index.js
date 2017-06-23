@@ -22,18 +22,18 @@ const UserCover = ({ userInfo }) => (
   <BackgroundImage bgUrl={infoImg}>
     {userInfo && <MainView>
       <TouchableOpacity onPress={() => {}}>
-        <CoverImage source={{ uri: userInfo.avatar_thumbnail }} />
+        <CoverImage source={{ uri: userInfo.get('avatar_thumbnail') }} />
       </TouchableOpacity>
       <ContentView>
         <ContentLineView>
-          <GenderIconImage source={userInfo.gender ? maleIcon : femaleIcon} />
-          <UsernameText>{userInfo.name}</UsernameText>
+          <GenderIconImage source={userInfo.get('gender') ? maleIcon : femaleIcon} />
+          <UsernameText>{userInfo.get('name')}</UsernameText>
         </ContentLineView>
-        <SignatureText>{userInfo.signature}</SignatureText>
+        <SignatureText>{userInfo.get('signature')}</SignatureText>
         <FollowWrapText>
-          {userInfo.followers.length + userInfo.follows.length} friends
-          | {userInfo.joined_count} joined
-          | {userInfo.p_thumb_ups + userInfo.h_thumb_ups} thumb_ups
+          {userInfo.get('followers').length + userInfo.get('follows').length} friends
+          | {userInfo.get('joined_count')} joined
+          | {userInfo.get('p_thumb_ups') + userInfo.get('h_thumb_ups')} thumb_ups
         </FollowWrapText>
       </ContentView>
     </MainView>}

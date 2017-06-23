@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux-immutable'
 import nav from './router/reducer'
 import auth from './auth/reducer'
 import login from './pages/login/reducer'

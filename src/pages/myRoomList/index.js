@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Page from './page'
 
 const mapStateToProps = state => ({
-  roomList: state.myRoomList.roomList,
+  roomList: state.getIn(['myRoomList', 'roomList']),
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -1,3 +1,4 @@
+import Immutable from 'immutable'
 import { NavigationActions } from 'react-navigation'
 import * as types from './types'
 
@@ -12,7 +13,15 @@ import AppNavigator from './page'
 //   tempNavState,
 // );
 
-export default (state, action) => {
+const initialState = Immutable.fromJS({
+  index: 0,
+  routes: [{
+    routeName: 'login',
+    key: 'init',
+  }],
+})
+
+export default (state = initialState, action) => {
   let nextState;
   switch (action.type) {
     case types.RESET_TO_LOGIN:
@@ -21,21 +30,24 @@ export default (state, action) => {
           index: 0,
           actions: [NavigationActions.navigate({ routeName: 'login' })],
         }),
-        state,
-      );
-      break;
+        state.toJS(),
+      )
+      break
     case types.RESET_TO_HOME:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.reset({
           index: 0,
           actions: [NavigationActions.navigate({ routeName: 'homeTab' })],
         }),
-        state,
-      );
-      break;
+        state.toJS(),
+      )
+      break
     default:
-      nextState = AppNavigator.router.getStateForAction(action, state);
-      break;
+      nextState = AppNavigator.router.getStateForAction(
+        action,
+        state.toJS(),
+      )
+      break
   }
-  return nextState || state;
-};
+  return state.merge(nextState)
+}
