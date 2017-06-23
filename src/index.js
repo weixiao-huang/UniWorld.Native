@@ -10,6 +10,8 @@ store.runSaga(rootSaga)
 
 const theme = {
   main: '#ec5367',
+  gray: '#f2f0f4',
+  size: '14px',
   secondary: '12px',
 }
 

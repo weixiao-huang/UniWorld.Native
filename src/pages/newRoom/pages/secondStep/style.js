@@ -5,15 +5,19 @@ export const MainScrollView = styled.ScrollView`
 
 export const MainView = styled.View`
   padding-top: 20px;
-  padding-bottom: 16px;
-  background-color: gray;
+  background-color: ${props => props.theme.gray};
   flex: 1;
   justify-content: center;
   align-items: center;
 `
 
-export const CoverImage = styled.Image`
+export const HeaderImage = styled.Image`
   resize-mode: contain;
-  margin-top: 20px;
-  height: 130px;
+  height: 150px;
+`
+
+export const HeaderText = styled.Text`
+  color: #95a8e2;
+  font-size: 18px;
+  padding: 18px;
 `

@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
+import { TouchableOpacity } from 'react-native'
+import Picker from 'react-native-picker'
 import I18n from '@/locales'
-
-import coverImg from '@/img/customCreate.png'
+import { createInitialLabels } from '@/utils'
 
 import InputItem from '@/components/InputItem'
+import Label from '@/components/Label'
+
+import coverImg from '@/img/customCreate.png'
 
 import {
   MainScrollView,
@@ -13,6 +17,9 @@ import {
   MainSubTitleText,
   InputWrapView,
   TitleInput,
+  LabelContainerView,
+  LabelWrapView,
+  LabelPickerText,
   ButtonView,
   StyledButton,
 } from './style'
@@ -27,6 +34,10 @@ export default class FirstStep extends Component {
     super(props)
     this.state = {
       title: this.props.title,
+      labels: this.props.labels,
+      initialLabels: createInitialLabels(
+        'name_ch', this.props.initialLabels,
+      ),
       disabled: false,
     }
   }
@@ -34,12 +45,41 @@ export default class FirstStep extends Component {
   next = () => {
     const { navigation: { navigate }, dispatch } = this.props
     navigate('Second')
-    dispatch({ type: SET_NEW_ROOM_DATA, data: { title: this.state.title } })
+    dispatch({
+      type: SET_NEW_ROOM_DATA,
+      data: {
+        title: this.state.title,
+        labels: this.state.labels,
+      },
+    })
   }
 
-  isCompleted = () => {
-    console.log(this.state.title)
-    return this.state.title.length > 5
+  isCompleted = () => this.state.title.length > 5
+
+  showLabelPicker = () => {
+    Picker.init({
+      pickerData: this.state.initialLabels,
+      pickerTitleText: I18n.t('NewRoom.input.label.selectTitle'),
+      onPickerConfirm: (pickedValue) => {
+        const label = pickedValue.pop() || pickedValue.pop()
+        if (this.state.labels.indexOf(label) < 0) {
+          this.setState({
+            labels: this.state.labels.concat(label),
+          })
+        }
+      },
+      onPickerCancel: () => {},
+      onPickerSelect: () => {},
+    })
+    Picker.show()
+  }
+
+  removeLabel = index => () => {
+    if (index >= 0) {
+      this.setState({
+        labels: this.state.labels.filter((_, i) => i !== index),
+      })
+    }
   }
 
   render() {
@@ -63,9 +103,30 @@ export default class FirstStep extends Component {
               />
             </InputItem>
             <InputItem
+              style={{ alignItems: 'flex-start' }}
               titleWidth="75px"
               title={I18n.t('NewRoom.input.label.title')}
             >
+              <LabelContainerView>
+                {this.state.labels.length > 0 &&
+                  <LabelWrapView>
+                    {this.state.labels.map((item, index) => (
+                      <Label
+                        key={item}
+                        title={item}
+                        onClose={this.removeLabel(index)}
+                      />
+                    ))}
+                  </LabelWrapView>
+                }
+                {this.state.initialLabels && <TouchableOpacity
+                  onPress={this.showLabelPicker}
+                >
+                  <LabelPickerText>
+                    {I18n.t('NewRoom.input.label.placeholder')}
+                  </LabelPickerText>
+                </TouchableOpacity>}
+              </LabelContainerView>
             </InputItem>
           </InputWrapView>
           <ButtonView>

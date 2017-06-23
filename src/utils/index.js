@@ -36,6 +36,44 @@ export function replaceKeysDeep(obj, replaceKey) {
   return obj[replaceKey]
 }
 
+export function createInitialLabels(name, initialLabels) {
+  if (!initialLabels) return null
+  const data = []
+  const labels = Object.values(replaceKeysDeep(
+    initialLabels.children[1], name,
+  ))[0]
+  labels.map((firstLayer) => {
+    const obj = {}
+    const key = Object.keys(firstLayer)[0]
+    obj[key] = []
+    firstLayer[key].map((secondLayer) => {
+      let layer = secondLayer
+      if (typeof (secondLayer) === 'string') {
+        // secondLayer = Object.keys(secondLayer)[0]
+        layer = { [secondLayer]: [''] }
+      }
+      obj[key].push(layer)
+      return secondLayer
+    })
+    data.push(obj)
+    return firstLayer
+  })
+  // for (const firstLayer of labels) {
+  //   const obj = {}
+  //   const key = Object.keys(firstLayer)[0]
+  //   obj[key] = []
+  //   for (let secondLayer of firstLayer[key]) {
+  //     if (typeof (secondLayer) === 'string') {
+  //       // secondLayer = Object.keys(secondLayer)[0]
+  //       secondLayer = { [secondLayer]: [''] }
+  //     }
+  //     obj[key].push(secondLayer)
+  //   }
+  //   data.push(obj)
+  // }
+  return data
+}
+
 export const transferTimeFormat = (timeRange) => {
   let showTime = ''
   const today = (new Date()).toDateString

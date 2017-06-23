@@ -3,6 +3,8 @@ import Page from './page'
 
 const mapStateToProps = state => ({
   title: state.newRoom.title,
+  labels: state.newRoom.labels,
+  initialLabels: state.auth.initialLabels
 })
 
 const mapDispatchToProps = dispatch => ({

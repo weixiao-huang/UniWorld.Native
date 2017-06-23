@@ -42,6 +42,23 @@ export const TitleInput = styled.TextInput`
   font-size: 14px;
 `
 
+export const LabelContainerView = styled.View`
+  flex: 1;
+`
+
+export const LabelWrapView = styled.View`
+  flex-wrap: wrap;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+`
+
+export const LabelPickerText = styled.Text`
+  font-size: ${props => props.theme.size};
+  color: #c7c7cd;
+  padding-top: 10px;
+  padding-bottom: 10px;
+`
 
 export const ButtonView = styled.View`
   flex-direction: row;
@@ -50,5 +67,5 @@ export const ButtonView = styled.View`
 `
 
 export const StyledButton = styled(Button)`
-  background-color: ${props => (props.active ? '#ec5367' : '#cbcbcb')}
+  background-color: ${props => (props.disabled ? '#cbcbcb' : '#ec5367')}
 `
