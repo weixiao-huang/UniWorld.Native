@@ -5,11 +5,11 @@ import {
   MainText,
 } from './style'
 
-const Button = ({ onPress, disabled, title, inlineStyle, textStyle }) => (
+const Button = ({ onPress, disabled, title, style, textStyle }) => (
   <MainTouch
     onPress={onPress}
     disabled={disabled}
-    style={inlineStyle}
+    style={style}
   >
     <MainText style={textStyle}>{title}</MainText>
   </MainTouch>

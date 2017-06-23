@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components/native'
 import styled2 from 'styled-components'
-import Button from '../../components/Button'
+import Button from '@/components/Button'
 
 const FlexView = css`
   flex: 1;
@@ -29,4 +29,8 @@ export const LogoImage = styled.Image`
   width: 130px;
   height: 130px;
   margin-bottom: 60px;
+`
+
+export const StyledButton = styled(Button)`
+  margin-top: 10px;
 `

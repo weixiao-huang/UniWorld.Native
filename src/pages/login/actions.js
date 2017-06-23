@@ -15,8 +15,3 @@ export const loginRequest = (username, password) => ({
   username,
   password,
 })
-
-export const fetchUserInfo = token => ({
-  type: FETCH_USER_INFO,
-  token,
-})

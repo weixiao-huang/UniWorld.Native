@@ -7,7 +7,7 @@ import {
 const initialState = {
   requesting: false,
   successful: false,
-  message: [],
+  messages: [],
   errors: [],
 }
 

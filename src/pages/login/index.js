@@ -1,6 +1,7 @@
+import { PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { loginRequest, fetchUserInfo } from './actions'
+import { loginRequest } from './actions'
 
 import Page from './page'
 
@@ -10,12 +11,27 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
   const loginAction = bindActionCreators(loginRequest, dispatch)
-  const fetchUserInfoAction = bindActionCreators(fetchUserInfo, dispatch)
-  return { loginAction, fetchUserInfoAction }
+  return { loginAction }
 }
 
-// export default reduxForm({
-//   form: 'login',
-// })(connect(mapStateToProps, mapDispatchToProps)(Page))
+Page.propTypes = {
+  login: PropTypes.shape({
+    requesting: PropTypes.bool.isRequired,
+    successful: PropTypes.bool.isRequired,
+    messages: PropTypes.arrayOf(
+      PropTypes.shape({
+        body: PropTypes.string.isRequired,
+        time: PropTypes.instanceOf(Date).isRequired,
+      }),
+    ),
+    errors: PropTypes.arrayOf(
+      PropTypes.shape({
+        body: PropTypes.string.isRequired,
+        time: PropTypes.instanceOf(Date).isRequired,
+      }),
+    ),
+  }).isRequired,
+  loginAction: PropTypes.func.isRequired,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page)

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 
 import {
   MainView,
-  MainText
+  MainText,
 } from './style'
 
 export default class NewRoom extends Component {

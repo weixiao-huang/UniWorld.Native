@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { View } from 'react-native'
-// import { Field } from 'redux-form'
+import I18n from '@/locales'
 
 import Button from '@/components/Button'
 import BackgroundImage from '@/components/BackgroundImage'
@@ -10,6 +9,7 @@ import {
   MainView,
   BackgroundView,
   LogoImage,
+  StyledButton,
 } from './style'
 
 import Input from './components/Input'
@@ -21,10 +21,6 @@ const userIcon = require('./img/UserIcon.png')
 const passIcon = require('./img/PasswordIcon.png')
 
 export default class Login extends Component {
-  static propTypes = {
-    login: PropTypes.object.isRequired,
-    loginAction: PropTypes.func,
-  }
   constructor(props) {
     super(props)
     this.state = {
@@ -56,32 +52,18 @@ export default class Login extends Component {
             <LogoImage source={logoUrl} />
             <Input
               onChangeText={username => this.setState({ username })}
-              placeholder="username"
+              placeholder={I18n.t('Login.username')}
               icon={userIcon}
             />
             <Input
               onChangeText={password => this.setState({ password })}
-              placeholder="password"
+              placeholder={I18n.t('Login.password')}
               secureTextEntry
               icon={passIcon}
             />
-            {/* <Field
-              name="username"
-              placeholder="username"
-              icon={userIcon}
-              component={renderInput}
-            />
-            <Field
-              name="password"
-              placeholder="password"
-              secureTextEntry
-              icon={passIcon}
-              component={renderInput}
-            />*/}
-            <Button
-              title="login"
+            <StyledButton
+              title={I18n.t('Login.login')}
               onPress={this.login}
-              inlineStyle={{ marginTop: 10 }}
             />
           </BackgroundView>
         </BackgroundImage>
