@@ -1,6 +1,7 @@
 import React from 'react'
 import Swiper from 'react-native-swiper'
 import styled from 'styled-components/native'
+import { addShortid } from '@/utils'
 
 const height = 150
 
@@ -17,7 +18,7 @@ const WorldSwiper = ({ posters }) => (
     {
       posters ?
         <Swiper height={height} autoplay autoplayTimeout={3} autoplayDirection>
-          {posters && posters.map((cover) => {
+          {posters && addShortid(posters).map((cover) => {
             {/*if (cover.url!=null)
               return (
                 <TouchableOpacity onPress={this._goToPoster(cover.url)}>
