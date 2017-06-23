@@ -30,7 +30,10 @@ const Square = ({ world, latest, recommend, posters }) => (
         roomList={recommend}
       />}
       {!!recommend && recommend.length > 0 && <MiddlePosterImage
-        source={posters.centers[0] ? { uri: posters.centers[0].cover } : posterUrl0 }
+        source={!!posters && posters.centers[0] ?
+          { uri: posters.centers[0].cover } :
+          posterUrl0
+        }
       />}
       {!!latest && <RoomWrap
         title="Latest"
@@ -38,7 +41,10 @@ const Square = ({ world, latest, recommend, posters }) => (
         roomList={latest.results}
       />}
       {!!latest && <MiddlePosterImage
-        source={posters.centers[1] ? { uri: posters.centers[1].cover } : posterUrl1 }
+        source={!!posters && posters.centers[1] ?
+          { uri: posters.centers[1].cover } :
+          posterUrl1
+        }
       />}
       {!!world && <RoomWrap
         title="World"
