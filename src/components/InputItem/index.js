@@ -6,12 +6,13 @@ import {
 } from './style'
 
 const InputItem = ({
-  title, titleColor, titleWidth, children, style,
+  title, titleColor, titleWidth, children, style, textStyle,
 }) => (
   <MainView style={style}>
     <MainText
       titleColor={titleColor}
       titleWidth={titleWidth}
+      style={textStyle}
     >
       {title}
     </MainText>

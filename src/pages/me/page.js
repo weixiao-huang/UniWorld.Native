@@ -18,7 +18,7 @@ export default class Me extends Component {
         <UserCover userInfo={this.props.userInfo} />
         {this.props.userInfo ?
           <ScrollTabView style={{ flex: 2 }}>
-            <UserInfo tabLabel={'Info'} />
+            <UserInfo tabLabel={'Info'} userInfo={this.props.userInfo} />
             <Follow
               tabLabel={'Follow'}
               follows={this.props.userInfo.follows}

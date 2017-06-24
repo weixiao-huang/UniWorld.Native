@@ -10,13 +10,16 @@ import {
   MainText,
 } from './style'
 
-const UserInfo = ({ logoutAction, dispatch }) => {
+import Info from './Info'
+
+const UserInfo = ({ logoutAction, dispatch, userInfo }) => {
   const logout = () => {
     dispatch({ type: LOGOUT_REQUEST })
   }
+  console.log(this.props)
   return (
     <MainView>
-      <MainText>UserInfo</MainText>
+      <Info user={userInfo} />
       <Button
         title="logout"
         onPress={logout}
