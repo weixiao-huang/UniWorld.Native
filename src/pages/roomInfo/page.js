@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import {
   MainScrollView,
   MainView,
@@ -12,11 +11,36 @@ import Header from './components/Header'
 import Time from './components/Time'
 import People from './components/People'
 import Host from './components/Host'
-
-
+import LableBox from './components/LabelBox'
+import Options from './components/Options'
 
 export default class RoomInfo extends Component {
+
   render() {
+    let options = {
+      location_string: {
+        iconName: 'location-on',
+        content: this.props.roomInfo.location_string,
+      },
+      welcome: {
+        iconName: 'thumb-up',
+      },
+      rewards: {
+        iconName: 'card-giftcard',
+      },
+      expense: {
+        iconName: 'attach-money',
+      },
+    }
+    let opt = this.props.roomInfo.options
+    if (opt) {
+      opt = JSON.parse(opt)
+      for (let option in opt) {
+        if (opt.hasOwnProperty(option) && options.hasOwnProperty(option)) {
+          options[option].content = opt[option]
+        }
+      }
+    } else opt = {}
     return (
       <MainScrollView>
         {this.props.roomInfo && <MainView>
@@ -35,6 +59,13 @@ export default class RoomInfo extends Component {
             participants={this.props.roomInfo.participants}
             maxParticipants={this.props.roomInfo.max_participants}
           />
+          <EmptyView />
+          {this.props.roomInfo.labels.length > 0
+            ? <LableBox labels={this.props.roomInfo.labels} />
+            : null
+          }
+          <EmptyView />
+          <Options options={options} />
           <EmptyView />
           <Host host={this.props.roomInfo.host} myId={this.props.myId} />
         </MainView>}

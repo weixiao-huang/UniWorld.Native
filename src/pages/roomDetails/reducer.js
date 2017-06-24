@@ -1,4 +1,4 @@
-import * as types from '@/types'
+import * as types from '../../types'
 import {
   SET_ROOM_DETAILS,
   CLEAR_ROOM_DETAILS,

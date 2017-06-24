@@ -5,9 +5,9 @@ const MainView = styled.View`
   background-color: white;
 `
 const ContentView = styled.View`
-  margin-left: 15;
-  margin-right:15;
-  padding-bottom: 50;
+  margin-left: 15px;
+  margin-right:15px;
+  padding-bottom: 50px;
   border-bottom-width: 1px;
   border-bottom-color: #eee;
 `

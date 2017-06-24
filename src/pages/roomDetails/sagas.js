@@ -1,10 +1,10 @@
 import { take, select, call, put } from 'redux-saga/effects'
 
-import api from '@/api'
+import api from '../../api'
 
-import { handleApiErrors } from '@/lib/api-errors'
+import { handleApiErrors } from '../../lib/api-errors'
 
-import * as navTypes from '@/router/types'
+import * as navTypes from '../../router/types'
 
 import {
   SET_ROOM_DETAILS,
