@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import I18n from 'react-native-i18n'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const MainView = styled.View`

@@ -6,15 +6,18 @@ import {
   MainText,
 } from './style'
 
+import UserCover from './components/UserCover'
+
 export default class UserInfo extends Component {
   render() {
+    // const { name, signature, thumb_ups, thumb_downs, followers, follows } = this.props.user
+    // const { avatar_thumbnail, gender, avatar } = this.props.user
+    console.log(this.props)
     return (
       <MainScrollView>
-        <MainText>UserInfo</MainText>
-        {this.props.userInfo && <MainView>
-          <MainText>{this.props.userInfo.id}</MainText>
-          <MainText>{this.props.userInfo.name}</MainText>
-        </MainView>}
+        <MainView>
+          <UserCover userInfo={this.props.userInfo} />
+        </MainView>
       </MainScrollView>
     )
   }

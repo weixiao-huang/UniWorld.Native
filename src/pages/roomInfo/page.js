@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {
   MainScrollView,
   MainView,
-  MainText,
   CoverImage,
   EmptyView,
 } from './style'
@@ -17,30 +16,33 @@ import Options from './components/Options'
 export default class RoomInfo extends Component {
 
   render() {
-    let options = {
-      location_string: {
-        iconName: 'location-on',
-        content: this.props.roomInfo.location_string,
-      },
-      welcome: {
-        iconName: 'thumb-up',
-      },
-      rewards: {
-        iconName: 'card-giftcard',
-      },
-      expense: {
-        iconName: 'attach-money',
-      },
-    }
-    let opt = this.props.roomInfo.options
-    if (opt) {
-      opt = JSON.parse(opt)
-      for (let option in opt) {
-        if (opt.hasOwnProperty(option) && options.hasOwnProperty(option)) {
-          options[option].content = opt[option]
-        }
+    let options
+    if (this.props.roomInfo) {
+      options = {
+        location_string: {
+          iconName: 'location-on',
+          content: this.props.roomInfo.location_string,
+        },
+        welcome: {
+          iconName: 'thumb-up',
+        },
+        rewards: {
+          iconName: 'card-giftcard',
+        },
+        expense: {
+          iconName: 'attach-money',
+        },
       }
-    } else opt = {}
+      let opt = this.props.roomInfo.options
+      if (opt) {
+        opt = JSON.parse(opt)
+        for (let option in opt) {
+          if (opt.hasOwnProperty(option) && options.hasOwnProperty(option)) {
+            options[option].content = opt[option]
+          }
+        }
+      } else opt = {}
+    }
     return (
       <MainScrollView>
         {this.props.roomInfo && <MainView>
