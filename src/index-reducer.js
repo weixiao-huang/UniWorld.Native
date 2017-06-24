@@ -7,6 +7,7 @@ import newRoom from './pages/newRoom/reducer'
 import myRoomList from './pages/myRoomList/reducer'
 import me from './pages/me/reducer'
 import roomInfo from './pages/roomInfo/reducer'
+import roomDetails from './pages/roomDetails/reducer'
 import userInfo from './pages/userInfo/reducer'
 
 export default combineReducers({
@@ -18,5 +19,6 @@ export default combineReducers({
   myRoomList,
   me,
   roomInfo,
+  roomDetails,
   userInfo,
 })

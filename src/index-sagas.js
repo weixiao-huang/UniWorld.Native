@@ -4,6 +4,7 @@ import WorldSaga from './pages/world/sagas'
 import MyRoomListSaga from './pages/myRoomList/sagas'
 import MeSaga from './pages/me/sagas'
 import RoomInfoSaga from './pages/roomInfo/sagas'
+import RoomDetailsSaga from './pages/roomDetails/sagas'
 import UserInfoSaga from './pages/userInfo/sagas'
 
 export default function* IndexSaga() {
@@ -13,6 +14,7 @@ export default function* IndexSaga() {
     fork(MyRoomListSaga),
     fork(MeSaga),
     fork(RoomInfoSaga),
+    fork(RoomDetailsSaga),
     fork(UserInfoSaga),
   ])
 }
