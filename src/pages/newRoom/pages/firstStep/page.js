@@ -24,11 +24,6 @@ import {
   StyledButton,
 } from './style'
 
-import {
-  SET_NEW_ROOM_DATA,
-} from '../../types'
-
-
 export default class FirstStep extends Component {
   constructor(props) {
     super(props)
@@ -43,14 +38,14 @@ export default class FirstStep extends Component {
   }
 
   next = () => {
-    const { navigation: { navigate }, dispatch } = this.props
+    const {
+      navigation: { navigate },
+      setDataAction,
+    } = this.props
     navigate('Second')
-    dispatch({
-      type: SET_NEW_ROOM_DATA,
-      data: {
-        title: this.state.title,
-        labels: this.state.labels,
-      },
+    setDataAction({
+      title: this.state.title,
+      labels: this.state.labels,
     })
   }
 

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native'
+import Button from '@/components/Button'
 
 export const wrap = css`
   margin-top: 10px;
@@ -27,31 +28,16 @@ export const HeaderText = styled.Text`
   padding: 18px;
 `
 
-export const RequiredView = styled.View`
-  ${wrap}
-  width: 100%;
-`
-
-export const RequiredTitleView = styled.View`
-  flex-direction: row;
-  align-items: center;
-  padding-left: 14px;
-  padding-bottom: 10px;
-`
-
-export const RequiredTitleImage = styled.Image`
-  width: 24px;
-  height: 24px;
-  resize-mode: contain;
-`
-
-export const RequiredTitleText = styled.Text`
-  color: #3555b6;
-  font-size: 18px;
-  padding-left: 10px;
-`
-
-export const IntroInput = styled.TextInput`
+export const SubmitView = styled.View`
   flex: 1;
-  height: 150px;
+  flex-direction: row;
+  margin-left: 20px;
+  margin-right: 20px;
+`
+
+export const StyledButton = styled(Button)`
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background-color: ${props => (props.disabled ? '#cbcbcb' : '#ec5367')}
 `

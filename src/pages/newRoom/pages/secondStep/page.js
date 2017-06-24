@@ -1,25 +1,22 @@
 import React, { Component } from 'react'
 import { KeyboardAvoidingView } from 'react-native'
+import _ from 'lodash'
 import I18n from '@/locales'
 
-import InputItem from '@/components/InputItem'
-
 import coverImg from '@/img/customCreate2.png'
-import logoBlueImg from '@/img/icon/logoBlue.png'
 
 import TitleLabelView from './components/TitleLabelView'
 import CoverView from './components/CoverView'
+import RequiredView from './components/RequiredView'
+import OptionsView from './components/OptionsView'
 
 import {
   MainScrollView,
   MainView,
   HeaderImage,
   HeaderText,
-  RequiredView,
-  RequiredTitleView,
-  RequiredTitleImage,
-  RequiredTitleText,
-  IntroInput,
+  SubmitView,
+  StyledButton,
 } from './style'
 
 
@@ -30,11 +27,47 @@ export default class SecondStep extends Component {
       isUploading: false,
       cover: this.props.cover,
       description: this.props.description,
+      date_time_start: this.props.date_time_start,
+      date_time_end: this.props.date_time_end,
+      location_string: this.props.location_string,
+      max_participants: this.props.max_participants,
+      isPrivate: this.props.isPrivate,
+      welcome: this.props.welcome,
+      rewards: this.props.rewards,
+      expense: this.props.expense,
     }
   }
 
-  showImgPicker = () => {
+  next = () => {
+    const {
+      navigation: { navigate },
+      setDataAction,
+    } = this.props
+    navigate('Third')
+    setDataAction({
+      cover: this.state.cover,
+      description: this.state.description,
+      date_time_start: this.state.date_time_start,
+      date_time_end: this.state.date_time_end,
+      location_string: this.state.location_string,
+      max_participants: this.state.max_participants,
+      isPrivate: this.state.isPrivate,
+      welcome: this.state.welcome,
+      rewards: this.state.rewards,
+      expense: this.state.expense,
+    })
+  }
 
+  isComplete = () => {
+    const {
+      description, date_time_start, date_time_end,
+      location_string, max_participants,
+    } = this.state
+    return (
+      description.length > 0 && date_time_start.length > 0 &&
+      date_time_end.length > 0 && location_string.length > 0 &&
+      (_.isNumber(max_participants) || isNaN(max_participants))
+    )
   }
 
   render() {
@@ -56,26 +89,28 @@ export default class SecondStep extends Component {
               onChangeUpload={isUploading => this.setState({ isUploading })}
               onChangeCover={cover => this.setState({ cover })}
             />
-            <RequiredView>
-              <RequiredTitleView>
-                <RequiredTitleImage source={logoBlueImg} />
-                <RequiredTitleText>
-                  Required
-                </RequiredTitleText>
-              </RequiredTitleView>
-            </RequiredView>
-            <InputItem
-              title={I18n.t('NewRoom.input.second.intro.title')}
-              titleWidth="75px"
-            >
-              <IntroInput
-                placeholder={I18n.t('NewRoom.input.second.intro.placeholder')}
-                multiline
-                defaultValue={this.state.description}
-                onChangeText={description => this.setState({ description })}
+            <RequiredView
+              setData={(name, value) => this.setState({ [name]: value })}
+              des={this.state.description}
+              dateTimeStart={this.state.date_time_start}
+              dateTimeEnd={this.state.date_time_end}
+              maxParticipants={this.state.max_participants}
+              locationString={this.state.location_string}
+            />
+            <OptionsView
+              setData={(name, value) => this.setState({ [name]: value })}
+              isPrivate={this.state.isPrivate}
+              welcome={this.state.welcome}
+              expense={this.state.expense}
+              rewards={this.state.rewards}
+            />
+            <SubmitView>
+              <StyledButton
+                title={I18n.t('NewRoom.button')}
+                disabled={!this.isComplete()}
+                onPress={this.next}
               />
-            </InputItem>
-
+            </SubmitView>
           </MainView>
         </MainScrollView>
       </KeyboardAvoidingView>
