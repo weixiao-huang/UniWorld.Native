@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-import ScrollTabView from 'react-native-scrollable-tab-view'
 
 import {
   MainView,
   PlaceholderView,
+  StyledScrollTabView,
 } from './style'
 
 import UserCover from './components/UserCover'
@@ -17,8 +17,11 @@ export default class Me extends Component {
       <MainView>
         <UserCover userInfo={this.props.userInfo} />
         {this.props.userInfo ?
-          <ScrollTabView style={{ flex: 2 }}>
-            <UserInfo tabLabel={'Info'} userInfo={this.props.userInfo} />
+          <StyledScrollTabView>
+            <UserInfo
+              tabLabel={'Info'}
+              userInfo={this.props.userInfo}
+            />
             <Follow
               tabLabel={'Follow'}
               follows={this.props.userInfo.follows}
@@ -28,10 +31,8 @@ export default class Me extends Component {
               thumbUps={this.props.userInfo.p_thumb_ups}
               thumbDowns={this.props.userInfo.p_thumb_downs}
             />
-          </ScrollTabView> :
-          <PlaceholderView style={{ flex: 2 }}>
-
-          </PlaceholderView>
+          </StyledScrollTabView> :
+          <PlaceholderView />
         }
       </MainView>
     )
