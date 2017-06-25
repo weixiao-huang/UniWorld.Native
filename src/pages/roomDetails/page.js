@@ -6,11 +6,15 @@ import {
   MainText,
 } from './style'
 
+import Notice from './components/Notice'
+
 export default class RoomDetails extends Component {
   render() {
+    console.log(this.props.roomDetails)
     return (
       <MainScrollView>
-        <MainText>RoomDetails</MainText>
+        {this.props.roomDetails ?
+        <Notice questionnaires={this.props.roomDetails.questionnaires} /> : null }
       </MainScrollView>
     )
   }
