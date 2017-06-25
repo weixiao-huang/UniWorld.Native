@@ -4,6 +4,7 @@ import {
   MainView,
   CoverImage,
   EmptyView,
+  ContentView,
 } from './style'
 
 import Header from './components/Header'
@@ -12,8 +13,52 @@ import People from './components/People'
 import Host from './components/Host'
 import LableBox from './components/LabelBox'
 import Options from './components/Options'
+import ButtonArea from './components/ButtonArea'
 
 export default class RoomInfo extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      joined: false,
+      marked: false,
+    }
+  }
+
+  _join() {
+    console.log(this.state)
+    if (!this.state.joined) {
+      //join
+      console.log('join')
+      this.setState({
+        joined: true,
+      })
+    } else {
+      //room
+      console.log('room')
+    }
+  }
+
+  _leave() {
+    if (this.state.joined) {
+      //leave
+      console.log('leave')
+      this.setState({
+        joined: false,
+      })
+    } else if (this.state.marked) {
+      console.log('unmark')
+      this.setState({
+        marked: false,
+      })
+    } else {
+      console.log('mark')
+      this.setState({
+        marked: true,
+      })
+    }
+  }
+
+
 
   render() {
     let options
@@ -44,6 +89,7 @@ export default class RoomInfo extends Component {
       } else opt = {}
     }
     return (
+    <ContentView>
       <MainScrollView>
         {this.props.roomInfo && <MainView>
           <CoverImage source={{ uri: this.props.roomInfo.cover }} />
@@ -72,6 +118,13 @@ export default class RoomInfo extends Component {
           <Host host={this.props.roomInfo.host} myId={this.props.myId} />
         </MainView>}
       </MainScrollView>
+      <ButtonArea
+          join={this._join.bind(this)}
+          leave={this._leave.bind(this)}
+          joined={this.state.joined}
+          marked={this.state.marked}
+      />
+    </ContentView>
     )
   }
 }
