@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import { StatusBar } from 'react-native'
+import EmptyView from '@/components/EmptyView'
 import {
   MainScrollView,
   MainView,
   CoverImage,
-  EmptyView,
   ContentView,
 } from './style'
 
@@ -89,42 +90,46 @@ export default class RoomInfo extends Component {
       } else opt = {}
     }
     return (
-    <ContentView>
-      <MainScrollView>
-        {this.props.roomInfo && <MainView>
-          <CoverImage source={{ uri: this.props.roomInfo.cover }} />
-          <Header
-            title={this.props.roomInfo.title}
-            titleTag="HOT"
-            description={this.props.roomInfo.description}
-          />
-          <Time
-            start={this.props.roomInfo.date_time_start}
-            end={this.props.roomInfo.date_time_end}
-          />
-          <EmptyView />
-          <People
-            participants={this.props.roomInfo.participants}
-            maxParticipants={this.props.roomInfo.max_participants}
-          />
-          <EmptyView />
-          {this.props.roomInfo.labels.length > 0
-            ? <LableBox labels={this.props.roomInfo.labels} />
-            : null
-          }
-          <EmptyView />
-          <Options options={options} />
-          <EmptyView />
-          <Host host={this.props.roomInfo.host} myId={this.props.myId} />
-        </MainView>}
-      </MainScrollView>
-      <ButtonArea
+      <ContentView>
+        <StatusBar
+          backgroundColor="white"
+          barStyle="light-content"
+        />
+        <MainScrollView>
+          {this.props.roomInfo && <MainView>
+            <CoverImage source={{ uri: this.props.roomInfo.cover }} />
+            <Header
+              title={this.props.roomInfo.title}
+              titleTag="HOT"
+              description={this.props.roomInfo.description}
+            />
+            <Time
+              start={this.props.roomInfo.date_time_start}
+              end={this.props.roomInfo.date_time_end}
+            />
+            <EmptyView />
+            <People
+              participants={this.props.roomInfo.participants}
+              maxParticipants={this.props.roomInfo.max_participants}
+            />
+            <EmptyView />
+            {this.props.roomInfo.labels.length > 0
+              ? <LableBox labels={this.props.roomInfo.labels} />
+              : null
+            }
+            <EmptyView />
+            <Options options={options} />
+            <EmptyView />
+            <Host host={this.props.roomInfo.host} myId={this.props.myId} />
+          </MainView>}
+        </MainScrollView>
+        <ButtonArea
           join={this._join.bind(this)}
           leave={this._leave.bind(this)}
           joined={this.state.joined}
           marked={this.state.marked}
-      />
-    </ContentView>
+        />
+      </ContentView>
     )
   }
 }

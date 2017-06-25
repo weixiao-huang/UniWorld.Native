@@ -36,11 +36,12 @@ export default class UserInfo extends Component {
     // const { name, signature, thumb_ups, thumb_downs, followers, follows } = this.props.user
     // const { avatar_thumbnail, gender, avatar } = this.props.user
     const { isFollowed } = this.state
+    const { userInfo } = this.props
     return (
       <MainView>
-        {this.props.userInfo && <UserCover userInfo={this.props.userInfo} />}
-        {this.props.userInfo && <MainScrollView>
-          <Info user={this.props.userInfo} />
+        {userInfo && <UserCover userInfo={userInfo} />}
+        {userInfo && <MainScrollView>
+          <Info user={userInfo} />
         </MainScrollView>}
         <ButtonView>
           <StyledButton

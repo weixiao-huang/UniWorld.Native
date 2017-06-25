@@ -1,24 +1,21 @@
 import React from 'react'
-import styled from 'styled-components/native'
-import InputItem from '@/components/InputItem'
+import { StyleSheet } from 'react-native'
 import I18n from 'react-native-i18n'
 
-const MainView = styled.View`
-`
+import EmptyView from '@/components/EmptyView'
 
-const ItemText = styled.Text`
-  font-size: 14px;
-  fontWeight: normal;
-`
-const EmptyView = styled.View`
-  height: 6px;
-`
+import {
+  MainView,
+  StyledInputItem,
+  ItemText,
+} from './style'
 
-const StyledInputItem = styled(InputItem) `
-  justify-content: flex-start;
-  padding-top: 3px;
-  padding-bottom: 3px;
-`
+const styles = StyleSheet.create({
+  text: {
+    lineHeight: 32,
+    fontWeight: '400',
+  },
+})
 
 const Info = ({ user }) => {
   console.log(user)
@@ -26,19 +23,19 @@ const Info = ({ user }) => {
     <MainView>
       <StyledInputItem
         title={I18n.t('Me.info.phone')}
-        textStyle={{ lineHeight: 32, fontWeight: '400'}}
+        textStyle={styles.text}
       >
         <ItemText>{user.username}</ItemText>
       </StyledInputItem>
       <StyledInputItem
         title={I18n.t('Me.info.name')}
-        textStyle={{ lineHeight: 32, fontWeight: '400' }}
+        textStyle={styles.text}
       >
         <ItemText></ItemText>
       </StyledInputItem>
       <StyledInputItem
         title={I18n.t('Me.info.gender')}
-        textStyle={{ lineHeight: 32, fontWeight: '400' }}
+        textStyle={styles.text}
       >
         <ItemText>
           {user.gender === true ?
@@ -47,39 +44,35 @@ const Info = ({ user }) => {
           }
         </ItemText>
       </StyledInputItem>
-
-      <EmptyView/>
-
+      <EmptyView />
       <StyledInputItem
         title={I18n.t('Me.info.school')}
-        textStyle={{ lineHeight: 32, fontWeight: '400' }}
+        textStyle={styles.text}
       >
         <ItemText>{user.university.name_en}</ItemText>
       </StyledInputItem>
       <StyledInputItem
         title={I18n.t('Me.info.department')}
-        textStyle={{ lineHeight: 32, fontWeight: '400' }}
+        textStyle={styles.text}
       >
         <ItemText>{user.department}</ItemText>
       </StyledInputItem>
       <StyledInputItem
         title={I18n.t('Me.info.grade')}
-        textStyle={{ lineHeight: 32, fontWeight: '400' }}
+        textStyle={styles.text}
       >
         <ItemText>{user.year}</ItemText>
       </StyledInputItem>
-
-      <EmptyView/>
-
+      <EmptyView />
       <StyledInputItem
-        title={I18n.t('Me.info.school')}
-        textStyle={{ lineHeight: 32, fontWeight: '400' }}
+        title={I18n.t('Me.info.nickname')}
+        textStyle={styles.text}
       >
-        <ItemText>{user.nickname}</ItemText>
+        <ItemText>{user.name}</ItemText>
       </StyledInputItem>
       <StyledInputItem
-        title={I18n.t('Me.info.department')}
-        textStyle={{ lineHeight: 32, fontWeight: '400' }}
+        title={I18n.t('Me.info.signature')}
+        textStyle={styles.text}
       >
         <ItemText>{user.signature}</ItemText>
       </StyledInputItem>
