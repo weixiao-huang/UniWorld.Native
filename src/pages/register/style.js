@@ -11,7 +11,7 @@ const FlexCenter = css`
   align-items: center;
 `
 
-export const MainView = styled.View`
+export const MainView = styled.ScrollView`
   ${FlexView}
 `
 

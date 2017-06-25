@@ -33,6 +33,12 @@ export default (state, action) => {
         state,
       )
       break
+    case types.GO_BACK:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.back(),
+        state,
+      )
+      break
     case types.NAVIGATE_TO_ROOM_INFO:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({
@@ -56,6 +62,22 @@ export default (state, action) => {
         NavigationActions.navigate({
           routeName: 'userInfo',
           params: { id: action.id },
+        }),
+        state,
+      )
+      break
+    case types.NAVIGATE_TO_REGISTER:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: 'register',
+        }),
+        state,
+      )
+      break
+    case types.NAVIGATE_TO_FIND_PASSWORD:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: 'findPassword',
         }),
         state,
       )

@@ -11,10 +11,13 @@ import Notice from './components/Notice'
 export default class RoomDetails extends Component {
   render() {
     console.log(this.props.roomDetails)
+    const { roomDetails } = this.props
     return (
       <MainScrollView>
-        {this.props.roomDetails ?
-        <Notice questionnaires={this.props.roomDetails.questionnaires} /> : null }
+        {roomDetails ?
+          <Notice
+            questionnaires={roomDetails.questionnaires}
+          /> : null }
       </MainScrollView>
     )
   }

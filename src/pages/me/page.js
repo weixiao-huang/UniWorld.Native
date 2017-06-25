@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react'
+import { Alert } from 'react-native'
+import I18n from '@/locales'
 
 import {
   MainView,
@@ -12,6 +14,29 @@ import Follow from './components/Follow/'
 import Reputation from './components/Reputation/'
 
 export default class Me extends Component {
+  componentDidUpdate() {
+    const { alert } = this.props
+    if (alert) {
+      Alert.alert(
+        I18n.t('Me.info.Logout.title'),
+        I18n.t('Me.info.Logout.content'),
+        [
+          {
+            text: I18n.t('confirm'),
+            onPress: () => {
+              this.props.resetToLoginAction()
+            },
+          },
+          {
+            text: I18n.t('cancel'),
+            onPress: () => {
+              this.props.goBackAction()
+            },
+          },
+        ],
+      )
+    }
+  }
   render() {
     return (
       <MainView>

@@ -1,6 +1,10 @@
 import { PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import {
+  NavigateToRegister,
+  ResetToHome,
+} from '@/router/actions'
 import { loginRequest } from './actions'
 
 import Page from './page'
@@ -9,10 +13,11 @@ const mapStateToProps = state => ({
   login: state.login,
 })
 
-const mapDispatchToProps = (dispatch) => {
-  const loginAction = bindActionCreators(loginRequest, dispatch)
-  return { loginAction }
-}
+const mapDispatchToProps = dispatch => ({
+  loginAction: bindActionCreators(loginRequest, dispatch),
+  toRegisterAction: bindActionCreators(NavigateToRegister, dispatch),
+  resetToHomeAction: bindActionCreators(ResetToHome, dispatch),
+})
 
 Page.propTypes = {
   login: PropTypes.shape({

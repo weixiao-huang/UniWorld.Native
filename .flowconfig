@@ -15,6 +15,7 @@
 .*/Libraries/react-native/ReactNative.js
 
 [include]
+./src
 
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js
@@ -30,6 +31,10 @@ experimental.strict_type_args=true
 
 munge_underscores=true
 
+module.system.node.resolve_dirname=src
+
+module.name_mapper='^@\/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
+module.name_mapper='^@$' -> '<PROJECT_ROOT>/src'
 module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> 'RelativeImageStub'
 
 suppress_type=$FlowIssue

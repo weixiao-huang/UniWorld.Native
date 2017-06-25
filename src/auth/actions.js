@@ -1,4 +1,8 @@
-import { CLIENT_SET, CLIENT_UNSET } from './types'
+import {
+  CLIENT_SET,
+  CLIENT_UNSET,
+  SET_ALERT,
+} from './types'
 
 export function setClient(token) {
   return {
@@ -12,3 +16,8 @@ export function unSetClient() {
     type: CLIENT_UNSET,
   }
 }
+
+export const SetAlert = alert => ({
+  type: SET_ALERT,
+  alert,
+})

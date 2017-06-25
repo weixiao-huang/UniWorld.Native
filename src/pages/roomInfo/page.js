@@ -59,8 +59,6 @@ export default class RoomInfo extends Component {
     }
   }
 
-
-
   render() {
     let options
     if (this.props.roomInfo) {

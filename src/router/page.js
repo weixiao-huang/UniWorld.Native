@@ -39,13 +39,13 @@ const AppRouteConfigs = {
       title: 'UserInfo',
     },
   },
-  Register: {
+  register: {
     screen: Register,
     navigationOptions: {
       title: 'Register',
     },
   },
-  FindPassword: {
+  findPassword: {
     screen: FindPassword,
     navigationOptions: {
       title: 'FindPassword',

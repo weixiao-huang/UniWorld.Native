@@ -2,12 +2,14 @@ import {
   CLIENT_SET,
   CLIENT_UNSET,
   SET_INITIAL_LABELS,
+  SET_ALERT,
 } from './types'
 
 const initialState = {
   // id: null,
   token: null,
   initialLabels: null,
+  alert: false,
 }
 
 const reducer = function clientReducer(state = initialState, action) {
@@ -26,6 +28,11 @@ const reducer = function clientReducer(state = initialState, action) {
       return {
         ...state,
         initialLabels: action.initialLabels,
+      }
+    case SET_ALERT:
+      return {
+        ...state,
+        alert: action.alert,
       }
     default:
       return state

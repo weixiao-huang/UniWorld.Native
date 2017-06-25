@@ -37,20 +37,21 @@ export default class Login extends Component {
     // this.props.navigation.navigate('homeTab')
   }
 
-  register(){
-
+  register = () => {
+    const { toRegisterAction } = this.props
+    toRegisterAction()
   }
 
-  vistor(){
-
+  visitor = () => {
+    this.props.resetToHomeAction()
   }
   render() {
     const {
       login: {
         requesting,
-      successful,
-      messages,
-      errors,
+        successful,
+        messages,
+        errors,
       },
     } = this.props
     return (

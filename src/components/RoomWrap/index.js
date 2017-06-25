@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  navigateAction: bindActionCreators(NavigateToRoomDetails, dispatch),
+  navigateAction: bindActionCreators(NavigateToRoomInfo, dispatch),
 })
 
 Page.propTypes = {

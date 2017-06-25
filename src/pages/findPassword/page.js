@@ -33,20 +33,20 @@ export default class Login extends Component {
   findPassword = () => {
   }
 
-  register(){
-
+  register = () => {
+    this.props.navigation.goBack()
   }
 
-  login(){
-
+  login = () => {
+    this.props.resetToLoginAction()
   }
   render() {
     const {
       login: {
         requesting,
-      successful,
-      messages,
-      errors,
+        successful,
+        messages,
+        errors,
       },
     } = this.props
     return (

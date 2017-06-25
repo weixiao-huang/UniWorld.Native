@@ -65,20 +65,17 @@ export default class Login extends Component {
       returnIsVertical: false,
     }
     this.setState({ isUploading: true })
-    ImagePicker.showImagePicker(options, res => {
+    ImagePicker.showImagePicker(options, (res) => {
       if (res.didCancel) {
         console.log('User cancelled image picker')
         this.setState({ isUploading: false })
-      }
-      else if (res.error) {
+      } else if (res.error) {
         console.log('ImagePicker Error: ', res.error)
         this.setState({ isUploading: false })
-      }
-      else if (res.customButton) {
+      } else if (res.customButton) {
         console.log('User tapped custom button: ', res.customButton)
         this.setState({ isUploading: false })
-      }
-      else {
+      } else {
         this.setState({
           stuCard: res.uri, // 'data:image/jpeg;base64,' + res.data, //  cover.uri,
         })
@@ -86,20 +83,21 @@ export default class Login extends Component {
     })
   }
 
-  findPassword(){
-
+  findPassword = () => {
+    const { toFindPassAction } = this.props
+    toFindPassAction()
   }
-  login(){
-
+  login = () => {
+    this.props.navigation.goBack()
   }
 
   render() {
     const {
       login: {
         requesting,
-      successful,
-      messages,
-      errors,
+        successful,
+        messages,
+        errors,
       },
     } = this.props
     return (
