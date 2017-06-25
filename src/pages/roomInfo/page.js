@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import EmptyView from '@/components/EmptyView'
 import {
   MainScrollView,
   MainView,
   CoverImage,
-  EmptyView,
 } from './style'
 
 import Header from './components/Header'

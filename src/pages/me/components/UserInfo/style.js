@@ -12,9 +12,6 @@ export const ItemText = styled.Text`
   font-size: 14px;
   fontWeight: normal;
 `
-export const EmptyView = styled.View`
-  height: 6px;
-`
 
 export const StyledInputItem = styled(InputItem) `
   justify-content: flex-start;

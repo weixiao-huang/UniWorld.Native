@@ -6,9 +6,10 @@ import {
   LOGOUT_REQUEST,
 } from '@/pages/login/types'
 
+import EmptyView from '@/components/EmptyView'
+
 import {
   MainScrollView,
-  EmptyView,
   StyledEditButton,
   StyledLogoutButton,
 } from './style'

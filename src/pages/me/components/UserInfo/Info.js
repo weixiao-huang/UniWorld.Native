@@ -2,11 +2,12 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import I18n from 'react-native-i18n'
 
+import EmptyView from '@/components/EmptyView'
+
 import {
   MainView,
   StyledInputItem,
   ItemText,
-  EmptyView,
 } from './style'
 
 const styles = StyleSheet.create({
