@@ -13,35 +13,31 @@ import {
   StyledButton,
 } from './style'
 
-import Input from './components/Input'
-import NavArea from './components/NavArea'
+import Input from '../login/components/Input'
+import NavArea from '../login/components/NavArea'
 
-const bgUrl = require('./img/background.jpg')
-const logoUrl = require('./img/Logo.png')
+const bgUrl = require('@/img/image/registerBg.jpg')
+const logoUrl = require('@/img/image/Logo.png')
 
-const userIcon = require('./img/UserIcon.png')
-const passIcon = require('./img/PasswordIcon.png')
+const userIcon = require('@/img/icon/UserIcon.png')
+const emailIcon = require('@/img/icon/email.png')
 
 export default class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
       username: '',
-      password: '',
+      email: '',
     }
   }
-  login = () => {
-    const { loginAction } = this.props
-    console.log(this.state.username, this.state.password)
-    loginAction(this.state.username, this.state.password)
-    // this.props.navigation.navigate('homeTab')
+  findPassword = () => {
   }
 
   register(){
 
   }
 
-  vistor(){
+  login(){
 
   }
   render() {
@@ -69,18 +65,17 @@ export default class Login extends Component {
               icon={userIcon}
             />
             <Input
-              onChangeText={password => this.setState({ password })}
-              placeholder={I18n.t('Login.password')}
-              secureTextEntry
-              icon={passIcon}
+              onChangeText={email => this.setState({ email })}
+              placeholder={I18n.t('FindPassword.email')}
+              icon={emailIcon}
             />
             <StyledButton
-              title={I18n.t('Login.login')}
-              onPress={this.login}
+              title={I18n.t('FindPassword.findPassword')}
+              onPress={this.findPassword}
             />
             <NavArea
-              nav1={this.visitor}
-              title1={I18n.t('Login.visitor')}
+              nav1={this.login}
+              title1={I18n.t('Login.login')}
               nav2={this.register}
               title2={I18n.t('Login.register')}
             />

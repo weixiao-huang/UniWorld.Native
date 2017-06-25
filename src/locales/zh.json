@@ -23,17 +23,17 @@
     "password": "密码",
     "login": "登录",
     "visitor": "游客登录",
-    "signup": "注册",
+    "Register": "注册",
     "fillInfo":"请输入正确的手机号以及密码",
     "wrong":"请检查你的手机号以及密码"
   },
-  "SignUp":{
+  "Register":{
     "findpassword":"找回密码",
     "username": "手机号",
     "password": "密码",
     "login": "登录",
     "visitor": "游客登录",
-    "signup": "注册",
+    "Register": "注册",
     "email":"邮箱",
     "findPassword":"找回密码",
     "passwordAgain":"请再次输入你的密码",
@@ -48,13 +48,18 @@
     "failTextTel":"抱歉，该手机号已经被注册",
     "failTextSchool":"抱歉，该学校尚未加入Uniworld大家庭",
     "failTextEmail":"抱歉，您的邮箱地址无效",
-    "failTextDefault":"抱歉，请检查您的网络连接"
+    "failTextDefault":"抱歉，请检查您的网络连接",
+    "emailAuth":"教育邮箱验证",
+    "addImage":"点击上传学生证照片",
+    "failIdCard":"请上传您的学生证照片",
+    "imageAuth":"学生证验证"
+
   },
   "FindPassword":{
     "username": "电话",
     "login": "登录",
     "visitor": "游客登录",
-    "signUp": "注册",
+    "Register": "注册",
     "email":"邮箱",
     "findPassword":"找回密码",
     "fail":"失败",

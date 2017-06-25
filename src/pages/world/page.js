@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { TouchableOpacity, StyleSheet } from 'react-native'
+import { TouchableOpacity, StyleSheet, StatusBar } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import Reactotron from 'reactotron-react-native'
 import EmptyHeader from '@/components/EmptyHeader'
@@ -29,6 +29,10 @@ export default class World extends Component {
   render() {
     return (
       <MainView>
+        <StatusBar
+          backgroundColor="white"
+          barStyle="light-content"
+        />
         <EmptyHeader />
         <StyledScrollTabView
           tabBarBackgroundColor="#ec5367"

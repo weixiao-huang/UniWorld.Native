@@ -5,6 +5,8 @@ import RoomInfo from '../pages/roomInfo'
 import RoomDetails from '../pages/roomDetails'
 import UserInfo from '../pages/userInfo'
 import HomeTab from './components/home'
+import Register from '../pages/register'
+import FindPassword from '../pages/findPassword'
 
 const AppRouteConfigs = {
   login: {
@@ -35,6 +37,18 @@ const AppRouteConfigs = {
     screen: UserInfo,
     navigationOptions: {
       title: 'UserInfo',
+    },
+  },
+  Register: {
+    screen: Register,
+    navigationOptions: {
+      title: 'Register',
+    },
+  },
+  FindPassword: {
+    screen: FindPassword,
+    navigationOptions: {
+      title: 'FindPassword',
     },
   },
 }

@@ -15,53 +15,57 @@
   "save": "Save",
   "cancel": "Cancel",
   "full": "Room is Full",
-  "submit":"Submit",
-  "tips":"Tips",
+  "submit": "Submit",
+  "tips": "Tips",
   "confirm": "Confirm",
   "Login": {
     "username": "Tel",
     "password": "Password",
     "login": "Login",
     "visitor": "Visitor",
-    "signup": "Sign Up",
-    "fillInfo":"Please enter the right tel number and password",
-    "wrong":"Please check your tel number and password"
+    "register": "Sign Up",
+    "fillInfo": "Please enter the right tel number and password",
+    "wrong": "Please check your tel number and password"
   },
-   "SignUp":{
-    "findpassword":"Find password",
+  "Register": {
+    "findpassword": "Find password",
     "username": "Tel",
     "password": "Password",
     "login": "Login",
     "visitor": "Visitor",
-    "signUp": "Sign Up",
-    "email":"Email",
-    "findPassword":"Forget password",
-    "passwordAgain":"Please input your password again",
-    "emailFail":"Please enter an email that ends with '.edu.cn'",
-    "succeedTitle":"Last step!",
-    "succeedText":"Check your activation email.\nJoin Uniworld now",
-    "failTitle":"Fail to register",
-    "failTextInfoTel":"Please use the right tel number",
-    "failPassword":"You entered different passwords",
-    "failPassword2":"The length of your password should between 6 and 20",
-    "failEmailEdu":"Please use the email that ends with '.edu.cn'",
-    "failTextTel":"Sorry, the tel number you used has been registered.",
-    "failTextSchool":"Sorry, your school has not joined Uniworld.",
-    "failTextEmail":"Sorry, your email address is not valid.",
-    "failTextDefault":"Sorry, please check your network connections"
+    "register": "Sign Up",
+    "email": "Email",
+    "findPassword": "Forget password",
+    "passwordAgain": "Please input your password again",
+    "emailFail": "Please enter an email that ends with '.edu.cn'",
+    "succeedTitle": "Last step!",
+    "succeedText": "Check your activation email.\nJoin Uniworld now",
+    "failTitle": "Fail to register",
+    "failTextInfoTel": "Please use the right tel number",
+    "failPassword": "You entered different passwords",
+    "failPassword2": "The length of your password should between 6 and 20",
+    "failEmailEdu": "Please use the email that ends with '.edu.cn'",
+    "failTextTel": "Sorry, the tel number you used has been registered.",
+    "failTextSchool": "Sorry, your school has not joined Uniworld.",
+    "failTextEmail": "Sorry, your email address is not valid.",
+    "failTextDefault": "Sorry, please check your network connections",
+    "imageAuth": "Stu-card Authorization",
+    "emailAuth": "Email Authorization",
+    "addImage": "Click to upload stu-card photo",
+    "failIdCard": "Please upload your stu-card"
   },
-   "FindPassword":{
+  "FindPassword": {
     "username": "Tel",
     "login": "Login",
     "visitor": "Visitor",
-    "signUp": "Sign Up",
-    "email":"Email",
-    "findPassword":"Find password",
-    "fail":"Fail",
-    "failReason":"Sorry, your email doesn't match your tell number.",
-    "succeedTitle":"Last Step!",
-    "succeedText":"Please check your email and change your password",
-    "fillInfo":"Please fill in your info"
+    "Register": "Sign Up",
+    "email": "Email",
+    "findPassword": "Find password",
+    "fail": "Fail",
+    "failReason": "Sorry, your email doesn't match your tell number.",
+    "succeedTitle": "Last Step!",
+    "succeedText": "Please check your email and change your password",
+    "fillInfo": "Please fill in your info"
   },
   "Room": {
     "follow": "Follow",
@@ -103,17 +107,17 @@
         "edit": "Edit",
         "new": "New notification"
       },
-      "notice":"Notice",
-      "questionnaires":"Questionnaies",
-      "Image":"Image",
-      "content":"Content",
-      "defaultText1":"Anything to say?"
+      "notice": "Notice",
+      "questionnaires": "Questionnaies",
+      "Image": "Image",
+      "content": "Content",
+      "defaultText1": "Anything to say?"
     },
     "Chat": {
       "title": "Chat",
-       "notice":"Notice",
-      "questionnaires":"Questionnaies",
-      "image":"Image"
+      "notice": "Notice",
+      "questionnaires": "Questionnaies",
+      "image": "Image"
     },
     "Member": {
       "title": "Member",
@@ -228,28 +232,28 @@
       }
     }
   },
-  "SignInfo":{
-    "first":{
-      "message1":"Welcome to UniWorld",
-      "message2":"You may come across variant people here",
-      "message3":"Explore all possibilities",
-      "nextButton":"Continue"
+  "SignInfo": {
+    "first": {
+      "message1": "Welcome to UniWorld",
+      "message2": "You may come across variant people here",
+      "message3": "Explore all possibilities",
+      "nextButton": "Continue"
     },
-    "second":{
-      "title":"Complete your information",
-      "nickname":"Nickname",
-      "gender":"Gender",
-      "male":"male",
-      "female":"female",
-      "lsbt":"lsbt",
-      "birthday":"Birthday",
-      "department":"Department",
-      "grade":"Grade",
-      "signature":"Signature",
-      "continue":"Accept the User Agreement",
-      "agreement":"User's Agreement",
-      "back":"Back",
-      "nextButton":"Accept the User's Agreement"
+    "second": {
+      "title": "Complete your information",
+      "nickname": "Nickname",
+      "gender": "Gender",
+      "male": "male",
+      "female": "female",
+      "lsbt": "lsbt",
+      "birthday": "Birthday",
+      "department": "Department",
+      "grade": "Grade",
+      "signature": "Signature",
+      "continue": "Accept the User Agreement",
+      "agreement": "User's Agreement",
+      "back": "Back",
+      "nextButton": "Accept the User's Agreement"
     }
   },
   "RoomList": {

@@ -71,7 +71,7 @@ export default {
     body: data,
   }),
 
-  signUp: data => postWithoutToken('/register/')(data),
+  Register: data => postWithoutToken('/register/')(data),
 
   findPassword: data => postWithoutToken('/find_password/')(data),
   /*
