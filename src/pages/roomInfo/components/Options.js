@@ -26,12 +26,11 @@ const OptionIcon = styled(Icon)`
 
 const Option = ({ options }) => (
   <MainView>
-    {Object.values(options).map((item, index) => (
-      item.content ?
-        <OptionView key={index}>
-          <OptionIcon name={item.iconName} size={20} />
-          <OptionText>{item.content}</OptionText>
-        </OptionView> : null
+    {Object.values(options).map(item => (
+      item.content && (<OptionView key={item.iconName}>
+        <OptionIcon name={item.iconName} size={20} />
+        <OptionText>{item.content}</OptionText>
+      </OptionView>)
     ))}
   </MainView>
 )

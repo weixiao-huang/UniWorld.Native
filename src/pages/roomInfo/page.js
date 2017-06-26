@@ -19,29 +19,26 @@ import ButtonArea from './components/ButtonArea'
 export default class RoomInfo extends Component {
   constructor(props) {
     super(props)
+    const { myInfo } = this.props
     this.state = {
       joined: false,
       marked: false,
     }
   }
 
-  _join() {
-    console.log(this.state)
+  join = () => {
     if (!this.state.joined) {
-      //join
       console.log('join')
       this.setState({
         joined: true,
       })
     } else {
-      //room
       console.log('room')
     }
   }
 
-  _leave() {
+  leave = () => {
     if (this.state.joined) {
-      //leave
       console.log('leave')
       this.setState({
         joined: false,
@@ -61,32 +58,25 @@ export default class RoomInfo extends Component {
 
   render() {
     let options
-    if (this.props.roomInfo) {
-      console.log(this.props.roomInfo)
+    const { roomInfo, myInfo } = this.props
+    if (roomInfo) {
       options = {
         location_string: {
           iconName: 'location-on',
-          content: this.props.roomInfo.location_string,
+          content: roomInfo.location_string,
         },
-        welcome: {
-          iconName: 'thumb-up',
-        },
-        rewards: {
-          iconName: 'card-giftcard',
-        },
-        expense: {
-          iconName: 'attach-money',
-        },
+        welcome: { iconName: 'thumb-up' },
+        rewards: { iconName: 'card-giftcard' },
+        expense: { iconName: 'attach-money' },
       }
-      let opt = this.props.roomInfo.options
+      let opt = roomInfo.options
       if (opt) {
         opt = JSON.parse(opt)
-        for (let option in opt) {
-          if (opt.hasOwnProperty(option) && options.hasOwnProperty(option)) {
-            options[option].content = opt[option]
-          }
-        }
-      } else opt = {}
+        Object.keys(opt).map((key) => {
+          if (options[key]) options[key].content = opt[key]
+          return key
+        })
+      } else options = {}
     }
     return (
       <ContentView>
@@ -95,39 +85,42 @@ export default class RoomInfo extends Component {
           barStyle="light-content"
         />
         <MainScrollView>
-          {this.props.roomInfo && <MainView>
-            <CoverImage source={{ uri: this.props.roomInfo.cover }} />
+          {roomInfo && <MainView>
+            <CoverImage source={{ uri: roomInfo.cover }} />
             <Header
-              title={this.props.roomInfo.title}
+              title={roomInfo.title}
               titleTag="HOT"
-              description={this.props.roomInfo.description}
+              description={roomInfo.description}
             />
             <Time
-              start={this.props.roomInfo.date_time_start}
-              end={this.props.roomInfo.date_time_end}
+              start={roomInfo.date_time_start}
+              end={roomInfo.date_time_end}
             />
             <EmptyView />
             <People
-              participants={this.props.roomInfo.participants}
-              maxParticipants={this.props.roomInfo.max_participants}
+              participants={roomInfo.participants}
+              maxParticipants={roomInfo.max_participants}
             />
             <EmptyView />
-            {this.props.roomInfo.labels.length > 0
-              ? <LableBox labels={this.props.roomInfo.labels} />
-              : null
+            {roomInfo.labels.length > 0 &&
+              <LableBox labels={roomInfo.labels} />
             }
             <EmptyView />
             <Options options={options} />
             <EmptyView />
-            <Host host={this.props.roomInfo.host} myId={this.props.myId} />
+            <Host
+              host={roomInfo.host}
+              myId={this.props.myId}
+            />
+            {myInfo && <EmptyView height="60px" />}
           </MainView>}
         </MainScrollView>
-        <ButtonArea
-          join={this._join.bind(this)}
-          leave={this._leave.bind(this)}
+        {myInfo && <ButtonArea
+          join={this.join}
+          leave={this.leave}
           joined={this.state.joined}
           marked={this.state.marked}
-        />
+        />}
       </ContentView>
     )
   }

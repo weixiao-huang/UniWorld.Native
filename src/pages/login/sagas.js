@@ -10,6 +10,7 @@ import {
 
 import * as authTypes from '@/auth/types'
 import * as navTypes from '@/router/types'
+import * as meTypes from '@/pages/me/types'
 import * as types from '@/types'
 
 import api from '@/api'
@@ -29,11 +30,13 @@ function loginApi(username, password) {
     // .then(data => AsyncStorage.setItem('token', data.token))
 }
 
-function fetchInitialApi(token) {
-  return api.fetchInitialLabels(token)
-    .then(handleApiErrors)
-    .then(res => res.json())
-}
+const fetchInitialApi = token => api.fetchInitialLabels(token)
+  .then(handleApiErrors)
+  .then(res => res.json())
+
+const fetchUserInfo = token => api.fetchUserInfo(token)
+  .then(handleApiErrors)
+  .then(res => res.json())
 
 function* logout() {
   yield put(unSetClient())
@@ -50,6 +53,8 @@ function* loginFlow(username, password) {
     token = data.token
     yield put(setClient(token))
     const initialLabels = yield call(fetchInitialApi, token)
+    const userInfo = yield call(fetchUserInfo, token)
+    yield put({ type: meTypes.SET_MY_USER_INFO, userInfo })
     yield put({ type: authTypes.SET_INITIAL_LABELS, initialLabels })
     yield put({ type: LOGIN_SUCCESS })
     yield put({ type: navTypes.RESET_TO_HOME })

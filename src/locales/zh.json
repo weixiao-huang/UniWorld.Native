@@ -7,6 +7,14 @@
     "female":"女",
     "null":"none"
   },
+  "Alert": {
+    "Login": {
+      "title": "请登录",
+      "content": "请登录查看更多信息",
+      "confirm": "登录",
+      "cancel": "取消"
+    }
+  },
   "yes":"是",
   "no":"不",
   "dislikes":"不喜欢",

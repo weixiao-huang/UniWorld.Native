@@ -7,7 +7,6 @@ export const MainText = styled.Text`
 `
 
 export const MainView = styled.View`
-  padding-bottom: 80px;
 `
 
 export const ContentView = styled.View`

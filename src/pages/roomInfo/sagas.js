@@ -9,6 +9,7 @@ import * as navTypes from '@/router/types'
 import {
   SET_ROOM_INFO,
   CLEAR_ROOM_INFO,
+  SET_ROOM_INFO_FOLLOW,
 } from './types'
 
 function fetchApi(token, id) {
@@ -25,6 +26,19 @@ export default function* () {
     const { id } = yield take(navTypes.NAVIGATE_TO_ROOM_INFO)
     yield put({ type: CLEAR_ROOM_INFO })
     const roomInfo = yield call(fetchApi, token, id)
-    yield put({ type: SET_ROOM_INFO, roomInfo })
+    const myInfo = state.me.userInfo
+    if (myInfo) {
+      const myId = myInfo.id
+      let isFollowed = false
+      roomInfo.participants.map((item) => {
+        if (item.id === myId) isFollowed = true
+        return item
+      })
+      yield put({ type: SET_ROOM_INFO_FOLLOW, isFollowed })
+    }
+    yield put({
+      type: SET_ROOM_INFO,
+      roomInfo,
+    })
   }
 }

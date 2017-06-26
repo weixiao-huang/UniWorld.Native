@@ -15,23 +15,21 @@ import Reputation from './components/Reputation/'
 
 export default class Me extends Component {
   componentDidUpdate() {
-    const { alert } = this.props
+    const {
+      alert, resetToLoginAction, goBackAction,
+    } = this.props
     if (alert) {
       Alert.alert(
-        I18n.t('Me.info.Logout.title'),
-        I18n.t('Me.info.Logout.content'),
+        I18n.t('Alert.Login.title'),
+        I18n.t('Alert.Login.content'),
         [
           {
-            text: I18n.t('confirm'),
-            onPress: () => {
-              this.props.resetToLoginAction()
-            },
+            text: I18n.t('Alert.Login.confirm'),
+            onPress: () => resetToLoginAction(),
           },
           {
-            text: I18n.t('cancel'),
-            onPress: () => {
-              this.props.goBackAction()
-            },
+            text: I18n.t('Alert.Login.cancel'),
+            onPress: () => goBackAction(),
           },
         ],
       )

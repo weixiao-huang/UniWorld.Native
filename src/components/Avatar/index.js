@@ -1,22 +1,26 @@
-import React, { PropTypes } from 'react'
+import { PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { NavigateToUserInfo } from '@/router/actions'
+import { NavigateToUserInfo, ResetToLogin } from '@/router/actions'
 
 import Page from './page'
 
 const mapStateToProps = state => ({
-
+  token: state.auth.token,
 })
 
 const mapDispatchToProps = dispatch => ({
   navigateAction: bindActionCreators(NavigateToUserInfo, dispatch),
+  resetToLoginAction: bindActionCreators(ResetToLogin, dispatch),
 })
 
 
 Page.propTypes = {
   id: PropTypes.number.isRequired,
   avatar: PropTypes.string.isRequired,
+  size: PropTypes.number,
+  navigateAction: PropTypes.func.isRequired,
+  resetToLoginAction: PropTypes.func.isRequired,
 }
 
 Page.defaultProps = {
