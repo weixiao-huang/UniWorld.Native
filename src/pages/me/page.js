@@ -38,23 +38,24 @@ export default class Me extends Component {
     }
   }
   render() {
+    const { userInfo } = this.props
     return (
       <MainView>
-        <UserCover userInfo={this.props.userInfo} />
-        {this.props.userInfo ?
+        <UserCover userInfo={userInfo} />
+        {userInfo ?
           <StyledScrollTabView>
             <UserInfo
               tabLabel={'Info'}
-              userInfo={this.props.userInfo}
+              userInfo={userInfo}
             />
             <Follow
               tabLabel={'Follow'}
-              follows={this.props.userInfo.follows}
+              follows={userInfo.follows}
             />
             <Reputation
               tabLabel={'Reputation'}
-              thumbUps={this.props.userInfo.p_thumb_ups}
-              thumbDowns={this.props.userInfo.p_thumb_downs}
+              thumbUps={userInfo.p_thumb_ups}
+              thumbDowns={userInfo.p_thumb_downs}
             />
           </StyledScrollTabView> :
           <PlaceholderView />

@@ -1,5 +1,6 @@
 import {
   LOGIN_REQUEST,
+  LOGOUT_REQUEST,
 } from './types'
 
 
@@ -13,4 +14,8 @@ export const loginRequest = (username, password) => ({
   type: LOGIN_REQUEST,
   username,
   password,
+})
+
+export const logoutRequest = () => ({
+  type: LOGOUT_REQUEST,
 })

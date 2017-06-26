@@ -19,8 +19,25 @@ export const StyledInputItem = styled(InputItem) `
   padding-bottom: 3px;
 `
 
-export const StyledEditButton = styled(Button)`
+export const PickerTouch = styled.TouchableOpacity`
+  flex: 1;
+  flex-direction: row;
+`
+
+export const PickerText = styled.Text`
+  color: ${props => (props.isPlaced ? 'black' : '#c7c7cd')};
+`
+
+export const StyledButton = styled(Button)`
   background-color: white;
+  border-bottom-width: 1px;
+  border-bottom-color: #e9e9ef;
+`
+
+export const StyledInput = styled.TextInput`
+  flex: 1;
+  flex-direction: row;
+  font-size: 14px;
 `
 
 export const StyledLogoutButton = styled(Button)`

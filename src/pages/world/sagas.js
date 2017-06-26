@@ -14,8 +14,8 @@ function fetchApi(token) {
     api.fetchLatest(token),
     api.fetchWorld(token),
     api.fetchPosters(token),
-    api.fetchTop(token),
   ]
+  if (token) apis.push(api.fetchTop(token))
   return Promise.all(apis)
     .then(item => item.map(handleApiErrors))
     .then(responses => Promise.all(
@@ -34,24 +34,24 @@ export default function* worldWatch() {
     ) {
       // TODO: fetch data and add them into reducer
       if (state.auth.alert) yield put(SetAlert(false))
-      if (
-        (!state.world.world ||
-        !state.world.recommend ||
-        !state.world.latest ||
-        !state.world.posters)
-      ) {
+      const {
+        world: { world, recommend, latest, posters },
+        auth: { token },
+      } = state
+      let condition = !world || !posters || !latest
+      if (token) condition = condition || !recommend
+      if (condition) {
         try {
-          const token = state.auth.token
-          console.log('token', token)
           const data = yield call(fetchApi, token)
+          const worldData = {
+            latest: data[0],
+            world: data[1],
+            posters: data[2],
+          }
+          if (token) worldData.recommend = data[3]
           yield put({
             type: SET_WORLD_DATA,
-            data: {
-              latest: data[0],
-              world: data[1],
-              posters: data[2],
-              recommend: data[3],
-            },
+            data: worldData,
           })
         } catch (error) {
           // Error handle
