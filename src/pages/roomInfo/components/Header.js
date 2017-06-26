@@ -13,7 +13,6 @@ const ContentView = styled.View`
 `
 
 const TitleView = styled.View`
-  justify-content: center;
   align-items: center;
   padding-top: 20px;
   padding-bottom:20px;

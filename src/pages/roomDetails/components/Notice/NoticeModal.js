@@ -83,10 +83,11 @@ const trumW = require('@/img/icon/trumW.png')
 
 
 
-const NoticeModal = () => {
-  let is_announcement = true
+const NoticeModal = ({ cancel }) => {
+  let is_announcement = false
   let title
   let description
+
   return (
     <MainModal transparent visible >
       <UpperView />
@@ -106,7 +107,7 @@ const NoticeModal = () => {
               <HeaderImage source={QuesIconUrl} />
               <HeaderText style={{ color: '#332f5e' }}>{I18n.t('Room.Notice.questionnaires')}</HeaderText>
             </HeaderLeftView>
-            <CancelButton>
+            <CancelButton onPress={cancel}>
               <CancelText style={{ color: '#bcbcbc' }}>{I18n.t('cancel')}</CancelText>
             </CancelButton>
           </HearderView>
