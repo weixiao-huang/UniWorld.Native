@@ -26,10 +26,10 @@ export default class RoomDetails extends Component {
     console.log(this.props.roomDetails)
     const { roomDetails } = this.props
     let isHost = true
-    console.log(this.props)
-    // if (roomDetails && this.props.myId){
-    //   isHost = roomDetails.host.id === this.props.myId
-    // }
+    console.log(roomDetails)
+    if (roomDetails && this.props.myId){
+      isHost = roomDetails.host.id === this.props.myId
+    }
     return (
       <MainScrollTabView
         tabBarUnderlineStyle={styles.tabBarUnderline}
@@ -41,7 +41,7 @@ export default class RoomDetails extends Component {
             tabLabel={I18n.t('Room.Notice.notice')}
             questionnaires={roomDetails.questionnaires}
             isHost={isHost}
-          /> : null}
+          /> : <MainView />}
       </MainScrollTabView>
     )
   }

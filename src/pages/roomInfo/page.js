@@ -62,6 +62,7 @@ export default class RoomInfo extends Component {
   render() {
     let options
     if (this.props.roomInfo) {
+      console.log(this.props.roomInfo)
       options = {
         location_string: {
           iconName: 'location-on',
