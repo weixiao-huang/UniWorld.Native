@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import {  StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import I18n from 'react-native-i18n'
 
 import {
   MainScrollTabView,
   MainView,
-  MainText,
 } from './style'
 
-import Notice from './components/Notice'
+import Notice from './pages/Notice'
 
 const styles = StyleSheet.create({
   tabBarUnderline: {
@@ -16,20 +15,14 @@ const styles = StyleSheet.create({
     height: 1.5,
   },
   tabBarText: {
-    paddingTop:20,
+    paddingTop: 20,
     color: 'white',
   },
 })
 
 export default class RoomDetails extends Component {
   render() {
-    console.log(this.props.roomDetails)
-    const { roomDetails } = this.props
-    let isHost = true
-    console.log(roomDetails)
-    if (roomDetails && this.props.myId){
-      isHost = roomDetails.host.id === this.props.myId
-    }
+    const { roomDetails, myId, hostId } = this.props
     return (
       <MainScrollTabView
         tabBarUnderlineStyle={styles.tabBarUnderline}
@@ -40,7 +33,7 @@ export default class RoomDetails extends Component {
           <Notice
             tabLabel={I18n.t('Room.Notice.notice')}
             questionnaires={roomDetails.questionnaires}
-            isHost={isHost}
+            isHost={myId === hostId}
           /> : <MainView />}
       </MainScrollTabView>
     )

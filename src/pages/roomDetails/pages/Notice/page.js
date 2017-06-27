@@ -1,23 +1,19 @@
 import React, { Component } from 'react'
-import styled from 'styled-components/native'
 
-import NoticeItem from './NoticeItem'
-import NoticeModal from './NoticeModal'
-import ButtonArea from './ButtonArea'
+import {
+  MainView,
+  MainScrollView,
+} from './style'
 
-const MainView = styled.View`
-  flex: 1;
-`
-const MainScrollView = styled.ScrollView`
-
-`
+import NoticeItem from './components/NoticeItem'
+import NoticeModal from './components/NoticeModal'
+import ButtonArea from './components/ButtonArea'
 
 export default class Notice extends Component {
   constructor(props) {
     super(props)
     this.state = {
       showModal: false,
-      isHost: this.props.isHost ? this.props.isHost : false,
     }
   }
 
@@ -35,6 +31,7 @@ export default class Notice extends Component {
   }
 
   render() {
+    const { isHost } = this.props
     return (
       <MainView>
         <MainScrollView>
@@ -42,8 +39,11 @@ export default class Notice extends Component {
             <NoticeItem key={item.id} item={item} />
           ))}
         </MainScrollView>
-        {this.state.showModal ? <NoticeModal cancel={this.cancel} /> :
-            (this.state.isHost ? <ButtonArea rightFunc={this.show} /> : null)}
+        {this.state.showModal ?
+          <NoticeModal cancel={this.cancel} /> :
+          (isHost && <ButtonArea rightFunc={this.show} />)
+        }
+        <ButtonArea rightFunc={this.show} />
       </MainView>
     )
   }

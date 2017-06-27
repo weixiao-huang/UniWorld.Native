@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
   // const logoutAction = bindActionCreators(logoutRequest, dispatch)
   // return { logoutAction }
-  return {dispatch}
+  return { dispatch }
 }
 
 

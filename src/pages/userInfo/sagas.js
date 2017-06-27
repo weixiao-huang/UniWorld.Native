@@ -20,9 +20,9 @@ function fetchApi(token, id) {
 export default function* () {
   yield take('persist/REHYDRATE')
   while (true) {
+    const { id } = yield take(navTypes.NAVIGATE_TO_USER_INFO)
     const state = yield select()
     const token = state.auth.token
-    const { id } = yield take(navTypes.NAVIGATE_TO_USER_INFO)
     yield put({ type: CLEAR_USER_INFO })
     const userInfo = yield call(fetchApi, token, id)
     yield put({ type: SET_USER_INFO, userInfo })

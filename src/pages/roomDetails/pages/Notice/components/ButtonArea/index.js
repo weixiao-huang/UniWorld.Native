@@ -1,26 +1,12 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import styled from 'styled-components/native'
 import I18n from 'react-native-i18n'
-import Button from '@/components/Button'
 
-const MainView = styled.View`
-  flex-direction: row;
-  position: absolute;
-  bottom: 0;
-`
-
-const LeaveButton = styled(Button) `
-  flex: 1;
-  background-color: #3555b6;
-  border-radius: 0;
-  padding: 5px 0;
-`
-const JoinButton = styled(Button) `
-  flex: 2;
-  background-color: #ec5367;
-  border-radius: 0;
-`
+import {
+  MainView,
+  LeaveButton,
+  JoinButton,
+} from './style'
 
 const styles = StyleSheet.create({
   text: {

@@ -1,58 +1,17 @@
 import React from 'react'
-import styled from 'styled-components/native'
 
-const MainView = styled.View`
-  background-color:white;
-  margin: 10px;
-  marginTop: 20px;
-  marginRight: 20px;
-  alignItems: flex-start;
-  flex-direction: row;
-`
+import {
+  MainView,
+  TimeView,
+  TimeText,
+  WrapView,
+  TitleView,
+  TitleImage,
+  TitleText,
+  ContentView,
+  ContentText,
+} from './style'
 
-const TimeView = styled.View`
-  paddingLeft: 10px;
-  paddingRight: 10px;
-  paddingTop:10px;
-`
-
-const TimeText = styled.Text`
-`
-
-const WrapView = styled.View`
-  borderRadius: 10px;
-`
-
-const TitleView = styled.View`
-  borderBottomColor: #eeeeee;
-  borderBottomWidth: 1px;
-  alignItems: center;
-  padding: 5px;
-  paddingBottom: 10px;
-  margin: 10px
-  flex-direction: row;
-  width: 260px;
-`
-
-const TitleImage = styled.Image`
-  width: 20px;
-  height: 20px;
-  marginRight: 10px;
-
-`
-const TitleText = styled.Text`
-  fontSize: 18px;
-  fontWeight: bold;
-`
-const ContentView = styled.View`
-  padding: 10px;
-  paddingTop: 2px;
-  margin: 5px;
-  marginTop: 0;
-`
-const ContentText = styled.Text`
-  lineHeight: 20px;
-`
 const noticeUrl = require('@/img/icon/info.png')
 const questionUrl = require('@/img/icon/fillP.png')
 

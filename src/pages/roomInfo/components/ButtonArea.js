@@ -29,17 +29,28 @@ const styles = StyleSheet.create({
   },
 })
 
-const ButtonArea = ({ join, leave, joined, marked }) => (
+const ButtonArea = ({
+  room, mark, unmark, join, leave, joined, marked,
+}) => (
   <MainView>
     <LeaveButton
-      title={!joined ? (marked ? I18n.t('Room.Footer.unstar') : I18n.t('Room.Footer.star')) : I18n.t('Room.Footer.leave')}
+      title={!joined ?
+        (marked ?
+          I18n.t('Room.Footer.unstar') :
+          I18n.t('Room.Footer.star')
+        ) :
+        I18n.t('Room.Footer.leave')
+      }
       textStyle={styles.text}
-      onPress={leave}
+      onPress={!joined ? (marked ? unmark : mark) : leave}
     />
     <JoinButton
-      title={!joined ? I18n.t('Room.Footer.join') : I18n.t('Room.Footer.room')}
+      title={!joined ?
+        I18n.t('Room.Footer.join') :
+        I18n.t('Room.Footer.room')
+      }
       textStyle={styles.text}
-      onPress={join}
+      onPress={!joined ? join : room}
     />
   </MainView>
 )

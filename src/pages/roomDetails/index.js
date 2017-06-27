@@ -6,6 +6,7 @@ import Page from './page'
 const mapStateToProps = state => ({
   roomDetails: state.roomDetails.roomDetails,
   myId: state.me.userInfo.id,
+  hostId: state.roomInfo.roomInfo.host.id,
 })
 
 const mapDispatchToProps = dispatch => ({

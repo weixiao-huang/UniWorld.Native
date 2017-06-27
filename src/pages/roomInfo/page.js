@@ -16,49 +16,26 @@ import LableBox from './components/LabelBox'
 import Options from './components/Options'
 import ButtonArea from './components/ButtonArea'
 
+import {
+  JOIN_ROOM,
+  LEAVE_ROOM,
+  FOLLOW_USER,
+  UNFOLLOW_USER,
+  MARK_ROOM,
+  UNMARK_ROOM,
+} from './types'
+
 export default class RoomInfo extends Component {
-  constructor(props) {
-    super(props)
-    const { myInfo } = this.props
-    this.state = {
-      joined: false,
-      marked: false,
-    }
-  }
 
-  join = () => {
-    if (!this.state.joined) {
-      console.log('join')
-      this.setState({
-        joined: true,
-      })
-    } else {
-      console.log('room')
-    }
-  }
+  follow = () => this.props.dispatch({ type: FOLLOW_USER })
 
-  leave = () => {
-    if (this.state.joined) {
-      console.log('leave')
-      this.setState({
-        joined: false,
-      })
-    } else if (this.state.marked) {
-      console.log('unmark')
-      this.setState({
-        marked: false,
-      })
-    } else {
-      console.log('mark')
-      this.setState({
-        marked: true,
-      })
-    }
-  }
+  unfollow = () => this.props.dispatch({ type: UNFOLLOW_USER })
 
   render() {
     let options
-    const { roomInfo, myInfo } = this.props
+    const {
+      roomInfo, token, dispatch, navigateAction,
+    } = this.props
     if (roomInfo) {
       options = {
         location_string: {
@@ -111,15 +88,20 @@ export default class RoomInfo extends Component {
             <Host
               host={roomInfo.host}
               myId={this.props.myId}
+              follow={this.follow}
+              unfollow={this.unfollow}
             />
-            {myInfo && <EmptyView height="60px" />}
+            {token && <EmptyView height="60px" />}
           </MainView>}
         </MainScrollView>
-        {myInfo && <ButtonArea
-          join={this.join}
-          leave={this.leave}
-          joined={this.state.joined}
-          marked={this.state.marked}
+        {token && <ButtonArea
+          join={() => dispatch({ type: JOIN_ROOM })}
+          leave={() => dispatch({ type: LEAVE_ROOM })}
+          room={() => navigateAction(roomInfo.id)}
+          mark={() => dispatch({ type: MARK_ROOM })}
+          unmark={() => dispatch({ type: UNMARK_ROOM })}
+          joined={this.props.isJoined}
+          marked={this.props.isMarked}
         />}
       </ContentView>
     )
