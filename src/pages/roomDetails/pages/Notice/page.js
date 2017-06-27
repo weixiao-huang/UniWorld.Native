@@ -43,7 +43,6 @@ export default class Notice extends Component {
           <NoticeModal cancel={this.cancel} /> :
           (isHost && <ButtonArea rightFunc={this.show} />)
         }
-        <ButtonArea rightFunc={this.show} />
       </MainView>
     )
   }

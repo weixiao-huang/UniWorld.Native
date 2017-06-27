@@ -8,6 +8,8 @@ import {
 } from './style'
 
 import Notice from './pages/Notice'
+import Chat from './pages/Chat'
+import Member from './pages/Member'
 
 const styles = StyleSheet.create({
   tabBarUnderline: {
@@ -29,12 +31,18 @@ export default class RoomDetails extends Component {
         tabBarBackgroundColor="#ec5367"
         tabBarTextStyle={styles.tabBarText}
       >
-        {roomDetails ?
-          <Notice
-            tabLabel={I18n.t('Room.Notice.notice')}
-            questionnaires={roomDetails.questionnaires}
-            isHost={myId === hostId}
-          /> : <MainView />}
+        {roomDetails ? <Notice
+          tabLabel={I18n.t('Room.Notice.notice')}
+          questionnaires={roomDetails.questionnaires}
+          isHost={myId === hostId}
+        /> : <MainView />}
+        <Chat
+          tabLabel={I18n.t('Room.Chat.title')}
+          isHost={myId === hostId}
+        />
+        <Member
+          tabLabel={I18n.t('Room.Member.title')}
+        />
       </MainScrollTabView>
     )
   }
