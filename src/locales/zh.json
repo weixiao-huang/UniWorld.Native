@@ -256,14 +256,14 @@
       "gender":"性别",
       "male":"男",
       "female":"女",
-      "lsbt":"lsbt",
+      "lgbt":"神秘",
       "birthday":"生日",
       "department":"院系",
       "grade":"年级",
       "signature":"个性签名",
       "continue":"我已阅读并同意用户协议",
       "agreement":"用户协议",
-      "back":"返回",
+      "back":"同意并返回",
       "nextButton":"接收用户协议"
     }
   },
