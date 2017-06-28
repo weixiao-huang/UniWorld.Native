@@ -3,6 +3,7 @@ import {
   CLIENT_UNSET,
   SET_INITIAL_LABELS,
   SET_ALERT,
+  INITIAL_WEBSOCKET,
 } from './types'
 
 const initialState = {
@@ -10,6 +11,8 @@ const initialState = {
   token: null,
   initialLabels: null,
   alert: false,
+  messages: {},
+  wx: null,
 }
 
 const reducer = function clientReducer(state = initialState, action) {

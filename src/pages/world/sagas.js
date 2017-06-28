@@ -6,7 +6,9 @@ import api from '@/api'
 import { handleApiErrors } from '@/lib/api-errors'
 
 import {
+  SET_WORLD_REFRESHING,
   SET_WORLD_DATA,
+  FETCH_WORLD,
 } from './types'
 
 function fetchApi(token) {
@@ -26,13 +28,12 @@ function fetchApi(token) {
 const index = 0
 
 export default function* worldWatch() {
-  yield take('persist/REHYDRATE')
+  let action = yield take('persist/REHYDRATE')
   while (true) {
     const state = yield select()
     if (state.nav.routes[0].routeName === 'homeTab' &&
         state.nav.routes[0].index === index
     ) {
-      // TODO: fetch data and add them into reducer
       if (state.auth.alert) yield put(SetAlert(false))
       const {
         world: { world, recommend, latest, posters },
@@ -40,13 +41,19 @@ export default function* worldWatch() {
       } = state
       let condition = !world || !posters || !latest
       if (token) condition = condition || !recommend
-      if (condition) {
+      // TODO: fetch data and add them into reducer
+      if (condition || action.type === FETCH_WORLD) {
         try {
+          yield put({
+            type: SET_WORLD_REFRESHING,
+            refreshing: true,
+          })
           const data = yield call(fetchApi, token)
           const worldData = {
             latest: data[0],
             world: data[1],
             posters: data[2],
+            refreshing: false,
           }
           if (token) worldData.recommend = data[3]
           yield put({
@@ -59,6 +66,6 @@ export default function* worldWatch() {
         }
       }
     }
-    yield take('*')
+    action = yield take('*')
   }
 }

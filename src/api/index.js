@@ -1,4 +1,5 @@
-export const server = 'https://api.theuniworld.net'
+export const addr = 'api.theuniworld.net'
+export const server = `https://${addr}`
 
 const getByToken = url => token => fetch(`${server}${url}`, {
   method: 'GET',
@@ -37,7 +38,10 @@ const postWithoutToken = url => data => fetch(`${server}${url}`, {
   body: JSON.stringify(data),
 })
 
+const wsByToken = url => token => new WebSocket(`${url}?token=${token}`)
+
 export default {
+  initialWebSocket: token => wsByToken(`wxx://${addr}`)(token),
   fetchDataFromUrl: url => token => (token ? fetch(url, {
     method: 'GET',
     headers: { Authorization: `token ${token}` },

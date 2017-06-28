@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Page from './page'
 
 const mapStateToProps = state => ({
-
+  messages: state.auth.messages[state.roomInfo.roomInfo.id],
 })
 
 const mapDispatchToProps = dispatch => ({

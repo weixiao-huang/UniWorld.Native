@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { FetchWorld } from './actions'
 
 import Page from './page'
 
@@ -12,6 +14,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatch,
+  fetchWorld: bindActionCreators(FetchWorld, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(props => (

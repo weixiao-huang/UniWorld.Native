@@ -6,6 +6,8 @@ import { handleApiErrors } from '@/lib/api-errors'
 
 import {
   SET_MY_ROOM_LIST,
+  FETCH_MY_ROOM_LIST,
+  SET_MY_ROOM_LIST_REFRESHING,
 } from './types'
 
 function fetchApi(token) {
@@ -17,26 +19,35 @@ function fetchApi(token) {
 const index = 2
 
 export default function* () {
-  yield take('persist/REHYDRATE')
+  let action = yield take('persist/REHYDRATE')
   while (true) {
     const state = yield select()
     if (state.nav.routes[0].routeName === 'homeTab' &&
         state.nav.routes[0].index === index &&
-        !state.myRoomList.roomList
+        (!state.myRoomList.roomList ||
+         action.type === FETCH_MY_ROOM_LIST)
     ) {
       // TODO: fetch data and add them into reducer
       try {
         const token = state.auth.token
-        const data = yield call(fetchApi, token)
+        yield put({
+          type: SET_MY_ROOM_LIST_REFRESHING,
+          refreshing: true,
+        })
+        const roomList = yield call(fetchApi, token)
         yield put({
           type: SET_MY_ROOM_LIST,
-          roomList: data,
+          roomList,
+        })
+        yield put({
+          type: SET_MY_ROOM_LIST_REFRESHING,
+          refreshing: false,
         })
       } catch (error) {
         // Error handle
         console.log('fetch my room list error: ', error)
       }
     }
-    yield take('*')
+    action = yield take('*')
   }
 }
