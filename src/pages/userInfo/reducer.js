@@ -1,11 +1,12 @@
-import * as types from '@/types'
 import {
   SET_USER_INFO,
   CLEAR_USER_INFO,
+  SET_FOLLOWED,
 } from './types'
 
 const initialState = {
   userInfo: null,
+  isFollowed: false,
 }
 
 export default (state = initialState, action) => {
@@ -14,6 +15,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         userInfo: action.userInfo,
+      }
+    case SET_FOLLOWED:
+      return {
+        ...state,
+        isFollowed: action.isFollowed,
       }
     case CLEAR_USER_INFO:
       return initialState

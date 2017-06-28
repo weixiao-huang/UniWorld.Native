@@ -21,22 +21,13 @@ const styles = StyleSheet.create({
 })
 
 export default class UserInfo extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isFollowed: false,
-    }
-  }
 
   follow = () => {}
 
   unfollow = () => {}
 
   render() {
-    // const { name, signature, thumb_ups, thumb_downs, followers, follows } = this.props.user
-    // const { avatar_thumbnail, gender, avatar } = this.props.user
-    const { isFollowed } = this.state
-    const { userInfo } = this.props
+    const { userInfo, isFollowed } = this.props
     return (
       <MainView>
         {userInfo && <UserCover userInfo={userInfo} />}
@@ -46,8 +37,12 @@ export default class UserInfo extends Component {
         <ButtonView>
           <StyledButton
             textStyle={styles.text}
-            title={isFollowed ? `= ${I18n.t('User.followed')}` : `+ ${I18n.t('User.follow')}`}
-            onPress={isFollowed ? this.unfollow : this.follow}
+            title={isFollowed ?
+              `= ${I18n.t('User.followed')}` :
+              `+ ${I18n.t('User.follow')}`}
+            onPress={isFollowed ?
+              this.unfollow :
+              this.follow}
           />
         </ButtonView>
       </MainView>
