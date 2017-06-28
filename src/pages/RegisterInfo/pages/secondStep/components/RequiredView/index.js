@@ -1,8 +1,6 @@
 import React from 'react'
 import I18n from '@/locales'
 import Picker from 'react-native-picker'
-import InputItem from '@/components/InputItem'
-import DateTimePicker from './DateTimePicker'
 
 import {
   MainView,
@@ -15,7 +13,7 @@ import {
 } from './style'
 
 const RequiredView = ({
-  setData, nickname, gender, department, year, signature
+  setData, nickname, gender, department, year, signature,
 }) => {
   const showPicker = () => {
     Picker.init({

@@ -7,7 +7,7 @@ import UserInfo from '../pages/userInfo'
 import HomeTab from './components/home'
 import Register from '../pages/register'
 import FindPassword from '../pages/findPassword'
-import RegisterInfo from '../pages/RegisterInfo'
+import RegisterInfo from '../pages/registerInfo'
 
 const commonSettings = {
   headerStyle: {
@@ -25,7 +25,7 @@ const commonSettings = {
 
 const AppRouteConfigs = {
   login: {
-    screen: RegisterInfo,
+    screen: Login,
     navigationOptions: {
       title: 'Login',
       header: null,
@@ -64,14 +64,14 @@ const AppRouteConfigs = {
     screen: Register,
     navigationOptions: {
       title: 'Register',
-      ...commonSettings,
+      header: null,
     },
   },
   findPassword: {
     screen: FindPassword,
     navigationOptions: {
       title: 'FindPassword',
-      ...commonSettings,
+      header: null,
     },
   },
 }
