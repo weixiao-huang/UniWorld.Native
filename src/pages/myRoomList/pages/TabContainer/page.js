@@ -36,21 +36,18 @@ export default class TabContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      refreshing: false,
       isFetching: false,
       history: [],
       next: `${server}/profile/${this.props.name}_history/`,
     }
   }
 
-  onRefresh = async () => {
+  onRefresh = () => {
     this.setState({
-      refreshing: true,
       history: [],
       next: `${server}/profile/${this.props.name}_history/`,
     })
-    // await this.props.dispatch(FetchRoomList)
-    this.setState({ refreshing: false })
+    this.props.fetchAction()
   }
 
   showHistory = async () => {
@@ -72,27 +69,28 @@ export default class TabContainer extends Component {
   }
 
   render() {
-    const { roomList } = this.props
+    const { roomList, refreshing } = this.props
     return (
-      <MainScrollView refreshControl={
-        <RefreshControl
-          refreshing={this.state.refreshing}
-          onRefresh={this.onRefresh}
-        />
-      }>
-        {!!roomList &&
-         ((roomList.length > 0 ||
-          this.state.history.length > 0) ?
-            <RoomWrap
-              title={this.props.title}
-              roomList={roomList}
-              Chat="1"
-            /> :
-            <EmptyImageView>
-              <EmptyImage source={emptyImg} />
-            </EmptyImageView>)
+      <MainScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={this.onRefresh}
+          />
         }
-        {!!this.state.history &&
+      >
+        {roomList && (
+          (roomList.length > 0 ||
+           this.state.history.length > 0) ?
+             <RoomWrap
+               title={this.props.title}
+               roomList={roomList}
+               Chat="1"
+             /> :
+             <EmptyImageView>
+               <EmptyImage source={emptyImg} />
+             </EmptyImageView>)}
+        {this.state.history &&
          this.state.history.length > 0 &&
          <RoomWrap
            roomList={this.state.history}
@@ -104,7 +102,7 @@ export default class TabContainer extends Component {
             style={{ height: 40 }}
             animating={this.state.isFetching}
           /> :
-          (!!this.state.next &&
+          (this.state.next &&
             <TouchableOpacity>
               <HistoryText onPress={this.showHistory}>
                 history

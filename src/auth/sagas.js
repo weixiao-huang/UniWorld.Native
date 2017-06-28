@@ -21,11 +21,11 @@ export default function* () {
       userInfo: { userInfo },
     } = state
     if (token && userInfo) {
-      const ws = api.initialWebSocket(token)
-      const pmid = userInfo.prev_message_id
-      ws.onopen = () => checkMailboxApi(pmid, token)
-      ws.onmessage = message => {
-      }
+      // const ws = api.initialWebSocket(token)
+      // const pmid = userInfo.prev_message_id
+      // ws.onopen = () => checkMailboxApi(pmid, token)
+      // ws.onmessage = message => {
+      // }
     }
   }
 }

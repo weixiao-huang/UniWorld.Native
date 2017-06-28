@@ -5,6 +5,7 @@ import InvertibleScrollView from 'react-native-invertible-scroll-view'
 import logoBlue from '@/img/icon/logoBlue.png'
 
 import ChatItem from './components/ChatItem'
+import ChatMenu from './components/ChatMenu'
 
 import {
   MainView,
@@ -12,12 +13,14 @@ import {
   FooterView,
   FooterIconImage,
   FooterInput,
+  FooterPlusButton,
 } from './style'
 
 export default class Chat extends Component {
   constructor(props) {
     super(props)
-    const { messages } = this.props
+    // const { messages } = this.props
+    const messages = []
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     })
@@ -33,6 +36,8 @@ export default class Chat extends Component {
   }
 
   sendMessage = () => {}
+
+  sendImg = () => {}
 
   render() {
     let listView = ListView
@@ -73,7 +78,14 @@ export default class Chat extends Component {
               blurOnSubmit={false}
               autoFocus
             />
+            <FooterPlusButton
+              title={this.state.showMenu ? '-' : '+'}
+              onPress={() => this.setState({ showMenu: !this.state.showMenu })}
+            />
           </FooterView>
+          {this.state.showMenu && <ChatMenu
+            sendImg={this.sendImg}
+          />}
         </KeyboardAvoidingView>
       </MainView>
     )
