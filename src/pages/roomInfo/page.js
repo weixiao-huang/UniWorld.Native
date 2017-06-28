@@ -19,22 +19,16 @@ import ButtonArea from './components/ButtonArea'
 import {
   JOIN_ROOM,
   LEAVE_ROOM,
-  FOLLOW_USER,
-  UNFOLLOW_USER,
   MARK_ROOM,
   UNMARK_ROOM,
 } from './types'
 
 export default class RoomInfo extends Component {
-
-  follow = () => this.props.dispatch({ type: FOLLOW_USER })
-
-  unfollow = () => this.props.dispatch({ type: UNFOLLOW_USER })
-
   render() {
     let options
     const {
-      roomInfo, token, dispatch, navigateAction,
+      roomInfo, token, dispatch, myId, hostFollowed,
+      navigateAction, followAction, unfollowAction,
     } = this.props
     if (roomInfo) {
       options = {
@@ -87,9 +81,10 @@ export default class RoomInfo extends Component {
             <EmptyView />
             <Host
               host={roomInfo.host}
-              myId={this.props.myId}
-              follow={this.follow}
-              unfollow={this.unfollow}
+              myId={myId}
+              hostFollowed={hostFollowed}
+              follow={() => followAction(roomInfo.host.id)}
+              unfollow={() => unfollowAction(roomInfo.host.id)}
             />
             {token && <EmptyView height="60px" />}
           </MainView>}

@@ -25,6 +25,7 @@ const setTabItem = (screen, label, icon) => ({
       />
     ),
   },
+  tabBarPosition: 'bottom',
 })
 
 const worldIcon = require('../img/world.png')

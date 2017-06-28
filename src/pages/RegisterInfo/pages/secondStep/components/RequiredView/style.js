@@ -38,7 +38,6 @@ export const GenderTouch = styled.TouchableOpacity`
 export const YearTouch = styled.TouchableOpacity`
   background-color: transparent;
   flex: 1;
-  font-size: 16px;
 `
 
 

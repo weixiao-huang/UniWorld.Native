@@ -19,7 +19,9 @@ const styles = StyleSheet.create({
   },
 })
 
-const Host = ({ host, myId, follow, unfollow, isFollowed }) => (
+const Host = ({
+  host, myId, follow, unfollow, hostFollowed,
+}) => (
   <MainView>
     <InfoView>
       <Avatar id={host.id} avatar={host.avatar} />
@@ -28,10 +30,10 @@ const Host = ({ host, myId, follow, unfollow, isFollowed }) => (
         <SignText>{host.signature}</SignText>
       </NameView>
     </InfoView>
-    {host.id !== myId && <FollowButton
+    {myId && host.id !== myId && <FollowButton
       textStyle={styles.text}
-      title={isFollowed ? I18n.t('Room.unfollow') : I18n.t('Room.follow')}
-      onPress={isFollowed ? unfollow : follow}
+      title={hostFollowed ? I18n.t('Room.unfollow') : I18n.t('Room.follow')}
+      onPress={hostFollowed ? unfollow : follow}
     />}
   </MainView>
 )
