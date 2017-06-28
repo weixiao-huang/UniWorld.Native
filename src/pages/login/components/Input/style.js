@@ -11,6 +11,9 @@ export const MainView = styled.View`
 `
 
 export const MainInput = styled.TextInput`
+  height: 30px;
+  top: 5px;
+  padding-top: 5px;
   flex: 1;
   padding-left: 10px;
 `
