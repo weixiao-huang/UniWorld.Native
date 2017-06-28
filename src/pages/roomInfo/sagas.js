@@ -33,7 +33,7 @@ export default function* () {
     const token = state.auth.token
     const myInfo = state.me.userInfo
     let roomInfo = state.roomInfo.roomInfo
-    const roomId = roomInfo ? roomInfo.id : action.id
+    const roomId = action.id || roomInfo.id
     switch (action.type) {
       case navTypes.NAVIGATE_TO_ROOM_INFO:
         yield put({ type: CLEAR_ROOM_INFO })

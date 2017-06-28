@@ -164,7 +164,8 @@
     },
     "Search": {
       "label": "Search",
-      "button": "Search"
+      "button": "Search",
+      "searchByName":"Search By Name"
     }
   },
   "NewRoom": {

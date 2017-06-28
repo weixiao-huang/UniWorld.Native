@@ -165,7 +165,9 @@
     },
     "Search": {
       "label": "搜索",
-      "button": "搜索"
+      "button": "搜索",
+      "searchByName":"名称搜索"
+
     }
   },
   "NewRoom": {

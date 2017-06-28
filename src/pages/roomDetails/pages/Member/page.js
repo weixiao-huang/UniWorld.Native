@@ -5,11 +5,13 @@ import {
   MainText,
 } from './style'
 
+import AvatarBox from './components/AvatarBox'
+
 export default class Member extends Component {
   render() {
     return (
       <MainView>
-        <MainText>Member</MainText>
+        <AvatarBox participants={this.props.participants} />
       </MainView>
     )
   }

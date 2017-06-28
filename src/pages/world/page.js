@@ -4,7 +4,7 @@ import { NavigationActions } from 'react-navigation'
 import Reactotron from 'reactotron-react-native'
 import EmptyHeader from '@/components/EmptyHeader'
 import Square from './components/Square'
-
+import Search from "./components/Search"
 
 import {
   MainView,
@@ -46,6 +46,7 @@ export default class World extends Component {
             recommend={this.props.recommend}
             posters={this.props.posters}
           />
+          <Search tabLabel="Search" />
         </StyledScrollTabView>
       </MainView>
     )
