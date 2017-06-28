@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { StyleSheet } from 'react-native'
+import I18n from '@/locales'
 
 import EmptyHeader from '@/components/EmptyHeader'
 
 import {
   MainView,
-  TabView,
   StyledScrollTabView,
 } from './style'
 
@@ -27,7 +27,7 @@ export default class MyRoomList extends Component {
     return (
       <MainView>
         <EmptyHeader />
-        {!!roomList && <StyledScrollTabView
+        <StyledScrollTabView
           tabBarBackgroundColor="#ec5367"
           tabBarTextStyle={styles.tabBarText}
           tabBarUnderlineStyle={styles.tabBarUnderline}
@@ -35,20 +35,20 @@ export default class MyRoomList extends Component {
         >
           <TabContainer
             name="marked"
-            tabLabel="Star"
-            roomList={roomList.marked}
+            tabLabel={I18n.t('RoomList.Star.label')}
+            roomList={roomList && roomList.marked}
           />
           <TabContainer
             name="joined"
-            tabLabel="JoinIn"
-            roomList={roomList.joined}
+            tabLabel={I18n.t('RoomList.JoinIn.label')}
+            roomList={roomList && roomList.joined}
           />
           <TabContainer
             name="hosted"
-            tabLabel="Mine"
-            roomList={roomList.hosted}
+            tabLabel={I18n.t('RoomList.Mine.label')}
+            roomList={roomList && roomList.hosted}
           />
-        </StyledScrollTabView>}
+        </StyledScrollTabView>
       </MainView>
     )
   }

@@ -31,7 +31,7 @@
     "password": "密码",
     "login": "登录",
     "visitor": "游客登录",
-    "Register": "注册",
+    "register": "注册",
     "fillInfo":"请输入正确的手机号以及密码",
     "wrong":"请检查你的手机号以及密码"
   },
@@ -41,7 +41,7 @@
     "password": "密码",
     "login": "登录",
     "visitor": "游客登录",
-    "Register": "注册",
+    "register": "注册",
     "email":"邮箱",
     "findPassword":"找回密码",
     "passwordAgain":"请再次输入你的密码",

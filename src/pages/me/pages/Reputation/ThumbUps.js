@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components/native'
+import I18n from '@/locales'
 
 const MainView = styled.View`
   flex-direction: row;
@@ -36,7 +37,7 @@ const MainTitleText = styled.Text`
 const ThumbUps = ({ thumbUps }) => (
   <MainView>
     <MainTitleView>
-      <MainTitleText>Likes</MainTitleText>
+      <MainTitleText>{I18n.t('Me.credit.likes')}</MainTitleText>
     </MainTitleView>
     <MainThumbUpsView>
       <MainThumbUpsText>{thumbUps}</MainThumbUpsText>

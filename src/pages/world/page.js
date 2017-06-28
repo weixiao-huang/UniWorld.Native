@@ -1,10 +1,9 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, StatusBar } from 'react-native'
-import { NavigationActions } from 'react-navigation'
-import Reactotron from 'reactotron-react-native'
+import I18n from '@/locales'
 import EmptyHeader from '@/components/EmptyHeader'
-import Square from './components/Square'
-import Search from './components/Search'
+import Square from './pages/Square'
+import Search from './pages/Search'
 
 import {
   MainView,
@@ -39,8 +38,8 @@ export default class World extends Component {
           tabBarTextStyle={styles.tabBarText}
           tabBarUnderlineStyle={styles.tabBarUnderline}
         >
-          <Square tabLabel="Square" />
-          <Search tabLabel="Search" />
+          <Square tabLabel={I18n.t('World.Square.label')} />
+          <Search tabLabel={I18n.t('World.Search.label')} />
         </StyledScrollTabView>
       </MainView>
     )

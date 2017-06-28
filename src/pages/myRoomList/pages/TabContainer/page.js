@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native'
+import I18n from '@/locales'
 
 import api, { server } from '@/api'
 // import I18n from 'react-native-i18n'
@@ -25,7 +26,6 @@ import {
 
 export default class TabContainer extends Component {
   static propTypes = {
-    roomList: PropTypes.array.isRequired,
     name: PropTypes.string.isRequired,
   }
 
@@ -105,7 +105,7 @@ export default class TabContainer extends Component {
           (this.state.next &&
             <TouchableOpacity>
               <HistoryText onPress={this.showHistory}>
-                history
+                {I18n.t('RoomList.history')}
               </HistoryText>
             </TouchableOpacity>)
         }

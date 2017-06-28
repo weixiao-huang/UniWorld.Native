@@ -266,7 +266,7 @@
     }
   },
   "RoomList": {
-    "label": "List",
+    "label": "My Rooms",
     "Star": {
       "label": "Star",
       "title": "Rooms you have marked"

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet } from 'react-native'
 import { TabNavigator } from 'react-navigation'
+import I18n from '@/locales'
 
 import World from '@/pages/world'
 import NewRoom from '@/pages/newRoom'
@@ -34,10 +35,10 @@ const listIcon = require('../img/myRoom.png')
 const meIcon = require('../img/me.png')
 
 const RouteConfigs = {
-  world: setTabItem(World, 'World', worldIcon),
-  new: setTabItem(NewRoom, 'New Room', newIcon),
-  list: setTabItem(MyRoomList, 'My Room List', listIcon),
-  me: setTabItem(Me, 'Me', meIcon),
+  world: setTabItem(World, I18n.t('World.label'), worldIcon),
+  new: setTabItem(NewRoom, I18n.t('NewRoom.label'), newIcon),
+  list: setTabItem(MyRoomList, I18n.t('RoomList.label'), listIcon),
+  me: setTabItem(Me, I18n.t('Me.label'), meIcon),
 }
 
 const TabNavigatorConfig = {
@@ -53,6 +54,7 @@ const TabNavigatorConfig = {
       fontSize: 12, // 文字大小
     },
   },
+  tabBarPosition: 'bottom',
 };
 
 export default TabNavigator(RouteConfigs, TabNavigatorConfig)

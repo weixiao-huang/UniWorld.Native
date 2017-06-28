@@ -121,7 +121,7 @@ export default class UserInfo extends Component {
             textStyle={styles.text}
           />}
           <StyledLogoutButton
-            title="Logout"
+            title={I18n.t('Me.info.logout')}
             onPress={this.logout}
             textStyle={styles.text}
           />

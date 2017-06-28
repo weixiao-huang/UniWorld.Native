@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { RefreshControl } from 'react-native'
-import RoomWrap from '@/components/RoomWrap'
 import styled from 'styled-components/native'
+import I18n from '@/locales'
+import RoomWrap from '@/components/RoomWrap'
 import WorldSwiper from './WorldSwiper'
+
 import {
   MainScrollView,
   ContentView,
@@ -45,7 +47,7 @@ export default class Square extends Component {
         {posters && <WorldSwiper posters={posters.tops} />}
         <ContentView>
           {recommend && recommend.length > 0 && <RoomWrap
-            title="TOP"
+            title={I18n.t('World.Square.top')}
             titleLabel="TOP"
             roomList={recommend}
           />}
@@ -56,7 +58,7 @@ export default class Square extends Component {
             }
           />}
           {latest && <RoomWrap
-            title="Latest"
+            title={I18n.t('World.Square.latest')}
             titleLabel="Now"
             roomList={latest.results}
           />}
@@ -67,7 +69,7 @@ export default class Square extends Component {
             }
           />}
           {world && <RoomWrap
-            title="World"
+            title={I18n.t('World.Square.world')}
             titleLabel="HOT"
             roomList={world.results}
           />}

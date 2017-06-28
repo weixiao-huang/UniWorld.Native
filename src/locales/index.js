@@ -5,8 +5,10 @@ import zh from './zh.json'
 I18n.fallbacks = true;
 
 I18n.translations = {
-  en,
   zh,
+  en,
 }
+
+I18n.locale = 'en'
 
 export default I18n

@@ -9,9 +9,9 @@ import {
 } from './style'
 
 import UserCover from './components/UserCover'
-import UserInfo from './components/UserInfo/'
-import Follow from './components/Follow/'
-import Reputation from './components/Reputation/'
+import UserInfo from './pages/UserInfo/'
+import Follow from './pages/Follow/'
+import Reputation from './pages/Reputation/'
 
 export default class Me extends Component {
   componentDidUpdate() {
@@ -43,15 +43,15 @@ export default class Me extends Component {
         {userInfo ?
           <StyledScrollTabView>
             <UserInfo
-              tabLabel={'Info'}
+              tabLabel={I18n.t('Me.info.label')}
               userInfo={userInfo}
             />
             <Follow
-              tabLabel={'Follow'}
+              tabLabel={I18n.t('Me.follow.label')}
               follows={userInfo.follows}
             />
             <Reputation
-              tabLabel={'Reputation'}
+              tabLabel={I18n.t('Me.credit.label')}
               thumbUps={userInfo.p_thumb_ups}
               thumbDowns={userInfo.p_thumb_downs}
             />

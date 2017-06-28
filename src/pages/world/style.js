@@ -15,5 +15,3 @@ export const MainText = styled.Text`
 export const StyledScrollTabView = styled(ScrollTabView)`
   flex: 2;
 `
-
-

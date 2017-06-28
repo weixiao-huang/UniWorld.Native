@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import I18n from '@/locales'
 
 import Avatar from '@/components/Avatar'
 
@@ -15,7 +16,7 @@ const length = 7
 
 const Follow = ({ follows }) => (
   <MainScrollView>
-    <MainTitleText>Follow</MainTitleText>
+    <MainTitleText>{I18n.t('Me.follow.title')}</MainTitleText>
     <MainContentView>
       {follows.map(item => (
         <AvatarWrapView key={item.id}>
