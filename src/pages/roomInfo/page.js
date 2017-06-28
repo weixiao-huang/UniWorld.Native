@@ -26,11 +26,6 @@ import {
 } from './types'
 
 export default class RoomInfo extends Component {
-
-  follow = () => this.props.dispatch({ type: FOLLOW_USER })
-
-  unfollow = () => this.props.dispatch({ type: UNFOLLOW_USER })
-
   render() {
     let options
     const {
@@ -88,8 +83,8 @@ export default class RoomInfo extends Component {
             <Host
               host={roomInfo.host}
               myId={this.props.myId}
-              follow={this.follow}
-              unfollow={this.unfollow}
+              follow={() => dispatch({ type: FOLLOW_USER })}
+              unfollow={() => dispatch({ type: UNFOLLOW_USER })}
             />
             {token && <EmptyView height="60px" />}
           </MainView>}
