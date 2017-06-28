@@ -57,6 +57,7 @@ function* loginFlow(username, password) {
     yield put({ type: meTypes.SET_MY_USER_INFO, userInfo })
     yield put({ type: authTypes.SET_INITIAL_LABELS, initialLabels })
     yield put({ type: LOGIN_SUCCESS })
+    const ws = api.initialWebSocket(token)
     yield put({ type: navTypes.RESET_TO_HOME })
   } catch (error) {
     yield put({ type: LOGIN_ERROR, error })

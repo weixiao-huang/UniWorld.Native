@@ -3806,6 +3806,13 @@ react-native-image-picker@^0.26.3:
   version "0.26.3"
   resolved "http://registry.npm.taobao.org/react-native-image-picker/download/react-native-image-picker-0.26.3.tgz#0ad2eede49501a7046d8046a73813696539c3dcd"
 
+react-native-invertible-scroll-view@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/react-native-invertible-scroll-view/download/react-native-invertible-scroll-view-1.0.0.tgz#60ceb384dc950c34eba3a5aeda39f97cdc7d4e23"
+  dependencies:
+    react-clone-referenced-element "^1.0.1"
+    react-native-scrollable-mixin "^1.0.1"
+
 react-native-picker@^4.0.19:
   version "4.0.19"
   resolved "http://registry.npm.taobao.org/react-native-picker/download/react-native-picker-4.0.19.tgz#2cbf2f69385985f6a960cf45096c944ac34ba333"
@@ -3813,6 +3820,10 @@ react-native-picker@^4.0.19:
 react-native-push-notification@^3.0.0:
   version "3.0.0"
   resolved "http://registry.npm.taobao.org/react-native-push-notification/download/react-native-push-notification-3.0.0.tgz#00282ea656443e89df6057f14b10500e7b89551f"
+
+react-native-scrollable-mixin@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/react-native-scrollable-mixin/download/react-native-scrollable-mixin-1.0.1.tgz#34a32167b64248594154fd0d6a8b03f22740548e"
 
 react-native-scrollable-tab-view@^0.6.7:
   version "0.6.7"

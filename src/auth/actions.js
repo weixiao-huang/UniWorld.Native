@@ -1,7 +1,10 @@
+import api from '@/api'
+
 import {
   CLIENT_SET,
   CLIENT_UNSET,
   SET_ALERT,
+  INITIAL_WEBSOCKET,
 } from './types'
 
 export function setClient(token) {
