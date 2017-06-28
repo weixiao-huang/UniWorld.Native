@@ -3,7 +3,7 @@
 
 import Reactotron from 'reactotron-react-native'
 
-export function handleApiErrors(response) {
+export const handleApiErrors = (response) => {
   if (!response.ok) {
     Reactotron.log(response.statusText)
     console.log('response', response)

@@ -6,7 +6,5 @@ export const CLEAR_ROOM_INFO = 'CLEAR_ROOM_INFO'
 
 export const JOIN_ROOM = 'JOIN_ROOM'
 export const LEAVE_ROOM = 'LEAVE_ROOM'
-export const FOLLOW_USER = 'FOLLOW_USER'
-export const UNFOLLOW_USER = 'UNFOLLOW_USER'
 export const MARK_ROOM = 'MARK_ROOM'
 export const UNMARK_ROOM = 'UNMARK_ROOM'

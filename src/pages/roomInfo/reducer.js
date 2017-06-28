@@ -11,6 +11,7 @@ const initialState = {
   roomInfo: null,
   isJoined: false,
   isMarked: false,
+  hostFollowed: false,
 }
 
 export default (state = initialState, action) => {

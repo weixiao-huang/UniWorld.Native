@@ -1,4 +1,5 @@
 import { all, fork } from 'redux-saga/effects'
+import AuthSaga from './auth/sagas'
 import LoginSage from './pages/login/sagas'
 import WorldSaga from './pages/world/sagas'
 import MyRoomListSaga from './pages/myRoomList/sagas'
@@ -9,6 +10,7 @@ import UserInfoSaga from './pages/userInfo/sagas'
 
 export default function* IndexSaga() {
   yield all([
+    fork(AuthSaga),
     fork(LoginSage),
     fork(WorldSaga),
     fork(MyRoomListSaga),

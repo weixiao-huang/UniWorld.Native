@@ -95,7 +95,6 @@ export default class UserInfo extends Component {
   }
 
   render() {
-    console.log('gender: ', this.state.gender)
     const { isEditing } = this.state
     return (
       <MainScrollView>
