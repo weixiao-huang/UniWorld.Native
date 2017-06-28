@@ -3,6 +3,7 @@ import Button from '@/components/Button'
 import InputItem from '@/components/InputItem'
 
 export const MainScrollView = styled.ScrollView`
+  background-color: #f2f0f4;
 `
 
 export const MainView = styled.View`

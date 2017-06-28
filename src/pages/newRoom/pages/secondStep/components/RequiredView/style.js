@@ -29,10 +29,12 @@ export const RequiredTitleText = styled.Text`
 export const StyledIntroInput = styled.TextInput`
   flex: 1;
   height: 150px;
+  font-size: 14px;
 `
 
 export const StyledLocationInput = styled.TextInput`
   flex: 1;
+  font-size: 14px;
 `
 
 export const MaxTouch = styled.TouchableOpacity`

@@ -22,6 +22,7 @@ import {
 } from './style'
 
 const length = 18
+const defaultCover = require('@/img/image/default_avatar.jpg')
 
 const RoomItem = ({
   src, title, place, dateTimeStart, dateTimeEnd, myFollows,
@@ -38,7 +39,7 @@ const RoomItem = ({
     <MainView>
       <RoomView>
         <RoomCoverView>
-          <RoomCoverImage source={{ uri: src }} />
+          {src ? <RoomCoverImage source={{ uri: src }} /> : <RoomCoverImage source={defaultCover} />}
         </RoomCoverView>
         <RoomContentView>
           <RoomContentTitleView>

@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import Page from './page'
 
 const mapStateToProps = state => ({
-
+  newRoom: state.newRoom,
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -8,10 +8,11 @@ import HomeTab from './components/home'
 import Register from '../pages/register'
 import FindPassword from '../pages/findPassword'
 import RegisterInfo from '../pages/RegisterInfo'
+import NewRoom from '../pages/newRoom'
 
 const AppRouteConfigs = {
   login: {
-    screen: RegisterInfo,
+    screen: Login,
     navigationOptions: {
       title: 'Login',
     },
