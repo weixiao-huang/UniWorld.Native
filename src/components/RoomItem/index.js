@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import participantIcon from '@/img/icon/participant.png'
 import { transferTimeFormat } from '@/utils'
+import I18n from '@/locales'
 
 import {
   MainView,
@@ -19,6 +20,9 @@ import {
   RoomContentPeopleText,
   RoomContentPeopleImage,
   RoomContentPeopleIconText,
+  FriendView,
+  FriendText,
+  FriendImage,
 } from './style'
 
 const length = 18
@@ -35,8 +39,30 @@ const RoomItem = ({
     showPeople = participantCount.concat('/..')
   }
   const showTime = transferTimeFormat([dateTimeStart, dateTimeEnd])
+  console.log(myFollows)
+  let roomFollows = []
+  if (myFollows) {
+    for (let user of myFollows) {
+      if (participantIds.indexOf(user.id) !== -1) {
+        roomFollows.push(user)
+      }
+    }
+  }
   return (
     <MainView>
+      {roomFollows.length > 0 ? <FriendView>
+        {roomFollows.slice(0, 3).map(item => (
+          <FriendImage key={item.id} source={{ uri: item.avatar }} />
+        ))}
+        <FriendText>
+          {I18n.t('Room.followText0')}
+          {roomFollows.length > 2 ?
+            roomFollows[0].name.slice(0, 5) :
+            roomFollows[0].name} {roomFollows.length > 1 ? '...'
+            : null}
+          {I18n.t('Room.followText1')}
+        </FriendText>
+      </FriendView> : null}
       <RoomView>
         <RoomCoverView>
           {src ? <RoomCoverImage source={{ uri: src }} /> : <RoomCoverImage source={defaultCover} />}
@@ -45,8 +71,8 @@ const RoomItem = ({
           <RoomContentTitleView>
             <RoomContentTitleText>{
               title.length > length ?
-              title.slice(0, length).concat('...') :
-              title
+                title.slice(0, length).concat('...') :
+                title
             }</RoomContentTitleText>
           </RoomContentTitleView>
           <RoomContentWrapView>

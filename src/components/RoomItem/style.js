@@ -8,6 +8,26 @@ const TextStyle = css`
 export const MainView = styled.View`
 `
 
+export const FriendView = styled.View`
+  flex: 1;
+  flex-direction: row;
+  marginLeft: 14px;
+  marginTop: 10px;
+  marginBottom: -6px;
+  alignItems: center;
+`
+
+export const FriendText = styled.Text`
+  paddingLeft: 10px;
+  color: #ccc;
+`
+export const FriendImage = styled.Image`
+  width: 24px;
+  height: 24px;
+  borderRadius: 12px;
+  margin: 2px;
+`
+
 export const RoomView = styled.View`
   border-bottom-color: #eee;
   border-bottom-width: 1px;

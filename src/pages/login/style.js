@@ -16,7 +16,6 @@ export const MainView = styled.View`
 `
 
 export const MainText = styled.Text`
-
 `
 
 export const BackgroundView = styled.View`

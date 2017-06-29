@@ -22,12 +22,17 @@ const styles = StyleSheet.create({
 
 export default class UserInfo extends Component {
 
-  follow = () => {}
+  follow = () => {
+    this.props.followAction(this.props.userInfo.id)
+  }
 
-  unfollow = () => {}
+  unfollow = () => {
+    this.props.unfollowAction(this.props.userInfo.id)
+  }
 
   render() {
     const { userInfo, isFollowed } = this.props
+    console.log(this.props)
     return (
       <MainView>
         {userInfo && <UserCover userInfo={userInfo} />}

@@ -22,13 +22,14 @@ export const MainText = styled.Text`
 export const BackgroundView = styled.View`
   ${FlexView}
   ${FlexCenter}
-  margin: 10px 40px;
+  margin: 20px 40px;
 `
 
 export const LogoImage = styled.Image`
+  marginTop: 20px;
   width: 130px;
   height: 130px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 `
 
 export const StyledButton = styled(Button)`

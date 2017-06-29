@@ -81,6 +81,8 @@
     "unfollow": "取消关注",
     "share": "分享这个房间并邀请朋友加入",
     "website": "请登录网站获取更多信息",
+    "followText0": "你关注的 ",
+    "followText1": " 加入了房间",
     "Info": {
       "title": "信息",
       "label": "标签",
