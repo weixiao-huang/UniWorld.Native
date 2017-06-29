@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native'
+import Toast from 'react-native-easy-toast'
 import Button from '@/components/Button'
 
 const FlexView = css`
@@ -31,4 +32,7 @@ export const LogoImage = styled.Image`
 
 export const StyledButton = styled(Button)`
   margin-top: 10px;
+`
+
+export const StyledToast = styled(Toast)`
 `

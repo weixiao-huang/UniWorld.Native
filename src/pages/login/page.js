@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import { StatusBar, KeyboardAvoidingView, Alert } from 'react-native'
+import { StatusBar, KeyboardAvoidingView } from 'react-native'
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 import I18n from '@/locales'
 import BackgroundImage from '@/components/BackgroundImage'
@@ -10,6 +11,7 @@ import {
   BackgroundView,
   LogoImage,
   StyledButton,
+  StyledToast,
 } from './style'
 
 import Input from './components/Input'
@@ -27,8 +29,16 @@ export default class Login extends Component {
     this.state = {
       username: '',
       password: '',
+      toast: null,
     }
   }
+
+  componentDidMount() {
+    if (this.props.login.errors.length) {
+      this.toast.show('Username or password error')
+    }
+  }
+
   login = () => {
     const { loginAction } = this.props
     loginAction(this.state.username, this.state.password)
@@ -42,6 +52,7 @@ export default class Login extends Component {
   visitor = () => {
     this.props.resetToHomeAction()
   }
+
   render() {
     const {
       login: {
@@ -51,23 +62,6 @@ export default class Login extends Component {
         errors,
       },
     } = this.props
-
-    // if (errors.length) {
-    //   Alert.alert(
-    //     I18n.t('Alert.Login.title'),
-    //     I18n.t('Alert.Login.content'),
-    //     [
-    //       {
-    //         text: I18n.t('Alert.Login.confirm'),
-    //         onPress: () => {},
-    //       },
-    //       {
-    //         text: I18n.t('Alert.Login.cancel'),
-    //         onPress: () => {},
-    //       },
-    //     ],
-    //   )
-    // }
     return (
       <MainView>
         <StatusBar
@@ -80,6 +74,12 @@ export default class Login extends Component {
             behavior="position"
             keyboardVerticalOffset={-100}
           >
+            <Toast
+              style={{ backgroundColor: 'rgba(0.243, 0.220, 0.455, 0.4)' }}
+              fadeInDuration={750}
+              fadeOutDuration={1500}
+              ref={(e) => { this.toast = e }}
+            />
             <BackgroundView>
               <LogoImage source={logoUrl} />
               <Input
