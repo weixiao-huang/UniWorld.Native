@@ -35,6 +35,7 @@ export default function* () {
     const token = state.auth.token
     let roomInfo = state.roomInfo.roomInfo
     const roomId = action.id || roomInfo.id
+    let isJoined = false
     switch (action.type) {
       case navTypes.NAVIGATE_TO_ROOM_INFO:
         yield put({ type: CLEAR_ROOM_INFO })
@@ -44,6 +45,7 @@ export default function* () {
         break
       case JOIN_ROOM:
         yield call(baseApi, api.joinRoom, roomId, token)
+        isJoined = true
         break
       case authTypes.FOLLOW_USER:
       case authTypes.UNFOLLOW_USER:
@@ -66,11 +68,6 @@ export default function* () {
       myFollows.map((follow) => {
         if (hostId === follow.id) hostFollowed = true
         return follow
-      })
-      let isJoined = false
-      roomInfo.participants.map((item) => {
-        if (item.id === myId) isJoined = true
-        return item
       })
       yield put({
         type: SET_ROOM_INFO_DATA,

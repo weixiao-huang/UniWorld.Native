@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     height: 1.5,
   },
   tabBarText: {
-    paddingTop: 20,
     color: 'white',
   },
 })
