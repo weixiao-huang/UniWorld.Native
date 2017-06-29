@@ -4,7 +4,7 @@ import {
   MainView,
   MainScrollView,
 } from './style'
-
+import EmptyView from '@/components/EmptyView'
 import NoticeItem from './components/NoticeItem'
 import NoticeModal from './components/NoticeModal'
 import ButtonArea from './components/ButtonArea'
@@ -21,7 +21,6 @@ export default class Notice extends Component {
     this.setState({
       showModal: false,
     })
-    console.log(this.state.showModal)
   }
 
   show = () => {
@@ -38,9 +37,15 @@ export default class Notice extends Component {
           {this.props.questionnaires.map(item => (
             <NoticeItem key={item.id} item={item} />
           ))}
+          <EmptyView style={{ height: 80 }} />
         </MainScrollView>
         {this.state.showModal ?
-          <NoticeModal cancel={this.cancel} /> :
+          <NoticeModal
+            cancel={this.cancel}
+            token={this.props.token}
+            roomId={this.props.roomId}
+            action={this.props.SendAnnouncementAction}
+          /> :
           (isHost && <ButtonArea rightFunc={this.show} />)
         }
       </MainView>

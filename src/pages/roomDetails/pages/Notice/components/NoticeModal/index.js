@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import I18n from 'react-native-i18n'
-
+import { connect } from 'react-redux'
+import api from '@/api'
 import {
   MainModal,
   UpperView,
@@ -26,27 +27,34 @@ const fillW = require('@/img/icon/fillW.png')
 const trumP = require('@/img/icon/trumP.png')
 const trumW = require('@/img/icon/trumW.png')
 
+
+
 export default class NoticeModal extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      isAnnouncement: true,
+      is_announcement: true,
       title: '',
       description: '',
     }
   }
 
-  submit = () => {
-    //发布
+  submit = async () => {
+    if (this.state.title.length > 0 && this.state.description > 0) {
+      const res = await api.sendAnnouncement(this.state)(this.props.roomId)(this.props.token)
+      this.props.cancel()
+      this.props.action()
+    }
   }
 
   render() {
+    console.log(this.state.is_announcement)
     return (
       <MainModal transparent visible >
         <UpperView />
         <MenuView>
-          {this.state.isAnnouncement ?
+          {this.state.is_announcement ?
             <HearderView>
               <HeaderLeftView>
                 <HeaderImage source={NoticeIconUrl} />
@@ -87,24 +95,25 @@ export default class NoticeModal extends Component {
               style={{ height: 160, fontSize: 15 }}
             />
           </InputView>
-          {this.state.isAnnouncement ?
+          {!this.state.is_announcement ?
             <BtnWrapView>
-              <SelectButton onPress={() => this.setState({ isAnnouncement: false })}>
-                <SelectImage source={fillP} />
-              </SelectButton>
-              <SelectButton bgColor="#ec5367" onPress={() => this.setState({ isAnnouncement: true })}>
+              <SelectButton bgColor="#ec5367" onPress={() => this.setState({ is_announcement: true })}>
                 <SelectImage source={trumW} />
+              </SelectButton>
+              <SelectButton onPress={() => this.setState({ is_announcement: false })}>
+                <SelectImage source={fillP} />
               </SelectButton>
               <SelectButton bgColor="#fdae57" onPress={this.submit}>
                 <SelectText>{I18n.t('submit')}</SelectText>
               </SelectButton>
             </BtnWrapView> :
             <BtnWrapView>
-              <SelectButton bgColor="#ec5367" onPress={() => this.setState({ isAnnouncement: true })}>
-                <SelectImage source={fillW} />
-              </SelectButton>
-              <SelectButton onPress={() => this.setState({ isAnnouncement: false })}>
+
+              <SelectButton onPress={() => this.setState({ is_announcement: true })}>
                 <SelectImage source={trumP} />
+              </SelectButton>
+              <SelectButton bgColor="#ec5367" onPress={() => this.setState({ is_announcement: false })}>
+                <SelectImage source={fillW} />
               </SelectButton>
               <SelectButton bgColor="#fdae57" onPress={this.submit}>
                 <SelectText>{I18n.t('submit')}</SelectText>

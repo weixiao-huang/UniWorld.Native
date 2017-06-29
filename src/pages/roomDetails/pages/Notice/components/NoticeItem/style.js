@@ -2,11 +2,10 @@ import styled from 'styled-components/native'
 
 export const MainView = styled.View`
   background-color:white;
-  margin: 10px;
-  marginTop: 20px;
-  marginRight: 20px;
+  margin: 15px;
   alignItems: flex-start;
   flex-direction: row;
+  borderRadius: 6px;
 `
 
 export const TimeView = styled.View`

@@ -20,5 +20,6 @@ export const EmptyImage = styled.Image`
 export const HistoryText = styled.Text`
   text-align: center;
   color: #aaa;
-  padding: 1px;
+  padding: 5px;
+  font-size: 15px;
 `

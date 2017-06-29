@@ -1,7 +1,7 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import BackgroundImage from '@/components/BackgroundImage'
-
+import I18n from '@/locales'
 import maleIcon from '@/img/icon/male.png'
 import femaleIcon from '@/img/icon/female.png'
 
@@ -31,9 +31,9 @@ const UserCover = ({ userInfo }) => (
         </ContentLineView>
         <SignatureText>{userInfo.signature}</SignatureText>
         <FollowWrapText>
-          {userInfo.followers.length + userInfo.follows.length} friends
-          | {userInfo.joined_count} joined
-          | {userInfo.p_thumb_ups + userInfo.h_thumb_ups} thumb_ups
+          {userInfo.followers.length + userInfo.follows.length} {I18n.t('Me.cover.friends')}
+          | {userInfo.joined_count} {I18n.t('Me.cover.joined')}
+          | {userInfo.p_thumb_ups + userInfo.h_thumb_ups} {I18n.t('Me.cover.thumb_ups')}
         </FollowWrapText>
       </ContentView>
     </MainView>}

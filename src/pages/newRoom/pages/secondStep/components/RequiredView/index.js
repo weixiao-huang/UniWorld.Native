@@ -32,6 +32,7 @@ const RequiredView = ({
     Picker.show()
   }
 
+  console.log(des)
   return (
     <MainView>
       <RequiredTitleView>
@@ -48,6 +49,7 @@ const RequiredView = ({
           placeholder={I18n.t('NewRoom.input.second.intro.placeholder')}
           multiline
           defaultValue={des}
+          placeholderTextColor={'#bbbbbb'}
           onChangeText={e => setData('description', e)}
         />
       </InputItem>

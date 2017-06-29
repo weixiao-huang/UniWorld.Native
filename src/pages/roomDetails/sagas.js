@@ -9,6 +9,7 @@ import * as navTypes from '../../router/types'
 import {
   SET_ROOM_DETAILS,
   CLEAR_ROOM_DETAILS,
+  SEND_ANNOUNCEMENT,
 } from './types'
 
 function fetchApi(token, id) {
@@ -20,13 +21,21 @@ function fetchApi(token, id) {
 export default function* () {
   yield take('persist/REHYDRATE')
   while (true) {
-    const { id } = yield take(navTypes.NAVIGATE_TO_ROOM_DETAILS)
+    const action = yield take([
+      navTypes.NAVIGATE_TO_ROOM_DETAILS,
+      SEND_ANNOUNCEMENT,
+    ])
     const state = yield select()
     const token = state.auth.token
-    console.log('token: ', token)
-    console.log('id: ', id)
-    yield put({ type: CLEAR_ROOM_DETAILS })
-    const roomDetails = yield call(fetchApi, token, id)
-    yield put({ type: SET_ROOM_DETAILS, roomDetails })
+    const id = action.id || state.roomInfo.roomInfo.id
+    switch (action.type) {
+      case navTypes.NAVIGATE_TO_ROOM_DETAILS:
+      case SEND_ANNOUNCEMENT:
+        yield put({ type: CLEAR_ROOM_DETAILS })
+        const roomDetails = yield call(fetchApi, token, id)
+        yield put({ type: SET_ROOM_DETAILS, roomDetails })
+        break
+      default:
+    }
   }
 }
