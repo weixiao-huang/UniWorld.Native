@@ -3851,7 +3851,7 @@ react-native-scrollable-mixin@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/react-native-scrollable-mixin/download/react-native-scrollable-mixin-1.0.1.tgz#34a32167b64248594154fd0d6a8b03f22740548e"
 
-react-native-scrollable-tab-view@0.7.4:
+react-native-scrollable-tab-view@^0.7.4:
   version "0.7.4"
   resolved "http://registry.npm.taobao.org/react-native-scrollable-tab-view/download/react-native-scrollable-tab-view-0.7.4.tgz#623a047cbfab35a27b8689095af524e9aac74b62"
   dependencies:
