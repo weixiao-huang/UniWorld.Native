@@ -21,6 +21,12 @@ const styles = StyleSheet.create({
 })
 
 export default class UserInfo extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showModal: false,
+    }
+  }
 
   follow = () => {
     this.props.followAction(this.props.userInfo.id)
@@ -29,6 +35,7 @@ export default class UserInfo extends Component {
   unfollow = () => {
     this.props.unfollowAction(this.props.userInfo.id)
   }
+
 
   render() {
     const { userInfo, isFollowed } = this.props

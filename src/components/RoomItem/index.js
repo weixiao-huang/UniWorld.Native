@@ -49,7 +49,7 @@ const RoomItem = ({
   }
   return (
     <MainView>
-      {roomFollows.length > 0 ? <FriendView>
+      {/*{roomFollows.length > 0 ? <FriendView>
         {roomFollows.slice(0, 3).map(item => (
           <FriendImage key={item.id} source={{ uri: item.avatar }} />
         ))}
@@ -61,7 +61,7 @@ const RoomItem = ({
             : null}
           {I18n.t('Room.followText1')}
         </FriendText>
-      </FriendView> : null}
+      </FriendView> : null}*/}
       <RoomView>
         <RoomCoverView>
           {src ? <RoomCoverImage source={{ uri: src }} /> : <RoomCoverImage source={defaultCover} />}

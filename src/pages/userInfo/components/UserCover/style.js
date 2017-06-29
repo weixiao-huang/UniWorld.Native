@@ -18,6 +18,21 @@ export const MainView = styled.View`
 
 const avatarSize = 80
 
+export const CoverModal = styled.Modal`
+`
+export const CoverTouch = styled.TouchableWithoutFeedback`
+  flex: 1;
+  align-items: center;
+  justify-content:center;
+  background-color: black;
+`
+export const ModalImage = styled.Image`
+  resize-mode: contain;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+`
+
 export const CoverImage = styled.Image`
   width: ${avatarSize}px;
   height: ${avatarSize}px;

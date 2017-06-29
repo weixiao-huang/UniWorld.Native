@@ -47,6 +47,7 @@ export const ContentView = styled.View`
   paddingTop: 2px;
   margin: 5px;
   marginTop: 0;
+  width: 90%;
 `
 export const ContentText = styled.Text`
   lineHeight: 20px;

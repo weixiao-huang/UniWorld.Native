@@ -41,8 +41,9 @@ export default class NoticeModal extends Component {
   }
 
   submit = async () => {
-    if (this.state.title.length > 0 && this.state.description > 0) {
+    if (this.state.title.length > 0 && this.state.description.length > 0) {
       const res = await api.sendAnnouncement(this.state)(this.props.roomId)(this.props.token)
+      console.log(res)
       this.props.cancel()
       this.props.action()
     }
@@ -89,6 +90,7 @@ export default class NoticeModal extends Component {
               onChangeText={description => this.setState({ description })}
               multiline
               autoFocus
+              placeholderTextColor={'#bbbbbb'}
               blurOnSubmit={false}
               value={this.state.description}
               placeholder={I18n.t('Room.Notice.defaultText1')}
@@ -108,7 +110,6 @@ export default class NoticeModal extends Component {
               </SelectButton>
             </BtnWrapView> :
             <BtnWrapView>
-
               <SelectButton onPress={() => this.setState({ is_announcement: true })}>
                 <SelectImage source={trumP} />
               </SelectButton>
