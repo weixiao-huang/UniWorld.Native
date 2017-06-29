@@ -6,7 +6,8 @@ import UserInfo from '../pages/userInfo'
 import HomeTab from './pages/home'
 import Register from '../pages/register'
 import FindPassword from '../pages/findPassword'
-import RegisterInfo from '../pages/registerInfo'
+import NewRoom from '../pages/newRoom'
+import RegisterInfo from '../pages/RegisterInfo'
 
 const commonSettings = {
   headerStyle: {
