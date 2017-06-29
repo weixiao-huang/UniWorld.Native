@@ -4,8 +4,8 @@ import Reactotron from 'reactotron-react-native'
 import { handleApiErrors } from '@/lib/api-errors'
 
 import {
-  setClient,
-  unSetClient,
+  SetAlert,
+  SetAlertMessage,
 } from '@/auth/actions'
 
 import * as authTypes from '@/auth/types'
@@ -15,67 +15,48 @@ import * as types from '@/types'
 import api from '@/api'
 
 import {
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_ERROR,
-  LOGOUT_REQUEST,
-  LOGOUT_SUCCESS,
+  REGISTER_REQUEST,
 } from './types'
 
-function loginApi(username, password) {
-  return api.userLogin({ username, password })
+function registerByIdCard(data) {
+  return api.uploadIdCard(data)
     .then(handleApiErrors)
-    .then(response => response.json())
-    // .then(data => AsyncStorage.setItem('token', data.token))
 }
 
-function fetchInitialApi(token) {
-  return api.fetchInitialLabels(token)
+function registerByEmail(data) {
+  return api.Register(data)
     .then(handleApiErrors)
-    .then(res => res.json())
 }
 
-function* logout() {
-  yield put(unSetClient())
-  // AsyncStorage.removeItem('token')
-  yield put({ type: navTypes.RESET_TO_LOGIN })
-  yield put({ type: types.CLEAR_DATA })
-  yield put({ type: LOGOUT_SUCCESS })
-}
-
-function* loginFlow(username, password) {
-  let token
+function* registerApi(data) {
+  const uploadData = data
   try {
-    const data = yield call(loginApi, username, password)
-    token = data.token
-    yield put(setClient(token))
-    const initialLabels = yield call(fetchInitialApi, token)
-    yield put({ type: authTypes.SET_INITIAL_LABELS, initialLabels })
-    yield put({ type: LOGIN_SUCCESS })
-    yield put({ type: navTypes.RESET_TO_HOME })
-  } catch (error) {
-    yield put({ type: LOGIN_ERROR, error })
-  } finally {
-    if (yield cancelled()) {
-      yield put({ type: navTypes.RESET_TO_LOGIN })
+    if (data.emailAuth) {
+      yield call(registerByEmail, uploadData)
+    } else {
+      delete uploadData.email
+      yield call(registerByIdCard, uploadData)
     }
+    yield put(SetAlert(true))
+  } catch (error) {
+    // Error handle
+    console.log('register error: ', error.message)
   }
-  return token
 }
 
-export default function* loginWatch() {
+export default function* registerPageWatch() {
+  console.log(3)
   yield take('persist/REHYDRATE')
+  console.log(2)
   while (true) {
-    const state = yield select()
-    if (!state.auth.token) {
-      const { username, password } = yield take(LOGIN_REQUEST)
-      const task = yield fork(loginFlow, username, password)
-      const action = yield take([authTypes.CLIENT_UNSET, LOGIN_ERROR, LOGOUT_REQUEST])
-      if (action.type === authTypes.CLIENT_UNSET) yield cancel(task)
-      yield call(logout)
-    } else {
-      yield take([authTypes.CLIENT_UNSET, LOGIN_ERROR, LOGOUT_REQUEST])
-      yield call(logout)
+    try {
+      yield put(SetAlert(false))
+      const action = yield take(REGISTER_REQUEST)
+      yield call(registerApi, action.data)
+      console.log(1)
+    } catch (error) {
+      // Error handle
+      console.log('register error: ', error.message)
     }
   }
 }

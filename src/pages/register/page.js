@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { StatusBar } from 'react-native'
+import { StatusBar, Alert } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 
 import I18n from '@/locales'
@@ -36,11 +36,72 @@ export default class Login extends Component {
       passwordAgain: '',
       email: '',
       stuCard: '',
-      emailAuth: false,
+      emailAuth: true,
+    }
+  }
+  componentDidUpdate() {
+    const {
+      alert, messages, goBackAction,
+    } = this.props
+    if (alert) {
+      Alert.alert(
+        I18n.t('Register.succeedTitle'),
+        I18n.t('Register.succeedText'),
+        [
+          {
+            text: I18n.t('confirm'),
+            onPress: () => goBackAction(),
+          },
+        ],
+      )
     }
   }
   register = () => {
-
+    const email = this.state.email
+    if (this.state.username.length !== 11) {
+      Alert.alert(
+        I18n.t('tips'),
+        I18n.t('Register.failTextInfoTel'),
+        [
+          { text: 'OK', onPress: () => { } },
+        ],
+      )
+    } else if ((email.substr(email.search('edu.cn')) !== 'edu.cn') && this.state.emailAuth) {
+      Alert.alert(
+        I18n.t('tips'),
+        I18n.t('Register.failEmailEdu'),
+        [
+          { text: 'OK', onPress: () => { } },
+        ],
+      )
+    } else if (!this.state.stuCard && !this.state.emailAuth) {
+      Alert.alert(
+        I18n.t('tips'),
+        I18n.t('Register.failIdCard'),
+        [
+          { text: 'OK', onPress: () => { } },
+        ],
+      )
+    } else if (this.state.password.length > 20 || this.state.password.length < 6) {
+      Alert.alert(
+        I18n.t('tips'),
+        I18n.t('Register.failPassword2'),
+        [
+          { text: 'OK', onPress: () => { } },
+        ],
+      )
+    } else if (this.state.password !== this.state.passwordAgain) {
+      Alert.alert(
+        I18n.t('tips'),
+        I18n.t('Register.failPassword'),
+        [
+          { text: 'OK', onPress: () => { } },
+        ],
+      )
+    } else {
+      const { registerAction } = this.props
+      registerAction(this.state)
+    }
   }
 
   _emailAuth() {

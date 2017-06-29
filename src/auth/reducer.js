@@ -4,6 +4,7 @@ import {
   SET_INITIAL_LABELS,
   SET_ALERT,
   INITIAL_WEBSOCKET,
+  SET_ALERT_MESSAGE,
 } from './types'
 
 const initialState = {
@@ -36,6 +37,11 @@ const reducer = function clientReducer(state = initialState, action) {
       return {
         ...state,
         alert: action.alert,
+      }
+    case SET_ALERT_MESSAGE:
+      return {
+        ...state,
+        messages: action.messages,
       }
     default:
       return state

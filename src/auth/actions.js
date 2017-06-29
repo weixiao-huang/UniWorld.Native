@@ -5,6 +5,7 @@ import {
   SET_ALERT,
   UNFOLLOW_USER,
   FOLLOW_USER,
+  SET_ALERT_MESSAGE,
 } from './types'
 
 export function setClient(token) {
@@ -23,6 +24,11 @@ export function unSetClient() {
 export const SetAlert = alert => ({
   type: SET_ALERT,
   alert,
+})
+
+export const SetAlertMessage = messages => ({
+  type: SET_ALERT_MESSAGE,
+  messages,
 })
 
 export const FollowUser = id => ({

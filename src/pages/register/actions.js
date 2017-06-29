@@ -1,5 +1,6 @@
 import {
   LOGIN_REQUEST,
+  REGISTER_REQUEST,
 } from './types'
 
 
@@ -13,4 +14,9 @@ export const loginRequest = (username, password) => ({
   type: LOGIN_REQUEST,
   username,
   password,
+})
+
+export const registerRequest = (data) => ({
+  type: REGISTER_REQUEST,
+  data,
 })

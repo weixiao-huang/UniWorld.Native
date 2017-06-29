@@ -2,6 +2,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
+  REGISTER_REQUEST,
 } from './types'
 
 const initialState = {
@@ -36,6 +37,13 @@ export default (state = initialState, action) => {
         messages: [],
         requesting: false,
         successful: false,
+      }
+    case REGISTER_REQUEST:
+      return {
+        requesting: true,
+        successful: false,
+        messages: [{ body: 'Waiting...', time: new Date() }],
+        errors: [],
       }
     default:
       return state
