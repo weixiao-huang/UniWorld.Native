@@ -3,7 +3,6 @@ import { StatusBar, Alert } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 
 import I18n from '@/locales'
-import Button from '@/components/Button'
 import BackgroundImage from '@/components/BackgroundImage'
 import Loading from '@/components/Loading'
 
@@ -152,19 +151,7 @@ export default class Login extends Component {
     }
   }
 
-  _emailAuth() {
-    this.setState({
-      emailAuth: true,
-    })
-  }
-
-  _stuAuth() {
-    this.setState({
-      emailAuth: false,
-    })
-  }
-
-  _uploadImage() {
+  uploadImage = () => {
     const options = {
       title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
       cancelButtonTitle: 'Cancel',
@@ -225,8 +212,8 @@ export default class Login extends Component {
               icon={userIcon}
             />
             <AuthButton
-              emailAuth={this._emailAuth.bind(this)}
-              stuAuth={this._stuAuth.bind(this)}
+              emailAuth={() => this.setState({ emailAuth: true })}
+              stuAuth={() => this.setState({ emailAuth: false })}
             />
             {this.state.emailAuth ?
               <Input
@@ -235,7 +222,7 @@ export default class Login extends Component {
                 icon={emailIcon}
               /> :
               <UploadButton
-                onPress={this._uploadImage.bind(this)}
+                onPress={this.uploadImage}
                 title={I18n.t('Register.addImage')}
                 icon={stuIcon}
               />}
