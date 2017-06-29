@@ -42,10 +42,16 @@ export const ItemView = styled.View`
 `
 export const StyledItem = styled(InputItem)`
   justifyContent: space-between;
-  paddingRight: 20px;
+
 `
 export const RightText = styled.Text`
 `
+export const RightView = styled.View`
+  marginRight: 15px;
+  width: 70%;
+  align-items: flex-end;
+`
+
 export const WrapText = styled.Text`
   fontSize: 18px;
   paddingLeft: 10px;

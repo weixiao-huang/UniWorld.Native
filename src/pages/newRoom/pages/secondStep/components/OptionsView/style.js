@@ -37,4 +37,6 @@ export const StyledSwitch = styled.Switch`
 
 export const StyledInput = styled.TextInput`
   flex: 1;
+  font-size: 14px;
+
 `

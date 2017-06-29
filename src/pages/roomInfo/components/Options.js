@@ -17,6 +17,7 @@ const OptionView = styled.View`
 `
 const OptionText = styled.Text`
   font-size: 14px;
+  width: 90%;
 `
 
 const OptionIcon = styled(Icon)`

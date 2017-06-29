@@ -15,6 +15,7 @@ import {
   InfoBoxView,
   StyledItem,
   RightText,
+  RightView,
   RequiredTitleView,
   RequiredTitleImage,
   RequiredTitleText,
@@ -142,7 +143,9 @@ export default class ThirdStep extends Component {
                 key={item.title}
                 title={item.title}
               >
-                <RightText>{item.content}</RightText>
+                <RightView>
+                  <RightText>{item.content}</RightText>
+                </RightView>
               </StyledItem>
             ))}
           </InfoBoxView>

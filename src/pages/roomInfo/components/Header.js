@@ -17,6 +17,7 @@ const TitleView = styled.View`
   padding-top: 20px;
   padding-bottom:20px;
   flex-direction: row;
+  width: 90%;
 `
 const TitleText = styled.Text`
   fontSize: 24px;

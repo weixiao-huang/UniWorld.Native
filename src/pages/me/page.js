@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Alert } from 'react-native'
 import I18n from '@/locales'
 
+
 import {
   MainView,
   PlaceholderView,
