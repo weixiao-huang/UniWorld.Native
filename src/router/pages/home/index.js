@@ -29,10 +29,10 @@ const setTabItem = (screen, label, icon) => ({
   tabBarPosition: 'bottom',
 })
 
-const worldIcon = require('../img/world.png')
-const newIcon = require('../img/new.png')
-const listIcon = require('../img/myRoom.png')
-const meIcon = require('../img/me.png')
+const worldIcon = require('../../img/world.png')
+const newIcon = require('../../img/new.png')
+const listIcon = require('../../img/myRoom.png')
+const meIcon = require('../../img/me.png')
 
 const RouteConfigs = {
   world: setTabItem(World, I18n.t('World.label'), worldIcon),

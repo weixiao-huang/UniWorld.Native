@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react'
-import { StyleSheet } from 'react-native'
+import React, { Component } from 'react'
+import { StyleSheet, Alert } from 'react-native'
 import I18n from '@/locales'
 
 import EmptyHeader from '@/components/EmptyHeader'
@@ -22,12 +22,33 @@ const styles = StyleSheet.create({
 })
 
 export default class MyRoomList extends Component {
+  componentDidUpdate() {
+    const {
+      alert, resetToLoginAction, goBackAction,
+    } = this.props
+    if (alert) {
+      Alert.alert(
+        I18n.t('Alert.Login.title'),
+        I18n.t('Alert.Login.content'),
+        [
+          {
+            text: I18n.t('Alert.Login.confirm'),
+            onPress: () => resetToLoginAction(),
+          },
+          {
+            text: I18n.t('Alert.Login.cancel'),
+            onPress: () => goBackAction(),
+          },
+        ],
+      )
+    }
+  }
   render() {
-    const roomList = this.props.roomList
+    const { roomList, token } = this.props
     return (
       <MainView>
         <EmptyHeader />
-        <StyledScrollTabView
+        {token && <StyledScrollTabView
           tabBarBackgroundColor="#ec5367"
           tabBarTextStyle={styles.tabBarText}
           tabBarUnderlineStyle={styles.tabBarUnderline}
@@ -48,7 +69,7 @@ export default class MyRoomList extends Component {
             tabLabel={I18n.t('RoomList.Mine.label')}
             roomList={roomList && roomList.hosted}
           />
-        </StyledScrollTabView>
+        </StyledScrollTabView>}
       </MainView>
     )
   }

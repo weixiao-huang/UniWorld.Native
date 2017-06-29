@@ -31,6 +31,7 @@ export default function* worldWatch() {
   let action = yield take('persist/REHYDRATE')
   while (true) {
     const state = yield select()
+    console.log('state', state)
     if (state.nav.routes[0].routeName === 'homeTab' &&
         state.nav.routes[0].index === index
     ) {

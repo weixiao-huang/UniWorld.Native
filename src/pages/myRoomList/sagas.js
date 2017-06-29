@@ -1,4 +1,5 @@
 import { take, select, call, put } from 'redux-saga/effects'
+import { SetAlert } from '@/auth/actions'
 
 import api from '@/api'
 
@@ -45,7 +46,8 @@ export default function* () {
         })
       } catch (error) {
         // Error handle
-        console.log('fetch my room list error: ', error)
+        console.log('fetch my room list error: ', error.message)
+        if (error.message === '401') yield put(SetAlert(true))
       }
     }
     action = yield take('*')

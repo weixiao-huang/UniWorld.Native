@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, Alert } from 'react-native'
 import Picker from 'react-native-picker'
 import I18n from '@/locales'
 import { createInitialLabels } from '@/utils'
@@ -34,6 +34,28 @@ export default class FirstStep extends Component {
         'name_ch', this.props.initialLabels,
       ),
       disabled: false,
+    }
+  }
+
+  componentDidUpdate() {
+    const {
+      alert, resetToLoginAction, goBackAction,
+    } = this.props
+    if (alert) {
+      Alert.alert(
+        I18n.t('Alert.Login.title'),
+        I18n.t('Alert.Login.content'),
+        [
+          {
+            text: I18n.t('Alert.Login.confirm'),
+            onPress: () => resetToLoginAction(),
+          },
+          {
+            text: I18n.t('Alert.Login.cancel'),
+            onPress: () => goBackAction(),
+          },
+        ],
+      )
     }
   }
 
