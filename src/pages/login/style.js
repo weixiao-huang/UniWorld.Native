@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components/native'
-import styled2 from 'styled-components'
 import Button from '@/components/Button'
 
 const FlexView = css`
@@ -19,8 +18,8 @@ export const MainText = styled.Text`
 `
 
 export const BackgroundView = styled.View`
-  ${FlexView}
   ${FlexCenter}
+  height: 96%;
   margin: 10px 40px;
 `
 

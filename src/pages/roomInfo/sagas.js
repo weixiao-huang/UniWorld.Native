@@ -62,37 +62,39 @@ export default function* () {
         action.type !== authTypes.UNFOLLOW_USER) {
       roomInfo = yield call(fetchApi, roomId, token)
       yield put({ type: SET_ROOM_INFO, roomInfo })
-      const myInfo = state.me.userInfo
-      if (myInfo) {
-        const { id: myId, follows: myFollows } = myInfo
-        const isMarked = roomInfo.marked_users.indexOf(myId) >= 0
+    }
+    const myInfo = state.me.userInfo
+    if (myInfo) {
+      const { id: myId, follows: myFollows } = myInfo
+      const isMarked = roomInfo.marked_users.indexOf(myId) >= 0
+      const hostId = roomInfo.host.id
+      let participants = roomInfo.participants
 
-        const {
-          host: { id: hostId },
-          participants,
-        } = yield call(fetchParticipantsApi, roomId, token)
-        console.log(participants)
+      let hostFollowed = false
+      myFollows.map((follow) => {
+        if (hostId === follow.id) hostFollowed = true
+        return follow
+      })
 
-        let hostFollowed = false
-        myFollows.map((follow) => {
-          if (hostId === follow.id) hostFollowed = true
-          return follow
-        })
-        let isJoined = false
-        participants.map((item) => {
-          if (item.id === myId) isJoined = true
-          return item
-        })
-
-        yield put({
-          type: SET_ROOM_INFO_DATA,
-          data: {
-            isJoined,
-            isMarked,
-            hostFollowed,
-          },
-        })
+      if (action.type !== authTypes.FOLLOW_USER &&
+          action.type !== authTypes.UNFOLLOW_USER) {
+        const data = yield call(fetchParticipantsApi, roomId, token)
+        participants = data.participants
       }
+      let isJoined = false
+      participants.map((item) => {
+        if (item.id === myId) isJoined = true
+        return item
+      })
+
+      yield put({
+        type: SET_ROOM_INFO_DATA,
+        data: {
+          isJoined,
+          isMarked,
+          hostFollowed,
+        },
+      })
     }
   }
 }

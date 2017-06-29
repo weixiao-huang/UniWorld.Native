@@ -71,7 +71,11 @@ export default function* loginWatch() {
     if (!state.auth.token) {
       const { username, password } = yield take(LOGIN_REQUEST)
       const task = yield fork(loginFlow, username, password)
-      const action = yield take([authTypes.CLIENT_UNSET, LOGIN_ERROR, LOGOUT_REQUEST])
+      const action = yield take([
+        authTypes.CLIENT_UNSET,
+        LOGIN_ERROR,
+        LOGOUT_REQUEST,
+      ])
       if (action.type === authTypes.CLIENT_UNSET) yield cancel(task)
       yield call(logout)
     } else {

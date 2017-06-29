@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { StatusBar } from 'react-native'
+import { StatusBar, KeyboardAvoidingView, Alert } from 'react-native'
 
 import I18n from '@/locales'
 import BackgroundImage from '@/components/BackgroundImage'
@@ -51,6 +51,23 @@ export default class Login extends Component {
         errors,
       },
     } = this.props
+
+    // if (errors.length) {
+    //   Alert.alert(
+    //     I18n.t('Alert.Login.title'),
+    //     I18n.t('Alert.Login.content'),
+    //     [
+    //       {
+    //         text: I18n.t('Alert.Login.confirm'),
+    //         onPress: () => {},
+    //       },
+    //       {
+    //         text: I18n.t('Alert.Login.cancel'),
+    //         onPress: () => {},
+    //       },
+    //     ],
+    //   )
+    // }
     return (
       <MainView>
         <StatusBar
@@ -59,30 +76,36 @@ export default class Login extends Component {
         />
         <BackgroundImage bgUrl={bgUrl}>
           <Loading visible={requesting} />
-          <BackgroundView>
-            <LogoImage source={logoUrl} />
-            <Input
-              onChangeText={username => this.setState({ username })}
-              placeholder={I18n.t('Login.username')}
-              icon={userIcon}
-            />
-            <Input
-              onChangeText={password => this.setState({ password })}
-              placeholder={I18n.t('Login.password')}
-              secureTextEntry
-              icon={passIcon}
-            />
-            <StyledButton
-              title={I18n.t('Login.login')}
-              onPress={this.login}
-            />
-            <NavArea
-              nav1={this.visitor}
-              title1={I18n.t('Login.visitor')}
-              nav2={this.register}
-              title2={I18n.t('Login.register')}
-            />
-          </BackgroundView>
+          <KeyboardAvoidingView
+            behavior="position"
+            keyboardVerticalOffset={-100}
+          >
+            <BackgroundView>
+              <LogoImage source={logoUrl} />
+              <Input
+                onChangeText={username => this.setState({ username })}
+                placeholder={I18n.t('Login.username')}
+                keyboardType="numeric"
+                icon={userIcon}
+              />
+              <Input
+                onChangeText={password => this.setState({ password })}
+                placeholder={I18n.t('Login.password')}
+                secureTextEntry
+                icon={passIcon}
+              />
+              <StyledButton
+                title={I18n.t('Login.login')}
+                onPress={this.login}
+              />
+              <NavArea
+                nav1={this.visitor}
+                title1={I18n.t('Login.visitor')}
+                nav2={this.register}
+                title2={I18n.t('Login.register')}
+              />
+            </BackgroundView>
+          </KeyboardAvoidingView>
         </BackgroundImage>
       </MainView>
     )
