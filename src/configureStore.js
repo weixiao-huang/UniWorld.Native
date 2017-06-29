@@ -45,7 +45,7 @@ export default (initialState) => {
     storage: AsyncStorage,
     transform: [],
   }
-  // AsyncStorage.clear()
+  AsyncStorage.clear()
   persistStore(store, opt)
   return store
 }

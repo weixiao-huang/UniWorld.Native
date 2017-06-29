@@ -34,7 +34,7 @@ const AppRouteConfigs = {
   homeTab: {
     screen: HomeTab,
     navigationOptions: {
-      title: 'HomeTab',
+      title: 'Home',
       header: null,
       ...commonSettings,
     },

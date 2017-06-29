@@ -27,7 +27,7 @@ const OptionsView = ({
     </TitleView>
     <InputItem
       title={I18n.t('NewRoom.input.second.private.title')}
-      titleWidth="75px"
+      titleWidth="80px"
     >
       <SwitchText>
         {I18n.t('NewRoom.input.second.private.placeholder')}
@@ -39,7 +39,7 @@ const OptionsView = ({
     </InputItem>
     <InputItem
       title={I18n.t('NewRoom.input.second.welcome.title')}
-      titleWidth="75px"
+      titleWidth="80px"
     >
       <StyledInput
         placeholder={I18n.t('NewRoom.input.second.welcome.placeholder')}
@@ -49,7 +49,7 @@ const OptionsView = ({
     </InputItem>
     <InputItem
       title={I18n.t('NewRoom.input.second.expense.title')}
-      titleWidth="75px"
+      titleWidth="80px"
     >
       <StyledInput
         placeholder={I18n.t('NewRoom.input.second.expense.placeholder')}
@@ -59,7 +59,7 @@ const OptionsView = ({
     </InputItem>
     <InputItem
       title={I18n.t('NewRoom.input.second.rewards.title')}
-      titleWidth="75px"
+      titleWidth="80px"
     >
       <StyledInput
         placeholder={I18n.t('NewRoom.input.second.rewards.placeholder')}

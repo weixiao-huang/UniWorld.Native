@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native'
+import { Dimensions } from 'react-native'
 
 const TransparentBG = css`
   background-color: transparent;
@@ -16,18 +17,17 @@ export const MainView = styled.View`
   flex: 1;
 `
 
-const avatarSize = 80
-
 export const CoverImage = styled.Image`
-  width: ${avatarSize}px;
-  height: ${avatarSize}px;
-  border-radius: 40px;
+  width: ${Dimensions.get('window').width * 0.2}px;
+  height: ${Dimensions.get('window').width * 0.2}px;
+  border-radius: ${Dimensions.get('window').width * 0.1}px;
   border-width: 3px;
   border-color: white;
 `
 
 export const ContentView = styled.View`
-  margin-left: 30px;
+  margin-left: ${Dimensions.get('window').width * 0.05}px;
+  width: ${Dimensions.get('window').width * 0.65}px;
 `
 
 export const ContentLineView = styled.View`
