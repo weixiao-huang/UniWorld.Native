@@ -65,12 +65,14 @@ export default class Login extends Component {
               onChangeText={username => this.setState({ username })}
               placeholder={I18n.t('Login.username')}
               icon={userIcon}
+              maxLength={11}
             />
             <Input
               onChangeText={password => this.setState({ password })}
               placeholder={I18n.t('Login.password')}
               secureTextEntry
               icon={passIcon}
+              maxLength={30}
             />
             <StyledButton
               title={I18n.t('Login.login')}

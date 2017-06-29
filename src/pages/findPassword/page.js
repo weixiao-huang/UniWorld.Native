@@ -1,11 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-import { StatusBar } from 'react-native'
-
+import { StatusBar, Alert } from 'react-native'
 import I18n from '@/locales'
-import Button from '@/components/Button'
 import BackgroundImage from '@/components/BackgroundImage'
 import Loading from '@/components/Loading'
-
+import api from '@/api'
 import {
   MainView,
   BackgroundView,
@@ -30,8 +28,43 @@ export default class Login extends Component {
       email: '',
     }
   }
-  findPassword = () => {
+  find = async () => {
+    if (this.check()) {
+      const res = await api.findPassword(this.state)
+      switch (res.status) {
+        case 200: {
+          Alert.alert(
+            I18n.t('FindPassword.succeedTitle'),
+            I18n.t('FindPassword.succeedText'),
+            [
+              { text: 'OK', onPress: () => { this.props.dispatch(GoToLogin) } },
+            ],
+          )
+          break;
+        }
+        default: {
+          Alert.alert(
+            I18n.t('FindPassword.fail'),
+            I18n.t('FindPassword.failReason'),
+            [
+              { text: 'OK', onPress: () => { } },
+            ],
+          )
+          break;
+        }
+      }
+    } else {
+      Alert.alert(
+        I18n.t('tips'),
+        I18n.t('FindPassword.fillInfo'),
+        [
+          { text: 'OK', onPress: () => { } },
+        ],
+      )
+    }
   }
+
+  check = () => (this.state.username.length === 11 && this.state.email.length >= 6)
 
   register = () => {
     this.props.navigation.goBack()
@@ -44,9 +77,9 @@ export default class Login extends Component {
     const {
       login: {
         requesting,
-        successful,
-        messages,
-        errors,
+      successful,
+      messages,
+      errors,
       },
     } = this.props
     return (
@@ -63,15 +96,17 @@ export default class Login extends Component {
               onChangeText={username => this.setState({ username })}
               placeholder={I18n.t('Login.username')}
               icon={userIcon}
+              maxLength={11}
             />
             <Input
               onChangeText={email => this.setState({ email })}
               placeholder={I18n.t('FindPassword.email')}
               icon={emailIcon}
+              maxLength={50}
             />
             <StyledButton
               title={I18n.t('FindPassword.findPassword')}
-              onPress={this.findPassword}
+              onPress={this.find}
             />
             <NavArea
               nav1={this.login}
