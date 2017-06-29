@@ -21,6 +21,12 @@ const fetchApi = (id, token) => api.fetchRoomInfo(id)(token)
   .then(handleApiErrors)
   .then(res => res.json())
 
+const fetchParticipantsApi = (id, token) => (
+  api.fetchParticipants(id)(token)
+    .then(handleApiErrors)
+    .then(res => res.json())
+)
+
 export default function* () {
   yield take('persist/REHYDRATE')
   while (true) {
@@ -35,7 +41,6 @@ export default function* () {
     const token = state.auth.token
     let roomInfo = state.roomInfo.roomInfo
     const roomId = action.id || roomInfo.id
-    let isJoined = false
     switch (action.type) {
       case navTypes.NAVIGATE_TO_ROOM_INFO:
         yield put({ type: CLEAR_ROOM_INFO })
@@ -45,7 +50,6 @@ export default function* () {
         break
       case JOIN_ROOM:
         yield call(baseApi, api.joinRoom, roomId, token)
-        isJoined = true
         break
       case authTypes.FOLLOW_USER:
       case authTypes.UNFOLLOW_USER:
@@ -62,13 +66,25 @@ export default function* () {
     const myInfo = state.me.userInfo
     if (myInfo) {
       const { id: myId, follows: myFollows } = myInfo
-      const hostId = roomInfo.host.id
       const isMarked = roomInfo.marked_users.indexOf(myId) >= 0
+
+      const {
+        host: { id: hostId },
+        participants,
+      } = yield call(fetchParticipantsApi, roomId, token)
+      console.log(participants)
+
       let hostFollowed = false
       myFollows.map((follow) => {
         if (hostId === follow.id) hostFollowed = true
         return follow
       })
+      let isJoined = false
+      participants.map((item) => {
+        if (item.id === myId) isJoined = true
+        return item
+      })
+
       yield put({
         type: SET_ROOM_INFO_DATA,
         data: {
