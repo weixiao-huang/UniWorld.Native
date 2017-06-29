@@ -4,7 +4,6 @@ import Reactotron from 'reactotron-react-native'
 import { handleApiErrors } from '@/lib/api-errors'
 
 import {
-  SetAlert,
   SetAlertMessage,
 } from '@/auth/actions'
 
@@ -37,7 +36,6 @@ function* registerApi(data) {
       delete uploadData.email
       yield call(registerByIdCard, uploadData)
     }
-    yield put(SetAlert(true))
   } catch (error) {
     // Error handle
     console.log('register error: ', error.message)
@@ -50,7 +48,6 @@ export default function* registerPageWatch() {
   console.log(2)
   while (true) {
     try {
-      yield put(SetAlert(false))
       const action = yield take(REGISTER_REQUEST)
       yield call(registerApi, action.data)
       console.log(1)

@@ -7,6 +7,10 @@ import Button from '@/components/Button'
 import BackgroundImage from '@/components/BackgroundImage'
 import Loading from '@/components/Loading'
 
+import { handleApiErrors } from '@/lib/api-errors'
+
+import api from '@/api'
+
 import {
   MainView,
   BackgroundView,
@@ -39,24 +43,8 @@ export default class Login extends Component {
       emailAuth: true,
     }
   }
-  componentDidUpdate() {
-    const {
-      alert, messages, goBackAction,
-    } = this.props
-    if (alert) {
-      Alert.alert(
-        I18n.t('Register.succeedTitle'),
-        I18n.t('Register.succeedText'),
-        [
-          {
-            text: I18n.t('confirm'),
-            onPress: () => goBackAction(),
-          },
-        ],
-      )
-    }
-  }
-  register = () => {
+  register = async () => {
+    const { goBackAction } = this.props
     const email = this.state.email
     if (this.state.username.length !== 11) {
       Alert.alert(
@@ -99,8 +87,68 @@ export default class Login extends Component {
         ],
       )
     } else {
-      const { registerAction } = this.props
-      registerAction(this.state)
+      let res = null
+      if (this.state.emailAuth) {
+        res = await api.Register(this.state).then(handleApiErrors)
+      } else {
+        res = await api.uploadIdCard(this.state).then(handleApiErrors)
+      }
+      switch (res.status) {
+        // 成功
+        case 201: {
+          Alert.alert(
+            I18n.t('Register.succeedTitle'),
+            I18n.t('Register.succeedText'),
+            [
+              { text: 'OK', onPress: () => goBackAction() },
+            ],
+          )
+          break
+        }
+
+        // 账号重复
+        case 400: {
+          Alert.alert(
+            I18n.t('Register.failTitle'),
+            I18n.t('Register.failTextTel'),
+            [
+              { text: 'OK', onPress: () => { } },
+            ],
+          )
+          break
+        }
+
+        // scholl fail
+        case 401: {
+          Alert.alert(
+            I18n.t('Register.failTitle'),
+            I18n.t('Register.failTextSchool'),
+            [
+              { text: 'OK', onPress: () => { } },
+            ],
+          )
+          break
+        }
+        case 500: {
+          Alert.alert(
+            I18n.t('Register.failTitle'),
+            I18n.t('Register.failTextEmail'),
+            [
+              { text: 'OK', onPress: () => { } },
+            ],
+          )
+          break
+        }
+        default: {
+          Alert.alert(
+            I18n.t('SignUp.failTitle'),
+            I18n.t('SignUp.failTextDefault'),
+            [
+              { text: 'OK', onPress: () => { } },
+            ],
+          )
+        }
+      }
     }
   }
 
