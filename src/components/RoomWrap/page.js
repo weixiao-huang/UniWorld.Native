@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 import { TouchableOpacity } from 'react-native'
 import starIcon from '@/img/icon/starIcon.png'
 
@@ -13,26 +13,22 @@ import {
   RoomListView,
 } from './style'
 
-
 export default class RoomWrap extends Component {
-  // roomList, title, titleLabel,
-  // navigateAction, myFollows,
-
   render() {
-    console.log(this.props)
+    const { navigateAction, title, roomList } = this.props
     return (
       <MainView>
-        {!!this.props.title && <MainTitleView>
+        {!!title && <MainTitleView>
           <MainTitleImage
             source={starIcon}
           />
-          <MainTitleText>{this.props.title}</MainTitleText>
+          <MainTitleText>{title}</MainTitleText>
         </MainTitleView>}
         <MainWrapView>
-          {this.props.roomList.map(item => (
+          {roomList.map(item => (
             <RoomListView key={item.id}>
               <TouchableOpacity
-                onPress={() => this.props.navigateAction(item.id)}
+                onPress={() => navigateAction(item.id)}
               >
                 <RoomItem
                   src={item.cover}

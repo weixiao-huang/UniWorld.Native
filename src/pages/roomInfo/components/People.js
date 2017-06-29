@@ -45,7 +45,7 @@ const People = ({ participants, maxParticipants }) => (
       </TitleText>
     </TitleView>
     <WrapView>
-      {participants.map((item) => (
+      {participants.map(item => (
         <AvatarView key={item.id}>
           <Avatar
             id={item.id}

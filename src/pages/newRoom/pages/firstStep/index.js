@@ -6,6 +6,7 @@ import { SetNewRoomData } from '../../actions'
 const mapStateToProps = state => ({
   title: state.newRoom.title,
   labels: state.newRoom.labels,
+  creating: state.newRoom.creating,
   initialLabels: state.auth.initialLabels,
 })
 

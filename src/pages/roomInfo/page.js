@@ -56,7 +56,7 @@ export default class RoomInfo extends Component {
           barStyle="light-content"
         />
         <MainScrollView>
-          {roomInfo && <MainView>
+          {!!roomInfo && <MainView>
             <CoverImage source={{ uri: roomInfo.cover }} />
             <Header
               title={roomInfo.title}
@@ -86,10 +86,10 @@ export default class RoomInfo extends Component {
               follow={() => followAction(roomInfo.host.id)}
               unfollow={() => unfollowAction(roomInfo.host.id)}
             />
-            {token && <EmptyView height="60px" />}
+            {!!token && <EmptyView height="60px" />}
           </MainView>}
         </MainScrollView>
-        {token && <ButtonArea
+        {!!token && <ButtonArea
           join={() => dispatch({ type: JOIN_ROOM })}
           leave={() => dispatch({ type: LEAVE_ROOM })}
           room={() => navigateAction(roomInfo.id)}

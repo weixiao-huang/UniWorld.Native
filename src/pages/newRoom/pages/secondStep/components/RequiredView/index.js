@@ -67,6 +67,7 @@ const RequiredView = ({
       >
         <StyledLocationInput
           placeholder={I18n.t('NewRoom.input.second.location.placeholder')}
+          maxLength={30}
           defaultValue={locationString}
           onChangeText={e => setData('location_string', e)}
         />

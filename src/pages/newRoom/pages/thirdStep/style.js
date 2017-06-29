@@ -25,7 +25,7 @@ export const RequiredTitleImage = styled.Image`
 `
 
 export const RequiredTitleText = styled.Text`
-  color: #ec5367;
+  color: ${props => props.color || '#ec5367'};
   font-size: 18px;
   padding-left: 10px;
   font-weight: 400;

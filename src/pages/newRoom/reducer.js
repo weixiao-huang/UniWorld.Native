@@ -1,10 +1,12 @@
 import * as types from '@/types'
+
 import {
   ADD_LABEL,
   REMOVE_LABEL,
   SET_NEW_ROOM_DATA,
   SET_NEW_ROOM_ID,
-  RESET_NEW_ROOM_DATA,
+  CLEAR_NEW_ROOM_DATA,
+  SET_CREATING,
 } from './types'
 
 const initialState = {
@@ -22,6 +24,7 @@ const initialState = {
   welcome: '',
   expense: '',
   rewards: '',
+  creating: false,
 }
 
 export default (state = initialState, action) => {
@@ -43,12 +46,17 @@ export default (state = initialState, action) => {
         ...state,
         ...action.data,
       }
+    case SET_CREATING:
+      return {
+        ...state,
+        creating: action.creating,
+      }
     case SET_NEW_ROOM_ID:
       return {
         ...state,
         id: action.id,
       }
-    case RESET_NEW_ROOM_DATA:
+    case CLEAR_NEW_ROOM_DATA:
       return initialState
     case types.CLEAR_DATA:
       return initialState

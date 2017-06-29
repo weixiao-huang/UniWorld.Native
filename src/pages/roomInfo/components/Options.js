@@ -27,7 +27,7 @@ const OptionIcon = styled(Icon)`
 const Option = ({ options }) => (
   <MainView>
     {Object.values(options).map(item => (
-      item.content && (<OptionView key={item.iconName}>
+      !!item.content && (<OptionView key={item.iconName}>
         <OptionIcon name={item.iconName} size={20} />
         <OptionText>{item.content}</OptionText>
       </OptionView>)

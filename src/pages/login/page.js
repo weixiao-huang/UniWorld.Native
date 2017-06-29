@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import { StatusBar } from 'react-native'
 
 import I18n from '@/locales'
-import Button from '@/components/Button'
 import BackgroundImage from '@/components/BackgroundImage'
 import Loading from '@/components/Loading'
 
@@ -32,9 +31,7 @@ export default class Login extends Component {
   }
   login = () => {
     const { loginAction } = this.props
-    console.log(this.state.username, this.state.password)
     loginAction(this.state.username, this.state.password)
-    // this.props.navigation.navigate('homeTab')
   }
 
   register = () => {

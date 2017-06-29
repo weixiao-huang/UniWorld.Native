@@ -17,19 +17,16 @@ const LabelWrapView = styled.View`
   flex-wrap: wrap;
 `
 
-const LabelBox = ({ labels }) => {
-  console.log(labels)
-  return(
+const LabelBox = ({ labels }) => (
   <MainView>
     <MainText>{I18n.t('Room.Info.label')}</MainText>
     <LabelWrapView>
-      {labels.map((item) => (
+      {labels.map(item => (
         <Label key={item.id} title={item.name_en} close={false} />
       ))}
     </LabelWrapView>
   </MainView>
 )
-}
 
 export default LabelBox
 

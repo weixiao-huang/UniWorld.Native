@@ -5,6 +5,7 @@ import I18n from '@/locales'
 import { createInitialLabels } from '@/utils'
 
 import InputItem from '@/components/InputItem'
+import Loading from '@/components/Loading'
 import Label from '@/components/Label'
 
 import coverImg from '@/img/customCreate.png'
@@ -103,6 +104,7 @@ export default class FirstStep extends Component {
     return (
       <MainScrollView>
         <MainView>
+          <Loading visible={this.props.creating} />
           <MainCoverImage source={coverImg} />
           <MainTitleText>{I18n.t('NewRoom.title')}</MainTitleText>
           <MainSubTitleText>{I18n.t('NewRoom.subTitle1')}</MainSubTitleText>
@@ -113,7 +115,7 @@ export default class FirstStep extends Component {
               titleWidth="75px"
             >
               <TitleInput
-                maxLength={50}
+                maxLength={30}
                 placeholder={I18n.t('NewRoom.input.name.placeholder')}
                 onChangeText={title => this.setState({ title })}
                 defaultValue={this.props.title}

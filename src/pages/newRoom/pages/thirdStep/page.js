@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
+import { NavigationActions } from 'react-navigation'
 import I18n from '@/locales'
+import { setLabelDict } from '@/utils'
+
 import titleIconPink from '@/img/icon/logoRed.png'
 import titleIconBlue from '@/img/icon/logoBlue.png'
+
 import RoomItem from '@/components/RoomItem'
+
 import {
   MainScrollView,
   MainView,
@@ -17,15 +22,46 @@ import {
 } from './style'
 
 export default class ThirdStep extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      labelDict: setLabelDict('name_ch', this.props.initialLabels),
+    }
+  }
+
   confirm = () => {
-    //这里放建房间的通讯，数据都在this.props中了
-    //注意也要上传封面哦
+    // 这里放建房间的通讯，数据都在this.props中了
+    const {
+      newRoom, createRoomAction, navigation,
+    } = this.props
+    const data = {
+      title: newRoom.title,
+      is_matchroom: newRoom.is_matchroom,
+      description: newRoom.description,
+      location_string: newRoom.location_string,
+      max_participants: isNaN(newRoom.max_participants) ? null : newRoom.max_participants,
+      date_time_start: newRoom.date_time_start.split(' ').slice(0, 2).join('T'),
+      date_time_end: newRoom.date_time_end.split(' ').slice(0, 2).join('T'),
+      options: JSON.stringify({
+        welcome: newRoom.welcome,
+        expense: newRoom.expense,
+        rewards: newRoom.rewards,
+      }),
+      show: !newRoom.isPrivate,
+      labels: newRoom.labels.map(item => this.state.labelDict[item]),
+    }
+    navigation.dispatch(NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'First' }),
+      ],
+    }))
+    createRoomAction(data)
   }
 
   render() {
-    const newRoom = this.props.newRoom
+    const { newRoom } = this.props
     const max = newRoom.max_participants
-    console.log(this.props)
     const confirms = [
       {
         title: I18n.t('NewRoom.input.second.name'),
@@ -89,33 +125,26 @@ export default class ThirdStep extends Component {
               dateTimeStart={newRoom.date_time_start}
               dateTimeEnd={newRoom.date_time_end}
               maxParticipants={newRoom.max_participants}
-              participantCount='1'
+              participantCount="1"
               participantIds={newRoom.participant_ids}
               titleLabel="HOT"
             />
           </WrapView>
           <RequiredTitleView>
             <RequiredTitleImage source={titleIconBlue} />
-            <RequiredTitleText style={{ color: '#3555b6' }}>
+            <RequiredTitleText color="#3555b6">
               {I18n.t('NewRoom.input.third.confirm')}
             </RequiredTitleText>
           </RequiredTitleView>
           <InfoBoxView>
-            {
-              confirms.map((item, index) => {
-                return (
-                  item.content
-                    ? <StyledItem
-                      key={index}
-                      title={item.title}
-                      inlineStyle={{ justifyContent: 'space-between' }}
-                    >
-                      <RightText>{item.content}</RightText>
-                    </StyledItem>
-                    : null
-                )
-              })
-            }
+            {confirms.map(item => (
+              !!item.content && <StyledItem
+                key={item.title}
+                title={item.title}
+              >
+                <RightText>{item.content}</RightText>
+              </StyledItem>
+            ))}
           </InfoBoxView>
           <StyledButton
             title={I18n.t('NewRoom.button')}

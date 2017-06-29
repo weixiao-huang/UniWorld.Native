@@ -36,6 +36,36 @@ export function replaceKeysDeep(obj, replaceKey) {
   return obj[replaceKey]
 }
 
+export function setLabelDict(name, initialLabels) {
+  const labelDict = {}
+  initialLabels.map((firstLayer) => {
+    firstLayer.children.map((secondLayer) => {
+      if (secondLayer.children.length <= 0) {
+        labelDict[secondLayer[name]] = secondLayer.id
+        return secondLayer
+      }
+      secondLayer.children.map((thirdLayer) => {
+        labelDict[thirdLayer[name]] = thirdLayer.id
+        return thirdLayer
+      })
+      return secondLayer
+    })
+    return firstLayer
+  })
+  return labelDict
+  // for (let firstLayer of initialLabels) {
+  //   for (let secondLayer of firstLayer.children) {
+  //     if (secondLayer.children.length <= 0) {
+  //       labelDict[secondLayer[name]] = secondLayer.id
+  //       continue
+  //     }
+  //     for (let thirdLayer of secondLayer.children) {
+  //       labelDict[thirdLayer[name]] = thirdLayer.id
+  //     }
+  //   }
+  // }
+}
+
 export function createInitialLabels(name, initialLabels) {
   if (!initialLabels) return null
   const data = []

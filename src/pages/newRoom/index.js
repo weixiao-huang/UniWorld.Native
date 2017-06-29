@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { addNavigationHelpers } from 'react-navigation'
 import { bindActionCreators } from 'redux'
 import { GoBack, ResetToLogin } from '@/router/actions'
 import { SetAlert } from '@/auth/actions'
@@ -7,7 +8,6 @@ import { SetAlert } from '@/auth/actions'
 import Page from './page'
 
 const mapStateToProps = state => ({
-
 })
 
 const mapDispatchToProps = dispatch => ({

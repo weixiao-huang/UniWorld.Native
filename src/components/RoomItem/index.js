@@ -39,10 +39,9 @@ const RoomItem = ({
     showPeople = participantCount.concat('/..')
   }
   const showTime = transferTimeFormat([dateTimeStart, dateTimeEnd])
-  console.log(myFollows)
-  let roomFollows = []
+  const roomFollows = []
   if (myFollows) {
-    for (let user of myFollows) {
+    for (const user of myFollows) {
       if (participantIds.indexOf(user.id) !== -1) {
         roomFollows.push(user)
       }
