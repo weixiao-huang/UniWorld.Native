@@ -42,25 +42,25 @@ const ChatItem = ({
 }) => (
     <MainView>
       {type === 2 ? <NoticeText>{content}</NoticeText> :
-      <WrapView style={mine ? styles.rowReverse : null} >
-        <Avatar id={sender.id} avatar={sender.avatar} size={AvatarSize} />
-        <TriangleView style={mine ? styles.triangleReverse : null} />
-        <ContentView style={mine ? styles.contentReverse : null} >
-          {!mine && <TitleView>
-            <TitleText>{sender.name}</TitleText>
-          </TitleView>}
+        <WrapView style={mine ? styles.rowReverse : null} >
+          <Avatar id={sender.id} avatar={sender.avatar} size={AvatarSize} />
+          <TriangleView style={mine ? styles.triangleReverse : null} />
           <ContentView style={mine ? styles.contentReverse : null} >
-            {type ?
-              <ContentTextView style={mine ? styles.contentMine : null}>
-                <ContentImage source={{ uri: image }} />
-              </ContentTextView> :
-              <ContentTextView style={mine ? styles.contentMine : null}>
-                <ContentText>{content}</ContentText>
-              </ContentTextView>
-            }
+            {!mine && <TitleView>
+              <TitleText>{sender.name}</TitleText>
+            </TitleView>}
+            <ContentView style={mine ? styles.contentReverse : null} >
+              {type ?
+                <ContentTextView style={mine ? styles.contentMine : null}>
+                  <ContentImage source={{ uri: image }} />
+                </ContentTextView> :
+                <ContentTextView style={mine ? styles.contentMine : null}>
+                  <ContentText>{content}</ContentText>
+                </ContentTextView>
+              }
+            </ContentView>
           </ContentView>
-        </ContentView>
-      </WrapView>
+        </WrapView>
       }
     </MainView>
   )
