@@ -2,6 +2,7 @@ import {
   take, fork, cancel, call, put, cancelled, select,
 } from 'redux-saga/effects'
 import { eventChannel } from 'redux-saga'
+import { REHYDRATE } from 'redux-persist/constants'
 import Reactotron from 'reactotron-react-native'
 
 import { handleApiErrors } from '@/lib/api-errors'
@@ -58,11 +59,10 @@ function* wsFlow(channel) {
 
 
 export default function* () {
-  let {
-    payload: { auth: { token, pmid } },
-  } = yield take('persist/REHYDRATE')
+  const payload = yield take(REHYDRATE)
   let task
-  if (token) {
+  if (payload && payload.auth && payload.auth.token) {
+    const { token, pmid } = payload.auth
     const channel = yield call(initialWebSocket, pmid, token)
     task = yield fork(wsFlow, channel)
   }
@@ -73,7 +73,7 @@ export default function* () {
       FOLLOW_USER,
       UNFOLLOW_USER,
     ])
-    token = (yield select()).auth.token
+    const { auth: { token } } = yield select()
     switch (type) {
       case FOLLOW_USER:
         yield call(baseApi, api.followUser, id, token)
@@ -83,7 +83,7 @@ export default function* () {
         break
       case INITIAL_WEBSOCKET:
         if (token) {
-          pmid = (yield select()).auth.pmid
+          const { auth: { pmid } } = yield select()
           const channel = yield call(initialWebSocket, pmid, token)
           task = yield fork(wsFlow, channel)
         }
