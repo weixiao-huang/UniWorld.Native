@@ -30,6 +30,7 @@ export const ContentView = styled.View`
   flex-direction: column;
   flex: 1;
   alignItems: flex-start;
+  borderRadius: 5px;
 `
 export const TitleView = styled.View`
 `
