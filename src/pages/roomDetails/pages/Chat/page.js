@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { ListView, View } from 'react-native'
+import { ListView } from 'react-native'
+// import ImageCropPicker from 'react-native-image-crop-picker'
 import InvertibleScrollView from 'react-native-invertible-scroll-view'
+import I18n from '@/locales'
 
 import logoBlue from '@/img/icon/logoBlue.png'
 
@@ -26,11 +28,12 @@ export default class Chat extends Component {
       rowHasChanged: (r1, r2) => r1 !== r2,
     })
     this.state = {
-      text: '',
       ds: ds.cloneWithRows(
         messages,
         messages.map((_, index) => index).reverse(),
       ),
+      text: '',
+      isUploading: false,
       plus: false,
       showMenu: false,
     }
@@ -62,7 +65,43 @@ export default class Chat extends Component {
     }
   }
 
-  sendImg = () => {}
+  sendImg = () => {
+    // const options = {
+    //   title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
+    //   cancelButtonTitle: 'Cancel',
+    //   takePhotoButtonTitle: 'Take Photo...',
+    //   chooseFromLibraryButtonTitle: 'Choose from Library...',
+    //   returnBase64Image: true,
+    //   returnIsVertical: false,
+    // }
+    // this.setState({ isUploading: true })
+    // ImagePicker.showImagePicker(options, async res => {
+    //   if (res.didCancel) {
+    //     console.log('User cancelled image picker')
+    //     this.setState({isUploading: false})
+    //   }
+    //   else if (res.error) {
+    //     console.log('ImagePicker Error: ', res.error)
+    //     this.setState({isUploading: false})
+    //   }
+    //   else if (res.customButton) {
+    //     console.log('User tapped custom button: ', res.customButton)
+    //     this.setState({isUploading: false})
+    //   }
+    //   else {
+    //     console.log(res)
+    //     let formData = new FormData()
+    //     formData.append('image',{
+    //     uri: res.uri,
+    //     name: 'image',
+    // })
+    //     const res2 =await api.uploadImage(formData)(this.props.roomId)(this.props.token)
+    //   }
+    // })
+    // this.setState({
+    //   showMenu: false
+    // })
+  }
 
   render() {
     let listView = ListView

@@ -6,13 +6,8 @@ import { handleApiErrors } from '@/lib/api-errors'
 import { NavigateToRoomInfo } from '@/router/actions'
 
 import {
-  ResetAction,
-} from './actions'
-
-import {
   CREATE_NEW_ROOM_REQUEST,
   CLEAR_NEW_ROOM_DATA,
-  RESET_TO_FIRST,
   SET_CREATING,
 } from './types'
 

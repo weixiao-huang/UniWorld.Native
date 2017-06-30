@@ -10,6 +10,7 @@ import {
   SET_ROOM_DETAILS,
   CLEAR_ROOM_DETAILS,
   SEND_ANNOUNCEMENT,
+  UPLOAD_CHAT_IMAGE,
 } from './types'
 
 function fetchApi(token, id) {
@@ -24,6 +25,7 @@ export default function* () {
     const action = yield take([
       navTypes.NAVIGATE_TO_ROOM_DETAILS,
       SEND_ANNOUNCEMENT,
+      UPLOAD_CHAT_IMAGE,
     ])
     const state = yield select()
     const token = state.auth.token
@@ -32,8 +34,10 @@ export default function* () {
       case navTypes.NAVIGATE_TO_ROOM_DETAILS:
       case SEND_ANNOUNCEMENT:
         yield put({ type: CLEAR_ROOM_DETAILS })
-        const roomDetails = yield call(fetchApi, token, id)
-        yield put({ type: SET_ROOM_DETAILS, roomDetails })
+        yield put({
+          type: SET_ROOM_DETAILS,
+          roomDetails: yield call(fetchApi, token, id),
+        })
         break
       default:
     }
