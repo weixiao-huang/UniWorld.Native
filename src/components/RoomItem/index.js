@@ -47,18 +47,18 @@ const RoomItem = ({
         {roomFollows.length > 0 ? roomFollows.slice(0, 3).map(item => (
           <FriendImage key={item.id} source={{ uri: item.avatar }} />
         )) : null}
-        {roomFollows.length > 0 ?
-          <FriendText>
-            {roomFollows.length > 2 ?
-              roomFollows[0].name.slice(0, 5) :
-              roomFollows[0].name} {roomFollows.length > 1 ? '...'
-                : null}
-            {I18n.t('Room.followText1')}
-          </FriendText> : null}
+        {roomFollows.length > 0 && <FriendText>
+          {roomFollows.length > 2 ?
+            roomFollows[0].name.slice(0, 5) :
+            roomFollows[0].name} {roomFollows.length > 1 && '...'}
+          {I18n.t('Room.followText1')}
+        </FriendText>}
       </FriendView>
       <RoomView>
         <RoomCoverView>
-          {src ? <RoomCoverImage source={{ uri: src }} /> : <RoomCoverImage source={defaultCover} />}
+          <RoomCoverImage
+            source={src ? { uri: src } : defaultCover}
+          />
         </RoomCoverView>
         <RoomContentView>
           <RoomContentTitleView>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
 import I18n from 'react-native-i18n'
+import AnimatedScreen from '@/components/AnimatedScreen'
 
 import {
   MainScrollView,
@@ -46,6 +47,7 @@ export default class UserInfo extends Component {
         {userInfo && <MainScrollView>
           <Info user={userInfo} />
         </MainScrollView>}
+        {!userInfo && <AnimatedScreen />}
         <ButtonView>
           <StyledButton
             textStyle={styles.text}

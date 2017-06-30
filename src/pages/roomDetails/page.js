@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
 import I18n from 'react-native-i18n'
+import AnimatedScreen from '@/components/AnimatedScreen'
 
 import {
   MainScrollTabView,
@@ -34,7 +35,7 @@ export default class RoomDetails extends Component {
           tabLabel={I18n.t('Room.Notice.notice')}
           questionnaires={roomDetails.questionnaires}
           isHost={myId === hostId}
-        /> : <MainView
+        /> : <AnimatedScreen
           tabLabel={I18n.t('Room.Notice.notice')}
         />}
         <Chat

@@ -6,6 +6,7 @@ import I18n from '@/locales'
 
 import logoBlue from '@/img/icon/logoBlue.png'
 
+
 import ChatItem from './components/ChatItem'
 import ChatMenu from './components/ChatMenu'
 

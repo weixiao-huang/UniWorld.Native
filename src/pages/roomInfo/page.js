@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { StatusBar } from 'react-native'
 import EmptyView from '@/components/EmptyView'
+import AnimatedScreen from '@/components/AnimatedScreen'
+
 import {
   MainScrollView,
   MainView,
@@ -55,8 +57,8 @@ export default class RoomInfo extends Component {
           backgroundColor="white"
           barStyle="light-content"
         />
-        <MainScrollView>
-          {!!roomInfo && <MainView>
+        {roomInfo ? <MainScrollView>
+          <MainView>
             <CoverImage source={{ uri: roomInfo.cover }} />
             <Header
               title={roomInfo.title}
@@ -87,8 +89,8 @@ export default class RoomInfo extends Component {
               unfollow={() => unfollowAction(roomInfo.host.id)}
             />
             {!!token && <EmptyView height="60px" />}
-          </MainView>}
-        </MainScrollView>
+          </MainView>
+        </MainScrollView> : <AnimatedScreen />}
         {!!token && <ButtonArea
           join={() => dispatch({ type: JOIN_ROOM })}
           leave={() => dispatch({ type: LEAVE_ROOM })}
