@@ -74,6 +74,7 @@ export default class Chat extends Component {
                 type={item.type}
                 image={item.image}
                 showTime={item.showTime || null}
+                mine={item.sender.id === this.props.myId}
               />
             )}
           />

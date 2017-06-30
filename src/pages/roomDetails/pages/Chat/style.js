@@ -31,7 +31,7 @@ export const FooterInput = styled.TextInput`
   border-color: #bababa;
   border-radius: 5px;
   padding-left: 10px;
-  font-size: 26px;
+  font-size: 16px;
 `
 
 export const FooterPlusButton = styled.Button`

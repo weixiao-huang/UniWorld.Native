@@ -89,7 +89,7 @@ export default function* () {
         }
         break
       case CLIENT_UNSET:
-        yield cancel(task)
+        if (task) yield cancel(task)
         break
       default:
     }
