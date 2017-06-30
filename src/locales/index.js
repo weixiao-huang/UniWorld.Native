@@ -1,4 +1,4 @@
-import I18n from 'react-native-i18n'
+import I18n, { getLanguages } from 'react-native-i18n'
 import en from './en.json'
 import zh from './zh.json'
 
@@ -9,6 +9,6 @@ I18n.translations = {
   en,
 }
 
-I18n.locale = 'en'
+getLanguages().then((lang) => { I18n.locale = lang[0] })
 
 export default I18n

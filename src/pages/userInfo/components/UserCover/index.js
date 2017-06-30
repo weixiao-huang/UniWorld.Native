@@ -39,6 +39,7 @@ export default class UserCover extends Component {
             <CoverImage source={{ uri: userInfo.avatar_thumbnail }} />
           </TouchableOpacity>
           {this.state.showModal && <CoverModal
+            onRequestClose={() => {}}
             visible={this.state.showModal}
             animationType="fade"
           >

@@ -28,8 +28,6 @@ const fillW = require('@/img/icon/fillW.png')
 const trumP = require('@/img/icon/trumP.png')
 const trumW = require('@/img/icon/trumW.png')
 
-
-
 export default class NoticeModal extends Component {
 
   constructor(props) {
@@ -129,7 +127,6 @@ export default class NoticeModal extends Component {
           </MenuView>
         </MainModal>
       </KeyboardAvoidingView>
-
     )
   }
 }
