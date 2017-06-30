@@ -135,6 +135,7 @@ export default class RoomInfo extends Component {
             isEmpty ? null :
             <Info roomInfo={this.props.roomInfo} tabLabel={I18n.t('Room.Info.title')}/>
           }
+
           <View style={[styles.fullFlexWidth, styles.flexCenter, localStyles.footer]}>
             <TouchableOpacity
               style={[styles.flexCenter, localStyles.star]}

@@ -71,6 +71,7 @@ export default class Login extends Component {
               { text: 'OK', onPress: () => { } },
             ]
           )
+          this.props.dispatch(SetCommonData('loading', false))
           break
         }
       }
