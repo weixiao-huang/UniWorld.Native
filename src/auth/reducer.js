@@ -95,6 +95,7 @@ const reducer = function clientReducer(state = initialState, action) {
         ...state,
         messages,
         unreadMessages,
+        pmid,
       }
     }
     case SET_ALERT_MESSAGE:

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import Avatar from '@/components/Avatar'
 import {
   MainView,
@@ -40,29 +40,29 @@ const AvatarSize = 42
 const ChatItem = ({
   index, sender, content, type, image, showTime, mine,
 }) => (
-    <MainView>
-      {type === 2 ? <NoticeText>{content}</NoticeText> :
-        <WrapView style={mine ? styles.rowReverse : null} >
-          <Avatar id={sender.id} avatar={sender.avatar} size={AvatarSize} />
-          <TriangleView style={mine ? styles.triangleReverse : null} />
+  <MainView>
+    {type === 2 ? <NoticeText>{content}</NoticeText> :
+      <WrapView style={mine ? styles.rowReverse : null} >
+        <Avatar id={sender.id} avatar={sender.avatar} size={AvatarSize} />
+        <TriangleView style={mine ? styles.triangleReverse : null} />
+        <ContentView style={mine ? styles.contentReverse : null} >
+          {!mine && <TitleView>
+            <TitleText>{sender.name}</TitleText>
+          </TitleView>}
           <ContentView style={mine ? styles.contentReverse : null} >
-            {!mine && <TitleView>
-              <TitleText>{sender.name}</TitleText>
-            </TitleView>}
-            <ContentView style={mine ? styles.contentReverse : null} >
-              {type ?
-                <ContentTextView style={mine ? styles.contentMine : null}>
-                  <ContentImage source={{ uri: image }} />
-                </ContentTextView> :
-                <ContentTextView style={mine ? styles.contentMine : null}>
-                  <ContentText>{content}</ContentText>
-                </ContentTextView>
-              }
-            </ContentView>
+            {type ?
+              <ContentTextView style={mine ? styles.contentMine : null}>
+                <ContentImage source={{ uri: image }} />
+              </ContentTextView> :
+              <ContentTextView style={mine ? styles.contentMine : null}>
+                <ContentText>{content}</ContentText>
+              </ContentTextView>
+            }
           </ContentView>
-        </WrapView>
-      }
-    </MainView>
-  )
+        </ContentView>
+      </WrapView>
+    }
+  </MainView>
+)
 
 export default ChatItem

@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
-import { ListView } from 'react-native'
+import { ListView, View, Text, KeyboardAvoidingView } from 'react-native'
 // import ImageCropPicker from 'react-native-image-crop-picker'
 import InvertibleScrollView from 'react-native-invertible-scroll-view'
 import I18n from '@/locales'
 
 import logoBlue from '@/img/icon/logoBlue.png'
 
+import EmptyView from '@/components/EmptyView'
+
 import ChatItem from './components/ChatItem'
 import ChatMenu from './components/ChatMenu'
 
 import {
   MainView,
-  KeyboardAvoidingView,
+  FooterContainerView,
   FooterView,
   FooterIconImage,
   FooterInput,
   FooterPlusButton,
+  TestView,
+  TestText,
 } from './style'
 
 export default class Chat extends Component {
@@ -23,7 +27,6 @@ export default class Chat extends Component {
     super(props)
     // const { messages } = this.props
     const messages = this.props.messages || []
-    console.log('roomMessages', this.props.messages)
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     })
@@ -40,7 +43,8 @@ export default class Chat extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.updateNewMessages(nextProps.messages)
+    const { messages } = nextProps
+    if (messages) this.updateNewMessages(messages)
   }
 
   updateNewMessages = messages => {
@@ -108,13 +112,15 @@ export default class Chat extends Component {
     return (
       <MainView>
         <KeyboardAvoidingView
-          keyboardVerticalOffset={70}
+          style={{ flex: 1 }}
           behavior="padding"
+          keyboardVerticalOffset={114}
         >
           <ListView
             enableEmptySections
             ref={(lv) => { listView = lv }}
             dataSource={this.state.ds}
+            renderScrollComponent={props => <InvertibleScrollView {...props} inverted />}
             renderRow={(item, sectionId, rowId) => (
               <ChatItem
                 index={parseInt(rowId, 10)}
@@ -127,24 +133,27 @@ export default class Chat extends Component {
               />
             )}
           />
-          <FooterView>
-            <FooterIconImage source={logoBlue} />
-            <FooterInput
-              onFocus={() => listView.scrollTo({ y: 0, animated: true })}
-              onChangeText={text => this.setState({ text })}
-              onSubmitEditing={this.sendMessage}
-              value={this.state.text}
-              blurOnSubmit={false}
-              autoFocus
-            />
-            <FooterPlusButton
-              title={this.state.showMenu ? '-' : '+'}
-              onPress={() => this.setState({ showMenu: !this.state.showMenu })}
-            />
-          </FooterView>
-          {this.state.showMenu && <ChatMenu
-            sendImg={this.sendImg}
-          />}
+          <FooterContainerView>
+            <FooterView>
+              <FooterIconImage source={logoBlue} />
+              <FooterInput
+                onFocus={() => listView.scrollTo({ y: 0, animated: true })}
+                renderScrollComponent={props => <InvertibleScrollView {...props} inverted />}
+                onChangeText={text => this.setState({ text })}
+                onSubmitEditing={this.sendMessage}
+                value={this.state.text}
+                blurOnSubmit={false}
+                autoFocus
+              />
+              <FooterPlusButton
+                title={this.state.showMenu ? '-' : '+'}
+                onPress={() => this.setState({ showMenu: !this.state.showMenu })}
+              />
+            </FooterView>
+            {this.state.showMenu && <ChatMenu
+              sendImg={this.sendImg}
+            />}
+          </FooterContainerView>
         </KeyboardAvoidingView>
       </MainView>
     )

@@ -5,7 +5,11 @@ export const MainView = styled.View`
 `
 
 export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
-  flex: 1;
+  height: 100%;
+`
+
+export const FooterContainerView = styled.View`
+  width: 100%;
 `
 
 export const FooterView = styled.View`
@@ -42,4 +46,10 @@ export const FooterPlusButton = styled.Button`
   font-size: 30px;
   color: white;
   width: 60%;
+`
+
+export const TestView = styled.View`
+`
+
+export const TestText = styled.Text`
 `
