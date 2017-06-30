@@ -27,8 +27,6 @@ const fillW = require('@/img/icon/fillW.png')
 const trumP = require('@/img/icon/trumP.png')
 const trumW = require('@/img/icon/trumW.png')
 
-
-
 export default class NoticeModal extends Component {
 
   constructor(props) {
@@ -52,7 +50,11 @@ export default class NoticeModal extends Component {
   render() {
     console.log(this.state.is_announcement)
     return (
-      <MainModal transparent visible >
+      <MainModal
+        onRequestClose={() => {}}
+        transparent
+        visible
+      >
         <UpperView />
         <MenuView>
           {this.state.is_announcement ?

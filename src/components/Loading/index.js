@@ -14,6 +14,7 @@ const Loading = ({ visible, bgColor, size, color, type }) => (
   <Modal
     transparent
     animationType="fade"
+    onRequestClose={() => {}}
     visible={visible}
   >
     <MainView bgColor={bgColor}>

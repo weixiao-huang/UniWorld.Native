@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
+import EmptyView from '@/components/EmptyView'
 
 import {
   MainView,
   MainScrollView,
 } from './style'
-import EmptyView from '@/components/EmptyView'
 import NoticeItem from './components/NoticeItem'
 import NoticeModal from './components/NoticeModal'
 import ButtonArea from './components/ButtonArea'

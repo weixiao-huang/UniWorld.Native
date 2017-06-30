@@ -11,7 +11,6 @@ import {
   BackgroundView,
   LogoImage,
   StyledButton,
-  StyledToast,
 } from './style'
 
 import Input from './components/Input'
@@ -76,6 +75,8 @@ export default class Login extends Component {
           >
             <Toast
               style={{ backgroundColor: 'rgba(0.243, 0.220, 0.455, 0.4)' }}
+              position="top"
+              positionValue={30}
               fadeInDuration={750}
               fadeOutDuration={1500}
               ref={(e) => { this.toast = e }}
