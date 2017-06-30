@@ -5,7 +5,7 @@ export const MainView = styled.View`
 `
 
 export const KeyboardAvoidingView = styled.KeyboardAvoidingView`
-  height: 100%;
+  flex: 1;
 `
 
 export const FooterContainerView = styled.View`

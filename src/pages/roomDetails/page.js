@@ -34,7 +34,9 @@ export default class RoomDetails extends Component {
           tabLabel={I18n.t('Room.Notice.notice')}
           questionnaires={roomDetails.questionnaires}
           isHost={myId === hostId}
-        /> : <MainView />}
+        /> : <MainView
+          tabLabel={I18n.t('Room.Notice.notice')}
+        />}
         <Chat
           tabLabel={I18n.t('Room.Chat.title')}
           isHost={myId === hostId}

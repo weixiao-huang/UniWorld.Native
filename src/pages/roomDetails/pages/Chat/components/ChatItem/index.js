@@ -3,7 +3,6 @@ import { StyleSheet, View, Text } from 'react-native'
 import Avatar from '@/components/Avatar'
 import {
   MainView,
-  MainText,
   WrapView,
   NoticeText,
   TriangleView,
@@ -15,46 +14,31 @@ import {
   ContentTextView,
 } from './style'
 
-const styles = StyleSheet.create({
-  rowReverse: {
-    flexDirection: 'row-reverse',
-  },
-  triangleReverse: {
-    transform: [{ rotate: '90deg' }],
-    borderBottomColor: '#d5d9f0',
-    marginTop: 0,
-    marginRight: 5,
-  },
-  contentReverse: {
-    justifyContent: 'flex-end',
-    marginRight: -1.5,
-    alignItems: 'flex-end',
-  },
-  contentMine: {
-    backgroundColor: '#d5d9f0',
-  },
-})
-
 const AvatarSize = 42
 
 const ChatItem = ({
   index, sender, content, type, image, showTime, mine,
 }) => (
   <MainView>
-    {type === 2 ? <NoticeText>{content}</NoticeText> :
-      <WrapView style={mine ? styles.rowReverse : null} >
-        <Avatar id={sender.id} avatar={sender.avatar} size={AvatarSize} />
-        <TriangleView style={mine ? styles.triangleReverse : null} />
-        <ContentView style={mine ? styles.contentReverse : null} >
+    {type === 2 ?
+      <NoticeText>{content}</NoticeText> :
+      <WrapView reverse={mine} >
+        <Avatar
+          id={sender.id}
+          avatar={sender.avatar}
+          size={AvatarSize}
+        />
+        <TriangleView reverse={mine} />
+        <ContentView reverse={mine} >
           {!mine && <TitleView>
             <TitleText>{sender.name}</TitleText>
           </TitleView>}
-          <ContentView style={mine ? styles.contentReverse : null} >
+          <ContentView reverse={mine} >
             {type ?
-              <ContentTextView style={mine ? styles.contentMine : null}>
+              <ContentTextView reverse={mine}>
                 <ContentImage source={{ uri: image }} />
               </ContentTextView> :
-              <ContentTextView style={mine ? styles.contentMine : null}>
+              <ContentTextView reverse={mine}>
                 <ContentText>{content}</ContentText>
               </ContentTextView>
             }

@@ -3,6 +3,7 @@ import Button from '@/components/Button'
 
 export const MainView = styled.View`
   flex-direction: row;
+  background-color: white;
   position: absolute;
   bottom: 0;
 `

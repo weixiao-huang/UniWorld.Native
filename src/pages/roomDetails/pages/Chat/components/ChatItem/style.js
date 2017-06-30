@@ -1,4 +1,5 @@
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
+
 
 export const MainView = styled.View`
   flex-direction: row;
@@ -6,7 +7,7 @@ export const MainView = styled.View`
   margin: 20px;
 `
 export const WrapView = styled.View`
-  flex-direction: row;
+  flex-direction: ${props => (props.reverse ? 'row-reverse' : 'row')};
   align-items: center;
 `
 export const NoticeText = styled.Text`
@@ -16,25 +17,26 @@ export const NoticeText = styled.Text`
   textAlign: center;
 `
 export const TriangleView = styled.View`
-  marginTop: 20px;
+  margin-top: ${props => (props.reverse ? '0' : '20px')};
+  margin-right: ${props => (props.reverse ? '5px' : '0')};
   width: 0px;
   height: 0px;
-  backgroundColor: transparent;
-  borderStyle: solid;
-  borderLeftWidth: 5px;
-  borderRightWidth: 5px;
-  borderBottomWidth: 5px;
-  borderLeftColor: transparent;
-  borderRightColor: transparent;
-  borderBottomColor: white;
-  transform: rotate(-90deg);
-  ]
-}
+  background-color: transparent;
+  border-style: solid;
+  border-left-width: 5px;
+  border-right-width: 5px;
+  border-bottom-width: 5px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: ${props => (props.reverse ? '#d5d9f0' : 'white')};
+  transform: rotate(${props => (props.reverse ? '' : '-')}90deg);
 `
 export const ContentView = styled.View`
   flex-direction: column;
   flex: 1;
-  alignItems: flex-start;
+  justify-content: ${props => (props.reverse ? 'flex-end' : 'flex-start')};
+  align-items: ${props => (props.reverse ? 'flex-end' : 'flex-start')};
+  margin-right: ${props => (props.reverse ? '-1.5px' : '0')};
   borderRadius: 5px;
 `
 export const TitleView = styled.View`
@@ -49,12 +51,11 @@ export const ContentImage = styled.Image`
   height: 200px;
 `
 export const ContentTextView = styled.View`
-  backgroundColor: white;
-  marginTop: 4px;
+  background-color: ${props => (props.reverse ? '#d5d9f0' : 'white')};
+  margin-top: 4px;
   padding: 8px;
-  marginLeft: -3px;
-  borderRadius: 5px;
+  margin-left: -3px;
+  border-radius: 5px;
 `
 export const ContentText = styled.Text`
-
 `

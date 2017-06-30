@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import { ListView, View, Text, KeyboardAvoidingView } from 'react-native'
+import { ListView } from 'react-native'
 // import ImageCropPicker from 'react-native-image-crop-picker'
 import InvertibleScrollView from 'react-native-invertible-scroll-view'
 import I18n from '@/locales'
 
 import logoBlue from '@/img/icon/logoBlue.png'
-
-import EmptyView from '@/components/EmptyView'
 
 import ChatItem from './components/ChatItem'
 import ChatMenu from './components/ChatMenu'
@@ -15,11 +13,10 @@ import {
   MainView,
   FooterContainerView,
   FooterView,
+  KeyboardAvoidingView,
   FooterIconImage,
   FooterInput,
   FooterPlusButton,
-  TestView,
-  TestText,
 } from './style'
 
 export default class Chat extends Component {
@@ -112,7 +109,6 @@ export default class Chat extends Component {
     return (
       <MainView>
         <KeyboardAvoidingView
-          style={{ flex: 1 }}
           behavior="padding"
           keyboardVerticalOffset={114}
         >
@@ -120,9 +116,12 @@ export default class Chat extends Component {
             enableEmptySections
             ref={(lv) => { listView = lv }}
             dataSource={this.state.ds}
-            renderScrollComponent={props => <InvertibleScrollView {...props} inverted />}
+            renderScrollComponent={props => (
+              <InvertibleScrollView {...props} inverted />
+            )}
             renderRow={(item, sectionId, rowId) => (
               <ChatItem
+                key={item.id}
                 index={parseInt(rowId, 10)}
                 sender={item.sender}
                 content={item.text}
