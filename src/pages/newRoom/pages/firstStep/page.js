@@ -74,7 +74,7 @@ export default class FirstStep extends Component {
     })
   }
 
-  isCompleted = () => this.state.title.length > 5
+  isCompleted = () => this.state.title.length > 0
 
   showLabelPicker = () => {
     Picker.init({

@@ -6,7 +6,8 @@ import { NavigateToRoomInfo } from '@/router/actions'
 import Page from './page'
 
 const mapStateToProps = state => ({
-  myFollows: state.me && state.me.userInfo && state.me.userInfo.follows,
+  myFollows: state.me && state.me.userInfo && state.me.followIds,
+  myFollowDict: state.me && state.me.userInfo && state.me.followDict,
 })
 
 const mapDispatchToProps = dispatch => ({

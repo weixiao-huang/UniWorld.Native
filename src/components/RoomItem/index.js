@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import _ from 'lodash'
 import participantIcon from '@/img/icon/participant.png'
 import { transferTimeFormat } from '@/utils'
 import I18n from '@/locales'
@@ -30,7 +31,7 @@ const defaultCover = require('@/img/image/default_avatar.jpg')
 
 const RoomItem = ({
   src, title, place, dateTimeStart, dateTimeEnd, myFollows,
-  maxParticipants, participantCount, participantIds, titleLabel,
+  maxParticipants, participantCount, participantIds, titleLabel, myFollowDict,
 }) => {
   let showPeople = maxParticipants ?
     `${participantCount}/${maxParticipants}` :
@@ -39,29 +40,22 @@ const RoomItem = ({
     showPeople = participantCount.concat('/..')
   }
   const showTime = transferTimeFormat([dateTimeStart, dateTimeEnd])
-  const roomFollows = []
-  if (myFollows) {
-    for (const user of myFollows) {
-      if (participantIds.indexOf(user.id) !== -1) {
-        roomFollows.push(user)
-      }
-    }
-  }
+  const roomFollows = _.intersection(participantIds, myFollows).map(item => myFollowDict[item])
   return (
     <MainView>
-      {/*{roomFollows.length > 0 ? <FriendView>
-        {roomFollows.slice(0, 3).map(item => (
+      <FriendView>
+        {roomFollows.length > 0 ? roomFollows.slice(0, 3).map(item => (
           <FriendImage key={item.id} source={{ uri: item.avatar }} />
-        ))}
-        <FriendText>
-          {I18n.t('Room.followText0')}
-          {roomFollows.length > 2 ?
-            roomFollows[0].name.slice(0, 5) :
-            roomFollows[0].name} {roomFollows.length > 1 ? '...'
-            : null}
-          {I18n.t('Room.followText1')}
-        </FriendText>
-      </FriendView> : null}*/}
+        )) : null}
+        {roomFollows.length > 0 ?
+          <FriendText>
+            {roomFollows.length > 2 ?
+              roomFollows[0].name.slice(0, 5) :
+              roomFollows[0].name} {roomFollows.length > 1 ? '...'
+                : null}
+            {I18n.t('Room.followText1')}
+          </FriendText> : null}
+      </FriendView>
       <RoomView>
         <RoomCoverView>
           {src ? <RoomCoverImage source={{ uri: src }} /> : <RoomCoverImage source={defaultCover} />}

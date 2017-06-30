@@ -16,6 +16,7 @@ import {
 export default class RoomWrap extends Component {
   render() {
     const { navigateAction, title, roomList } = this.props
+    console.log(this.props.myFollows)
     return (
       <MainView>
         {!!title && <MainTitleView>
@@ -41,6 +42,7 @@ export default class RoomWrap extends Component {
                   participantIds={item.participant_ids}
                   titleLabel={this.props.titleLabel}
                   myFollows={this.props.myFollows}
+                  myFollowDict={this.props.myFollowDict}
                 />
               </TouchableOpacity>
             </RoomListView>

@@ -6,8 +6,9 @@ const TextStyle = css`
 `
 
 export const MainView = styled.View`
-`
 
+`
+export const UpperView = styled.View``
 export const FriendView = styled.View`
   flex: 1;
   flex-direction: row;
@@ -15,7 +16,6 @@ export const FriendView = styled.View`
   marginTop: 10px;
   marginBottom: -6px;
   alignItems: center;
-  height: 30px;
 `
 
 export const FriendText = styled.Text`
