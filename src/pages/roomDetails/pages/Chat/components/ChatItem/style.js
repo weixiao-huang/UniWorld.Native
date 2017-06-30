@@ -10,6 +10,12 @@ export const WrapView = styled.View`
   flex-direction: row;
   align-items: center;
 `
+export const NoticeText = styled.Text`
+  color: #aaaaaa;
+  fontSize: 14px;
+  width: 100%;
+  textAlign: center;
+`
 export const TriangleView = styled.View`
   marginTop: 20px;
   width: 0px;
@@ -43,10 +49,13 @@ export const ContentImage = styled.Image`
   width: 160px;
   height: 200px;
 `
-export const ContentText = styled.Text`
-  marginTop: 4px;
+export const ContentTextView = styled.View`
   backgroundColor: white;
+  marginTop: 4px;
   padding: 8px;
   marginLeft: -3px;
   borderRadius: 5px;
+`
+export const ContentText = styled.Text`
+
 `

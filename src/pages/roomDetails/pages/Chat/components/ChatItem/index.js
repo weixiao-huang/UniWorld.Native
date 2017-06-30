@@ -5,12 +5,14 @@ import {
   MainView,
   MainText,
   WrapView,
+  NoticeText,
   TriangleView,
   ContentView,
   TitleView,
   TitleText,
   ContentImage,
   ContentText,
+  ContentTextView,
 } from './style'
 
 const styles = StyleSheet.create({
@@ -25,7 +27,8 @@ const styles = StyleSheet.create({
   },
   contentReverse: {
     justifyContent: 'flex-end',
-    marginRight: -3,
+    marginRight: -1.5,
+    alignItems: 'flex-end',
   },
   contentMine: {
     backgroundColor: '#d5d9f0',
@@ -37,23 +40,29 @@ const AvatarSize = 42
 const ChatItem = ({
   index, sender, content, type, image, showTime, mine,
 }) => (
-  <MainView>
-    <WrapView>
-      <Avatar id={sender.id} avatar={sender.avatar} size={AvatarSize} />
-      <TriangleView style={mine ? styles.triangleReverse : null} />
-      <ContentView style={mine ? styles.contentReverse : null} >
-        {!mine && <TitleView>
-          <TitleText>{sender.name}</TitleText>
-        </TitleView>}
-        <ContentView style={mine ? styles.contentMine : null} >
-          {type ?
-            <ContentImage source={{ uri: image }} /> :
-            <ContentText>{content}</ContentText>
-          }
+    <MainView>
+      {type === 2 ? <NoticeText>{content}</NoticeText> :
+      <WrapView style={mine ? styles.rowReverse : null} >
+        <Avatar id={sender.id} avatar={sender.avatar} size={AvatarSize} />
+        <TriangleView style={mine ? styles.triangleReverse : null} />
+        <ContentView style={mine ? styles.contentReverse : null} >
+          {!mine && <TitleView>
+            <TitleText>{sender.name}</TitleText>
+          </TitleView>}
+          <ContentView style={mine ? styles.contentReverse : null} >
+            {type ?
+              <ContentTextView style={mine ? styles.contentMine : null}>
+                <ContentImage source={{ uri: image }} />
+              </ContentTextView> :
+              <ContentTextView style={mine ? styles.contentMine : null}>
+                <ContentText>{content}</ContentText>
+              </ContentTextView>
+            }
+          </ContentView>
         </ContentView>
-      </ContentView>
-    </WrapView>
-  </MainView>
-)
+      </WrapView>
+      }
+    </MainView>
+  )
 
 export default ChatItem
