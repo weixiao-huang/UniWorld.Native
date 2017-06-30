@@ -48,6 +48,7 @@ function* loginFlow(username, password) {
     const data = yield call(loginApi, username, password)
     token = data.token
     yield put(setClient(token))
+    yield put({ type: authTypes.INITIAL_WEBSOCKET })
     const initialLabels = yield call(fetchInitialApi, token)
     yield put({ type: meTypes.FETCH_MY_USER_INFO })
     yield take(meTypes.FETCH_MY_USER_INFO_SUCCESS)

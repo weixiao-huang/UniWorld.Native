@@ -41,7 +41,7 @@ const postWithoutToken = url => data => fetch(`${server}${url}`, {
 const wsByToken = url => token => new WebSocket(`${url}?token=${token}`)
 
 export default {
-  initialWebSocket: token => wsByToken(`wxx://${addr}`)(token),
+  initialWebSocket: token => wsByToken(`wss://${addr}/ws/`)(token),
   fetchDataFromUrl: url => token => (token ? fetch(url, {
     method: 'GET',
     headers: { Authorization: `token ${token}` },

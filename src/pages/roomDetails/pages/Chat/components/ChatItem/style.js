@@ -5,3 +5,6 @@ export const MainView = styled.View`
   flex-direction: row;
   align-items: flex-start;
 `
+
+export const MainText = styled.Text`
+`
