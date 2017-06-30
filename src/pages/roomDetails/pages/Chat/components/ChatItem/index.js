@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   contentMine: {
     backgroundColor: '#d5d9f0',
-  }
+  },
 })
 
 const AvatarSize = 42
@@ -37,23 +37,23 @@ const AvatarSize = 42
 const ChatItem = ({
   index, sender, content, type, image, showTime, mine,
 }) => (
-    <MainView>
-      <WrapView>
-        <Avatar id={sender.id} avatar={sender.avatar} size={AvatarSize} />
-        <TriangleView style={mine ? styles.triangleReverse : null} />
-        <ContentView style={mine ? styles.contentReverse : null} >
-          {!mine && <TitleView>
-            <TitleText>{sender.name}</TitleText>
-          </TitleView>}
-          <ContentView style={mine ? styles.contentMine : null} >
-            {type ?
-              <ContentImage source={{ uri: image }} /> :
-              <ContentText>{content}</ContentText>
-            }
-          </ContentView>
+  <MainView>
+    <WrapView>
+      <Avatar id={sender.id} avatar={sender.avatar} size={AvatarSize} />
+      <TriangleView style={mine ? styles.triangleReverse : null} />
+      <ContentView style={mine ? styles.contentReverse : null} >
+        {!mine && <TitleView>
+          <TitleText>{sender.name}</TitleText>
+        </TitleView>}
+        <ContentView style={mine ? styles.contentMine : null} >
+          {type ?
+            <ContentImage source={{ uri: image }} /> :
+            <ContentText>{content}</ContentText>
+          }
         </ContentView>
-      </WrapView>
-    </MainView>
-  )
+      </ContentView>
+    </WrapView>
+  </MainView>
+)
 
 export default ChatItem

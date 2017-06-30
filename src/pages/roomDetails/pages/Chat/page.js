@@ -50,7 +50,17 @@ export default class Chat extends Component {
     })
   }
 
-  sendMessage = () => {}
+  sendMessage = () => {
+    if (this.state.text) {
+      const { sendAction, roomId } = this.props
+      sendAction({
+        text: this.state.text,
+        type: 0,
+        room: roomId,
+      })
+      this.setState({ text: '' })
+    }
+  }
 
   sendImg = () => {}
 

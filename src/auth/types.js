@@ -10,3 +10,5 @@ export const FOLLOW_USER = 'FOLLOW_USER'
 export const UNFOLLOW_USER = 'UNFOLLOW_USER'
 
 export const SET_ROOM_MESSAGE = 'SET_ROOM_MESSAGE'
+
+export const SEND_MESSAGE = 'SEND_MESSAGE'

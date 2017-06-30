@@ -1,5 +1,5 @@
 import {
-  INITIAL_WEBSOCKET,
+  SEND_MESSAGE,
   CLIENT_UNSET,
   CLIENT_SET,
   SET_ALERT,
@@ -39,4 +39,9 @@ export const FollowUser = id => ({
 export const UnfollowUser = id => ({
   type: UNFOLLOW_USER,
   id,
+})
+
+export const SendMessage = message => ({
+  type: SEND_MESSAGE,
+  message,
 })
