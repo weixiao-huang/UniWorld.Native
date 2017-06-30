@@ -15,7 +15,7 @@ const ItemView = styled.TouchableOpacity`
   flex-direction: column;
   align-items: center;
   backgroundColor: #ffffff;
-  width: 120px;
+  width: 40%;
   border-radius: 6px;
   opacity: 0.6;
 `
