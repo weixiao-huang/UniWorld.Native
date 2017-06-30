@@ -17,34 +17,33 @@ import {
   FOLLOW_USER,
   UNFOLLOW_USER,
   SET_ROOM_MESSAGE,
+  SEND_MESSAGE,
 } from './types'
 
 const checkMailboxApi = (pmid, token) => api.checkMailbox(pmid)(token)
   .then(handleApiErrors)
 
-const initialWebSocket = (pmid, token) => eventChannel((emit) => {
+const createWebSocket = (pmid, token) => {
   const ws = api.initialWebSocket(token)
-
   ws.onopen = () => checkMailboxApi(pmid, token)
+  return ws
+}
 
-  ws.onerror = (error) => {
-    throw error
-  }
-
-  ws.onmessage = e => {
+const configWebSocket = ws => eventChannel((emit) => {
+  ws.onerror = (error) => { throw error }
+  ws.onmessage = (e) => {
     console.log('web socket message: ', e.data)
     emit({
       type: SET_ROOM_MESSAGE,
       message: JSON.parse(e.data),
     })
   }
-
-  return () => {
-    console.log('Socket off')
-  }
+  return () => console.log('Socket off')
 })
 
-function* wsFlow(channel) {
+function* receiveFlow(ws) {
+  const channel = configWebSocket(ws)
+  console.log('ws: ', ws)
   while (true) {
     try {
       const { type, message } = yield take(channel)
@@ -57,15 +56,43 @@ function* wsFlow(channel) {
   }
 }
 
+function* sendFlow(ws) {
+  while (true) {
+    try {
+      const { message } = yield take(SEND_MESSAGE)
+      ws.send(JSON.stringify(message))
+    } catch (error) {
+      console.log('send message error: ', error)
+    } finally {
+      // close operations
+    }
+  }
+}
+
+function* wsFlow(auth) {
+  let receive
+  let send
+  try {
+    const { token, pmid } = auth
+    if (token) {
+      const ws = createWebSocket(pmid, token)
+      receive = yield fork(receiveFlow, ws)
+      send = yield fork(sendFlow, ws)
+    }
+  } catch (error) {
+    console.log('ws flow error: ', error)
+  } finally {
+    if (yield cancelled()) {
+      if (receive) cancel(receive)
+      if (send) cancel(send)
+    }
+  }
+}
 
 export default function* () {
-  const payload = yield take(REHYDRATE)
+  const { payload } = yield take(REHYDRATE)
   let task
-  if (payload && payload.auth && payload.auth.token) {
-    const { token, pmid } = payload.auth
-    const channel = yield call(initialWebSocket, pmid, token)
-    task = yield fork(wsFlow, channel)
-  }
+  if (payload && payload.auth) task = yield fork(wsFlow, payload.auth)
   while (true) {
     const { type, id } = yield take([
       CLIENT_UNSET,
@@ -83,9 +110,8 @@ export default function* () {
         break
       case INITIAL_WEBSOCKET:
         if (token) {
-          const { auth: { pmid } } = yield select()
-          const channel = yield call(initialWebSocket, pmid, token)
-          task = yield fork(wsFlow, channel)
+          const { auth } = yield select()
+          task = yield fork(wsFlow, auth)
         }
         break
       case CLIENT_UNSET:
