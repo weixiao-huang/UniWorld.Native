@@ -1,12 +1,10 @@
 import { take, select, call, put } from 'redux-saga/effects'
 import { FetchRoomInfo, ClearRoomInfo } from '@/pages/roomInfo/actions'
 
-import api from '../../api'
-
-import { handleApiErrors } from '../../lib/api-errors'
-
-
-import * as navTypes from '../../router/types'
+import * as navTypes from '@/router/types'
+import api from '@/api'
+import { ResetUnreadMessage } from '@/auth/actions'
+import { handleApiErrors } from '@/lib/api-errors'
 
 import {
   SET_ROOM_DETAILS,
@@ -45,6 +43,7 @@ export default function* () {
           type: SET_ROOM_DETAILS,
           roomDetails: yield call(fetchApi, token, id),
         })
+        yield put(ResetUnreadMessage(id))
         break
       case SEND_ANNOUNCEMENT:
         yield put({

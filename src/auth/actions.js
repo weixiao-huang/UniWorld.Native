@@ -6,6 +6,7 @@ import {
   UNFOLLOW_USER,
   FOLLOW_USER,
   SET_ALERT_MESSAGE,
+  RESET_UNREAD_MESSAGE,
 } from './types'
 
 export function setClient(token) {
@@ -44,4 +45,9 @@ export const UnfollowUser = id => ({
 export const SendMessage = message => ({
   type: SEND_MESSAGE,
   message,
+})
+
+export const ResetUnreadMessage = id => ({
+  type: RESET_UNREAD_MESSAGE,
+  id,
 })

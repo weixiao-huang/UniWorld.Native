@@ -6,6 +6,7 @@ import {
   SET_INITIAL_LABELS,
   SET_ALERT,
   SET_ROOM_MESSAGE,
+  RESET_UNREAD_MESSAGE,
   SET_ALERT_MESSAGE,
 } from './types'
 
@@ -20,7 +21,7 @@ const initialState = {
   wx: null,
 }
 
-const reducer = function clientReducer(state = initialState, action) {
+export default (state = initialState, action) => {
   switch (action.type) {
     case CLIENT_SET:
       return {
@@ -42,20 +43,34 @@ const reducer = function clientReducer(state = initialState, action) {
         ...state,
         alert: action.alert,
       }
+    case RESET_UNREAD_MESSAGE: {
+      const unreadMessages = {
+        ...state.unreadMessages,
+        [action.id]: 0,
+      }
+      PushNotification.setApplicationIconBadgeNumber(
+        Object.values(unreadMessages).reduce((a, b) => a + b),
+      )
+      return {
+        ...state,
+        unreadMessages,
+      }
+    }
     case SET_ROOM_MESSAGE: {
       const messages = {}
-      const unreadMessages = {}
+      const unreadMessages = { ...state.unreadMessages }
       const data = action.message
       const pmid = data.id || state.pmid
-      console.log('reducer pmid: ', pmid)
       const roomId = data.room
+      const showRoomId = action.id
       if (state.messages[roomId] !== undefined) {
         messages[roomId] = state.messages[roomId].concat(data)
       } else messages[roomId] = [data]
-      if (state.unreadMessages[roomId] !== undefined) {
-        unreadMessages[roomId] = state.unreadMessages[roomId] + 1
+      if (unreadMessages[roomId] !== undefined) {
+        if (showRoomId !== roomId) {
+          unreadMessages[roomId] += 1
+        }
       } else unreadMessages[roomId] = 1
-
 
       PushNotification.localNotification({
         id: roomId,
@@ -107,5 +122,3 @@ const reducer = function clientReducer(state = initialState, action) {
       return state
   }
 }
-
-export default reducer

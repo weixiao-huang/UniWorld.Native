@@ -2,6 +2,7 @@ import {
   take, fork, cancel, call, put, cancelled, select,
 } from 'redux-saga/effects'
 import { eventChannel } from 'redux-saga'
+import PushNotification from 'react-native-push-notification'
 
 import { handleApiErrors } from '@/lib/api-errors'
 import api from '@/api'
@@ -57,7 +58,12 @@ function* receiveFlow(ws) {
   while (true) {
     try {
       const { type, message } = yield take(channel)
-      yield put({ type, message })
+      const { nav: { routes } } = yield select()
+      let id = -1
+      if (routes.slice(-1)[0].routeName === 'roomDetails') {
+        id = routes.slice(-1)[0].params.id
+      }
+      yield put({ type, message, id })
     } catch (error) {
       console.log('websoket error: ', error)
     } finally {
