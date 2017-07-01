@@ -1,5 +1,5 @@
 import { take, select, call, put } from 'redux-saga/effects'
-import { FetchRoomInfo } from '@/pages/roomInfo/actions'
+import { FetchRoomInfo, ClearRoomInfo } from '@/pages/roomInfo/actions'
 
 import api from '../../api'
 
@@ -35,8 +35,18 @@ export default function* () {
     }
     switch (action.type) {
       case navTypes.NAVIGATE_TO_ROOM_DETAILS:
-      case SEND_ANNOUNCEMENT:
+        if (!state.roomInfo.roomInfo ||
+            state.roomInfo.roomInfo.id !== action.id) {
+          yield put(ClearRoomInfo())
+          yield put(FetchRoomInfo(id))
+        }
         yield put({ type: CLEAR_ROOM_DETAILS })
+        yield put({
+          type: SET_ROOM_DETAILS,
+          roomDetails: yield call(fetchApi, token, id),
+        })
+        break
+      case SEND_ANNOUNCEMENT:
         yield put({
           type: SET_ROOM_DETAILS,
           roomDetails: yield call(fetchApi, token, id),

@@ -33,6 +33,7 @@ const fetchParticipantsApi = (id, token) => (
 export default function* () {
   yield take('persist/REHYDRATE')
   while (true) {
+    const prevState = yield select()
     const action = yield take([
       navTypes.NAVIGATE_TO_ROOM_INFO,
       authTypes.FOLLOW_USER,
@@ -50,7 +51,7 @@ export default function* () {
     try {
       switch (action.type) {
         case navTypes.NAVIGATE_TO_ROOM_INFO:
-          yield put({ type: CLEAR_ROOM_INFO })
+          if (state.roomInfo.roomInfo) yield put({ type: CLEAR_ROOM_INFO })
           break
         case LEAVE_ROOM:
           yield call(baseApi, api.leaveRoom, roomId, token)
