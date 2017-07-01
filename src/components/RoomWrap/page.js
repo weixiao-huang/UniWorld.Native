@@ -18,18 +18,14 @@ export default class RoomWrap extends Component {
     const {
       myId, navigateToRoomInfoAction, navigateToRoomDetailsAction,
     } = this.props
-    if (myId && item.participant_ids.indexOf(myId) > 0) {
+    if (myId && item.participant_ids.indexOf(myId) >= 0) {
       navigateToRoomDetailsAction(item.id)
     } else {
       navigateToRoomInfoAction(item.id)
     }
   }
   render() {
-    const {
-      NavigateToRoomInfoAction,
-      navigateToRoomDetailsAction,
-      title, roomList,
-    } = this.props
+    const { title, roomList } = this.props
     return (
       <MainView>
         {!!title && <MainTitleView>
