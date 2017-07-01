@@ -25,6 +25,8 @@ import {
   FriendView,
   FriendText,
   FriendImage,
+  TitleLableView,
+  TitleLabelText,
 } from './style'
 
 const length = 18
@@ -46,8 +48,9 @@ const RoomItem = ({
     participantIds, myFollows,
   ).map(item => myFollowDict[item])
 
+  const inFlag = myId && participantIds.indexOf(myId) >= 0
   const navigate = () => {
-    if (myId && participantIds.indexOf(myId) >= 0) {
+    if (inFlag) {
       navigateToRoomDetailsAction(id)
     } else {
       navigateToRoomInfoAction(id)
@@ -78,6 +81,11 @@ const RoomItem = ({
           </RoomCoverView>
           <RoomContentView>
             <RoomContentTitleView>
+
+              {inFlag ? <TitleLableView>
+                <TitleLabelText>IN</TitleLabelText>
+              </TitleLableView>
+                : null}
               <RoomContentTitleText>{
                 title.length > length ?
                   title.slice(0, length).concat('...') :

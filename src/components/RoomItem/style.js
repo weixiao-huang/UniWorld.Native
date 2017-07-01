@@ -55,10 +55,22 @@ export const RoomContentView = styled.View`
   margin-left: 20px;
 `
 
+export const TitleLableView = styled.View`
+  background-color: #fdae57;
+  border-radius: 5px;
+  width: 40px;
+  margin-right: 10px;
+  alignItems: center;
+`
+export const TitleLabelText = styled.Text`
+  flexDirection: row;
+  color: white;
+`
+
 export const RoomContentTitleView = styled.View`
   flex-direction: row;
-  flex: 1;
-  align-items: flex-start;
+
+  align-items: center;
 `
 
 export const RoomContentTitleText = styled.Text`
