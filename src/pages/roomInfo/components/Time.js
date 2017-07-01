@@ -29,7 +29,7 @@ const RightView = styled.View`
 
 const RightText = styled.Text`
   font-size: 18px;
-  padding: 4px;
+  padding: 2px;
   color: #ff5757;
 `
 
