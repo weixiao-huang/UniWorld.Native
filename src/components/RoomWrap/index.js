@@ -1,21 +1,14 @@
 import { PropTypes } from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {
-  NavigateToRoomInfo, NavigateToRoomDetails,
-} from '@/router/actions'
 
 import Page from './page'
 
 const mapStateToProps = state => ({
   myFollows: state.me.userInfo && state.me.followIds,
   myFollowDict: state.me.userInfo && state.me.followDict,
-  myId: state.me.userInfo && state.me.userInfo.id,
 })
 
 const mapDispatchToProps = dispatch => ({
-  navigateToRoomInfoAction: bindActionCreators(NavigateToRoomInfo, dispatch),
-  navigateToRoomDetailsAction: bindActionCreators(NavigateToRoomDetails, dispatch),
 })
 
 Page.propTypes = {
