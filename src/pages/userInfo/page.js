@@ -40,7 +40,6 @@ export default class UserInfo extends Component {
 
   render() {
     const { userInfo, isFollowed } = this.props
-    console.log(this.props)
     return (
       <MainView>
         {userInfo && <UserCover userInfo={userInfo} />}

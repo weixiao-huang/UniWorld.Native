@@ -29,9 +29,8 @@ export default function* () {
     ])
     let isFollowed = false
     switch (action.type) {
-      case navTypes.NAVIGATE_TO_USER_INFO:
+      case navTypes.NAVIGATE_TO_USER_INFO: {
         const id = action.id
-        console.log(id)
         const state = yield select()
         const token = state.auth.token
         state.me.userInfo.follows.map((user) => {
@@ -43,6 +42,7 @@ export default function* () {
         const userInfo = yield call(fetchApi, token, id)
         yield put({ type: SET_USER_INFO, userInfo })
         break
+      }
       case authTypes.UNFOLLOW_USER:
         yield take(meTypes.FETCH_MY_USER_INFO_SUCCESS)
         yield put({ type: SET_FOLLOWED, isFollowed })
