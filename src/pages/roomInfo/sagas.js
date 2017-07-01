@@ -33,7 +33,6 @@ const fetchParticipantsApi = (id, token) => (
 export default function* () {
   yield take('persist/REHYDRATE')
   while (true) {
-    const prevState = yield select()
     const action = yield take([
       navTypes.NAVIGATE_TO_ROOM_INFO,
       authTypes.FOLLOW_USER,
@@ -83,12 +82,12 @@ export default function* () {
         const myInfo = state.me.userInfo
         if (action.type !== authTypes.FOLLOW_USER &&
             action.type !== authTypes.UNFOLLOW_USER) {
-          const {
-            participants,
-          } = yield call(fetchParticipantsApi, roomId, token)
           roomInfo = yield call(fetchApi, roomId, token)
           const data = { roomInfo }
           if (myInfo) {
+            const {
+              participants,
+            } = yield call(fetchParticipantsApi, roomId, token)
             data.isJoined = false
             participants.map((item) => {
               if (item.id === myInfo.id) data.isJoined = true

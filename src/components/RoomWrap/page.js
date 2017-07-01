@@ -14,8 +14,22 @@ import {
 } from './style'
 
 export default class RoomWrap extends Component {
+  navigate = item => () => {
+    const {
+      myId, navigateToRoomInfoAction, navigateToRoomDetailsAction,
+    } = this.props
+    if (myId && item.participant_ids.indexOf(myId) > 0) {
+      navigateToRoomDetailsAction(item.id)
+    } else {
+      navigateToRoomInfoAction(item.id)
+    }
+  }
   render() {
-    const { navigateAction, title, roomList } = this.props
+    const {
+      NavigateToRoomInfoAction,
+      navigateToRoomDetailsAction,
+      title, roomList,
+    } = this.props
     return (
       <MainView>
         {!!title && <MainTitleView>
@@ -28,7 +42,7 @@ export default class RoomWrap extends Component {
           {roomList.map(item => (
             <RoomListView key={item.id}>
               <TouchableOpacity
-                onPress={() => navigateAction(item.id)}
+                onPress={this.navigate(item)}
               >
                 <RoomItem
                   src={item.cover}
