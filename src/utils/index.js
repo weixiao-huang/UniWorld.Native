@@ -215,12 +215,12 @@ export const transferTimeFormatInside = (timeRange) => {
   if (timeRange[0] !== null && timeRange[1] != null) {
     if (startMonth === endMonth) {
       if (startDate === endDate) {
-        showTime += `${startMonth}月${startDate}日${startHour}: ${startMin} - ${endHour}: ${endMin}`
+        showTime += `${startMonth}月${startDate}日 ${startHour}: ${startMin} - ${endHour}: ${endMin}`
       } else {
-        showTime += `${startMonth}月${startDate}日${startHour}: ${startMin} - ${endDate}日${endHour}: ${endMin}`
+        showTime += `${startMonth}月${startDate}日 ${startHour}: ${startMin} - ${endDate}日 ${endHour}: ${endMin}`
       }
     } else {
-      showTime += `${startMonth}月${startDate}日${startHour}: ${startMin} - ${endMonth}月${endDate}日${endHour}: ${endMin}`
+      showTime += `${startMonth}月${startDate}日 ${startHour}: ${startMin} - ${endMonth}月${endDate}日 ${endHour}: ${endMin}`
     }
     return [
       `${showTime}`,
@@ -231,7 +231,7 @@ export const transferTimeFormatInside = (timeRange) => {
     if (todayFlag) {
       showTime += `今日 ${startHour}:${startMin}`
     } else {
-      showTime = `${startMonth}月${startDate}日${startHour}:${startMin}`
+      showTime = `${startMonth}月${startDate}日 ${startHour}:${startMin}`
     }
   }
   return [

@@ -28,9 +28,9 @@ export const SignText = styled.Text`
   color: #808080;
 `
 export const FollowButton = styled(Button)`
-  width: 120px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  width: 116px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   background-color: #ec5367;
   border-radius: 10px;
   margin-right: 15px;

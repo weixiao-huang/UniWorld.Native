@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import I18n from 'react-native-i18n'
 import { connect } from 'react-redux'
-import { KeyboardAvoidingView } from 'react-native'
 import api from '@/api'
 import {
   MainModal,
+  StyledKeyboardAvoidingView,
   UpperView,
-  MenuView,
   HearderView,
   HeaderLeftView,
   HeaderImage,
@@ -55,13 +54,11 @@ export default class NoticeModal extends Component {
   render() {
     console.log(this.state.is_announcement)
     return (
-      <KeyboardAvoidingView
-        behavior="position"
-        keyboardVerticalOffset={100}
-      >
-        <MainModal transparent visible >
-          <UpperView />
-          <MenuView>
+      <MainModal transparent visible >
+        <StyledKeyboardAvoidingView
+          behavior="position"
+        >
+        <UpperView />
             {this.state.is_announcement ?
               <HearderView>
                 <HeaderLeftView>
@@ -128,9 +125,9 @@ export default class NoticeModal extends Component {
                 </SelectButton>
               </BtnWrapView>
             }
-          </MenuView>
-        </MainModal>
-      </KeyboardAvoidingView>
+
+        </StyledKeyboardAvoidingView>
+      </MainModal>
     )
   }
 }

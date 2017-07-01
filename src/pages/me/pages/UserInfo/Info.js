@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, KeyboardAvoidingView } from 'react-native'
 import I18n from 'react-native-i18n'
 import Picker from 'react-native-picker'
 
@@ -46,8 +46,8 @@ const Info = ({
             false : null
         setData('gender', newGender)
       },
-      onPickerCancel: pickedValue => {},
-      onPickerSelect: pickedValue => {},
+      onPickerCancel: pickedValue => { },
+      onPickerSelect: pickedValue => { },
     })
     Picker.show()
   }
@@ -60,100 +60,105 @@ const Info = ({
       onPickerConfirm: (e) => {
         setData('year', e[0])
       },
-      onPickerCancel: pickedValue => {},
-      onPickerSelect: pickedValue => {},
+      onPickerCancel: pickedValue => { },
+      onPickerSelect: pickedValue => { },
     })
     Picker.show()
   }
 
   return (
     <MainView>
-      <StyledInputItem
-        title={I18n.t('Me.info.phone')}
-        textStyle={styles.text}
+      <KeyboardAvoidingView
+        behavior="position"
+        keyboardVerticalOffset={-100}
       >
-        <ItemText>{user.username}</ItemText>
-      </StyledInputItem>
-      <StyledInputItem
-        title={I18n.t('Me.info.name')}
-        textStyle={styles.text}
-      >
-        <ItemText></ItemText>
-      </StyledInputItem>
-      <StyledInputItem
-        title={I18n.t('Me.info.gender')}
-        textStyle={styles.text}
-      >
-        {isEditing ? <PickerTouch
-          onPress={showGenderPicker}
+        <StyledInputItem
+          title={I18n.t('Me.info.phone')}
+          textStyle={styles.text}
         >
-          <PickerText isPlaced={gender !== ''}>
-            {genderText}
-          </PickerText>
-        </PickerTouch> :
-        <ItemText>
-          {genderText}
-        </ItemText>}
-      </StyledInputItem>
-      <EmptyView />
-      <StyledInputItem
-        title={I18n.t('Me.info.school')}
-        textStyle={styles.text}
-      >
-        <ItemText>{user.university.name_en}</ItemText>
-      </StyledInputItem>
-      <StyledInputItem
-        title={I18n.t('Me.info.department')}
-        textStyle={styles.text}
-      >
-        {isEditing ? <StyledInput
-          onChangeText={e => setData('department', e)}
-          placeholder={user.department}
-        /> :
-        <ItemText>
-          {user.department}
-        </ItemText>}
-      </StyledInputItem>
-      <StyledInputItem
-        title={I18n.t('Me.info.grade')}
-        textStyle={styles.text}
-      >
-        {isEditing ? <PickerTouch
-          onPress={showYearPicker}
+          <ItemText>{user.username}</ItemText>
+        </StyledInputItem>
+        <StyledInputItem
+          title={I18n.t('Me.info.name')}
+          textStyle={styles.text}
         >
-          <PickerText isPlaced={year}>
-            {year || user.year}
-          </PickerText>
-        </PickerTouch> :
-        <ItemText>
-          {user.year}
-        </ItemText>}
-      </StyledInputItem>
-      <EmptyView />
-      <StyledInputItem
-        title={I18n.t('Me.info.nickname')}
-        textStyle={styles.text}
-      >
-        {isEditing ? <StyledInput
-          placeholder={user.name}
-          onChangeText={e => setData('name', e)}
-        /> :
-        <ItemText>
-          {user.name}
-        </ItemText>}
-      </StyledInputItem>
-      <StyledInputItem
-        title={I18n.t('Me.info.signature')}
-        textStyle={styles.text}
-      >
-        {isEditing ? <StyledInput
-          placeholder={user.signature}
-          onChangeText={e => setData('signature', e)}
-        /> :
-        <ItemText>
-          {user.signature}
-        </ItemText>}
-      </StyledInputItem>
+          <ItemText></ItemText>
+        </StyledInputItem>
+        <StyledInputItem
+          title={I18n.t('Me.info.gender')}
+          textStyle={styles.text}
+        >
+          {isEditing ? <PickerTouch
+            onPress={showGenderPicker}
+          >
+            <PickerText isPlaced={gender !== ''}>
+              {genderText}
+            </PickerText>
+          </PickerTouch> :
+            <ItemText>
+              {genderText}
+            </ItemText>}
+        </StyledInputItem>
+        <EmptyView />
+        <StyledInputItem
+          title={I18n.t('Me.info.school')}
+          textStyle={styles.text}
+        >
+          <ItemText>{user.university.name_en}</ItemText>
+        </StyledInputItem>
+        <StyledInputItem
+          title={I18n.t('Me.info.department')}
+          textStyle={styles.text}
+        >
+          {isEditing ? <StyledInput
+            onChangeText={e => setData('department', e)}
+            placeholder={user.department}
+          /> :
+            <ItemText>
+              {user.department}
+            </ItemText>}
+        </StyledInputItem>
+        <StyledInputItem
+          title={I18n.t('Me.info.grade')}
+          textStyle={styles.text}
+        >
+          {isEditing ? <PickerTouch
+            onPress={showYearPicker}
+          >
+            <PickerText isPlaced={year}>
+              {year || user.year}
+            </PickerText>
+          </PickerTouch> :
+            <ItemText>
+              {user.year}
+            </ItemText>}
+        </StyledInputItem>
+        <EmptyView />
+        <StyledInputItem
+          title={I18n.t('Me.info.nickname')}
+          textStyle={styles.text}
+        >
+          {isEditing ? <StyledInput
+            placeholder={user.name}
+            onChangeText={e => setData('name', e)}
+          /> :
+            <ItemText>
+              {user.name}
+            </ItemText>}
+        </StyledInputItem>
+        <StyledInputItem
+          title={I18n.t('Me.info.signature')}
+          textStyle={styles.text}
+        >
+          {isEditing ? <StyledInput
+            placeholder={user.signature}
+            onChangeText={e => setData('signature', e)}
+          /> :
+            <ItemText>
+              {user.signature}
+            </ItemText>}
+        </StyledInputItem>
+      </KeyboardAvoidingView>
     </MainView>
   )
 }

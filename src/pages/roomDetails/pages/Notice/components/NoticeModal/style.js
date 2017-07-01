@@ -1,20 +1,18 @@
 import styled from 'styled-components/native'
 
 export const UpperView = styled.View`
-  backgroundColor:#333333;
   width:100%;
-  height:56%;
-  opacity:0.5;
+  height: 56%;
 `
 
 export const MainModal = styled.Modal`
 `
 
-export const MenuView = styled.View`
-  position: absolute;
-  bottom: 0;
+export const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView`
   width: 100%;
   flex: 1;
+  height: 44%;
+  backgroundColor: rgba(0, 0, 0, 0.3);
 `
 
 export const HearderView = styled.View`
