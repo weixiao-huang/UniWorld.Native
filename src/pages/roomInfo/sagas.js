@@ -17,7 +17,10 @@ import {
   LEAVE_ROOM,
   MARK_ROOM,
   UNMARK_ROOM,
+<<<<<<< HEAD
   FETCH_ROOM_INFO,
+=======
+>>>>>>> merge
 } from './types'
 
 const fetchApi = (id, token) => api.fetchRoomInfo(id)(token)
