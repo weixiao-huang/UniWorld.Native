@@ -1,5 +1,4 @@
 import { StackNavigator } from 'react-navigation'
-
 import Login from '../pages/login'
 import RoomInfo from '../pages/roomInfo'
 import RoomDetails from '../pages/roomDetails'

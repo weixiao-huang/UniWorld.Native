@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import I18n from 'react-native-i18n'
-import { connect } from 'react-redux'
 import api from '@/api'
 import {
   MainModal,

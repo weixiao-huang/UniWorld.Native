@@ -7,6 +7,7 @@ import World from '@/pages/world'
 import NewRoom from '@/pages/newRoom'
 import MyRoomList from '@/pages/myRoomList'
 import Me from '@/pages/me'
+import MyListIcon from './components/MyListIcon'
 
 const styles = StyleSheet.create({
   icon: {
@@ -29,6 +30,15 @@ const setTabItem = (screen, label, icon) => ({
   tabBarPosition: 'bottom',
 })
 
+const setTabItemList = (screen, label) => ({
+  screen,
+  navigationOptions: {
+    tabBarLabel: label,
+    tabBarIcon: ({ tintColor }) => ( <MyListIcon tintColor={tintColor} /> )
+  },
+  tabBarPosition: 'bottom',
+})
+
 const worldIcon = require('../../img/world.png')
 const newIcon = require('../../img/new.png')
 const listIcon = require('../../img/myRoom.png')
@@ -37,7 +47,7 @@ const meIcon = require('../../img/me.png')
 const RouteConfigs = {
   world: setTabItem(World, I18n.t('World.label'), worldIcon),
   new: setTabItem(NewRoom, I18n.t('NewRoom.label'), newIcon),
-  list: setTabItem(MyRoomList, I18n.t('RoomList.label'), listIcon),
+  list: setTabItemList(MyRoomList, I18n.t('RoomList.label'), listIcon),
   me: setTabItem(Me, I18n.t('Me.label'), meIcon),
 }
 

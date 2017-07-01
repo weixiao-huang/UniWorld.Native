@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import EmptyView from '@/components/EmptyView'
-
 import {
   MainView,
   MainScrollView,
