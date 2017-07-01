@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 import Page from './page'
 
 const mapStateToProps = state => ({
-  participants: state.roomInfo.roomInfo.participants,
+  participants: state.roomInfo.roomInfo &&
+                state.roomInfo.roomInfo.participants,
 })
 
 const mapDispatchToProps = dispatch => ({

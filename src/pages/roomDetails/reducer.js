@@ -16,6 +16,7 @@ export default (state = initialState, action) => {
         roomDetails: action.roomDetails,
       }
     case CLEAR_ROOM_DETAILS:
+    case types.CLEAR_DATA:
       return initialState
     default:
       return state

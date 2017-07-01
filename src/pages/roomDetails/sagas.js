@@ -1,8 +1,10 @@
 import { take, select, call, put } from 'redux-saga/effects'
+import { FetchRoomInfo } from '@/pages/roomInfo/actions'
 
 import api from '../../api'
 
 import { handleApiErrors } from '../../lib/api-errors'
+
 
 import * as navTypes from '../../router/types'
 
@@ -10,7 +12,6 @@ import {
   SET_ROOM_DETAILS,
   CLEAR_ROOM_DETAILS,
   SEND_ANNOUNCEMENT,
-  UPLOAD_CHAT_IMAGE,
 } from './types'
 
 function fetchApi(token, id) {
@@ -25,11 +26,13 @@ export default function* () {
     const action = yield take([
       navTypes.NAVIGATE_TO_ROOM_DETAILS,
       SEND_ANNOUNCEMENT,
-      UPLOAD_CHAT_IMAGE,
     ])
     const state = yield select()
     const token = state.auth.token
     const id = action.id || state.roomInfo.roomInfo.id
+    if (!state.roomInfo.roomInfo) {
+      yield put(FetchRoomInfo(id))
+    }
     switch (action.type) {
       case navTypes.NAVIGATE_TO_ROOM_DETAILS:
       case SEND_ANNOUNCEMENT:

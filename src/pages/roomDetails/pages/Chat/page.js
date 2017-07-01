@@ -45,15 +45,12 @@ export default class Chat extends Component {
     if (messages) this.updateNewMessages(messages)
   }
 
-  updateNewMessages = messages => {
-    console.log('new messages: ', messages)
-    this.setState({
-      ds: this.state.ds.cloneWithRows(
-        messages,
-        messages.map((_, index) => index).reverse(),
-      ),
-    })
-  }
+  updateNewMessages = messages => this.setState({
+    ds: this.state.ds.cloneWithRows(
+      messages,
+      messages.map((_, index) => index).reverse(),
+    ),
+  })
 
   sendMessage = () => {
     if (this.state.text) {

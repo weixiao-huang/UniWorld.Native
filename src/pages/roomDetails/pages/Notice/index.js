@@ -7,7 +7,8 @@ import Page from './page'
 
 const mapStateToProps = state => ({
   token: state.auth.token,
-  roomId: state.roomInfo.roomInfo.id,
+  roomId: state.roomInfo.roomInfo &&
+          state.roomInfo.roomInfo.id,
 })
 
 const mapDispatchToProps = dispatch => ({

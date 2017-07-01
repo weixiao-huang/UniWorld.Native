@@ -17,6 +17,7 @@ import {
   LEAVE_ROOM,
   MARK_ROOM,
   UNMARK_ROOM,
+  FETCH_ROOM_INFO,
 } from './types'
 
 const fetchApi = (id, token) => api.fetchRoomInfo(id)(token)
@@ -40,6 +41,7 @@ export default function* () {
       // UNMARK_ROOM,
       JOIN_ROOM,
       LEAVE_ROOM,
+      FETCH_ROOM_INFO,
     ])
     let state = yield select()
     const token = state.auth.token
@@ -71,43 +73,50 @@ export default function* () {
           break
         default:
       }
-      const myInfo = state.me.userInfo
-      if (action.type !== authTypes.FOLLOW_USER &&
-          action.type !== authTypes.UNFOLLOW_USER) {
-        const {
-          participants,
-        } = yield call(fetchParticipantsApi, roomId, token)
-        roomInfo = yield call(fetchApi, roomId, token)
-        const data = { roomInfo }
-        if (myInfo) {
-          data.isJoined = false
-          participants.map((item) => {
-            if (item.id === myInfo.id) data.isJoined = true
-            return item
-          })
-          if (action.type === authTypes.NAVIGATE_TO_ROOM_INFO) {
-            const isMarked = roomInfo.marked_users.indexOf(myInfo.id) >= 0
-            data.isMarked = isMarked
-          }
-        }
-        yield put({ type: SET_ROOM_INFO_DATA, data })
-      }
-      if (myInfo) {
-        const { follows: myFollows } = myInfo
-        const hostId = roomInfo.host.id
-
-        let hostFollowed = false
-        myFollows.map((follow) => {
-          if (hostId === follow.id) hostFollowed = true
-          return follow
-        })
-
+      if (action.type === FETCH_ROOM_INFO) {
         yield put({
-          type: SET_ROOM_INFO_DATA,
-          data: {
-            hostFollowed,
-          },
+          type: SET_ROOM_INFO,
+          roomInfo: yield call(fetchApi, roomId, token),
         })
+      } else {
+        const myInfo = state.me.userInfo
+        if (action.type !== authTypes.FOLLOW_USER &&
+            action.type !== authTypes.UNFOLLOW_USER) {
+          const {
+            participants,
+          } = yield call(fetchParticipantsApi, roomId, token)
+          roomInfo = yield call(fetchApi, roomId, token)
+          const data = { roomInfo }
+          if (myInfo) {
+            data.isJoined = false
+            participants.map((item) => {
+              if (item.id === myInfo.id) data.isJoined = true
+              return item
+            })
+            if (action.type === authTypes.NAVIGATE_TO_ROOM_INFO) {
+              const isMarked = roomInfo.marked_users.indexOf(myInfo.id) >= 0
+              data.isMarked = isMarked
+            }
+          }
+          yield put({ type: SET_ROOM_INFO_DATA, data })
+        }
+        if (myInfo) {
+          const { follows: myFollows } = myInfo
+          const hostId = roomInfo.host.id
+
+          let hostFollowed = false
+          myFollows.map((follow) => {
+            if (hostId === follow.id) hostFollowed = true
+            return follow
+          })
+
+          yield put({
+            type: SET_ROOM_INFO_DATA,
+            data: {
+              hostFollowed,
+            },
+          })
+        }
       }
     } catch (e) {
       console.log('room info sagas error', e)

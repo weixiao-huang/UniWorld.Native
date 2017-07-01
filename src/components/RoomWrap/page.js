@@ -16,7 +16,6 @@ import {
 export default class RoomWrap extends Component {
   render() {
     const { navigateAction, title, roomList } = this.props
-    console.log(this.props.myFollows)
     return (
       <MainView>
         {!!title && <MainTitleView>

@@ -40,11 +40,13 @@ export default class NoticeModal extends Component {
   }
 
   submit = async () => {
-    if (this.state.title.length > 0 && this.state.description.length > 0) {
-      const res = await api.sendAnnouncement(this.state)(this.props.roomId)(this.props.token)
+    const { title, description } = this.state
+    if (title.length > 0 && description.length > 0) {
+      const { roomId, token, cancel, action } = this.props
+      const res = await api.sendAnnouncement(this.state)(roomId)(token)
       console.log(res)
-      this.props.cancel()
-      this.props.action()
+      cancel()
+      action()
     }
   }
 
@@ -53,7 +55,7 @@ export default class NoticeModal extends Component {
     return (
       <KeyboardAvoidingView
         behavior="position"
-        keyboardVerticalOffset={-100}
+        keyboardVerticalOffset={100}
       >
         <MainModal transparent visible >
           <UpperView />

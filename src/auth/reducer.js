@@ -1,4 +1,4 @@
-import PushNotification from './config'
+import PushNotification from 'react-native-push-notification'
 
 import {
   CLIENT_SET,
@@ -46,8 +46,8 @@ const reducer = function clientReducer(state = initialState, action) {
       const messages = {}
       const unreadMessages = {}
       const data = action.message
-      const pmid = data.id
-      console.log(data)
+      const pmid = data.id || state.pmid
+      console.log('reducer pmid: ', pmid)
       const roomId = data.room
       if (state.messages[roomId] !== undefined) {
         messages[roomId] = state.messages[roomId].concat(data)

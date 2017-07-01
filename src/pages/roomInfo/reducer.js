@@ -37,6 +37,7 @@ export default (state = initialState, action) => {
         ...action.data,
       }
     case CLEAR_ROOM_INFO:
+    case types.CLEAR_DATA:
       return initialState
     default:
       return state

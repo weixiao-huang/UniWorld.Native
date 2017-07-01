@@ -6,6 +6,7 @@ PushNotification.configure({
     console.log('TOKEN:', token);
   },
   onNotification(notification) {
+    console.log('notification', notification)
     // const store = configureStore(() => { })
     // store.dispatch(GoToRoomInfo(Number(notification.data.roomId || notification.id)))
     // GoToRoomInfo(notification.roomId)()

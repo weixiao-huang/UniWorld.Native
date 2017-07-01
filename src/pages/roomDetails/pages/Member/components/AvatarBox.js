@@ -50,27 +50,27 @@ const ItemText = styled.Text`
   lineHeight: 18px;
 `
 
-
-
-
 const AvatarBox = ({ participants }) => (
   <MainView>
     <TitleView>
       <TitleText>
         {I18n.t('Room.Detail.Member.title')}
       </TitleText>
-      <TitleText style={{color: 'red'}}>
+      {participants &&<TitleText style={{color: 'red'}}>
         {`  (${participants.length})`}
-      </TitleText>
+      </TitleText>}
     </TitleView>
-    {participants ?
-    <WrapView>
-      {participants.map(item =>
+    {participants ? <WrapView>
+      {participants.map(item => (
         <ItemView key={item.id}>
           <Avatar size={avatarSize} id={item.id} avatar={item.avatar} />
-          <ItemText>{item.name.length > length ? (item.name.slice(0, length) + '...') : item.name}</ItemText>
+          <ItemText>
+            {item.name.length > length ?
+              (item.name.slice(0, length).concat('...')) :
+              item.name}
+          </ItemText>
         </ItemView>
-      )}
+      ))}
     </WrapView>
     : null }
   </MainView>
