@@ -39,14 +39,18 @@ export default class RoomDetails extends Component {
         /> : <AnimatedScreen
           tabLabel={I18n.t('Room.Notice.notice')}
         />}
-        <Chat
+        {roomDetails ? <Chat
           tabLabel={I18n.t('Room.Chat.title')}
           isHost={myId === hostId}
-        />
-        <Member
+        /> : <AnimatedScreen
+          tabLabel={I18n.t('Room.Chat.title')}
+        />}
+        {roomDetails ? <Member
           tabLabel={I18n.t('Room.Member.title')}
           goBack={this.props.navigation.goBack}
-        />
+        /> : <AnimatedScreen
+          tabLabel={I18n.t('Room.Member.title')}
+        />}
       </MainScrollTabView>
     )
   }

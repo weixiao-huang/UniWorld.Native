@@ -48,11 +48,11 @@ const MessageItemView = styled.View`
 export default class MyListIcon extends Component {
   render() {
     const { unreadMessages, tintColor } = this.props
-    const unread = unreadMessages &&
-          unreadMessages.length > 0 &&
-          Object.values(unreadMessages).reduce(
-            (a, b) => a + b,
-          )
+    const values = unreadMessages && Object.values(unreadMessages)
+    const unread = values && values.length > 0 &&
+                   values.reduce(
+                     (a, b) => a + b,
+                   )
     return (
       <View>
         {unread ? <MessageItemView>
