@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import styled from 'styled-components/native'
 import { Image, StyleSheet, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -31,19 +32,32 @@ const styles = StyleSheet.create({
 
 const listIcon = require('../../../img/myRoom.png')
 
+const MessageItemView = styled.View`
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  background-color: #feac4e;
+  right: 20px;
+  top: -4px;
+  width: 21px;
+  height: 21px;
+  border-radius: 10px;
+`
 
 @connect(mapStateToProps)
 export default class MyListIcon extends Component {
   render() {
     const { unreadMessages, tintColor } = this.props
-    const unread = unreadMessages && Object.values(unreadMessages).reduce(
-      (a, b) => a + b,
-    )
+    const unread = unreadMessages &&
+          unreadMessages.length > 0 &&
+          Object.values(unreadMessages).reduce(
+            (a, b) => a + b,
+          )
     return (
       <View>
-        {unread ? <View style={[styles.messagesItem]}>
+        {unread ? <MessageItemView>
           <Text style={[styles.messagesText]}>{unread}</Text>
-        </View> : null}
+        </MessageItemView> : null}
         <Image
           source={listIcon}
           style={[styles.icon, { tintColor }]}

@@ -8,7 +8,12 @@ export default () => eventChannel((emit) => {
     },
     onNotification(notification) {
       console.log('notification', notification)
-      const roomId = notification.data.roomId || notification.id
+      const roomId = (notification.data &&
+                      notification.data.roomId) ||
+                     (notification.userInfo &&
+                      notification.userInfo.roomId) ||
+                     notification.id
+      console.log('roomId222222:', roomId)
       if (!notification.foreground) emit(roomId)
       // const store = configureStore(() => { })
       // store.dispatch(GoToRoomInfo(Number(notification.data.roomId || notification.id)))

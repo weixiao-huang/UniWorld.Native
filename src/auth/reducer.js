@@ -72,6 +72,7 @@ export default (state = initialState, action) => {
         }
       } else unreadMessages[roomId] = 1
 
+      console.log('roomId: ', roomId)
       PushNotification.localNotification({
         id: roomId,
         /* Android Only Properties
