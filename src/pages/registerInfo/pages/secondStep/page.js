@@ -59,15 +59,19 @@ export default class SecondStep extends Component {
             year,
             gender,
           }
-          let formData = new FormData()
-          formData.append('avatar', {
-            uri: this.state.avatar,
-            name: 'avatar',
-          })
           this.props.putAction(data)
-          const res2 = await api.upload_avatar(formData)(this.props.token)
-          if (res2.status === 200) {
-            console.log(res2)
+          if (this.state.avatar.length > 1) {
+            let formData = new FormData()
+            formData.append('avatar', {
+              uri: this.state.avatar,
+              name: 'avatar',
+            })
+            const res2 = await api.upload_avatar(formData)(this.props.token)
+            if (res2.status === 200) {
+              //到home
+            }
+          } else {
+              //到home
           }
         },
       },

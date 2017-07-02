@@ -6,8 +6,6 @@ import {
   MainView,
   CoverInnerView,
   CoverTouch,
-  CoverPreviewImage,
-  CoverPreviewView,
   CoverImage,
 } from './style'
 
@@ -18,7 +16,7 @@ const CoverView = ({ cover, isUploading, showImgPicker
     <MainView>
       <CoverInnerView>
         <CoverTouch onPress={showImgPicker} >
-          {isUploading && <ActivityIndicator animating={isUploading} />}
+
           <CoverImage source={{ uri: cover }} />
         </CoverTouch>
       </CoverInnerView>

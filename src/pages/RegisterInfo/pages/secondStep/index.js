@@ -6,7 +6,7 @@ import { PutMyUserInfo } from '@/pages/me/actions'
 import Page from './page'
 
 const mapStateToProps = state => ({
-
+  token: state.auth.token,
 })
 
 const mapDispatchToProps = dispatch => ({

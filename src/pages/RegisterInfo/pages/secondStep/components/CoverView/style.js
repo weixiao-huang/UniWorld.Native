@@ -9,8 +9,6 @@ export const MainView = styled.View`
 export const CoverInnerView = styled.View`
   width: 80px;
   height: 80px;
-  borderRadius: 40px;
-
 `
 
 export const CoverImage = styled.Image`
@@ -23,21 +21,7 @@ export const CoverImage = styled.Image`
 `
 
 export const CoverTouch = styled.TouchableOpacity`
-  flex: 1;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-`
-
-
-export const CoverPreviewView = styled.View`
-  flex-direction: row;
-  padding-top: 10px;
-  padding-bottom: 20px;
-`
-
-export const CoverPreviewImage = styled.Image`
-  width: 100%;
-  height: 200px;
-  border-radius: 10px;
+  justify-content: center;
 `
