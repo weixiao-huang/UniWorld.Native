@@ -18,12 +18,9 @@ const CoverView = ({ cover, isUploading, showImgPicker
     <MainView>
       <CoverInnerView>
         <CoverTouch onPress={showImgPicker} >
-          <ActivityIndicator animating={isUploading} />
+          {isUploading && <ActivityIndicator animating={isUploading} />}
           <CoverImage source={{ uri: cover }} />
         </CoverTouch>
-        {!!cover && <CoverPreviewView>
-          <CoverPreviewImage source={{ uri: cover }} />
-        </CoverPreviewView>}
       </CoverInnerView>
     </MainView>
   )

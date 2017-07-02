@@ -62,7 +62,11 @@ export default class firstStep extends Component {
         <MainImage source={imageUrl} />
         <MainText>
           {I18n.t('SignInfo.first.message1')}
+        </MainText>
+        <MainText>
           {I18n.t('SignInfo.first.message2')}
+        </MainText>
+        <MainText>
           {I18n.t('SignInfo.first.message3')}
         </MainText>
         <MainButton

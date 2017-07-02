@@ -90,18 +90,44 @@ export default class Login extends Component {
       if (this.state.emailAuth) {
         res = await api.Register(this.state).then(handleApiErrors)
       } else {
-        res = await api.uploadIdCard(this.state).then(handleApiErrors)
+        let formData = new FormData()
+        formData.append('id_card', {
+          uri: this.state.stuCard,
+          name: 'id_card',
+        },
+        )
+        formData.append('username', this.state.username)
+        formData.append('password', this.state.password)
+        formData.append('email', '')
+
+        console.log(formData)
+        res = await api.uploadIdCard(formData)
+        console.log(res)
+        console.log(res.json())
       }
+      console.log(res)
       switch (res.status) {
         // 成功
         case 201: {
-          Alert.alert(
-            I18n.t('Register.succeedTitle'),
-            I18n.t('Register.succeedText'),
-            [
-              { text: 'OK', onPress: () => goBackAction() },
-            ],
-          )
+          if (this.state.emailAUth) {
+            Alert.alert(
+              I18n.t('Register.succeedTitle'),
+              I18n.t('Register.succeedText'),
+              [
+                { text: 'OK', onPress: () => goBackAction() },
+              ],
+            )
+          }
+          else {
+            Alert.alert(
+              I18n.t('Register.succeedTitle'),
+              I18n.t('Register.succeedStuText'),
+              [
+                { text: 'OK', onPress: () => goBackAction() },
+              ],
+            )
+
+          }
           break
         }
 
@@ -191,9 +217,9 @@ export default class Login extends Component {
     const {
       login: {
         requesting,
-        successful,
-        messages,
-        errors,
+      successful,
+      messages,
+      errors,
       },
     } = this.props
     return (
@@ -210,6 +236,7 @@ export default class Login extends Component {
               onChangeText={username => this.setState({ username })}
               placeholder={I18n.t('Register.username')}
               icon={userIcon}
+              maxLength={11}
             />
             <AuthButton
               emailAuth={() => this.setState({ emailAuth: true })}
@@ -220,23 +247,27 @@ export default class Login extends Component {
                 onChangeText={email => this.setState({ email })}
                 placeholder={I18n.t('Register.email')}
                 icon={emailIcon}
+                maxLength={50}
               /> :
               <UploadButton
                 onPress={this.uploadImage}
                 title={I18n.t('Register.addImage')}
                 icon={stuIcon}
+                image={this.state.stuCard}
               />}
             <Input
               onChangeText={password => this.setState({ password })}
               placeholder={I18n.t('Register.password')}
               secureTextEntry
               icon={passIcon}
+              maxLength={20}
             />
             <Input
               onChangeText={passwordAgain => this.setState({ passwordAgain })}
               placeholder={I18n.t('Register.passwordAgain')}
               secureTextEntry
               icon={passIcon}
+              maxLength={20}
             />
             <StyledButton
               title={I18n.t('Register.register')}

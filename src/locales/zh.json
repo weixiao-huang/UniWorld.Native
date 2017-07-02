@@ -60,7 +60,8 @@
     "emailAuth":"教育邮箱验证",
     "addImage":"点击上传学生证照片",
     "failIdCard":"请上传您的学生证照片",
-    "imageAuth":"学生证验证"
+    "imageAuth":"学生证验证",
+    "succeedStuText": "请给后台君几分钟来核对您的信息",
 
   },
   "FindPassword":{
@@ -311,7 +312,9 @@
       },
       "Edit": {
         "title": "修改你的个人信息",
-        "content": "确认修改？"
+        "registerTitle": "补充个人信息",
+        "content": "确认修改？",
+        "registerContent":"请确认您的个人信息，在注册后部分信息将不能修改",
       }
     },
     "follow": {

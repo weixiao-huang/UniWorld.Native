@@ -48,6 +48,7 @@
     "emailFail": "Please enter an email that ends with '.edu.cn'",
     "succeedTitle": "Last step!",
     "succeedText": "Check your activation email.\nJoin Uniworld now",
+    "succeedStuText": "It will take some minutes to check your profile",
     "failTitle": "Fail to register",
     "failTextInfoTel": "Please use the right tel number",
     "failPassword": "You entered different passwords",
@@ -167,7 +168,7 @@
     "Search": {
       "label": "Search",
       "button": "Search",
-      "searchByName":"Search By Name"
+      "searchByName": "Search By Name"
     }
   },
   "NewRoom": {
@@ -309,8 +310,10 @@
       },
       "Edit": {
         "title": "Edit User Info",
-        "content": "Confirm your change?"
-      }
+        "registerTitle": "Edit User Profile",
+        "content": "Confirm your change?",
+        "registerContent": "Confirm your profile? Some of them can not be changed later",
+      },
     },
     "follow": {
       "label": "Follow",

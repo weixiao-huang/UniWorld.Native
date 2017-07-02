@@ -75,6 +75,15 @@ export default {
     body: data,
   }),
 
+  uploadIdCard: data => fetch(`${server}/register/`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'multipart/form-data', // ; boundary=6ff46e0b6b5148d984f148b6542e5a5d',
+    },
+    body: data,
+  }),
+
   uploadImage: data => roomId => token => fetch(`${server}/room/${roomId}/send_message/`, {
     method: 'POST',
     headers: {

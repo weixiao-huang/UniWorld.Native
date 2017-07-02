@@ -10,20 +10,21 @@ export const CoverInnerView = styled.View`
   width: 80px;
   height: 80px;
   borderRadius: 40px;
-  borderWidth: 3px;
-  borderColor: #3555b6;
+
 `
 
 export const CoverImage = styled.Image`
   width: 80px;
   height: 80px;
   resize-mode: cover;
+  borderRadius: 40px;
+  borderWidth: 3px;
+  borderColor: #3555b6;
 `
 
 export const CoverTouch = styled.TouchableOpacity`
   flex: 1;
   flex-direction: row;
-  margin: 4px;
   align-items: center;
   justify-content: space-between;
 `

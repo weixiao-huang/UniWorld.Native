@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { StatusBar } from 'react-native'
+import { StatusBar, Alert } from 'react-native'
 import EmptyView from '@/components/EmptyView'
 import AnimatedScreen from '@/components/AnimatedScreen'
-
+import I18n from '@/locales'
 import {
   MainScrollView,
   MainView,
@@ -95,9 +95,24 @@ export default class RoomInfo extends Component {
           join={() => {
             dispatch({ type: JOIN_ROOM })
             navigateAction(roomInfo.id)
-            }
           }
-          leave={() => dispatch({ type: LEAVE_ROOM })}
+          }
+          leave={() => {
+            Alert.alert(
+              I18n.t('Room.Footer.Leave.title'),
+              I18n.t('Room.Footer.Leave.content'),
+              [
+                {
+                  text: I18n.t('Room.Footer.Leave.confirm'),
+                  onPress: () => {
+                    dispatch({ type: LEAVE_ROOM })
+                  }
+                },
+                { text: I18n.t('Room.Footer.Leave.cancel'), onPress: () => { }}
+              ]
+            )
+          }
+          }
           room={() => navigateAction(roomInfo.id)}
           mark={() => dispatch({ type: MARK_ROOM })}
           unmark={() => dispatch({ type: UNMARK_ROOM })}

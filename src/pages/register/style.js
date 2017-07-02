@@ -23,6 +23,7 @@ export const BackgroundView = styled.View`
   ${FlexView}
   ${FlexCenter}
   margin: 20px 40px;
+  paddingBottom: 60px;
 `
 
 export const LogoImage = styled.Image`

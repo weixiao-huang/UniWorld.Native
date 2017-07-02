@@ -8,10 +8,10 @@ export const MainButton = styled.TouchableOpacity`
   background-color: white;
   border-radius: 5px;
   align-items: center;
+  width: 100%;
 `
 
 export const MainText = styled.Text`
-  flex: 1;
   padding-left: 10px;
   color: #aaaaaa;
   font-weight: 400;
@@ -22,4 +22,10 @@ export const IconImage = styled.Image`
   margin: 2px;
   width: ${props => props.iconSize};
   height: ${props => props.iconSize};
+`
+export const ChooseImage = styled.Image`
+  width: 200px;
+  height: 150px;
+  resize-mode: contain;
+  marginLeft: 20px;
 `
