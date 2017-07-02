@@ -22,7 +22,7 @@ const ChatMenu = ({ sendImg }) => (
       <ItemImage source={questionIconImg} />
       <ItemText>{I18n.t('Room.Chat.questionnaires')}</ItemText>
     </ItemTouch>
-    <ItemTouch>
+    <ItemTouch onPress={sendImg}>
       <ItemImage source={ImageIconImg} />
       <ItemText>{I18n.t('Room.Chat.image')}</ItemText>
     </ItemTouch>

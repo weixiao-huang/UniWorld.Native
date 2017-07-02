@@ -92,7 +92,11 @@ export default class RoomInfo extends Component {
           </MainView>
         </MainScrollView> : <AnimatedScreen />}
         {!!token && !!roomInfo && <ButtonArea
-          join={() => dispatch({ type: JOIN_ROOM })}
+          join={() => {
+            dispatch({ type: JOIN_ROOM })
+            navigateAction(roomInfo.id)
+            }
+          }
           leave={() => dispatch({ type: LEAVE_ROOM })}
           room={() => navigateAction(roomInfo.id)}
           mark={() => dispatch({ type: MARK_ROOM })}

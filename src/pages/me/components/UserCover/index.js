@@ -18,10 +18,10 @@ import {
 
 import infoImg from '../../img/infoImage.jpg'
 
-const UserCover = ({ userInfo }) => (
+const UserCover = ({ userInfo, uploadAvatar }) => (
   <BackgroundImage bgUrl={infoImg}>
     {userInfo && <MainView>
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity onPress={uploadAvatar}>
         <CoverImage source={{ uri: userInfo.avatar_thumbnail }} />
       </TouchableOpacity>
       <ContentView>
@@ -40,7 +40,5 @@ const UserCover = ({ userInfo }) => (
   </BackgroundImage>
 )
 
-UserCover.uploadAvatar = function () {
-}
 
 export default UserCover

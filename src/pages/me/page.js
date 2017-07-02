@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Alert } from 'react-native'
 import I18n from '@/locales'
-
-
+import api from '@/api'
+import ImagePicker from 'react-native-image-picker'
 import {
   MainView,
   PlaceholderView,
@@ -36,11 +36,47 @@ export default class Me extends Component {
       )
     }
   }
+
+  uploadAvatar = () => {
+    const options = {
+      title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
+      cancelButtonTitle: 'Cancel',
+      takePhotoButtonTitle: 'Take Photo...',
+      chooseFromLibraryButtonTitle: 'Choose from Library...',
+      returnBase64Image: true,
+      returnIsVertical: false,
+    }
+    this.setState({ isUploading: true })
+    ImagePicker.showImagePicker(options, async (res) => {
+      if (res.didCancel) {
+        console.log('User cancelled image picker')
+        this.setState({ isUploading: false })
+      } else if (res.error) {
+        console.log('ImagePicker Error: ', res.error)
+        this.setState({ isUploading: false })
+      } else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton)
+        this.setState({ isUploading: false })
+      } else {
+        let formData = new FormData()
+        formData.append('avatar', {
+          uri: res.uri,
+          name: 'avatar',
+        })
+        const res2 = await api.upload_avatar(formData)(this.props.token)
+        if (res2.status === 200) {
+          this.props.fetchMyUserInfoAction()
+          console.log(132)
+        }
+      }
+    })
+  }
+
   render() {
     const { userInfo } = this.props
     return (
       <MainView>
-        <UserCover userInfo={userInfo} />
+        <UserCover userInfo={userInfo} uploadAvatar={this.uploadAvatar} />
         {userInfo ?
           <StyledScrollTabView>
             <UserInfo

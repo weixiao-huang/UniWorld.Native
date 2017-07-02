@@ -2,7 +2,6 @@ import React from 'react'
 import { Image, StyleSheet } from 'react-native'
 import { TabNavigator } from 'react-navigation'
 import I18n from '@/locales'
-
 import World from '@/pages/world'
 import NewRoom from '@/pages/newRoom'
 import MyRoomList from '@/pages/myRoomList'
@@ -34,7 +33,7 @@ const setTabItemList = (screen, label) => ({
   screen,
   navigationOptions: {
     tabBarLabel: label,
-    tabBarIcon: ({ tintColor }) => ( <MyListIcon tintColor={tintColor} /> )
+    tabBarIcon: ({ tintColor }) => <MyListIcon tintColor={tintColor} />,
   },
   tabBarPosition: 'bottom',
 })

@@ -75,6 +75,16 @@ export default {
     body: data,
   }),
 
+  uploadImage: data => roomId => token => fetch(`${server}/room/${roomId}/send_message/`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'multipart/form-data',// ; boundary=6ff46e0b6b5148d984f148b6542e5a5d',
+      Authorization: `token ${token}`,
+    },
+    body: data,
+  }),
+
   Register: data => postWithoutToken('/register/')(data),
 
   findPassword: data => postWithoutToken('/find_password/')(data),
@@ -86,37 +96,37 @@ export default {
     '/plaza/hot/',
   )(token) : getWithoutToken(
     '/plaza/hot/',
-  )),
+    )),
   fetchLatest: token => (token ? getByToken(
     '/plaza/latest/',
   )(token) : getWithoutToken(
     '/plaza/latest/',
-  )),
+    )),
   fetchChannels: token => (token ? getByToken(
     '/plaza/channels/',
   )(token) : getWithoutToken(
     '/plaza/channels/',
-  )),
+    )),
   fetchWorld: token => (token ? getByToken(
     '/plaza/random/',
   )(token) : getWithoutToken(
     '/plaza/random/',
-  )),
+    )),
   fetchTop: token => (token ? getByToken(
     '/plaza/top/',
   )(token) : getWithoutToken(
     '/plaza/top/',
-  )),
+    )),
   fetchPosters: token => (token ? getByToken(
     '/plaza/posters/',
   )(token) : getWithoutToken(
     '/plaza/posters/',
-  )),
+    )),
   fetchRoomInfo: id => token => (token ? getByToken(
     `/room/${id}/`,
   )(token) : getWithoutToken(
     `/room/${id}/`,
-  )),
+    )),
   fetchUserInfo: token => getByToken(
     '/profile/',
   )(token),

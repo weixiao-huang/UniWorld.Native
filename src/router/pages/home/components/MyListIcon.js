@@ -28,15 +28,15 @@ const styles = StyleSheet.create({
   },
 })
 
-const listIcon = require('../../..//img/myRoom.png')
+const listIcon = require('../../../img/myRoom.png')
 
 
 @connect(mapStateToProps)
 export default class MyListIcon extends Component {
   render() {
-    const { unreadMessages } = this.props
+    const { unreadMessages, tintColor } = this.props
     const unread = Object.values(unreadMessages).reduce(
-      (a, b) => a + b
+      (a, b) => a + b,
     )
     return (
       <View>
@@ -46,7 +46,7 @@ export default class MyListIcon extends Component {
 
         <Image
           source={listIcon}
-          style={[styles.icon,  { color: this.props.tintColor }]}
+          style={[styles.icon, { tintColor }]}
         />
       </View>
     )

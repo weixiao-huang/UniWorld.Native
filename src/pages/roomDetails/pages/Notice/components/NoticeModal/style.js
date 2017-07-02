@@ -76,7 +76,7 @@ export const SelectButton = styled.TouchableOpacity`
 `
 
 export const SelectImage = styled.Image`
-  width: 16px
+  width: 16px;
   height: 16px;
   resizeMode: cover;
 `

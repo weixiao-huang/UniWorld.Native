@@ -11,11 +11,8 @@ import {
   CoverImage,
 } from './style'
 
-const CoverView = ({ cover, isUploading, onChangeCover, onChangeUpload,
+const CoverView = ({ cover, isUploading, showImgPicker
 }) => {
-  const showImgPicker = () => {
-
-  }
 
   return (
     <MainView>

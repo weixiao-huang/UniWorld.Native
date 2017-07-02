@@ -30,6 +30,7 @@ export default class RoomDetails extends Component {
         tabBarUnderlineStyle={styles.tabBarUnderline}
         tabBarBackgroundColor="#ec5367"
         tabBarTextStyle={styles.tabBarText}
+        initialPage={1}
       >
         {roomDetails ? <Notice
           tabLabel={I18n.t('Room.Notice.notice')}
@@ -44,6 +45,7 @@ export default class RoomDetails extends Component {
         />
         <Member
           tabLabel={I18n.t('Room.Member.title')}
+          goBack={this.props.navigation.goBack}
         />
       </MainScrollTabView>
     )

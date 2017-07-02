@@ -5,3 +5,9 @@ export const MainView = styled.View`
 `
 export const MainScrollView = styled.ScrollView`
 `
+export const ItemView = styled.View`
+  margin: 15px;
+  background-color: white;
+  border-radius: 6px;
+  marginBottom: 5px;
+`

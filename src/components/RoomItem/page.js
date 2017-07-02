@@ -35,7 +35,7 @@ const defaultCover = require('@/img/image/default_avatar.jpg')
 const RoomItem = ({
   id, src, title, place, dateTimeStart, dateTimeEnd, myFollows,
   maxParticipants, participantCount, participantIds, titleLabel, myFollowDict,
-  myId, navigateToRoomInfoAction, navigateToRoomDetailsAction,
+  myId, navigateToRoomInfoAction, navigateToRoomDetailsAction, infoFlag, unreadMessages,
 }) => {
   let showPeople = maxParticipants ?
     `${participantCount}/${maxParticipants}` :
@@ -48,15 +48,15 @@ const RoomItem = ({
     participantIds, myFollows,
   ).map(item => myFollowDict[item])
 
-  const inFlag = myId && participantIds.indexOf(myId) >= 0
+  const inFlag = myId && participantIds && participantIds.indexOf(myId) >= 0
   const navigate = () => {
-    if (inFlag) {
+    if (inFlag && !infoFlag) {
       navigateToRoomDetailsAction(id)
     } else {
       navigateToRoomInfoAction(id)
     }
   }
-
+  console.log(unreadMessages)
   return (
     <TouchableOpacity
       onPress={navigate}
@@ -82,8 +82,8 @@ const RoomItem = ({
           <RoomContentView>
             <RoomContentTitleView>
 
-              {inFlag ? <TitleLableView>
-                <TitleLabelText>IN</TitleLabelText>
+              {unreadMessages ? <TitleLableView>
+                <TitleLabelText>{unreadMessages > 99 ? '99+' : unreadMessages}</TitleLabelText>
               </TitleLableView>
                 : null}
               <RoomContentTitleText>{

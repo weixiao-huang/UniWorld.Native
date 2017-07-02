@@ -58,13 +58,15 @@ export const RoomContentView = styled.View`
 export const TitleLableView = styled.View`
   background-color: #fdae57;
   border-radius: 5px;
-  width: 40px;
   margin-right: 10px;
   alignItems: center;
+  padding-left: 5px;
+  padding-right: 5px;
 `
 export const TitleLabelText = styled.Text`
   flexDirection: row;
   color: white;
+  font-size: 13px;
 `
 
 export const RoomContentTitleView = styled.View`

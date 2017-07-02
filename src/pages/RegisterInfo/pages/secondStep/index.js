@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { KeyboardAvoidingView } from 'react-native'
+import api from "@/api"
 import _ from 'lodash'
 import I18n from '@/locales'
-
+import ImagePicker from 'react-native-image-picker'
 import bgUrl from '@/img/image/signInfoBg.png'
 import CoverView from './components/CoverView'
 import RequiredView from './components/RequiredView'
@@ -31,7 +32,7 @@ export default class SecondStep extends Component {
   }
 
   next = () => {
-  //发送注册信息，进入广场
+
   }
 
   agreement = () => {
@@ -41,6 +42,34 @@ export default class SecondStep extends Component {
     navigate('Third')
   }
 
+  showImgPicker = () => {
+    const options = {
+      title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
+      cancelButtonTitle: 'Cancel',
+      takePhotoButtonTitle: 'Take Photo...',
+      chooseFromLibraryButtonTitle: 'Choose from Library...',
+      returnBase64Image: true,
+      returnIsVertical: false,
+    }
+    this.setState({ isUploading: true })
+    ImagePicker.showImagePicker(options, async res => {
+      if (res.didCancel) {
+        console.log('User cancelled image picker')
+        this.setState({ isUploading: false })
+      } else if (res.error) {
+        console.log('ImagePicker Error: ', res.error)
+        this.setState({ isUploading: false })
+      } else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton)
+        this.setState({ isUploading: false })
+      } else {
+        this.setState({
+          avatar: res.uri,
+          isUploading: false,
+        })
+      }
+    })
+  }
 
   render() {
     return (
@@ -52,8 +81,7 @@ export default class SecondStep extends Component {
             <CoverView
               cover={this.state.avatar}
               isUploading={this.state.isUploading}
-              onChangeUpload={isUploading => this.setState({ isUploading })}
-              onChangeCover={avatar => this.setState({ avatar })}
+              showImgPicker={this.showImgPicker}
             />
             <RequiredView
               setData={(name, value) => this.setState({ [name]: value })}

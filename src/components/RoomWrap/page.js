@@ -15,6 +15,7 @@ import {
 export default class RoomWrap extends Component {
   render() {
     const { title, roomList } = this.props
+    console.log(this.props.unreadMessages)
     return (
       <MainView>
         {!!title && <MainTitleView>
@@ -39,6 +40,7 @@ export default class RoomWrap extends Component {
                 titleLabel={this.props.titleLabel}
                 myFollows={this.props.myFollows}
                 myFollowDict={this.props.myFollowDict}
+                unreadMessages={this.props.unreadMessages[item.id]}
               />
             </RoomListView>
           ))}

@@ -1,7 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { SendMessage } from '@/auth/actions'
-
 import Page from './page'
 
 const mapStateToProps = state => ({
@@ -10,6 +9,7 @@ const mapStateToProps = state => ({
   myId: state.me.userInfo.id,
   roomId: state.roomInfo.roomInfo &&
           state.roomInfo.roomInfo.id,
+  token: state.auth.token,
 })
 
 const mapDispatchToProps = dispatch => ({
