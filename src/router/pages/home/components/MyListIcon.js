@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 const mapStateToProps = state => ({
   unreadMessages: state.auth.token && state.auth.unreadMessages,
 })
+
 const styles = StyleSheet.create({
   icon: {
     height: '100%',
@@ -35,15 +36,14 @@ const listIcon = require('../../../img/myRoom.png')
 export default class MyListIcon extends Component {
   render() {
     const { unreadMessages, tintColor } = this.props
-    const unread = Object.values(unreadMessages).reduce(
+    const unread = unreadMessages && Object.values(unreadMessages).reduce(
       (a, b) => a + b,
     )
     return (
       <View>
-          {unread ? <View style={[styles.messagesItem]}>
-            <Text style={[styles.messagesText]}>{unread}</Text>
-          </View> : null}
-
+        {unread ? <View style={[styles.messagesItem]}>
+          <Text style={[styles.messagesText]}>{unread}</Text>
+        </View> : null}
         <Image
           source={listIcon}
           style={[styles.icon, { tintColor }]}
