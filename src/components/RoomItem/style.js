@@ -21,6 +21,7 @@ export const FriendView = styled.View`
 export const FriendText = styled.Text`
   paddingLeft: 10px;
   color: #ccc;
+  fontSize: 13px;
 `
 export const FriendImage = styled.Image`
   width: 24px;
@@ -52,7 +53,7 @@ export const RoomCoverImage = styled.Image`
 
 export const RoomContentView = styled.View`
   flex: 1;
-  margin-left: 20px;
+  margin-left: 10px;
 `
 
 export const TitleLableView = styled.View`
@@ -76,6 +77,8 @@ export const RoomContentTitleView = styled.View`
 `
 
 export const RoomContentTitleText = styled.Text`
+  fontSize: 14px;
+  fontWeight: 400;
 `
 
 export const RoomContentWrapView = styled.View`
@@ -106,9 +109,7 @@ export const RoomContentPeopleView = styled.View`
   align-Items: center;
   flex-direction: row;
   border-radius: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  width: 60px;
+  width: 56px;
 `
 
 export const RoomContentPeopleText = styled.Text`

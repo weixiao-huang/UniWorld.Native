@@ -51,4 +51,5 @@ export const ContentView = styled.View`
 `
 export const ContentText = styled.Text`
   lineHeight: 20px;
+  width: 90%;
 `

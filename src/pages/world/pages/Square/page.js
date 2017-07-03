@@ -16,9 +16,9 @@ const posterUrl1 = require('@/img/poster/lb.jpg')
 const MiddlePosterImage = styled.Image`
   margin-top: 10px;
   margin-bottom: 10px;
-  margin-left: 15px;
+  align-self: center;
   height: 112.5px;
-  width: 345px;
+  width: 90%;
   border-radius: 16px;
 `
 

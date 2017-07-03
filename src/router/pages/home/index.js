@@ -10,8 +10,9 @@ import MyListIcon from './components/MyListIcon'
 
 const styles = StyleSheet.create({
   icon: {
-    height: '100%',
+    height: '90%',
     resizeMode: 'contain',
+    margin: 10,
   },
 })
 
@@ -61,6 +62,7 @@ const TabNavigatorConfig = {
     },
     labelStyle: {
       fontSize: 12, // 文字大小
+      lineHeight: 14,
     },
   },
   tabBarPosition: 'bottom',

@@ -13,8 +13,11 @@ const RowAlign = css`
 
 export const MainView = styled.View`
   ${RowAlign}
+  paddingLeft: 20px;
+  paddingTop: 20px;
   justify-content: center;
   flex: 1;
+  align-items: center;
 `
 
 export const CoverImage = styled.Image`

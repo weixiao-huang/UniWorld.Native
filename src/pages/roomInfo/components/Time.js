@@ -21,15 +21,17 @@ const LeftView = styled.View`
 `
 
 const LeftText = styled.Text`
-  font-size: 18px;
+  font-size: 17px;
   color: #5053ca;
 `
 const RightView = styled.View`
+  flex-wrap: wrap;
+  width: 90%;
 `
 
 const RightText = styled.Text`
-  font-size: 18px;
-  padding: 2px;
+  font-size: 16px;
+  padding: 0px;
   color: #ff5757;
 `
 

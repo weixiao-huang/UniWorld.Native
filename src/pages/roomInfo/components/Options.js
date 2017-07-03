@@ -8,7 +8,6 @@ const MainView = styled.View`
 
 const OptionView = styled.View`
   flex-direction: row;
-  flex-wrap:wrap;
   border-bottom-width: 1px;
   padding: 15px;
 
