@@ -114,6 +114,7 @@ export const RoomContentPeopleView = styled.View`
 
 export const RoomContentPeopleText = styled.Text`
   color: white;
+  padding-left: 5px;
 `
 
 export const RoomContentPeopleImage = styled.Image`
