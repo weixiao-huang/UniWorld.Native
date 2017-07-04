@@ -1,16 +1,10 @@
 import styled from 'styled-components/native'
 import { Platform } from 'react-native'
 
-const padding = Platform.OS === 'ios' ? '' : `
-  padding-top: 0;
-  padding-bottom: 0;
-`
-
 export const MainView = styled.View`
   flex-direction: row;
   margin-bottom: 10px;
-  padding: 10px;
-  ${ padding }
+  padding: ${Platform.OS === 'ios' ? '10px' : '0'} 10px;
   background-color: white;
   border-radius: 5px;
   align-items: center;
