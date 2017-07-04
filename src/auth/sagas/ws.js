@@ -28,7 +28,9 @@ const createWebSocket = (pmid, token) => {
 }
 
 const configWebSocket = ws => eventChannel((emit) => {
-  ws.onerror = (error) => { throw error }
+  ws.onerror = (error) => {
+    console.log('web socket onerror: ', error)
+  }
   ws.onmessage = (e) => {
     console.log('web socket message: ', e.data)
     emit({
