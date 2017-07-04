@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
 import I18n from 'react-native-i18n'
 import AnimatedScreen from '@/components/AnimatedScreen'
+import Loading from '@/components/Loading'
 
 import {
   MainScrollView,
@@ -39,9 +40,10 @@ export default class UserInfo extends Component {
 
 
   render() {
-    const { userInfo, isFollowed } = this.props
+    const { userInfo, isFollowed, requesting } = this.props
     return (
       <MainView>
+        <Loading visible={requesting} />
         {userInfo && <UserCover userInfo={userInfo} />}
         {userInfo && <MainScrollView>
           <Info user={userInfo} />

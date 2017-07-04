@@ -105,13 +105,11 @@ const RoomItem = ({
                 <RoomContentPeopleView
                   grayBg={maxParticipants && participantCount > maxParticipants}
                 >
+                  <RoomContentPeopleImage
+                    source={participantIcon}
+                  />
                   <RoomContentPeopleText>
-                    <RoomContentPeopleImage
-                      source={participantIcon}
-                    />
-                    <RoomContentPeopleIconText>
-                      {showPeople}
-                    </RoomContentPeopleIconText>
+                    {showPeople}
                   </RoomContentPeopleText>
                 </RoomContentPeopleView>
               </RoomContentFooterView>

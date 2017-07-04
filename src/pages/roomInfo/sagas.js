@@ -18,6 +18,8 @@ import {
   MARK_ROOM,
   UNMARK_ROOM,
   FETCH_ROOM_INFO,
+  FOLLOW_OR_UNFOLLOW_USER,
+  FOLLOW_OR_UNFOLLOW_SUCCESS,
 } from './types'
 
 const fetchApi = (id, token) => api.fetchRoomInfo(id)(token)
@@ -68,8 +70,10 @@ export default function* () {
           break
         case authTypes.FOLLOW_USER:
         case authTypes.UNFOLLOW_USER:
+          yield put({ type: FOLLOW_OR_UNFOLLOW_USER })
           yield take(meTypes.FETCH_MY_USER_INFO_SUCCESS)
           state = yield select()
+          yield put({ type: FOLLOW_OR_UNFOLLOW_SUCCESS })
           break
         default:
       }

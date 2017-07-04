@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   isJoined: state.roomInfo.isJoined,
   isMarked: state.roomInfo.isMarked,
   hostFollowed: state.roomInfo.hostFollowed,
+  followRequesting: state.roomInfo.followRequesting,
   token: state.auth.token,
   myId: state.me.userInfo && state.me.userInfo.id,
 })

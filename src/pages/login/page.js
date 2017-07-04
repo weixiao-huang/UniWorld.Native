@@ -69,7 +69,6 @@ export default class Login extends Component {
         />
         <BackgroundImage bgUrl={bgUrl}>
           <Loading visible={requesting} />
-<<<<<<< HEAD
           <KeyboardAvoidingView
             behavior="position"
             keyboardVerticalOffset={-100}
@@ -81,32 +80,6 @@ export default class Login extends Component {
               fadeInDuration={750}
               fadeOutDuration={1500}
               ref={(e) => { this.toast = e }}
-=======
-          <BackgroundView>
-            <LogoImage source={logoUrl} />
-            <Input
-              onChangeText={username => this.setState({ username })}
-              placeholder={I18n.t('Login.username')}
-              icon={userIcon}
-              underlineColorAndroid={'transparent'}
-            />
-            <Input
-              onChangeText={password => this.setState({ password })}
-              placeholder={I18n.t('Login.password')}
-              secureTextEntry
-              icon={passIcon}
-              underlineColorAndroid={'transparent'}
-            />
-            <StyledButton
-              title={I18n.t('Login.login')}
-              onPress={this.login}
-            />
-            <NavArea
-              nav1={this.visitor}
-              title1={I18n.t('Login.visitor')}
-              nav2={this.register}
-              title2={I18n.t('Login.register')}
->>>>>>> underline removed; height of TextInput decreased
             />
             <BackgroundView>
               <LogoImage source={logoUrl} />
@@ -116,6 +89,7 @@ export default class Login extends Component {
                 keyboardType="numeric"
                 icon={userIcon}
                 maxLength={11}
+                underlineColorAndroid="transparent"
               />
               <Input
                 onChangeText={password => this.setState({ password })}
@@ -123,6 +97,7 @@ export default class Login extends Component {
                 secureTextEntry
                 icon={passIcon}
                 maxLength={20}
+                underlineColorAndroid="transparent"
               />
               <StyledButton
                 title={I18n.t('Login.login')}

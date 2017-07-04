@@ -11,6 +11,8 @@ import {
   SET_USER_INFO,
   CLEAR_USER_INFO,
   SET_FOLLOWED,
+  FOLLOW_OR_UNFOLLOW_USER,
+  FOLLOW_OR_UNFOLLOW_SUCCESS,
 } from './types'
 
 function fetchApi(token, id) {
@@ -44,13 +46,17 @@ export default function* () {
         break
       }
       case authTypes.UNFOLLOW_USER:
+        yield put({ type: FOLLOW_OR_UNFOLLOW_USER })
         yield take(meTypes.FETCH_MY_USER_INFO_SUCCESS)
         yield put({ type: SET_FOLLOWED, isFollowed })
+        yield put({ type: FOLLOW_OR_UNFOLLOW_SUCCESS })
         break
       case authTypes.FOLLOW_USER:
         isFollowed = true
+        yield put({ type: FOLLOW_OR_UNFOLLOW_USER })
         yield take(meTypes.FETCH_MY_USER_INFO_SUCCESS)
         yield put({ type: SET_FOLLOWED, isFollowed })
+        yield put({ type: FOLLOW_OR_UNFOLLOW_SUCCESS })
         break
       default:
     }

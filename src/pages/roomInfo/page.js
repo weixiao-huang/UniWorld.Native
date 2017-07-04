@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StatusBar, Alert } from 'react-native'
 import EmptyView from '@/components/EmptyView'
 import AnimatedScreen from '@/components/AnimatedScreen'
+import Loading from '@/components/Loading'
 import I18n from '@/locales'
 import {
   MainScrollView,
@@ -29,7 +30,7 @@ export default class RoomInfo extends Component {
   render() {
     let options
     const {
-      roomInfo, token, dispatch, myId, hostFollowed,
+      roomInfo, token, dispatch, myId, hostFollowed, followRequesting,
       navigateAction, followAction, unfollowAction,
     } = this.props
     if (roomInfo) {
@@ -59,6 +60,7 @@ export default class RoomInfo extends Component {
         />
         {roomInfo ? <MainScrollView>
           <MainView>
+            <Loading visible={followRequesting} />
             <CoverImage source={{ uri: roomInfo.cover }} />
             <Header
               title={roomInfo.title}

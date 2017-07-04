@@ -5,6 +5,8 @@ import {
   SET_ROOM_INFO_JOINED,
   SET_ROOM_INFO_MARKED,
   SET_ROOM_INFO_DATA,
+  FOLLOW_OR_UNFOLLOW_USER,
+  FOLLOW_OR_UNFOLLOW_SUCCESS,
 } from './types'
 
 const initialState = {
@@ -12,6 +14,7 @@ const initialState = {
   isJoined: false,
   isMarked: false,
   hostFollowed: false,
+  followRequesting: false,
 }
 
 export default (state = initialState, action) => {
@@ -39,6 +42,16 @@ export default (state = initialState, action) => {
     case CLEAR_ROOM_INFO:
     case types.CLEAR_DATA:
       return initialState
+    case FOLLOW_OR_UNFOLLOW_USER:
+      return {
+        ...state,
+        followRequesting: true,
+      }
+    case FOLLOW_OR_UNFOLLOW_SUCCESS:
+      return {
+        ...state,
+        followRequesting: false,
+      }
     default:
       return state
   }
