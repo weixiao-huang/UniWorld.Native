@@ -4,13 +4,14 @@
 
 import React, { PropTypes } from 'react'
 import { Modal, Platform } from 'react-native'
-import Spinner from 'react-native-spinkit'
 
 import {
   MainView,
+  MainText,
+  MainSpinner,
 } from './style'
 
-const Loading = ({ visible, bgColor, size, color, type }) => (
+const Loading = ({ visible, bgColor, size, color, type, info }) => (
   <Modal
     transparent
     animationType="fade"
@@ -18,12 +19,15 @@ const Loading = ({ visible, bgColor, size, color, type }) => (
     visible={visible}
   >
     <MainView bgColor={bgColor}>
-      <Spinner
+      <MainSpinner
         isVisible={visible}
         size={size}
         color={color}
         type={type}
       />
+      <MainText>
+        { info }
+      </MainText>
     </MainView>
   </Modal>
 )
@@ -33,6 +37,7 @@ Loading.defaultProps = {
   size: 50,
   color: '#FFFFFF',
   type: Platform.OS === 'ios' ? 'ArcAlt' : 'WanderingCubes',
+  info: '',
 }
 
 Loading.propTypes = {

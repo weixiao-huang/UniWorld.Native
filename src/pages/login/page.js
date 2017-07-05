@@ -68,7 +68,7 @@ export default class Login extends Component {
           barStyle="light-content"
         />
         <BackgroundImage bgUrl={bgUrl}>
-          <Loading visible={requesting} />
+          <Loading visible={requesting} info={I18n.t('Alert.Login.logging_in')} />
           <KeyboardAvoidingView
             behavior="position"
             keyboardVerticalOffset={-100}

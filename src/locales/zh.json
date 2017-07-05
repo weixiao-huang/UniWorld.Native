@@ -12,7 +12,8 @@
       "title": "请登录",
       "content": "请登录查看更多信息",
       "confirm": "登录",
-      "cancel": "取消"
+      "cancel": "取消",
+      "logging_in": "正在登录"
     }
   },
   "yes":"是",
