@@ -41,7 +41,8 @@ const RoomItem = ({
     `${participantCount}/${maxParticipants}` :
     '不限'
   if (showPeople.length > 5) {
-    showPeople = participantCount.concat('/..')
+    console.log(participantCount)
+    showPeople = `${participantCount}/..`
   }
   const showTime = transferTimeFormat([dateTimeStart, dateTimeEnd])
   const roomFollows = _.intersection(
@@ -109,7 +110,12 @@ const RoomItem = ({
                     source={participantIcon}
                   />
                   <RoomContentPeopleText>
-                    {showPeople}
+                    <RoomContentPeopleImage
+                      source={participantIcon}
+                    />
+                    <RoomContentPeopleIconText>
+                      {` ${showPeople}`}
+                    </RoomContentPeopleIconText>
                   </RoomContentPeopleText>
                 </RoomContentPeopleView>
               </RoomContentFooterView>

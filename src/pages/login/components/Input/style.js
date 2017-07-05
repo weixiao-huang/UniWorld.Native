@@ -4,7 +4,6 @@ import { Platform } from 'react-native'
 export const MainView = styled.View`
   flex-direction: row;
   margin-bottom: 10px;
-  padding: 10px;
   padding: ${Platform.OS === 'ios' ? '10px' : '0'} 10px;
   background-color: white;
   border-radius: 5px;
