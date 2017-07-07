@@ -20,17 +20,18 @@ function* eventFlow(auth) {
   let wsTask
   let noticeTask
   try {
-    const { token, pmid } = auth
+    const { token } = auth
     if (token) {
-      wsTask = yield fork(handleWebSocket, token, pmid)
+      wsTask = yield fork(handleWebSocket)
       noticeTask = yield fork(noticeFlow)
     }
   } catch (error) {
-    console.log('event flow erro: ', error)
+    console.log('event flow error: ', error)
   } finally {
     if (yield cancelled()) {
-      if (wsTask) cancel(wsTask)
-      if (noticeTask) cancel(noticeTask)
+      console.log('event flow close')
+      if (wsTask) yield cancel(wsTask)
+      if (noticeTask) yield cancel(noticeTask)
     }
   }
 }
@@ -55,8 +56,9 @@ export default function* () {
         yield call(baseApi, api.unfollowUser, id, token)
         break
       case INITIAL_WEBSOCKET:
-        if (token && !task) {
+        if (token) {
           const { auth } = yield select()
+          if (task) yield cancel(task)
           task = yield fork(eventFlow, auth)
         }
         break
