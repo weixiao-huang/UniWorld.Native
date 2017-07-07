@@ -110,9 +110,6 @@ const RoomItem = ({
                     source={participantIcon}
                   />
                   <RoomContentPeopleText>
-                    <RoomContentPeopleImage
-                      source={participantIcon}
-                    />
                     <RoomContentPeopleIconText>
                       {` ${showPeople}`}
                     </RoomContentPeopleIconText>
