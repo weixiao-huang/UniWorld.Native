@@ -27,9 +27,9 @@ const createWebSocket = (pmid, token) => {
   return ws
 }
 
-const configWebSocket = ws => eventChannel((emit) => {
+const configWebSocket = (ws) => eventChannel((emit) => {
   ws.onerror = (error) => {
-    console.log('web socket onerror: ', error)
+    console.log('web socket onerror: ', error.message)
   }
   ws.onmessage = (e) => {
     console.log('web socket message: ', e.data)
@@ -37,6 +37,10 @@ const configWebSocket = ws => eventChannel((emit) => {
       type: SET_ROOM_MESSAGE,
       message: JSON.parse(e.data),
     })
+  }
+  ws.onclose = (e) => {
+    console.log('Socket is closed, message is: ', e.message)
+    console.log('Reconnect will be attempted in 1 second...')
   }
   return () => console.log('Socket off')
 })
