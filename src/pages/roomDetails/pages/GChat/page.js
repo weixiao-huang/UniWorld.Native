@@ -42,6 +42,8 @@ export default class GChat extends Component {
         onSend={this.onSend}
         user={{
           _id: 1,
+          name: 'huangwx',
+          avatar: 'https://facebook.github.io/react/img/logo_og.png',
         }}
       />
     )

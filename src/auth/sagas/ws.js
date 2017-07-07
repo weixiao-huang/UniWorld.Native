@@ -1,8 +1,7 @@
 import {
-  take, fork, cancel, call, put, cancelled, select,
+  take, fork, cancel, put, cancelled, select,
 } from 'redux-saga/effects'
 import { eventChannel } from 'redux-saga'
-import PushNotification from 'react-native-push-notification'
 
 import { handleApiErrors } from '@/lib/api-errors'
 import api from '@/api'
@@ -27,7 +26,7 @@ const createWebSocket = (pmid, token) => {
   return ws
 }
 
-const configWebSocket = (ws) => eventChannel((emit) => {
+const configWebSocket = ws => eventChannel((emit) => {
   ws.onerror = (error) => {
     console.log('web socket onerror: ', error.message)
   }
