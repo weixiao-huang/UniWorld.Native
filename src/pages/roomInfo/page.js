@@ -97,8 +97,7 @@ export default class RoomInfo extends Component {
           join={() => {
             dispatch({ type: JOIN_ROOM })
             navigateAction(roomInfo.id)
-          }
-          }
+          }}
           leave={() => {
             Alert.alert(
               I18n.t('Room.Footer.Leave.title'),
@@ -106,12 +105,13 @@ export default class RoomInfo extends Component {
               [
                 {
                   text: I18n.t('Room.Footer.Leave.confirm'),
-                  onPress: () => {
-                    dispatch({ type: LEAVE_ROOM })
-                  }
+                  onPress: () => dispatch({ type: LEAVE_ROOM }),
                 },
-                { text: I18n.t('Room.Footer.Leave.cancel'), onPress: () => { }}
-              ]
+                {
+                  text: I18n.t('Room.Footer.Leave.cancel'),
+                  onPress: () => { },
+                },
+              ],
             )
           }
           }

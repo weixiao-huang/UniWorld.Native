@@ -1,14 +1,13 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { StatusBar, Alert } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 
 import I18n from '@/locales'
+import { handleApiErrors } from '@/lib/api-errors'
+import api from '@/api'
+
 import BackgroundImage from '@/components/BackgroundImage'
 import Loading from '@/components/Loading'
-
-import { handleApiErrors } from '@/lib/api-errors'
-
-import api from '@/api'
 
 import {
   MainView,
@@ -18,9 +17,9 @@ import {
 } from './style'
 
 import Input from '../login/components/Input'
+import NavArea from '../login/components/NavArea'
 import UploadButton from './components/UploadButton'
 import AuthButton from './components/AuthButton'
-import NavArea from '../login/components/NavArea'
 
 const bgUrl = require('@/img/image/registerBg.jpg')
 const logoUrl = require('@/img/image/Logo.png')
@@ -117,8 +116,7 @@ export default class Login extends Component {
                 { text: 'OK', onPress: () => goBackAction() },
               ],
             )
-          }
-          else {
+          } else {
             Alert.alert(
               I18n.t('Register.succeedTitle'),
               I18n.t('Register.succeedStuText'),
@@ -126,7 +124,6 @@ export default class Login extends Component {
                 { text: 'OK', onPress: () => goBackAction() },
               ],
             )
-
           }
           break
         }
@@ -209,17 +206,15 @@ export default class Login extends Component {
     const { toFindPassAction } = this.props
     toFindPassAction()
   }
-  login = () => {
-    this.props.navigation.goBack()
-  }
+  login = () => this.props.navigation.goBack()
 
   render() {
     const {
       login: {
         requesting,
-      successful,
-      messages,
-      errors,
+        successful,
+        messages,
+        errors,
       },
     } = this.props
     return (

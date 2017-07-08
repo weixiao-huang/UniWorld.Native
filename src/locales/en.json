@@ -13,6 +13,12 @@
       "content": "Please login for more details",
       "confirm": "Login",
       "cancel": "Cancel"
+    },
+    "ImageSize": {
+      "title": "Size Error",
+      "content": "Image size is too large",
+      "confirm": "Confirm and repick",
+      "cancel": "Cancel"
     }
   },
   "yes": "Yes",

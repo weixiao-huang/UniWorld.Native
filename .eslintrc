@@ -17,6 +17,7 @@
   "parser": "babel-eslint",
   "globals": {
     "fetch": false,
-    "window": false
+    "window": false,
+    "FormData": false
   }
 }

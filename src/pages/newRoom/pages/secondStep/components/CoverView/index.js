@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { ActivityIndicator } from 'react-native'
+import { ActivityIndicator, Alert } from 'react-native'
 import Icon from 'react-native-vector-icons/Entypo'
 import ImagePicker from 'react-native-image-picker'
 
@@ -40,6 +40,25 @@ const CoverView = ({
         // console.log('User tapped custom button: ', res.customButton)
         onChangeUpload(false)
       } else {
+        if (res.fileSize > 5e6) {
+          Alert.alert(
+            I18n.t('Alert.ImageSize.title'),
+            I18n.t('Alert.ImageSize.content'),
+            [
+              {
+                text: I18n.t('Alert.ImageSize.confirm'),
+                onPress: () => {
+                  showImgPicker()
+                },
+              },
+              {
+                text: I18n.t('Alert.ImageSize.cancel'),
+                onPress: () => onChangeUpload(false),
+              },
+            ],
+          )
+          return
+        }
         const img = { uri: res.uri }
         // You can also display the image using data:
         // this.setState({ cover: 'data:image/jpeg;base64,' + res.data })

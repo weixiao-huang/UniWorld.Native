@@ -26,6 +26,8 @@ export const CoverImage = styled.Image`
   border-radius: ${Dimensions.get('window').width * 0.1}px;
   border-width: 3px;
   border-color: white;
+  align-items: center;
+  justify-content: center;
 `
 
 export const ContentView = styled.View`

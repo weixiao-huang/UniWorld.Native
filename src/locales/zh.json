@@ -13,6 +13,12 @@
       "content": "请登录查看更多信息",
       "confirm": "登录",
       "cancel": "取消"
+    },
+    "ImageSize": {
+      "title": "尺寸错误",
+      "content": "图片太大",
+      "confirm": "确定并重选",
+      "cancel": "取消"
     }
   },
   "yes":"是",

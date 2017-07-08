@@ -1,9 +1,8 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import ImagePicker from 'react-native-image-picker'
 import { Alert } from 'react-native'
 import I18n from '@/locales'
 import api from '@/api'
-import PushNotification from 'react-native-push-notification'
-import ImagePicker from 'react-native-image-picker'
 import {
   MainView,
   PlaceholderView,
@@ -16,6 +15,12 @@ import Follow from './pages/Follow/'
 import Reputation from './pages/Reputation/'
 
 export default class Me extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isUploading: false,
+    }
+  }
   componentDidUpdate() {
     const {
       alert, resetToLoginAction, goBackAction,
@@ -49,28 +54,27 @@ export default class Me extends Component {
       returnBase64Image: true,
       returnIsVertical: false,
     }
-    this.setState({ isUploading: true })
+    // this.setState({ isUploading: true })
     ImagePicker.showImagePicker(options, async (res) => {
       if (res.didCancel) {
         console.log('User cancelled image picker')
-        this.setState({ isUploading: false })
+        // this.setState({ isUploading: false })
       } else if (res.error) {
         console.log('ImagePicker Error: ', res.error)
-        this.setState({ isUploading: false })
+        // this.setState({ isUploading: false })
       } else if (res.customButton) {
         console.log('User tapped custom button: ', res.customButton)
-        this.setState({ isUploading: false })
+        // this.setState({ isUploading: false })
       } else {
-        let formData = new FormData()
+        this.setState({ isUploading: true })
+        const formData = new FormData()
         formData.append('avatar', {
           uri: res.uri,
           name: 'avatar',
         })
         const res2 = await api.upload_avatar(formData)(this.props.token)
-        if (res2.status === 200) {
-          this.props.fetchMyUserInfoAction()
-          console.log(132)
-        }
+        if (res2.status === 200) this.props.fetchMyUserInfoAction()
+        this.setState({ isUploading: false })
       }
     })
   }
@@ -80,7 +84,11 @@ export default class Me extends Component {
     const { userInfo } = this.props
     return (
       <MainView>
-        <UserCover userInfo={userInfo} uploadAvatar={this.uploadAvatar} />
+        <UserCover
+          userInfo={userInfo}
+          uploadAvatar={this.uploadAvatar}
+          isUploading={this.state.isUploading}
+        />
         {userInfo ?
           <StyledScrollTabView>
             <UserInfo
