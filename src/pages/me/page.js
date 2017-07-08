@@ -41,6 +41,8 @@ export default class Me extends Component {
   uploadAvatar = () => {
     const options = {
       title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
+      rotation: true,
+      allowsEditing: true,
       cancelButtonTitle: 'Cancel',
       takePhotoButtonTitle: 'Take Photo...',
       chooseFromLibraryButtonTitle: 'Choose from Library...',

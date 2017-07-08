@@ -68,6 +68,9 @@ export default (state = initialState, action) => {
       const unreadMessages = { ...state.unreadMessages }
       const data = action.message
       const pmid = data.id || state.pmid
+      console.log('data.id: ', data.id)
+      console.log('state.pmid: ', state.pmid)
+      console.log('pmid: ', pmid)
       const roomId = data.room
       const showRoomId = action.id
       if (state.messages[roomId] !== undefined) {

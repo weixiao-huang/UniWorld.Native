@@ -3934,6 +3934,10 @@ react-native-i18n@^2.0.1:
   dependencies:
     i18n-js "github:fnando/i18n-js#v3.0.0"
 
+react-native-image-crop-picker@^0.14.1:
+  version "0.14.1"
+  resolved "http://registry.npm.taobao.org/react-native-image-crop-picker/download/react-native-image-crop-picker-0.14.1.tgz#278aa72287946c0c4cdb8d183fbe1d1db7414e81"
+
 react-native-image-picker@^0.26.3:
   version "0.26.3"
   resolved "http://registry.npm.taobao.org/react-native-image-picker/download/react-native-image-picker-0.26.3.tgz#0ad2eede49501a7046d8046a73813696539c3dcd"

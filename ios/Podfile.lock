@@ -1,0 +1,15 @@
+PODS:
+  - QBImagePickerController (3.4.0)
+  - RSKImageCropper (1.6.2)
+
+DEPENDENCIES:
+  - QBImagePickerController
+  - RSKImageCropper
+
+SPEC CHECKSUMS:
+  QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
+  RSKImageCropper: 3e579d0000945a8be1c0efdad728fd9e25c2fd79
+
+PODFILE CHECKSUM: c7afd4b33c580db0cbe89b0c12b3e11108b418ae
+
+COCOAPODS: 1.2.1

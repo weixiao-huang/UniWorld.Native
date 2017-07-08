@@ -40,6 +40,7 @@
 		35A53C4F83C148EBAD72DCFA /* libLottie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A9250200374F6F8A88C079 /* libLottie.a */; };
 		52BDB60AEA9A4222A9F26BA3 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CF2C74FDD5D4CAFBD989C10 /* FontAwesome.ttf */; };
 		54CECAD363B64DFAA04EC20F /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F3B0247E7704FADB33F645D /* Entypo.ttf */; };
+		5E4FB7969CF24C17B497457C /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11AFFE80B61C4137B9ACB9F6 /* libimageCropPicker.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		5EECA82E3CEC4168AA012BA9 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04ECA26DBA974AFC8B404ACA /* Zocial.ttf */; };
 		741DE1D3C7044E9A867ABBB9 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A55CD93E3D4097A9CD04E6 /* libRNImagePicker.a */; };
@@ -50,6 +51,7 @@
 		8ABC8EA6F135437CB35BD072 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FF397664612456F9B4DC558 /* Ionicons.ttf */; };
 		913E2B299D374FECBFE86F6E /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BAA24797A2E14669BF488289 /* Octicons.ttf */; };
 		92C289442CDE42EC91454B7C /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 685FFF72894A479B969DA291 /* MaterialIcons.ttf */; };
+		B02708DA8CBBF180DC8C0975 /* libPods-UniWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BF6531E29B87F1C313A420 /* libPods-UniWorld.a */; };
 		B4F4B38D45634349AD384C98 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54549FD03E5D46DE8C074E41 /* MaterialCommunityIcons.ttf */; };
 		BD191E5C014349B1AB98133E /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76E721E7CAEA4605888651B5 /* SimpleLineIcons.ttf */; };
 		EE8D5CBE84DD4689B809AA5F /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4A0E90048F44939096F40D /* libRNSpinkit.a */; };
@@ -345,6 +347,13 @@
 			remoteGlobalIDString = 11FA5C511C4A1296003AC2EE;
 			remoteInfo = LottieReactNative;
 		};
+		8A73483F1F10B3740085A27C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDECAE762880489CB7FEAF0E /* imageCropPicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3400A8081CEB54A6008A0BC7;
+			remoteInfo = imageCropPicker;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -372,7 +381,9 @@
 		00E356EE1AD99517003FC87E /* UniWorldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniWorldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* UniWorldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UniWorldTests.m; sourceTree = "<group>"; };
+		016F598072D81D44761C7F81 /* Pods-UniWorld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniWorld.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UniWorld/Pods-UniWorld.debug.xcconfig"; sourceTree = "<group>"; };
 		04ECA26DBA974AFC8B404ACA /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		11AFFE80B61C4137B9ACB9F6 /* libimageCropPicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libimageCropPicker.a; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* UniWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -399,6 +410,9 @@
 		7DB55220944649B2A8C69A49 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		7EC42141A9A04CF1AB36E8A3 /* LottieReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = LottieReactNative.xcodeproj; path = "../node_modules/lottie-react-native/lib/ios/LottieReactNative.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		83BF6531E29B87F1C313A420 /* libPods-UniWorld.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UniWorld.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A7348661F10B3F40085A27C /* libRSKImageCropper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRSKImageCropper.a; path = "Pods/../build/Debug-iphoneos/RSKImageCropper/libRSKImageCropper.a"; sourceTree = "<group>"; };
+		8A7348681F10B40F0085A27C /* libRSKImageCropper.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRSKImageCropper.a; path = "Pods/../build/Debug-iphoneos/RSKImageCropper/libRSKImageCropper.a"; sourceTree = "<group>"; };
 		8CF2C74FDD5D4CAFBD989C10 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		8E1AD034D1B6404996BC345E /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		8EF8DE3F887D40D7BB6A587B /* RNSpinkit.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSpinkit.xcodeproj; path = "../node_modules/react-native-spinkit/ios/RNSpinkit.xcodeproj"; sourceTree = "<group>"; };
@@ -412,6 +426,8 @@
 		EBA4DCAD06F142B8B722893F /* libLottieReactNative.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libLottieReactNative.a; sourceTree = "<group>"; };
 		F5FEFD9EA770421AAC24DBAC /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		FD32136061664A20AA953116 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
+		FDD886A6134FEC42ACA64593 /* Pods-UniWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniWorld.release.xcconfig"; path = "Pods/Target Support Files/Pods-UniWorld/Pods-UniWorld.release.xcconfig"; sourceTree = "<group>"; };
+		FDECAE762880489CB7FEAF0E /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = imageCropPicker.xcodeproj; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -447,6 +463,8 @@
 				741DE1D3C7044E9A867ABBB9 /* libRNImagePicker.a in Frameworks */,
 				3356B65899634F1AAA0D6079 /* libLottieReactNative.a in Frameworks */,
 				35A53C4F83C148EBAD72DCFA /* libLottie.a in Frameworks */,
+				5E4FB7969CF24C17B497457C /* libimageCropPicker.a in Frameworks */,
+				B02708DA8CBBF180DC8C0975 /* libPods-UniWorld.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +708,7 @@
 				FD32136061664A20AA953116 /* RNImagePicker.xcodeproj */,
 				7EC42141A9A04CF1AB36E8A3 /* LottieReactNative.xcodeproj */,
 				E7B453E6F1C44078B05D5999 /* Lottie.xcodeproj */,
+				FDECAE762880489CB7FEAF0E /* imageCropPicker.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -711,6 +730,8 @@
 				00E356EF1AD99517003FC87E /* UniWorldTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2529761FE4AB4ABF997DAC10 /* Resources */,
+				F35F09CBB075AC23272073C0 /* Pods */,
+				C24863F1DF8A603F6409F28A /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -745,6 +766,33 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8A73483C1F10B3740085A27C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8A7348401F10B3740085A27C /* libimageCropPicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C24863F1DF8A603F6409F28A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A7348681F10B40F0085A27C /* libRSKImageCropper.a */,
+				8A7348661F10B3F40085A27C /* libRSKImageCropper.a */,
+				83BF6531E29B87F1C313A420 /* libPods-UniWorld.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F35F09CBB075AC23272073C0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				016F598072D81D44761C7F81 /* Pods-UniWorld.debug.xcconfig */,
+				FDD886A6134FEC42ACA64593 /* Pods-UniWorld.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -770,11 +818,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "UniWorld" */;
 			buildPhases = (
+				C542DB544BAEB4ACDDCB375E /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				180C2BEA1F0A5E70007FC560 /* Embed Frameworks */,
+				AB5DC8CA70EF3018897EB723 /* [CP] Embed Pods Frameworks */,
+				7096C10E3737DD67622C44A2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -866,6 +917,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 8A73483C1F10B3740085A27C /* Products */;
+					ProjectRef = FDECAE762880489CB7FEAF0E /* imageCropPicker.xcodeproj */;
+				},
 				{
 					ProductGroup = 8A64032F1F0583D300DBB29F /* Products */;
 					ProjectRef = E7B453E6F1C44078B05D5999 /* Lottie.xcodeproj */;
@@ -1220,6 +1275,13 @@
 			remoteRef = 8A64035F1F0583D300DBB29F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		8A7348401F10B3740085A27C /* libimageCropPicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libimageCropPicker.a;
+			remoteRef = 8A73483F1F10B3740085A27C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1294,6 +1356,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
+		};
+		7096C10E3737DD67622C44A2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UniWorld/Pods-UniWorld-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB5DC8CA70EF3018897EB723 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UniWorld/Pods-UniWorld-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C542DB544BAEB4ACDDCB375E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1382,12 +1489,14 @@
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 					"$(SRCROOT)/../node_modules/lottie-react-native/lib/ios/LottieReactNative",
 					"$(SRCROOT)/../node_modules/lottie-ios/Lottie-Screenshot/**",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = UniWorldTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1419,12 +1528,14 @@
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 					"$(SRCROOT)/../node_modules/lottie-react-native/lib/ios/LottieReactNative",
 					"$(SRCROOT)/../node_modules/lottie-ios/Lottie-Screenshot/**",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = UniWorldTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1444,6 +1555,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 016F598072D81D44761C7F81 /* Pods-UniWorld.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = UniWorld/UniWorld.entitlements;
@@ -1460,9 +1572,14 @@
 					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
 					"$(SRCROOT)/../node_modules/lottie-react-native/lib/ios/LottieReactNative",
 					"$(SRCROOT)/../node_modules/lottie-ios/Lottie-Screenshot/**",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = UniWorld/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/RSKImageCropper",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1476,6 +1593,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDD886A6134FEC42ACA64593 /* Pods-UniWorld.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = UniWorld/UniWorld.entitlements;
@@ -1491,9 +1609,14 @@
 					"$(SRCROOT)/../node_modules/react-native/Libraries/PushNotificationIOS/**",
 					"$(SRCROOT)/../node_modules/lottie-react-native/lib/ios/LottieReactNative",
 					"$(SRCROOT)/../node_modules/lottie-ios/Lottie-Screenshot/**",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = UniWorld/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/RSKImageCropper",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1526,11 +1649,13 @@
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 					"$(SRCROOT)/../node_modules/lottie-react-native/lib/ios/LottieReactNative",
 					"$(SRCROOT)/../node_modules/lottie-ios/Lottie-Screenshot/**",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = "UniWorld-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1572,11 +1697,13 @@
 					"$(SRCROOT)/../node_modules/react-native-image-picker/ios",
 					"$(SRCROOT)/../node_modules/lottie-react-native/lib/ios/LottieReactNative",
 					"$(SRCROOT)/../node_modules/lottie-ios/Lottie-Screenshot/**",
+					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 				);
 				INFOPLIST_FILE = "UniWorld-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1619,6 +1746,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.UniWorld-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1643,6 +1771,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
