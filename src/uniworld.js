@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import AppWithNavigationState from './router'
 
-export default () => (
-  <AppWithNavigationState />
-)
+export default class UniWorld extends Component {
+  render() {
+    return (
+      <AppWithNavigationState />
+    )
+  }
+}

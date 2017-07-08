@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Alert } from 'react-native'
 import I18n from '@/locales'
 import api from '@/api'
+import PushNotification from 'react-native-push-notification'
 import ImagePicker from 'react-native-image-picker'
 import {
   MainView,
@@ -73,6 +74,7 @@ export default class Me extends Component {
   }
 
   render() {
+
     const { userInfo } = this.props
     return (
       <MainView>
