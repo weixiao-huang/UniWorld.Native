@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { KeyboardAvoidingView, Alert } from 'react-native'
-import api from "@/api"
+import api from '@/api'
 import _ from 'lodash'
 import I18n from '@/locales'
 import ImagePicker from 'react-native-image-picker'
@@ -15,7 +15,6 @@ import {
   SubmitView,
   StyledButton,
 } from './style'
-
 
 
 export default class SecondStep extends Component {
@@ -33,7 +32,7 @@ export default class SecondStep extends Component {
   }
 
   uploadAvatar = async () => {
-    let formData = new FormData()
+    const formData = new FormData()
     formData.append('avatar', {
       uri: this.state.avatar,
       name: 'avatar',
@@ -59,19 +58,20 @@ export default class SecondStep extends Component {
             year,
             gender,
           }
+          console.log('this.props: ', this.props)
           this.props.putAction(data)
           if (this.state.avatar.length > 1) {
-            let formData = new FormData()
+            const formData = new FormData()
             formData.append('avatar', {
               uri: this.state.avatar,
               name: 'avatar',
             })
             const res2 = await api.upload_avatar(formData)(this.props.token)
             if (res2.status === 200) {
-              //到home
+              this.props.resetToHomeAction()
             }
           } else {
-              //到home
+            this.props.resetToHomeAction()
           }
         },
       },
@@ -99,7 +99,7 @@ export default class SecondStep extends Component {
       returnIsVertical: false,
     }
     this.setState({ isUploading: true })
-    ImagePicker.showImagePicker(options, async res => {
+    ImagePicker.showImagePicker(options, async (res) => {
       if (res.didCancel) {
         console.log('User cancelled image picker')
         this.setState({ isUploading: false })

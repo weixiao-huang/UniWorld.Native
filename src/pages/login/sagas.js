@@ -68,7 +68,7 @@ function* loginFlow(username, password) {
     // login success
     yield put({ type: LOGIN_SUCCESS })
     const state = yield select()
-    if (state.me.userInfo && state.me.userInfo.name.length < 5) {
+    if (state.me.userInfo && !state.me.userInfo.name.length) {
       yield put({ type: navTypes.NAVIGATE_TO_REGISTERINFO })
     } else {
       yield put({ type: navTypes.RESET_TO_HOME })
