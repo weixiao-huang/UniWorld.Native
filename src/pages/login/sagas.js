@@ -67,8 +67,12 @@ function* loginFlow(username, password) {
     yield put(PostDeviceToken())
     // login success
     yield put({ type: LOGIN_SUCCESS })
-    // reset to login
-    yield put({ type: navTypes.RESET_TO_HOME })
+    const state = yield select()
+    if (state.me.userInfo && state.me.userInfo.name.length < 5) {
+      yield put({ type: navTypes.NAVIGATE_TO_REGISTERINFO })
+    } else {
+      yield put({ type: navTypes.RESET_TO_HOME })
+    }
   } catch (error) {
     yield put({ type: LOGIN_ERROR, error })
   } finally {

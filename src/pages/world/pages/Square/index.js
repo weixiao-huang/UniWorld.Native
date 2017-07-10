@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   recommend: state.world.recommend,
   posters: state.world.posters,
   refreshing: state.world.refreshing,
+  channels: state.world.channels,
 })
 
 const mapDispatchToProps = dispatch => ({

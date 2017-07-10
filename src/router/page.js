@@ -6,8 +6,8 @@ import UserInfo from '../pages/userInfo'
 import HomeTab from './pages/home'
 import Register from '../pages/register'
 import FindPassword from '../pages/findPassword'
-import NewRoom from '../pages/newRoom'
 import RegisterInfo from '../pages/registerInfo'
+import ChannelPage from '../pages/channelPage'
 
 const commonSettings = {
   headerStyle: {
@@ -71,6 +71,20 @@ const AppRouteConfigs = {
     screen: FindPassword,
     navigationOptions: {
       title: 'FindPassword',
+      header: null,
+    },
+  },
+  channelPage: {
+    screen: ChannelPage,
+    navigationOptions: {
+      title: 'ChannelPage',
+      ...commonSettings,
+    },
+  },
+  registerInfo: {
+    screen: RegisterInfo,
+    navigationOptions: {
+      title: 'RegisterInfo',
       header: null,
     },
   },

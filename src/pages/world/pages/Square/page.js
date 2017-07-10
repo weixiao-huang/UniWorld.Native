@@ -3,7 +3,8 @@ import { RefreshControl } from 'react-native'
 import styled from 'styled-components/native'
 import I18n from '@/locales'
 import RoomWrap from '@/components/RoomWrap'
-import WorldSwiper from './WorldSwiper'
+import WorldSwiper from './components/WorldSwiper'
+import Channels from './components/Channels'
 
 import {
   MainScrollView,
@@ -33,7 +34,7 @@ export default class Square extends Component {
   render() {
     const {
       world, latest, recommend, posters, refreshing,
-      fetchWorldAction,
+      fetchWorldAction, channels,
     } = this.props
     return (
       <MainScrollView
@@ -45,6 +46,7 @@ export default class Square extends Component {
         }
       >
         {posters && <WorldSwiper posters={posters.tops} />}
+        <Channels channels={channels} />
         <ContentView>
           {recommend && recommend.length > 0 && <RoomWrap
             title={I18n.t('World.Square.top')}

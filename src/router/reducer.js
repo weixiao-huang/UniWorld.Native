@@ -74,6 +74,23 @@ export default (state, action) => {
         state,
       )
       break
+    case types.NAVIGATE_TO_REGISTERINFO:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: 'registerInfo',
+        }),
+        state,
+      )
+      break
+    case types.NAVIGATE_TO_CHANNELPAGE:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: 'channelPage',
+          params: { id: action.id },
+        }),
+        state,
+      )
+      break
     case types.NAVIGATE_TO_FIND_PASSWORD:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({

@@ -9,7 +9,7 @@ import {
   CoverImage,
 } from './style'
 
-const CoverView = ({ cover, isUploading, showImgPicker
+const CoverView = ({ cover, isUploading, showImgPicker,
 }) => {
 
   return (

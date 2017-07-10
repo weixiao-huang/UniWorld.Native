@@ -6,6 +6,8 @@ import {
   NAVIGATE_TO_ROOM_DETAILS,
   NAVIGATE_TO_FIND_PASSWORD,
   NAVIGATE_TO_REGISTER,
+  NAVIGATE_TO_REGISTERINFO,
+  NAVIGATE_TO_CHANNELPAGE,
   GO_BACK,
 } from './types'
 
@@ -23,6 +25,15 @@ export const ResetToLogin = () => ({
 
 export const NavigateToRegister = () => ({
   type: NAVIGATE_TO_REGISTER,
+})
+
+export const NavigateToRegisterInfo = () => ({
+  type: NAVIGATE_TO_REGISTERINFO,
+})
+
+export const NavigateToChannelPage = id => ({
+  type: NAVIGATE_TO_CHANNELPAGE,
+  id,
 })
 
 export const NavigateToFindPassword = () => ({
