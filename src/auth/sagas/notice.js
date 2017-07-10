@@ -84,7 +84,7 @@ export default function* noticeFlow() {
       const channelAction = yield take(channel)
       if (channelAction.type === GET_ROOM_ID) {
         yield put(NavigateToRoomDetails(channelAction.roomId))
-      } else if (channelAction === GET_DEVICE_TOKEN) {
+      } else if (channelAction.type === GET_DEVICE_TOKEN) {
         const deviceToken = channelAction.token
         yield put({
           type: SET_DEVICE_TOKEN,
