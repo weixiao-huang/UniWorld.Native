@@ -43,6 +43,7 @@ const wsByToken = url => token => new WebSocket(`${url}?token=${token}`)
 export default {
   initialWebSocket: token => wsByToken(`wss://${addr}/ws/`)(token),
   postDeviceToken: token => authToken => postByToken('/apple_token/')({ token })(authToken),
+  postUnreadCount: unread_count => token => postByToken('/clear_unread/')({ unread_count })(token),
   fetchDataFromUrl: url => token => (token ? fetch(url, {
     method: 'GET',
     headers: { Authorization: `token ${token}` },

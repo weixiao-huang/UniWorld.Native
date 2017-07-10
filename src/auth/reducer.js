@@ -64,7 +64,7 @@ export default (state = initialState, action) => {
       }
     }
     case SET_ROOM_MESSAGE: {
-      const messages = {}
+      const messages = { ...state.messages }
       const unreadMessages = { ...state.unreadMessages }
       const data = action.message
       const pmid = data.id || state.pmid
@@ -114,9 +114,10 @@ export default (state = initialState, action) => {
       //   // actions: '["Yes", "No"]',  // (Android only) See the doc for notification actions to know more
 
       // });
-      // PushNotification.setApplicationIconBadgeNumber(
-      //   Object.values(unreadMessages).reduce((a, b) => a + b),
-      // )
+      const unreadArray = Object.values(unreadMessages)
+      const unread = unreadArray.length > 0 ?
+        unreadArray.reduce((a, b) => a + b) : 0
+      PushNotification.setApplicationIconBadgeNumber(unread)
       return {
         ...state,
         messages,

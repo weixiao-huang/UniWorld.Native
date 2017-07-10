@@ -6,6 +6,8 @@ import { handleApiErrors } from '@/lib/api-errors'
 import {
   setClient,
   unSetClient,
+  PostDeviceToken,
+  LogoutDeviceToken,
 } from '@/auth/actions'
 
 import * as authTypes from '@/auth/types'
@@ -35,6 +37,7 @@ const fetchInitialApi = token => api.fetchInitialLabels(token)
   .then(res => res.json())
 
 function* logout() {
+  yield put(LogoutDeviceToken())
   yield put(unSetClient())
   // AsyncStorage.removeItem('token')
   yield put({ type: navTypes.RESET_TO_LOGIN })
@@ -60,6 +63,8 @@ function* loginFlow(username, password) {
     yield take(meTypes.FETCH_MY_USER_INFO_SUCCESS)
     // set initial labels
     yield put({ type: authTypes.SET_INITIAL_LABELS, initialLabels })
+    // post device token
+    yield put(PostDeviceToken())
     // login success
     yield put({ type: LOGIN_SUCCESS })
     // reset to login

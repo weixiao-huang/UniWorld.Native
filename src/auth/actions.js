@@ -7,6 +7,8 @@ import {
   FOLLOW_USER,
   SET_ALERT_MESSAGE,
   RESET_UNREAD_MESSAGE,
+  LOGOUT_DEVICE_TOKEN,
+  POST_DEVICE_TOKEN,
 } from './types'
 
 export function setClient(token) {
@@ -21,6 +23,14 @@ export function unSetClient() {
     type: CLIENT_UNSET,
   }
 }
+
+export const LogoutDeviceToken = () => ({
+  type: LOGOUT_DEVICE_TOKEN,
+})
+
+export const PostDeviceToken = () => ({
+  type: POST_DEVICE_TOKEN,
+})
 
 export const SetAlert = alert => ({
   type: SET_ALERT,

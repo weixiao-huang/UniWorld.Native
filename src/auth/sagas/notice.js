@@ -16,9 +16,10 @@ import {
 
 import {
   SET_DEVICE_TOKEN,
+  POST_DEVICE_TOKEN,
 } from '../types'
 
-const noticeChannel = token => eventChannel((emit) => {
+const noticeChannel = () => eventChannel((emit) => {
   console.log('config push notification')
   PushNotification.configure({
     onRegister(deviceToken) {
@@ -27,11 +28,6 @@ const noticeChannel = token => eventChannel((emit) => {
         type: GET_DEVICE_TOKEN,
         deviceToken,
       })
-      if (token) {
-        api.postDeviceToken(deviceToken.token)(token)
-          .then(handleApiErrors)
-          .then(res => console.log('device token res: ', res))
-      }
     },
     onNotification(notification) {
       console.log('notification', notification)
@@ -85,8 +81,7 @@ const noticeChannel = token => eventChannel((emit) => {
 
 
 export default function* noticeFlow() {
-  const { auth: { token } } = yield select()
-  const channel = noticeChannel(token)
+  const channel = noticeChannel()
   while (true) {
     try {
       const { type, roomId, deviceToken } = yield take(channel)
@@ -97,6 +92,7 @@ export default function* noticeFlow() {
           type: SET_DEVICE_TOKEN,
           deviceToken,
         })
+        yield put({ type: POST_DEVICE_TOKEN })
       }
     } catch (error) {
       console.log('notification channel error: ', error)
