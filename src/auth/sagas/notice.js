@@ -3,6 +3,8 @@ import {
 } from 'redux-saga/effects'
 
 import { NavigateToRoomDetails } from '@/router/actions'
+import api from '@/api'
+import { handleApiErrors } from '@/lib/api-errors'
 
 import PushNotification from 'react-native-push-notification'
 import { eventChannel } from 'redux-saga'
@@ -16,15 +18,20 @@ import {
   SET_DEVICE_TOKEN,
 } from '../types'
 
-const noticeChannel = () => eventChannel((emit) => {
+const noticeChannel = token => eventChannel((emit) => {
   console.log('config push notification')
   PushNotification.configure({
-    onRegister(token) {
-      console.log('TOKEN:', token);
+    onRegister(deviceToken) {
+      console.log('TOKEN:', deviceToken);
       emit({
         type: GET_DEVICE_TOKEN,
-        token,
+        deviceToken,
       })
+      if (token) {
+        api.postDeviceToken(deviceToken.token)(token)
+          .then(handleApiErrors)
+          .then(res => console.log('device token res: ', res))
+      }
     },
     onNotification(notification) {
       console.log('notification', notification)
@@ -78,14 +85,14 @@ const noticeChannel = () => eventChannel((emit) => {
 
 
 export default function* noticeFlow() {
-  const channel = noticeChannel()
+  const { auth: { token } } = yield select()
+  const channel = noticeChannel(token)
   while (true) {
     try {
-      const channelAction = yield take(channel)
-      if (channelAction.type === GET_ROOM_ID) {
-        yield put(NavigateToRoomDetails(channelAction.roomId))
-      } else if (channelAction.type === GET_DEVICE_TOKEN) {
-        const deviceToken = channelAction.token
+      const { type, roomId, deviceToken } = yield take(channel)
+      if (type === GET_ROOM_ID) {
+        yield put(NavigateToRoomDetails(roomId))
+      } else if (type === GET_DEVICE_TOKEN) {
         yield put({
           type: SET_DEVICE_TOKEN,
           deviceToken,
