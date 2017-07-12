@@ -50,14 +50,35 @@ export default class Chat extends Component {
     ),
   })
 
+  updateMyMessages = message => this.setState({
+    ds: this.state.ds.cloneWithRows(
+      message,
+    ),
+  })
+
   sendMessage = () => {
     if (this.state.text) {
-      const { sendAction, roomId } = this.props
+      const { sendAction, roomId, me } = this.props
       sendAction({
         text: this.state.text,
         type: 0,
         room: roomId,
       })
+      // console.log(me)
+      // const sender = {
+      //   id: me.id,
+      //   name: me.name,
+      //   avatar: me.avatar,
+      //   signture: me.signature,
+      // }
+      // const message = {
+      //   text: this.state.text,
+      //   time: new Date(),
+      //   room: roomId,
+      //   sender,
+      //   id: 0,
+      // }
+      // this.updateMyMessages(message)
       this.setState({ text: '' })
     }
   }
@@ -65,9 +86,9 @@ export default class Chat extends Component {
   sendImg = () => {
     const options = {
       title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
-      cancelButtonTitle: 'Cancel',
-      takePhotoButtonTitle: 'Take Photo...',
-      chooseFromLibraryButtonTitle: 'Choose from Library...',
+      cancelButtonTitle: I18n.t('cancel'),
+      takePhotoButtonTitle: I18n.t('camera'),
+      chooseFromLibraryButtonTitle: I18n.t('photoLibrary'),
       returnBase64Image: true,
       returnIsVertical: false,
     }
@@ -139,6 +160,7 @@ export default class Chat extends Component {
                 value={this.state.text}
                 blurOnSubmit={false}
                 autoFocus
+                returnKeyType="send"
               />
               <FooterPlusButton
                 title={this.state.showMenu ? '-' : '+'}

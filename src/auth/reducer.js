@@ -17,6 +17,7 @@ const initialState = {
   initialLabels: null,
   alert: false,
   messages: {},
+  messages2: {},
   pmid: 0,
   unreadMessages: {},
   wx: null,
@@ -65,6 +66,7 @@ export default (state = initialState, action) => {
     }
     case SET_ROOM_MESSAGE: {
       const messages = { ...state.messages }
+      const messages2 = { ...state.messages2 }
       const unreadMessages = { ...state.unreadMessages }
       const data = action.message
       const pmid = data.id || state.pmid
@@ -73,6 +75,22 @@ export default (state = initialState, action) => {
       console.log('pmid: ', pmid)
       const roomId = data.room
       const showRoomId = action.id
+      const user = {
+        _id: data.sender.id,
+        name: data.sender.name,
+        avatar: data.sender.avatar,
+      }
+      const data2 = {
+        _id: data.id,
+        text: data.text,
+        createdAt: data.time,
+        user,
+        image: data.image,
+      }
+      if (state.messages2[roomId] !== undefined) {
+        messages2[roomId] = state.messages2[roomId].concat(data2)
+      } else messages2[roomId] = [data2]
+
       if (state.messages[roomId] !== undefined) {
         messages[roomId] = state.messages[roomId].concat(data)
       } else messages[roomId] = [data]

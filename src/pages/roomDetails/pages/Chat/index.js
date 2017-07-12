@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
   messages: state.roomInfo.roomInfo &&
             state.auth.messages[state.roomInfo.roomInfo.id],
   myId: state.me.userInfo.id,
+  me: state.me.userInfo,
   roomId: state.roomInfo.roomInfo &&
           state.roomInfo.roomInfo.id,
   token: state.auth.token,

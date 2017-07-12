@@ -48,9 +48,9 @@ export default class Me extends Component {
       title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
       rotation: true,
       allowsEditing: true,
-      cancelButtonTitle: 'Cancel',
-      takePhotoButtonTitle: 'Take Photo...',
-      chooseFromLibraryButtonTitle: 'Choose from Library...',
+      cancelButtonTitle: I18n.t('cancel'),
+      takePhotoButtonTitle: I18n.t('camera'),
+      chooseFromLibraryButtonTitle: I18n.t('photoLibrary'),
       returnBase64Image: true,
       returnIsVertical: false,
     }

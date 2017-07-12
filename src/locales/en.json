@@ -24,6 +24,8 @@
   "yes": "Yes",
   "no": "No",
   "dislikes": "Dislikes",
+  "photoLibrary":"Choose from Library...",
+  "camera":"Camera",
   "title": "Title",
   "content": "Content",
   "save": "Save",

@@ -5,6 +5,8 @@ export const MainView = styled.View`
   flex-direction: row;
   align-items: flex-start;
   margin: 20px;
+  marginBottom:10px;
+  marginTop: 10px;
 `
 export const WrapView = styled.View`
   flex-direction: ${props => (props.reverse ? 'row-reverse' : 'row')};

@@ -11,7 +11,7 @@ import {
 import Notice from './pages/Notice'
 import Chat from './pages/Chat'
 import Member from './pages/Member'
-// import GChat from './pages/GChat'
+import GChat from './pages/GChat'
 
 const styles = StyleSheet.create({
   tabBarUnderline: {
@@ -40,6 +40,7 @@ export default class RoomDetails extends Component {
         /> : <AnimatedScreen
           tabLabel={I18n.t('Room.Notice.notice')}
         />}
+        {/*<GChat tabLabel="Gifted Chat" />*/}
         {roomDetails ? <Chat
           tabLabel={I18n.t('Room.Chat.title')}
           isHost={myId === hostId}
@@ -52,7 +53,6 @@ export default class RoomDetails extends Component {
         /> : <AnimatedScreen
           tabLabel={I18n.t('Room.Member.title')}
         />}
-        {/*<GChat tabLabel="Gifted Chat" />*/}
       </MainScrollTabView>
     )
   }

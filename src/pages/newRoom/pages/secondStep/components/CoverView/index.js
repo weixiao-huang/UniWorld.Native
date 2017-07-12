@@ -22,9 +22,9 @@ const CoverView = ({
   const showImgPicker = () => {
     const options = {
       title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
-      cancelButtonTitle: 'Cancel',
-      takePhotoButtonTitle: 'Take Photo...',
-      chooseFromLibraryButtonTitle: 'Choose from Library...',
+      cancelButtonTitle: I18n.t('cancel'),
+      takePhotoButtonTitle: I18n.t('camera'),
+      chooseFromLibraryButtonTitle: I18n.t('photoLibrary'),
       returnBase64Image: true,
       returnIsVertical: false,
     }
