@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ListView, Keyboard } from 'react-native'
+import { ListView } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 import InvertibleScrollView from 'react-native-invertible-scroll-view'
 import I18n from '@/locales'
@@ -41,6 +41,11 @@ export default class Chat extends Component {
   componentWillReceiveProps(nextProps) {
     const { messages } = nextProps
     if (messages) this.updateNewMessages(messages)
+  }
+
+  onFocus = () => {
+    this.listView.scrollTo({ y: 0, animated: true })
+    this.hideMenu()
   }
 
   updateNewMessages = messages => this.setState({
@@ -128,11 +133,6 @@ export default class Chat extends Component {
     if (this.state.showMenu) this.setState({ showMenu: false })
   }
 
-  onFocus = () => {
-    this.listView.scrollTo({ y: 0, animated: true })
-    this.hideMenu()
-  }
-
   renderFooter = () => (
     <FooterContainerView>
       <FooterView>
@@ -150,7 +150,7 @@ export default class Chat extends Component {
           clearButtonMode="unless-editing"
         />
         <FooterPlusButton
-          title={this.state.showMenu ? '-' : '+'}
+          title={this.state.showMenu ? ' - ' : ' + '}
           onPress={this.plus}
           sendImg={this.sendImg}
         />
