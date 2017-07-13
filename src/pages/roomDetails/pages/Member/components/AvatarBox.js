@@ -9,11 +9,14 @@ const boxPadding = 5
 const avatarPadding = 10
 const numPerRow = 4
 const length = 7
-const avatarSize = (Dimensions.get('window').width - 2 * gapPadding - 2 * boxPadding) / numPerRow - 2 * avatarPadding
-const titleWidth = avatarSize + 2 * avatarPadding
+const avatarSize = ((
+    Dimensions.get('window').width -
+    (2 * gapPadding) -
+    (2 * boxPadding)
+  ) / numPerRow) - (2 * avatarPadding)
+const titleWidth = avatarSize + (2 * avatarPadding)
 
 const MainView = styled.View`
-
   padding: ${gapPadding}px;
   background-color: white;
 `
@@ -27,7 +30,7 @@ const TitleView = styled.View`
 `
 const TitleText = styled.Text`
   fontSize: 15px;
-  color: #332f5e;
+  color: ${props => props.color || '#332f5e'};
   lineHeight: 44px;
 `
 const WrapView = styled.View`
@@ -56,7 +59,7 @@ const AvatarBox = ({ participants }) => (
       <TitleText>
         {I18n.t('Room.Detail.Member.title')}
       </TitleText>
-      {participants &&<TitleText style={{color: 'red'}}>
+      {participants && <TitleText color="red">
         {`  (${participants.length})`}
       </TitleText>}
     </TitleView>
