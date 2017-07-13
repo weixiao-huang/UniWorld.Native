@@ -9,7 +9,8 @@ import Page from './page'
 const mapStateToProps = state => ({
   userInfo: state.userInfo.userInfo,
   isFollowed: state.userInfo.isFollowed,
-  requesting: state.userInfo.requesting
+  requesting: state.userInfo.requesting,
+  myId: state.me.userInfo.id,
 })
 
 const mapDispatchToProps = dispatch => ({

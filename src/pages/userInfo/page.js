@@ -30,17 +30,12 @@ export default class UserInfo extends Component {
     }
   }
 
-  follow = () => {
-    this.props.followAction(this.props.userInfo.id)
-  }
+  follow = () => this.props.followAction(this.props.userInfo.id)
 
-  unfollow = () => {
-    this.props.unfollowAction(this.props.userInfo.id)
-  }
-
+  unfollow = () => this.props.unfollowAction(this.props.userInfo.id)
 
   render() {
-    const { userInfo, isFollowed, requesting } = this.props
+    const { userInfo, isFollowed, requesting, myId } = this.props
     return (
       <MainView>
         <Loading visible={requesting} />
@@ -49,7 +44,7 @@ export default class UserInfo extends Component {
           <Info user={userInfo} />
         </MainScrollView>}
         {!userInfo && <AnimatedScreen />}
-        <ButtonView>
+        {userInfo && myId !== userInfo.id && <ButtonView>
           <StyledButton
             textStyle={styles.text}
             title={isFollowed ?
@@ -59,7 +54,7 @@ export default class UserInfo extends Component {
               this.unfollow :
               this.follow}
           />
-        </ButtonView>
+        </ButtonView>}
       </MainView>
     )
   }
