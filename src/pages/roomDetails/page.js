@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Keyboard } from 'react-native'
 import I18n from 'react-native-i18n'
 import AnimatedScreen from '@/components/AnimatedScreen'
 
@@ -32,6 +32,8 @@ export default class RoomDetails extends Component {
         tabBarBackgroundColor="#ec5367"
         tabBarTextStyle={styles.tabBarText}
         initialPage={1}
+        contentProps={{ keyboardShouldPersistTaps: 'handled' }}
+        onChangeTab={() => Keyboard.dismiss()}
       >
         {roomDetails ? <Notice
           tabLabel={I18n.t('Room.Notice.notice')}

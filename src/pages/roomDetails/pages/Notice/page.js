@@ -59,7 +59,10 @@ export default class Notice extends Component {
             roomId={this.props.roomId}
             action={this.props.SendAnnouncementAction}
           /> :
-          (isHost && <ButtonArea rightFunc={this.show} />)
+          (isHost && <ButtonArea
+            rightFunc={this.show}
+            leftFunc={() => {}}
+          />)
         }
       </MainView>
     )

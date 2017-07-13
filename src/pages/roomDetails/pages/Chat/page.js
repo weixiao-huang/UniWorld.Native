@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ListView } from 'react-native'
+import { ListView, Keyboard } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 import InvertibleScrollView from 'react-native-invertible-scroll-view'
 import I18n from '@/locales'
@@ -117,8 +117,52 @@ export default class Chat extends Component {
     this.setState({ showMenu: false })
   }
 
+  plus = () => {
+    const { showMenu } = this.state
+    if (showMenu) this.input.focus()
+    else this.input.blur()
+    this.setState({ showMenu: !this.state.showMenu })
+  }
+
+  hideMenu = () => {
+    if (this.state.showMenu) this.setState({ showMenu: false })
+  }
+
+  onFocus = () => {
+    this.listView.scrollTo({ y: 0, animated: true })
+    this.hideMenu()
+  }
+
+  renderFooter = () => (
+    <FooterContainerView>
+      <FooterView>
+        <FooterIconImage source={logoBlue} />
+        <FooterInput
+          innerRef={(e) => { this.input = e }}
+          onFocus={this.onFocus}
+          onChangeText={text => this.setState({ text })}
+          onSubmitEditing={this.sendMessage}
+          value={this.state.text}
+          blurOnSubmit={false}
+          autoFocus
+          returnKeyType="send"
+          enablesReturnKeyAutomatically
+          clearButtonMode="unless-editing"
+        />
+        <FooterPlusButton
+          title={this.state.showMenu ? '-' : '+'}
+          onPress={this.plus}
+          sendImg={this.sendImg}
+        />
+      </FooterView>
+      {this.state.showMenu && <ChatMenu
+        sendImg={this.sendImg}
+      />}
+    </FooterContainerView>
+  )
+
   render() {
-    let listView = ListView
+    this.listView = ListView
     return (
       <MainView>
         <KeyboardAvoidingView
@@ -127,8 +171,9 @@ export default class Chat extends Component {
         >
           <ListView
             enableEmptySections
-            ref={(lv) => { listView = lv }}
+            ref={(lv) => { this.listView = lv }}
             dataSource={this.state.ds}
+            onScroll={this.hideMenu}
             renderScrollComponent={props => (
               <InvertibleScrollView {...props} inverted />
             )}
@@ -145,33 +190,7 @@ export default class Chat extends Component {
               />
             )}
           />
-          <FooterContainerView>
-            <FooterView>
-              <FooterIconImage source={logoBlue} />
-              <FooterInput
-                onFocus={() => listView.scrollTo({ y: 0, animated: true })}
-                renderScrollComponent={props => (
-                  <InvertibleScrollView {...props} inverted />
-                )}
-                onChangeText={text => this.setState({ text })}
-                onSubmitEditing={this.sendMessage}
-                value={this.state.text}
-                blurOnSubmit={false}
-                autoFocus
-                returnKeyType="send"
-                enablesReturnKeyAutomatically
-                clearButtonMode="unless-editing"
-              />
-              <FooterPlusButton
-                title={this.state.showMenu ? '-' : '+'}
-                onPress={() => this.setState({ showMenu: !this.state.showMenu })}
-                sendImg={this.sendImg}
-              />
-            </FooterView>
-            {this.state.showMenu && <ChatMenu
-              sendImg={this.sendImg}
-            />}
-          </FooterContainerView>
+          {this.renderFooter()}
         </KeyboardAvoidingView>
       </MainView>
     )
