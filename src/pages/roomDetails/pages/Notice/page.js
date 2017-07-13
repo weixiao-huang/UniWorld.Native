@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+
 import EmptyView from '@/components/EmptyView'
+import RoomItem from '@/components/RoomItem'
+
 import {
   MainView,
   MainScrollView,
   ItemView,
 } from './style'
-import RoomItem from '@/components/RoomItem'
+
 import NoticeItem from './components/NoticeItem'
 import NoticeModal from './components/NoticeModal'
 import ButtonArea from './components/ButtonArea'
@@ -18,20 +21,12 @@ export default class Notice extends Component {
     }
   }
 
-  cancel = () => {
-    this.setState({
-      showModal: false,
-    })
-  }
+  cancel = () => this.setState({ showModal: false })
 
-  show = () => {
-    this.setState({
-      showModal: true,
-    })
-  }
+  show = () => this.setState({ showModal: true })
 
   render() {
-    const { isHost, roomInfo } = this.props
+    const { isHost, roomInfo, questionnaires } = this.props
     return (
       <MainView>
         <MainScrollView>
@@ -52,10 +47,10 @@ export default class Notice extends Component {
             />
             }
           </ItemView>
-          {this.props.questionnaires.map(item => (
+          {questionnaires.map(item => (
             <NoticeItem key={item.id} item={item} />
           ))}
-          <EmptyView style={{ height: 80 }} />
+          <EmptyView height="80px" />
         </MainScrollView>
         {this.state.showModal ?
           <NoticeModal

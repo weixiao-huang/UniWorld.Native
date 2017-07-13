@@ -41,7 +41,6 @@ export default class UserInfo extends Component {
 
   render() {
     const { userInfo, isFollowed, requesting } = this.props
-    console.log('userInfo nav state: ', this.props.navigation)
     return (
       <MainView>
         <Loading visible={requesting} />

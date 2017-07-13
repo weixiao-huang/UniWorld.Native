@@ -84,6 +84,7 @@ export default class Chat extends Component {
   }
 
   sendImg = () => {
+    const { roomId, token } = this.props
     const options = {
       title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
       cancelButtonTitle: I18n.t('cancel'),
@@ -93,32 +94,27 @@ export default class Chat extends Component {
       returnIsVertical: false,
     }
     this.setState({ isUploading: true })
-    ImagePicker.showImagePicker(options, async res => {
+    ImagePicker.showImagePicker(options, async (res) => {
       if (res.didCancel) {
         console.log('User cancelled image picker')
         this.setState({ isUploading: false })
-      }
-      else if (res.error) {
+      } else if (res.error) {
         console.log('ImagePicker Error: ', res.error)
         this.setState({ isUploading: false })
-      }
-      else if (res.customButton) {
+      } else if (res.customButton) {
         console.log('User tapped custom button: ', res.customButton)
         this.setState({ isUploading: false })
-      }
-      else {
+      } else {
         console.log(res)
-        let formData = new FormData()
+        const formData = new FormData()
         formData.append('image', {
           uri: res.uri,
           name: 'image',
         })
-        const res2 = await api.uploadImage(formData)(this.props.roomId)(this.props.token)
+        await api.uploadImage(formData)(roomId)(token)
       }
     })
-    this.setState({
-      showMenu: false
-    })
+    this.setState({ showMenu: false })
   }
 
   render() {
@@ -154,7 +150,9 @@ export default class Chat extends Component {
               <FooterIconImage source={logoBlue} />
               <FooterInput
                 onFocus={() => listView.scrollTo({ y: 0, animated: true })}
-                renderScrollComponent={props => <InvertibleScrollView {...props} inverted />}
+                renderScrollComponent={props => (
+                  <InvertibleScrollView {...props} inverted />
+                )}
                 onChangeText={text => this.setState({ text })}
                 onSubmitEditing={this.sendMessage}
                 value={this.state.text}

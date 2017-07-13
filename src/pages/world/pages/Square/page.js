@@ -34,7 +34,7 @@ export default class Square extends Component {
   render() {
     const {
       world, latest, recommend, posters, refreshing,
-      fetchWorldAction, channels,
+      fetchWorldAction, channels, navigateToChannelPageAction,
     } = this.props
     return (
       <MainScrollView
@@ -46,7 +46,10 @@ export default class Square extends Component {
         }
       >
         {posters && <WorldSwiper posters={posters.tops} />}
-        <Channels channels={channels} />
+        <Channels
+          channels={channels}
+          navigate={navigateToChannelPageAction}
+        />
         <ContentView>
           {recommend && recommend.length > 0 && <RoomWrap
             title={I18n.t('World.Square.top')}

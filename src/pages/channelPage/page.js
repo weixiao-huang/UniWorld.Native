@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import api, { server } from '@/api'
+import api from '@/api'
+import { server } from '@/api/constants'
 import RoomWrap from '@/components/RoomWrap'
 import I18n from '@/locales'
 import {
@@ -57,7 +58,10 @@ export default class ChannelPage extends Component {
       console.log(res)
       if (res.status === 200) {
         const data = await res.json()
-        this.setState({ searchResult: this.state.searchResult.concat(data.results), next: data.next })
+        this.setState({
+          searchResult: this.state.searchResult.concat(data.results),
+          next: data.next,
+        })
       }
     } catch (e) {
       console.log(e)
@@ -65,9 +69,7 @@ export default class ChannelPage extends Component {
     this.setState({ isFetching: false })
   }
 
-
   render() {
-    console.log('state2222', this.props)
     return (
       <MainView>
         <MainScrollView>

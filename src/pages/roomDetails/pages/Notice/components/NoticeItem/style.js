@@ -15,6 +15,7 @@ export const TimeView = styled.View`
 `
 
 export const TimeText = styled.Text`
+  font-size: ${props => props.fontSize};
 `
 
 export const WrapView = styled.View`

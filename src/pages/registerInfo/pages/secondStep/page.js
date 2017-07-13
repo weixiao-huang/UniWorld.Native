@@ -5,9 +5,9 @@ import _ from 'lodash'
 import I18n from '@/locales'
 import ImagePicker from 'react-native-image-picker'
 import bgUrl from '@/img/image/signInfoBg.png'
+import BackgroudImage from '@/components/BackgroundImage'
 import CoverView from './components/CoverView'
 import RequiredView from './components/RequiredView'
-import BackgroudImage from '@/components/BackgroundImage'
 
 import {
   MainScrollView,
@@ -58,7 +58,6 @@ export default class SecondStep extends Component {
             year,
             gender,
           }
-          console.log('this.props: ', this.props)
           this.props.putAction(data)
           if (this.state.avatar.length > 1) {
             const formData = new FormData()
@@ -122,12 +121,9 @@ export default class SecondStep extends Component {
     return (
       <KeyboardAvoidingView behavior="position">
         <MainScrollView>
-          <BackgroudImage
-            bgUrl={bgUrl}
-          >
+          <BackgroudImage bgUrl={bgUrl} >
             <CoverView
               cover={this.state.avatar}
-              isUploading={this.state.isUploading}
               showImgPicker={this.showImgPicker}
             />
             <RequiredView

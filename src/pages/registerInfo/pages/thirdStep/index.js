@@ -1,36 +1,18 @@
-import React, { Component } from 'react'
-import styled from 'styled-components/native'
-import { Dimensions, StyleSheet } from 'react-native'
+/*
+  Page: ThirdStep
+*/
+
+import React from 'react'
 import I18n from 'react-native-i18n'
 import BackgroundImage from '@/components/BackgroundImage'
-import Button from '@/components/Button'
 import bgUrl from '@/img/image/signInfoBg.png'
 
-
-const MainScrollView = styled.ScrollView`
-  flex: 1;
-  textAlign: center;
-  padding: 15px;
-  paddingBottom: 5px;
-  backgroundColor: transparent;
-`
-
-const MainView = styled.View`
-  flex :1;
-  align-items: center;
-`
-
-const MainText = styled.Text`
-  color: #3555b6;
-  fontWeight: 500;
-`
-const MainButton = styled(Button) `
-  marginBottom: 30px;
-  borderRadius: 5px;
-  padding: 5px;
-  backgroundColor: #ec5367;
-  width: 100%;
-`
+import {
+  MainButton,
+  MainScrollView,
+  MainText,
+  MainView,
+} from './style'
 
 const Agreement = `
 与世科技（北京）有限公司（以下简称本程序或“uniworld”）在此特别提醒您在注册成为用户之前，请认真阅读本《用户协议》（以下简称“协议”），确保您充分理解本协议中各条款。您的注册、登录、使用等行为将视为对本协议的接受，并同意接受本协议各项条款的约束。 \n
@@ -93,26 +75,18 @@ const Agreement = `
 
 `
 
-export default class thirdStep extends Component {
-  back = () => {
-    const {
-      navigation: { navigate },
-    } = this.props
-    navigate('Second')
-  }
-  render = () => (
-    <MainView>
-      <BackgroundImage bgUrl={bgUrl} >
-        <MainScrollView>
-          <MainText>
-            {Agreement}
-          </MainText>
-          <MainButton
-            title={I18n.t('SignInfo.second.back')}
-            onPress={this.back}
-          />
-        </MainScrollView>
-      </BackgroundImage>
-    </MainView>
-  )
-}
+export default ({ navigation }) => (
+  <MainView>
+    <BackgroundImage bgUrl={bgUrl} >
+      <MainScrollView>
+        <MainText>
+          {Agreement}
+        </MainText>
+        <MainButton
+          title={I18n.t('SignInfo.second.back')}
+          onPress={() => navigation.navigate('Second')}
+        />
+      </MainScrollView>
+    </BackgroundImage>
+  </MainView>
+)

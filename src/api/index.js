@@ -1,53 +1,23 @@
-export const addr = 'api.theuniworld.net'
-export const server = `https://${addr}`
+import { addr, server } from './constants'
 
-const getByToken = url => token => fetch(`${server}${url}`, {
-  method: 'GET',
-  headers: { Authorization: `token ${token}` },
-})
-
-const getWithoutToken = url => fetch(`${server}${url}`)
-
-
-const putByToken = url => data => token => fetch(`${server}${url}`, {
-  method: 'PUT',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    Authorization: `token ${token}`,
-  },
-  body: JSON.stringify(data),
-})
-
-const postByToken = url => data => token => fetch(`${server}${url}`, {
-  method: 'POST',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-    Authorization: `token ${token}`,
-  },
-  body: JSON.stringify(data),
-})
-
-const postWithoutToken = url => data => fetch(`${server}${url}`, {
-  method: 'POST',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
-})
-
-const wsByToken = url => token => new WebSocket(`${url}?token=${token}`)
+import {
+  wsByToken,
+  postByToken,
+  postWithoutToken,
+  getByToken,
+  getWithoutToken,
+  putByToken,
+} from './utils'
 
 export default {
   initialWebSocket: token => wsByToken(`wss://${addr}/ws/`)(token),
   postDeviceToken: token => authToken => postByToken('/apple_token/')({ token })(authToken),
-  postUnreadCount: unread_count => token => postByToken('/clear_unread/')({ unread_count })(token),
+  postUnreadCount: uc => token => postByToken('/clear_unread/')({ unread_count: uc })(token),
   fetchDataFromUrl: url => token => (token ? fetch(url, {
     method: 'GET',
     headers: { Authorization: `token ${token}` },
   }) : fetch(url)),
+
   userLogin: data => fetch(`${server}/token/`, {
     method: 'POST',
     headers: {

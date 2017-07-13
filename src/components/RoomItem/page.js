@@ -34,30 +34,26 @@ const defaultCover = require('@/img/image/default_avatar.jpg')
 
 const RoomItem = ({
   id, src, title, place, dateTimeStart, dateTimeEnd, myFollows,
-  maxParticipants, participantCount, participantIds, titleLabel, myFollowDict,
-  myId, navigateToRoomInfoAction, navigateToRoomDetailsAction, infoFlag, unreadMessages,
+  maxParticipants, participantCount, participantIds, titleLabel,
+  myId, navigateToRoomInfoAction, navigateToRoomDetailsAction,
+  infoFlag, unreadMessages, myFollowDict,
 }) => {
   let showPeople = maxParticipants ?
     `${participantCount}/${maxParticipants}` :
     '不限'
-  if (showPeople.length > 5) {
-    console.log(participantCount)
-    showPeople = `${participantCount}/..`
-  }
+  if (showPeople.length > 5) showPeople = `${participantCount}/..`
   const showTime = transferTimeFormat([dateTimeStart, dateTimeEnd])
   const roomFollows = _.intersection(
     participantIds, myFollows,
   ).map(item => myFollowDict[item])
 
   const inFlag = myId && participantIds && participantIds.indexOf(myId) >= 0
-  const navigate = () => {
-    if (inFlag && !infoFlag) {
-      navigateToRoomDetailsAction(id)
-    } else {
+  const navigate = () => (
+    inFlag && !infoFlag ?
+      navigateToRoomDetailsAction(id) :
       navigateToRoomInfoAction(id)
-    }
-  }
-  console.log(unreadMessages)
+  )
+
   return (
     <TouchableOpacity
       onPress={navigate}

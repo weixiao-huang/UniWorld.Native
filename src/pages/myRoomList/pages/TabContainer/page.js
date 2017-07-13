@@ -10,7 +10,8 @@ import {
 } from 'react-native'
 import I18n from '@/locales'
 
-import api, { server } from '@/api'
+import api from '@/api'
+import { server } from '@/api/constants'
 // import I18n from 'react-native-i18n'
 
 import RoomWrap from '@/components/RoomWrap'

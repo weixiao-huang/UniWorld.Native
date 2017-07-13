@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { StatusBar, Alert } from 'react-native'
 import I18n from '@/locales'
 import BackgroundImage from '@/components/BackgroundImage'
@@ -77,9 +77,9 @@ export default class Login extends Component {
     const {
       login: {
         requesting,
-      successful,
-      messages,
-      errors,
+        successful,
+        messages,
+        errors,
       },
     } = this.props
     return (

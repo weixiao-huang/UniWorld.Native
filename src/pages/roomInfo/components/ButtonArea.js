@@ -1,3 +1,7 @@
+/*
+  Component: ButtonArea
+*/
+
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
@@ -17,6 +21,7 @@ const LeaveButton = styled(Button) `
   border-radius: 0;
   padding: 5px 0;
 `
+
 const JoinButton = styled(Button) `
   flex: 2;
   background-color: #ec5367;
@@ -30,7 +35,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const ButtonArea = ({
+export default ({
   room, mark, unmark, join, leave, joined, marked,
 }) => (
   <MainView>
@@ -56,4 +61,3 @@ const ButtonArea = ({
   </MainView>
 )
 
-export default ButtonArea

@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components/native'
-import styled2 from 'styled-components'
 import Button from '@/components/Button'
 
 const FlexView = css`

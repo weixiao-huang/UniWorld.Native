@@ -16,6 +16,9 @@ const avatarSize = ((
   ) / numPerRow) - (2 * avatarPadding)
 const titleWidth = avatarSize + (2 * avatarPadding)
 
+/*
+  Styles
+*/
 const MainView = styled.View`
   padding: ${gapPadding}px;
   background-color: white;
@@ -53,6 +56,9 @@ const ItemText = styled.Text`
   lineHeight: 18px;
 `
 
+/*
+  Page
+*/
 const AvatarBox = ({ participants }) => (
   <MainView>
     <TitleView>
@@ -66,7 +72,11 @@ const AvatarBox = ({ participants }) => (
     {participants ? <WrapView>
       {participants.map(item => (
         <ItemView key={item.id}>
-          <Avatar size={avatarSize} id={item.id} avatar={item.avatar} />
+          <Avatar
+            size={avatarSize}
+            id={item.id}
+            avatar={item.avatar}
+          />
           <ItemText>
             {item.name.length > length ?
               (item.name.slice(0, length).concat('...')) :
@@ -74,8 +84,7 @@ const AvatarBox = ({ participants }) => (
           </ItemText>
         </ItemView>
       ))}
-    </WrapView>
-    : null }
+    </WrapView> : null }
   </MainView>
 )
 

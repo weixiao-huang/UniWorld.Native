@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import I18n from 'react-native-i18n'
 import RoomWrap from '@/components/RoomWrap'
-import api, { server } from '@/api'
+import api from '@/api'
+import { server } from '@/api/constants'
 import {
   MainView,
   SearchView,
@@ -71,7 +72,6 @@ export default class Search extends Component {
   }
 
   render() {
-    console.log('11111111', this.state.searchResult)
     return (
       <MainView>
         <SearchView>
@@ -81,15 +81,16 @@ export default class Search extends Component {
             onChangeText={name => this.setState({ name })}
           />
           <SearchButton onPress={this.search} >
-            <ButtonText> {I18n.t('World.Search.button')}</ButtonText>
+            <ButtonText>
+              {I18n.t('World.Search.button')}
+            </ButtonText>
           </SearchButton>
         </SearchView>
         <ListScrollView>
           {this.state.searchResult.length > 0 ?
             <RoomWrap
               roomList={this.state.searchResult}
-            />
-            :
+            /> :
             <NoneView>
               <NoneImage source={ImageUrl} />
             </NoneView>
@@ -107,5 +108,3 @@ export default class Search extends Component {
     )
   }
 }
-
-

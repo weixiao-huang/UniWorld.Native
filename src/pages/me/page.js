@@ -80,7 +80,6 @@ export default class Me extends Component {
   }
 
   render() {
-
     const { userInfo } = this.props
     return (
       <MainView>

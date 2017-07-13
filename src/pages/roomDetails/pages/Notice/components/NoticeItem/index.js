@@ -23,9 +23,11 @@ const NoticeItem = ({ item }) => {
   return (
     <MainView>
       <TimeView>
-        <TimeText style={{ fontSize: 20 }}>{time.getMonth() + 1}月</TimeText>
-        <TimeText style={{ fontSize: 14 }}>{time.getDay()}日</TimeText>
-        <TimeText style={{ fontSize: 10 }}>{time.toTimeString().split(':').splice(0, 2).join(':')}</TimeText>
+        <TimeText fontSize="20px">{time.getMonth() + 1}月</TimeText>
+        <TimeText fontSize="14px">{time.getDay()}日</TimeText>
+        <TimeText fontSize="10px">
+          {time.toTimeString().split(':').splice(0, 2).join(':')}
+        </TimeText>
       </TimeView>
       <WrapView>
         <TitleView>

@@ -16,7 +16,7 @@
     },
     "ImageSize": {
       "title": "Size Error",
-      "content": "Image size is too large",
+      "content": "Image size is too large, try to crop it",
       "confirm": "Confirm and repick",
       "cancel": "Cancel"
     }

@@ -2,10 +2,12 @@ import React from 'react'
 import { Image, StyleSheet } from 'react-native'
 import { TabNavigator } from 'react-navigation'
 import I18n from '@/locales'
+
 import World from '@/pages/world'
 import NewRoom from '@/pages/newRoom'
 import MyRoomList from '@/pages/myRoomList'
 import Me from '@/pages/me'
+
 import MyListIcon from './components/MyListIcon'
 
 const styles = StyleSheet.create({

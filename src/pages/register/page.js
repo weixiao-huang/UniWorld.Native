@@ -89,7 +89,7 @@ export default class Login extends Component {
       if (this.state.emailAuth) {
         res = await api.Register(this.state).then(handleApiErrors)
       } else {
-        let formData = new FormData()
+        const formData = new FormData()
         formData.append('id_card', {
           uri: this.state.stuCard,
           name: 'id_card',
@@ -99,7 +99,6 @@ export default class Login extends Component {
         formData.append('password', this.state.password)
         formData.append('email', '')
 
-        console.log(formData)
         res = await api.uploadIdCard(formData)
         console.log(res)
         console.log(res.json())

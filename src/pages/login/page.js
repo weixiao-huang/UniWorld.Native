@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { StatusBar, KeyboardAvoidingView } from 'react-native'
 import Toast, { DURATION } from 'react-native-easy-toast'
 
@@ -38,19 +38,14 @@ export default class Login extends Component {
     }
   }
 
-  login = () => {
-    const { loginAction } = this.props
-    loginAction(this.state.username, this.state.password)
-  }
+  login = () => this.props.loginAction(
+    this.state.username,
+    this.state.password,
+  )
 
-  register = () => {
-    const { toRegisterAction } = this.props
-    toRegisterAction()
-  }
+  register = () => this.props.toRegisterAction()
 
-  visitor = () => {
-    this.props.resetToHomeAction()
-  }
+  visitor = () => this.props.resetToHomeAction()
 
   render() {
     const {

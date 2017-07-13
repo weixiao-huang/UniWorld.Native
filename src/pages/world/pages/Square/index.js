@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { NavigateToChannelPage } from '@/router/actions'
 import { FetchWorld } from '../../actions'
 
 import Page from './page'
@@ -16,6 +17,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchWorldAction: bindActionCreators(FetchWorld, dispatch),
+  navigateToChannelPageAction: bindActionCreators(NavigateToChannelPage, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(props => (

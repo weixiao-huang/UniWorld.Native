@@ -1,3 +1,7 @@
+/*
+  Component: WorldSwiper
+*/
+
 import React from 'react'
 import Swiper from 'react-native-swiper'
 import styled from 'styled-components/native'
@@ -12,34 +16,20 @@ const PosterImage = styled.Image`
   width: 100%;
 `
 
-const WorldSwiper = ({ posters }) => (
+export default ({ posters }) => (
   <MainView>
-    {
-      posters ?
-        <Swiper height={height} autoplay autoplayTimeout={3} autoplayDirection>
-          {posters && posters.map((cover) => {
-            {/*if (cover.url!=null)
-              return (
-                <TouchableOpacity onPress={this._goToPoster(cover.url)}>
-                  <Image
-                    key={index}
-                    source={{url: cover.cover}}
-                    style={{height: height, width: '100%'}}
-                  />
-                </TouchableOpacity>
-              )
-              else*/}
-            return (
-              <PosterImage
-                key={cover.cover}
-                source={{ uri: cover.cover }}
-              />
-            )
-          })}
-        </Swiper>
-        : null
-    }
+    {!!posters && <Swiper
+      height={height}
+      autoplay
+      autoplayTimeout={3}
+      autoplayDirection
+    >
+      {!!posters && posters.map(cover => (
+        <PosterImage
+          key={cover.cover}
+          source={{ uri: cover.cover }}
+        />
+      ))}
+    </Swiper>}
   </MainView>
 )
-
-export default WorldSwiper

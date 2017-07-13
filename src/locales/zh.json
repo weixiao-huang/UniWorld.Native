@@ -16,7 +16,7 @@
     },
     "ImageSize": {
       "title": "尺寸错误",
-      "content": "图片太大",
+      "content": "图片太大，尝试裁剪图片",
       "confirm": "确定并重选",
       "cancel": "取消"
     }

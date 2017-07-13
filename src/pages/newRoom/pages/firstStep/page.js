@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import {
-  TouchableOpacity, Alert, KeyboardAvoidingView,
-} from 'react-native'
+import { TouchableOpacity, Alert, KeyboardAvoidingView } from 'react-native'
 import Picker from 'react-native-picker'
 import I18n from '@/locales'
 import { createInitialLabels } from '@/utils'

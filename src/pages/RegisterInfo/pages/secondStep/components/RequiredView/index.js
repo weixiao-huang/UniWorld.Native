@@ -20,9 +20,9 @@ const RequiredView = ({
       pickerData: [2012, 2013, 2014, 2015, 2016, 2017],
       pickerFontSize: 14,
       pickerTitleText: I18n.t('SignInfo.second.grade'),
-      onPickerConfirm: (year) => {
-        console.log(year)
-        setData('year', year[0])
+      onPickerConfirm: (data) => {
+        console.log(data)
+        setData('year', data[0])
       },
     })
     Picker.show()
@@ -33,11 +33,11 @@ const RequiredView = ({
       pickerData: [`${I18n.t('SignInfo.second.male')}`, `${I18n.t('SignInfo.second.female')}`, `${I18n.t('SignInfo.second.lgbt')}`],
       pickerFontSize: 14,
       pickerTitleText: I18n.t('SignInfo.second.grade'),
-      onPickerConfirm: (gender) => {
+      onPickerConfirm: (data) => {
         let choice = null
-        if (gender[0] === `${I18n.t('SignInfo.second.male')}`) {
+        if (data[0] === `${I18n.t('SignInfo.second.male')}`) {
           choice = 1
-        } else if (gender[0] === `${I18n.t('SignInfo.second.female')}`) {
+        } else if (data[0] === `${I18n.t('SignInfo.second.female')}`) {
           choice = 0
         }
         setData('gender', choice)
