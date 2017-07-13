@@ -161,6 +161,8 @@ export default class Chat extends Component {
                 blurOnSubmit={false}
                 autoFocus
                 returnKeyType="send"
+                enablesReturnKeyAutomatically
+                clearButtonMode="unless-editing"
               />
               <FooterPlusButton
                 title={this.state.showMenu ? '-' : '+'}

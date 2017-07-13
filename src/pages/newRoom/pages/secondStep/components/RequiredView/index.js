@@ -31,8 +31,6 @@ const RequiredView = ({
     })
     Picker.show()
   }
-
-  console.log(des)
   return (
     <MainView>
       <RequiredTitleView>
@@ -51,6 +49,7 @@ const RequiredView = ({
           defaultValue={des}
           placeholderTextColor={'#bbbbbb'}
           onChangeText={e => setData('description', e)}
+          maxLength={200}
         />
       </InputItem>
       <DateTimePicker

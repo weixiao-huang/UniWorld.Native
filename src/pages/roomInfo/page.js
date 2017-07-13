@@ -31,7 +31,7 @@ export default class RoomInfo extends Component {
     let options
     const {
       roomInfo, token, dispatch, myId, hostFollowed, followRequesting,
-      navigateAction, followAction, unfollowAction,
+      navigateAction, followAction, unfollowAction, participants,
     } = this.props
     if (roomInfo) {
       options = {
@@ -73,7 +73,7 @@ export default class RoomInfo extends Component {
             />
             <EmptyView />
             <People
-              participants={roomInfo.participants}
+              participants={participants}
               maxParticipants={roomInfo.max_participants}
             />
             <EmptyView />

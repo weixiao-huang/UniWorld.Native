@@ -26,46 +26,50 @@ function fetchApi(token) {
     )
 }
 
+function* fetchAndSetWorld(token) {
+  try {
+    yield put({
+      type: SET_WORLD_REFRESHING,
+      refreshing: true,
+    })
+    const data = yield call(fetchApi, token)
+    const worldData = {
+      latest: data[0],
+      world: data[1],
+      posters: data[2],
+      channels: data[3],
+      refreshing: false,
+    }
+    if (token) worldData.recommend = data[4]
+    yield put({
+      type: SET_WORLD_DATA,
+      data: worldData,
+    })
+  } catch (error) {
+    // Error handle
+    console.log('fetch world error: ', error)
+  }
+}
+
 const index = 0
 
 export default function* worldWatch() {
   let action = yield take('persist/REHYDRATE')
   while (true) {
     const state = yield select()
+    const { auth: { token } } = state
     if (state.nav.routes[0].routeName === 'homeTab' &&
         state.nav.routes[0].index === index
     ) {
       if (state.auth.alert) yield put(SetAlert(false))
       const {
         world: { world, recommend, latest, posters, channels },
-        auth: { token },
       } = state
       let condition = !world || !posters || !latest || !channels
       if (token) condition = condition || !recommend
       // TODO: fetch data and add them into reducer
       if (condition || action.type === FETCH_WORLD) {
-        try {
-          yield put({
-            type: SET_WORLD_REFRESHING,
-            refreshing: true,
-          })
-          const data = yield call(fetchApi, token)
-          const worldData = {
-            latest: data[0],
-            world: data[1],
-            posters: data[2],
-            channels: data[3],
-            refreshing: false,
-          }
-          if (token) worldData.recommend = data[4]
-          yield put({
-            type: SET_WORLD_DATA,
-            data: worldData,
-          })
-        } catch (error) {
-          // Error handle
-          console.log('fetch world error: ', error)
-        }
+        yield call(fetchAndSetWorld, token)
       }
     }
     action = yield take('*')

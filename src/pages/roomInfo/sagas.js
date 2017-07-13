@@ -20,6 +20,7 @@ import {
   FETCH_ROOM_INFO,
   FOLLOW_OR_UNFOLLOW_USER,
   FOLLOW_OR_UNFOLLOW_SUCCESS,
+  FETCH_PARTICIPANTS,
 } from './types'
 
 const fetchApi = (id, token) => api.fetchRoomInfo(id)(token)
@@ -44,6 +45,7 @@ export default function* () {
       JOIN_ROOM,
       LEAVE_ROOM,
       FETCH_ROOM_INFO,
+      FETCH_PARTICIPANTS,
     ])
     let state = yield select()
     const token = state.auth.token
@@ -78,10 +80,17 @@ export default function* () {
         default:
       }
       if (action.type === FETCH_ROOM_INFO) {
+        const { participants } = yield call(fetchParticipantsApi, roomId, token)
         yield put({
-          type: SET_ROOM_INFO,
-          roomInfo: yield call(fetchApi, roomId, token),
+          type: SET_ROOM_INFO_DATA,
+          data: {
+            roomInfo: yield call(fetchApi, roomId, token),
+            participants,
+          },
         })
+      } else if (action.type === FETCH_PARTICIPANTS) {
+        const { participants } = yield call(fetchParticipantsApi, roomId, token)
+        yield put({ type: SET_ROOM_INFO_DATA, data: { participants } })
       } else {
         const myInfo = state.me.userInfo
         if (action.type !== authTypes.FOLLOW_USER &&
@@ -97,6 +106,7 @@ export default function* () {
               if (item.id === myInfo.id) data.isJoined = true
               return item
             })
+            data.participants = participants
             if (action.type === authTypes.NAVIGATE_TO_ROOM_INFO) {
               const isMarked = roomInfo.marked_users.indexOf(myInfo.id) >= 0
               data.isMarked = isMarked

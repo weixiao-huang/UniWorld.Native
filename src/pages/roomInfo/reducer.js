@@ -15,6 +15,7 @@ const initialState = {
   isMarked: false,
   hostFollowed: false,
   followRequesting: false,
+  participants: null,
 }
 
 export default (state = initialState, action) => {

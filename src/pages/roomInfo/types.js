@@ -8,7 +8,7 @@ export const JOIN_ROOM = 'JOIN_ROOM'
 export const LEAVE_ROOM = 'LEAVE_ROOM'
 export const MARK_ROOM = 'MARK_ROOM'
 export const UNMARK_ROOM = 'UNMARK_ROOM'
-
+export const FETCH_PARTICIPANTS = 'FETCH_PARTICIPANTS'
 export const FETCH_ROOM_INFO = 'FETCH_ROOM_INFO'
 
 export const FOLLOW_OR_UNFOLLOW_USER = 'FOLLOW_OR_UNFOLLOW_USER'

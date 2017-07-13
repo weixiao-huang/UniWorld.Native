@@ -14,6 +14,7 @@ const mapStateToProps = state => ({
   followRequesting: state.roomInfo.followRequesting,
   token: state.auth.token,
   myId: state.me.userInfo && state.me.userInfo.id,
+  participants: state.roomInfo.participants,
 })
 
 const mapDispatchToProps = dispatch => ({
