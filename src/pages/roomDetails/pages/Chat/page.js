@@ -164,12 +164,15 @@ export default class Chat extends Component {
   )
 
   render() {
+    const { socketConnectStatus } = this.props
     this.listView = ListView
     return (
       <MainView>
         <KeyboardAvoidingView
           behavior="padding"
-          keyboardVerticalOffset={114}
+          keyboardVerticalOffset={
+            socketConnectStatus ? 114 : 144
+          }
         >
           <ListView
             enableEmptySections

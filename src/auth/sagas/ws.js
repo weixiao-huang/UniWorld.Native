@@ -8,11 +8,14 @@ import api from '@/api'
 
 import {
   SOCKET_CHANNEL_RECONNECT,
+  CHECK_SOCKET_CONNECT_STATUS,
+  SOCKET_CONNECT_ERROR,
 } from './types'
 
 import {
   SET_ROOM_MESSAGE,
   SEND_MESSAGE,
+  SET_SOCKET_CONNECT_STATUS,
 } from '../types'
 
 const checkMailboxApi = (pmid, token) => (
@@ -39,8 +42,12 @@ function initialWebSocket(token, pmid) {
     ws.onclose = (e) => {
       console.log('Socket is closed: ', e.message)
       console.log('reconnect will be attempted in 1 second...')
+      emit({ type: SOCKET_CONNECT_ERROR })
       setTimeout(() => {
         emit({ type: SOCKET_CHANNEL_RECONNECT })
+        setTimeout(() => {
+          emit({ type: CHECK_SOCKET_CONNECT_STATUS })
+        }, 500)
       }, 1000)
     }
     return () => console.log('channel closed')
@@ -69,22 +76,44 @@ export default function* handleWebsocket() {
   let { auth: { token, pmid } } = yield select()
   let { ws, channel } = yield call(initialWebSocket, token, pmid)
   let sendTask
+  let connectFlag = false
   try {
     // Send Message
     sendTask = yield fork(sendFlow, ws)
+    yield put({
+      type: SET_SOCKET_CONNECT_STATUS,
+      socketConnectStatus: true,
+    })
+    connectFlag = true
     while (true) {
       const { type, message } = yield take(channel)
+      const { auth } = yield select()
       if (type === SOCKET_CHANNEL_RECONNECT) {
         // WebSocket Reconnect
         channel.close()
-        const state = yield select()
-        token = state.auth.token
-        pmid = state.auth.pmid
+        token = auth.token
+        pmid = auth.pmid
         const body = yield call(initialWebSocket, token, pmid)
         ws = body.ws
         channel = body.channel
         if (sendTask) yield cancel(sendTask)
         sendTask = yield fork(sendFlow, ws)
+        connectFlag = true
+      } else if (type === SOCKET_CONNECT_ERROR) {
+        if (auth.socketConnectStatus) {
+          yield put({
+            type: SET_SOCKET_CONNECT_STATUS,
+            socketConnectStatus: false,
+          })
+        }
+        connectFlag = false
+      } else if (type === CHECK_SOCKET_CONNECT_STATUS) {
+        if (connectFlag && !auth.socketConnectStatus) {
+          yield put({
+            type: SET_SOCKET_CONNECT_STATUS,
+            socketConnectStatus: true,
+          })
+        }
       } else if (type === SET_ROOM_MESSAGE) {
         // Set Room Message
         const { nav: { routes } } = yield select()

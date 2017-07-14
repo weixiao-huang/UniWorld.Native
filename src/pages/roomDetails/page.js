@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { StyleSheet, Keyboard } from 'react-native'
+import { StyleSheet, Keyboard, ActivityIndicator } from 'react-native'
 import I18n from 'react-native-i18n'
 import AnimatedScreen from '@/components/AnimatedScreen'
 
 import {
   MainScrollTabView,
   MainView,
+  SocketBreakView,
+  SocketBreakText,
 } from './style'
 
 import Notice from './pages/Notice'
@@ -25,37 +27,47 @@ const styles = StyleSheet.create({
 
 export default class RoomDetails extends Component {
   render() {
-    const { roomDetails, myId, hostId } = this.props
+    const {
+      roomDetails, myId, hostId, socketConnectStatus,
+    } = this.props
     return (
-      <MainScrollTabView
-        tabBarUnderlineStyle={styles.tabBarUnderline}
-        tabBarBackgroundColor="#ec5367"
-        tabBarTextStyle={styles.tabBarText}
-        initialPage={1}
-        contentProps={{ keyboardShouldPersistTaps: 'handled' }}
-        onChangeTab={() => Keyboard.dismiss()}
-      >
-        {roomDetails ? <Notice
-          tabLabel={I18n.t('Room.Notice.notice')}
-          questionnaires={roomDetails.questionnaires}
-          isHost={myId === hostId}
-        /> : <AnimatedScreen
-          tabLabel={I18n.t('Room.Notice.notice')}
-        />}
-        {/*<GChat tabLabel="Gifted Chat" />*/}
-        {roomDetails ? <Chat
-          tabLabel={I18n.t('Room.Chat.title')}
-          isHost={myId === hostId}
-        /> : <AnimatedScreen
-          tabLabel={I18n.t('Room.Chat.title')}
-        />}
-        {roomDetails ? <Member
-          tabLabel={I18n.t('Room.Member.title')}
-          goBack={this.props.navigation.goBack}
-        /> : <AnimatedScreen
-          tabLabel={I18n.t('Room.Member.title')}
-        />}
-      </MainScrollTabView>
+      <MainView>
+        {!socketConnectStatus && <SocketBreakView>
+          <ActivityIndicator animating color="#414755" />
+          <SocketBreakText>
+            网络断了哦，正在尝试连接中
+          </SocketBreakText>
+        </SocketBreakView>}
+        <MainScrollTabView
+          tabBarUnderlineStyle={styles.tabBarUnderline}
+          tabBarBackgroundColor="#ec5367"
+          tabBarTextStyle={styles.tabBarText}
+          initialPage={1}
+          contentProps={{ keyboardShouldPersistTaps: 'handled' }}
+          onChangeTab={() => Keyboard.dismiss()}
+        >
+          {roomDetails ? <Notice
+            tabLabel={I18n.t('Room.Notice.notice')}
+            questionnaires={roomDetails.questionnaires}
+            isHost={myId === hostId}
+          /> : <AnimatedScreen
+            tabLabel={I18n.t('Room.Notice.notice')}
+          />}
+          {/*<GChat tabLabel="Gifted Chat" />*/}
+          {roomDetails ? <Chat
+            tabLabel={I18n.t('Room.Chat.title')}
+            isHost={myId === hostId}
+          /> : <AnimatedScreen
+            tabLabel={I18n.t('Room.Chat.title')}
+          />}
+          {roomDetails ? <Member
+            tabLabel={I18n.t('Room.Member.title')}
+            goBack={this.props.navigation.goBack}
+          /> : <AnimatedScreen
+            tabLabel={I18n.t('Room.Member.title')}
+          />}
+        </MainScrollTabView>
+      </MainView>
     )
   }
 }

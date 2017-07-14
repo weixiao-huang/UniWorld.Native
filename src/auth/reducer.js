@@ -9,6 +9,7 @@ import {
   RESET_UNREAD_MESSAGE,
   SET_ALERT_MESSAGE,
   SET_DEVICE_TOKEN,
+  SET_SOCKET_CONNECT_STATUS,
 } from './types'
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
   unreadMessages: {},
   wx: null,
   deviceToken: null,
+  socketConnectStatus: false,
 }
 
 export default (state = initialState, action) => {
@@ -35,6 +37,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         token: null,
+      }
+    case SET_SOCKET_CONNECT_STATUS:
+      return {
+        ...state,
+        socketConnectStatus: action.socketConnectStatus,
       }
     case SET_DEVICE_TOKEN:
       return {
