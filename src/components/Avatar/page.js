@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { TouchableOpacity, Alert } from 'react-native'
 import I18n from '@/locales'
 

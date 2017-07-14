@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { ActivityIndicator, Alert } from 'react-native'
 import Icon from 'react-native-vector-icons/Entypo'
 import ImagePicker from 'react-native-image-picker'

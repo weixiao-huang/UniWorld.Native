@@ -2,7 +2,8 @@
  * Created by huangwx on 11/04/2017.
  */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import {
   RefreshControl,
   TouchableOpacity,

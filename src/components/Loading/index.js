@@ -2,7 +2,8 @@
  * Created by huangwx on 27/04/2017.
  */
 
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Modal, Platform } from 'react-native'
 import Spinner from 'react-native-spinkit'
 
