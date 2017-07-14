@@ -15,6 +15,7 @@ export const SearchView = styled.View`
 `
 export const SearchInput = styled.TextInput`
   flex: 1;
+  height: 100%;
   backgroundColor: #eee;
   paddingLeft: 10px;
 `

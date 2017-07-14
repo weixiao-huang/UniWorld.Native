@@ -92,6 +92,8 @@ export default class Chat extends Component {
     const { roomId, token } = this.props
     const options = {
       title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
+      rotation: true,
+      allowsEditing: true,
       cancelButtonTitle: I18n.t('cancel'),
       takePhotoButtonTitle: I18n.t('camera'),
       chooseFromLibraryButtonTitle: I18n.t('photoLibrary'),

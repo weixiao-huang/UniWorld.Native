@@ -30,6 +30,7 @@ export const FooterIconImage = styled.Image`
 export const FooterInput = styled.TextInput`
   background-color: white;
   flex: 1;
+  height: 100%;
   margin-left: 10px;
   border-width: 1px;
   border-color: #bababa;

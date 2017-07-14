@@ -1,8 +1,8 @@
 /**
  * Created by huangwx on 10/04/2017.
  */
-import React, { PropTypes } from 'react'
-import { StyleSheet, Image } from 'react-native'
+import React from 'react'
+import { StyleSheet, Image, ViewPropTypes } from 'react-native'
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -27,7 +27,7 @@ BackgroundImage.defaultProps = {
 }
 
 BackgroundImage.propTypes = {
-  inlineStyle: PropTypes.object,
+  inlineStyle: ViewPropTypes.style,
 }
 
 export default BackgroundImage
