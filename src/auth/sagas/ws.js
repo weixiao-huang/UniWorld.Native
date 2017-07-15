@@ -10,12 +10,14 @@ import {
   SOCKET_CHANNEL_RECONNECT,
   CHECK_SOCKET_CONNECT_STATUS,
   SOCKET_CONNECT_ERROR,
+  CHECK_SOCKET_RECONNECT,
 } from './types'
 
 import {
   SET_ROOM_MESSAGE,
   SEND_MESSAGE,
   SET_SOCKET_CONNECT_STATUS,
+  SET_SOCKET_RECONNECT,
 } from '../types'
 
 const checkMailboxApi = (pmid, token) => (
@@ -42,7 +44,12 @@ function initialWebSocket(token, pmid) {
     ws.onclose = (e) => {
       console.log('Socket is closed: ', e.message)
       console.log('reconnect will be attempted in 1 second...')
-      emit({ type: SOCKET_CONNECT_ERROR })
+      emit({
+        type: SOCKET_CONNECT_ERROR,
+        reconnectTimeout: setTimeout(() => {
+          emit({ type: SET_SOCKET_RECONNECT })
+        }, 1500),
+      })
       setTimeout(() => {
         emit({ type: SOCKET_CHANNEL_RECONNECT })
         setTimeout(() => {
@@ -77,6 +84,7 @@ export default function* handleWebsocket() {
   let { ws, channel } = yield call(initialWebSocket, token, pmid)
   let sendTask
   let connectFlag = false
+  let timeout
   try {
     // Send Message
     sendTask = yield fork(sendFlow, ws)
@@ -86,10 +94,13 @@ export default function* handleWebsocket() {
     })
     connectFlag = true
     while (true) {
-      const { type, message } = yield take(channel)
+      const {
+        type, message, reconnectTimeout,
+      } = yield take(channel)
       const { auth } = yield select()
       if (type === SOCKET_CHANNEL_RECONNECT) {
         // WebSocket Reconnect
+        if (timeout) clearTimeout(timeout)
         channel.close()
         token = auth.token
         pmid = auth.pmid
@@ -100,6 +111,8 @@ export default function* handleWebsocket() {
         sendTask = yield fork(sendFlow, ws)
         connectFlag = true
       } else if (type === SOCKET_CONNECT_ERROR) {
+        if (timeout) clearTimeout(timeout)
+        timeout = reconnectTimeout
         if (auth.socketConnectStatus) {
           yield put({
             type: SET_SOCKET_CONNECT_STATUS,
@@ -107,6 +120,8 @@ export default function* handleWebsocket() {
           })
         }
         connectFlag = false
+      } else if (type === SET_SOCKET_RECONNECT) {
+        yield put({ type, socketReconnect: false })
       } else if (type === CHECK_SOCKET_CONNECT_STATUS) {
         if (connectFlag && !auth.socketConnectStatus) {
           yield put({
