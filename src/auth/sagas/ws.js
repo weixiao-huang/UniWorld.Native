@@ -49,7 +49,7 @@ function initialWebSocket(token, pmid) {
         emit({ type: channelTypes.SOCKET_CHANNEL_RECONNECT })
         setTimeout(() => {
           emit({ type: channelTypes.CHECK_SOCKET_CONNECT_STATUS })
-        }, 500)
+        }, 800)
       }, 1000)
     }
     return () => console.log('channel closed')
@@ -95,13 +95,6 @@ export default function* handleWebsocket() {
       const { auth } = yield select()
       if (type === channelTypes.SOCKET_CHANNEL_RECONNECT) {
         // WebSocket Reconnect
-        if (timeout) clearTimeout(timeout)
-        if (!auth.socketReconnect) {
-          yield put({
-            type: SET_SOCKET_RECONNECT,
-            socketReconnect: true,
-          })
-        }
         channel.close()
         token = auth.token
         pmid = auth.pmid
@@ -110,6 +103,13 @@ export default function* handleWebsocket() {
         channel = body.channel
         if (sendTask) yield cancel(sendTask)
         sendTask = yield fork(sendFlow, ws)
+        if (timeout) clearTimeout(timeout)
+        if (!auth.socketReconnect) {
+          yield put({
+            type: SET_SOCKET_RECONNECT,
+            socketReconnect: true,
+          })
+        }
         connectFlag = true
       } else if (type === channelTypes.SOCKET_CONNECT_ERROR) {
         if (timeout) clearTimeout(timeout)

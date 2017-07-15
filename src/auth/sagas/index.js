@@ -43,7 +43,7 @@ function* eventFlow(auth) {
     console.log('event flow error: ', error)
   } finally {
     if (yield cancelled()) {
-      console.log('event flow close')
+      console.log('event flow close in finally')
       if (wsTask) yield cancel(wsTask)
       if (noticeTask) yield cancel(noticeTask)
     }
@@ -91,18 +91,13 @@ export default function* () {
         }
         break
       case POST_DEVICE_TOKEN:
-        if (token && deviceToken) {
-          const res = yield call(postDeviceToken, deviceToken.token, token)
-          console.log('device token res: ', res)
-        }
+        if (token && deviceToken) postDeviceToken(deviceToken.token, token)
         break
       case LOGOUT_DEVICE_TOKEN:
-        if (token) {
-          const res = yield call(postDeviceToken, 'abcd', token)
-          console.log('logout device token res: ', res)
-        }
+        if (token) postDeviceToken('abcd', token)
         break
       case CLIENT_UNSET:
+        console.log('task will be cancelled: ', task)
         if (task) yield cancel(task)
         break
       default:
