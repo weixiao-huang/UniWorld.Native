@@ -1,7 +1,7 @@
 import {
   take, fork, cancel, put, cancelled, select, call,
 } from 'redux-saga/effects'
-import { eventChannel } from 'redux-saga'
+import { eventChannel, delay } from 'redux-saga'
 
 import { handleApiErrors } from '@/lib/api-errors'
 import api from '@/api'
@@ -39,17 +39,9 @@ function initialWebSocket(token, pmid) {
     ws.onclose = (e) => {
       console.log('Socket is closed: ', e.message)
       console.log('reconnect will be attempted in 1 second...')
-      emit({
-        type: channelTypes.SOCKET_CONNECT_ERROR,
-        reconnectTimeout: setTimeout(() => {
-          emit({ type: SET_SOCKET_RECONNECT })
-        }, 1500),
-      })
+      emit({ type: channelTypes.SOCKET_CONNECT_ERROR })
       setTimeout(() => {
         emit({ type: channelTypes.SOCKET_CHANNEL_RECONNECT })
-        setTimeout(() => {
-          emit({ type: channelTypes.CHECK_SOCKET_CONNECT_STATUS })
-        }, 800)
       }, 1000)
     }
     return () => console.log('channel closed')
@@ -73,13 +65,30 @@ function* sendFlow(ws) {
   }
 }
 
+function* checkSocket(status) {
+  yield delay(800)
+  if (!status) {
+    yield put({
+      type: SET_SOCKET_CONNECT_STATUS,
+      socketConnectStatus: true,
+    })
+  }
+}
+
+function* reconnectSocket() {
+  yield delay(1500)
+  yield put({
+    type: SET_SOCKET_RECONNECT,
+    socketReconnect: false,
+  })
+}
 
 export default function* handleWebsocket() {
   let { auth: { token, pmid } } = yield select()
   let { ws, channel } = yield call(initialWebSocket, token, pmid)
   let sendTask
-  let connectFlag = false
-  let timeout
+  let reconnectTask
+  let checkTask
   try {
     // Send Message
     sendTask = yield fork(sendFlow, ws)
@@ -87,14 +96,11 @@ export default function* handleWebsocket() {
       type: SET_SOCKET_CONNECT_STATUS,
       socketConnectStatus: true,
     })
-    connectFlag = true
     while (true) {
-      const {
-        type, message, reconnectTimeout,
-      } = yield take(channel)
+      const { type, message } = yield take(channel)
       const { auth } = yield select()
       if (type === channelTypes.SOCKET_CHANNEL_RECONNECT) {
-        // WebSocket Reconnect
+        checkTask = yield fork(checkSocket, auth.socketConnectStatus)
         channel.close()
         token = auth.token
         pmid = auth.pmid
@@ -103,31 +109,21 @@ export default function* handleWebsocket() {
         channel = body.channel
         if (sendTask) yield cancel(sendTask)
         sendTask = yield fork(sendFlow, ws)
-        if (timeout) clearTimeout(timeout)
+
+        if (reconnectTask) yield cancel(reconnectTask)
         if (!auth.socketReconnect) {
           yield put({
             type: SET_SOCKET_RECONNECT,
             socketReconnect: true,
           })
         }
-        connectFlag = true
       } else if (type === channelTypes.SOCKET_CONNECT_ERROR) {
-        if (timeout) clearTimeout(timeout)
-        timeout = reconnectTimeout
+        reconnectTask = yield fork(reconnectSocket)
+        if (checkTask) yield cancel(checkTask)
         if (auth.socketConnectStatus) {
           yield put({
             type: SET_SOCKET_CONNECT_STATUS,
             socketConnectStatus: false,
-          })
-        }
-        connectFlag = false
-      } else if (type === SET_SOCKET_RECONNECT) {
-        yield put({ type, socketReconnect: false })
-      } else if (type === channelTypes.CHECK_SOCKET_CONNECT_STATUS) {
-        if (connectFlag && !auth.socketConnectStatus) {
-          yield put({
-            type: SET_SOCKET_CONNECT_STATUS,
-            socketConnectStatus: true,
           })
         }
       } else if (type === SET_ROOM_MESSAGE) {
