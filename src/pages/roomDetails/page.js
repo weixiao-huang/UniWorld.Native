@@ -28,14 +28,16 @@ const styles = StyleSheet.create({
 export default class RoomDetails extends Component {
   render() {
     const {
-      roomDetails, myId, hostId, socketConnectStatus,
+      roomDetails, myId, hostId, socketConnectStatus, socketReconnect,
     } = this.props
     return (
       <MainView>
         {!socketConnectStatus && <SocketBreakView>
           <ActivityIndicator animating color="#414755" />
           <SocketBreakText>
-            网络断了哦，正在尝试连接中
+            {socketReconnect ?
+              '网络断了哦，正在尝试连接中' :
+              '失去连接，尝试重启应用'}
           </SocketBreakText>
         </SocketBreakView>}
         <MainScrollTabView

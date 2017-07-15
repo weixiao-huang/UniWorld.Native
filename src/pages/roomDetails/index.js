@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
           state.roomInfo.roomInfo.host &&
           state.roomInfo.roomInfo.host.id,
   socketConnectStatus: state.auth.socketConnectStatus,
+  socketReconnect: state.auth.socketReconnect,
 })
 
 const mapDispatchToProps = dispatch => ({
