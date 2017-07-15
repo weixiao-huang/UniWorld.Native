@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StatusBar, KeyboardAvoidingView } from 'react-native'
-import Toast, { DURATION } from 'react-native-easy-toast'
+import DropdownAlert from 'react-native-dropdownalert'
 
 import I18n from '@/locales'
 import BackgroundImage from '@/components/BackgroundImage'
@@ -34,7 +34,7 @@ export default class Login extends Component {
 
   componentDidMount() {
     if (this.props.login.errors.length) {
-      this.toast.show('Username or password error')
+      this.dropdown.alertWithType('warn', 'Error', 'Username or password uncorrect')
     }
   }
 
@@ -68,13 +68,8 @@ export default class Login extends Component {
             behavior="position"
             keyboardVerticalOffset={-100}
           >
-            <Toast
-              style={{ backgroundColor: 'rgba(0.243, 0.220, 0.455, 0.4)' }}
-              position="top"
-              positionValue={30}
-              fadeInDuration={750}
-              fadeOutDuration={1500}
-              ref={(e) => { this.toast = e }}
+            <DropdownAlert
+              ref={(e) => { this.dropdown = e }}
             />
             <BackgroundView>
               <LogoImage source={logoUrl} />
