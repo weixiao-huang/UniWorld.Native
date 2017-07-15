@@ -91,6 +91,7 @@
     "website": "Please browse our website for more details",
     "followText0": "Your friends ",
     "followText1": " joined this room",
+    "banned":"Sorry, the room has been closed",
     "Info": {
       "title": "Info",
       "label": "Label",
@@ -118,7 +119,9 @@
         "content": "You will leave this room, confirm?",
         "confirm": "Confirm",
         "cancel": "Cancel"
-      }
+      },
+      "joinFailed":"Failed",
+      "fullRoom":"The room is full"
     },
     "Notice": {
       "title": "Notice",

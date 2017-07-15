@@ -1,10 +1,11 @@
 import { take, select, call, put } from 'redux-saga/effects'
 
 import api from '@/api'
-
+import { Alert } from 'react-native'
+import I18n from '@/locales'
 import { handleApiErrors } from '@/lib/api-errors'
 import { baseApi } from '@/lib/api-libs'
-
+import { NavigateToRoomDetails, GoBack } from '@/router/actions'
 import * as navTypes from '@/router/types'
 import * as authTypes from '@/auth/types'
 import * as meTypes from '@/pages/me/types'
@@ -57,11 +58,29 @@ export default function* () {
           if (state.roomInfo.roomInfo) yield put({ type: CLEAR_ROOM_INFO })
           break
         case LEAVE_ROOM:
+          yield put({ type: FOLLOW_OR_UNFOLLOW_USER })
           yield call(baseApi, api.leaveRoom, roomId, token)
+          yield put({ type: FOLLOW_OR_UNFOLLOW_SUCCESS })
           break
-        case JOIN_ROOM:
-          yield call(baseApi, api.joinRoom, roomId, token)
+        case JOIN_ROOM: {
+          yield put({ type: FOLLOW_OR_UNFOLLOW_USER })
+          const res = yield call(baseApi, api.joinRoom, roomId, token)
+          yield put({ type: FOLLOW_OR_UNFOLLOW_SUCCESS })
+          if (res.status === 200) yield put(NavigateToRoomDetails(roomId))
+          else {
+            Alert.alert(
+              I18n.t('Room.footer.joinFailed'),
+              I18n.t('Room.footer.fullRoom'),
+              [
+                {
+                  text: 'OK',
+                  onPress: () => { },
+                },
+              ],
+            )
+          }
           break
+        }
         case MARK_ROOM:
           yield call(baseApi, api.markRoom, roomId, token)
           yield put({ type: SET_ROOM_INFO_DATA, data: { isMarked: true } })
@@ -94,9 +113,22 @@ export default function* () {
       } else {
         const myInfo = state.me.userInfo
         if (action.type !== authTypes.FOLLOW_USER &&
-            action.type !== authTypes.UNFOLLOW_USER) {
+          action.type !== authTypes.UNFOLLOW_USER) {
           roomInfo = yield call(fetchApi, roomId, token)
           const data = { roomInfo }
+          if (data.banned) {
+            Alert.alert(
+              I18n.t('Room.banned'),
+              [
+                {
+                  text: 'OK',
+                  onPress: () => {
+                    put(GoBack())
+                  },
+                },
+              ],
+            )
+          }
           if (myInfo) {
             const {
               participants,

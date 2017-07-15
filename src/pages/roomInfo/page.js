@@ -96,7 +96,6 @@ export default class RoomInfo extends Component {
         {!!token && !!roomInfo && <ButtonArea
           join={() => {
             dispatch({ type: JOIN_ROOM })
-            navigateAction(roomInfo.id)
           }}
           leave={() => {
             Alert.alert(
