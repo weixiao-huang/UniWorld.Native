@@ -73,7 +73,7 @@ export default class RoomInfo extends Component {
             />
             <EmptyView />
             <People
-              participants={participants}
+              participants={participants || roomInfo.participants}
               maxParticipants={roomInfo.max_participants}
             />
             <EmptyView />
