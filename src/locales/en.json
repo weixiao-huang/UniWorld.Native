@@ -19,20 +19,22 @@
       "content": "Image size is too large, try to crop it",
       "confirm": "Confirm and repick",
       "cancel": "Cancel"
-    }
+    },
+    "tips": "Tips",
+    "tokenExpired": "Your login status has expired. Please login again."
   },
   "yes": "Yes",
   "no": "No",
   "dislikes": "Dislikes",
-  "photoLibrary":"Choose from Library...",
-  "camera":"Camera",
+  "photoLibrary": "Choose from Library...",
+  "camera": "Camera",
   "title": "Title",
   "content": "Content",
   "save": "Save",
+  "tips": "Tips",
   "cancel": "Cancel",
   "full": "Room is Full",
   "submit": "Submit",
-  "tips": "Tips",
   "confirm": "Confirm",
   "Login": {
     "username": "Tel",
@@ -91,7 +93,7 @@
     "website": "Please browse our website for more details",
     "followText0": "Your friends ",
     "followText1": " joined this room",
-    "banned":"Sorry, the room has been closed",
+    "banned": "Sorry, the room has been closed",
     "Info": {
       "title": "Info",
       "label": "Label",
@@ -120,8 +122,8 @@
         "confirm": "Confirm",
         "cancel": "Cancel"
       },
-      "joinFailed":"Failed",
-      "fullRoom":"The room is full"
+      "joinFailed": "Failed",
+      "fullRoom": "The room is full"
     },
     "Notice": {
       "title": "Notice",
