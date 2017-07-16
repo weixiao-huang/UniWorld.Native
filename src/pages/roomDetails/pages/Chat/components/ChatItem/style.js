@@ -10,6 +10,7 @@ export const MainView = styled.View`
 `
 export const WrapView = styled.View`
   flex-direction: ${props => (props.reverse ? 'row-reverse' : 'row')};
+  flex: 1;
   align-items: center;
 `
 export const NoticeText = styled.Text`
@@ -35,7 +36,6 @@ export const TriangleView = styled.View`
 `
 export const ContentView = styled.View`
   flex-direction: column;
-  flex: 1;
   justify-content: ${props => (props.reverse ? 'flex-end' : 'flex-start')};
   align-items: ${props => (props.reverse ? 'flex-end' : 'flex-start')};
   margin-right: ${props => (props.reverse ? '-1.5px' : '0')};

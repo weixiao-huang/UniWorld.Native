@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { ListView } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 import InvertibleScrollView from 'react-native-invertible-scroll-view'
+import shortid from 'shortid'
+
 import I18n from '@/locales'
 import api from '@/api'
 import logoBlue from '@/img/icon/logoBlue.png'
@@ -26,6 +28,7 @@ export default class Chat extends Component {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     })
+    const { id, avatar, signature, name } = this.props.me
     this.state = {
       ds: ds.cloneWithRows(
         messages,
@@ -35,6 +38,7 @@ export default class Chat extends Component {
       isUploading: false,
       plus: false,
       showMenu: false,
+      defaultSender: { id, avatar, signature, name },
     }
   }
 
@@ -68,6 +72,7 @@ export default class Chat extends Component {
         text: this.state.text,
         type: 0,
         room: roomId,
+        local_id: shortid.generate(),
       })
       // console.log(me)
       // const sender = {
@@ -163,6 +168,9 @@ export default class Chat extends Component {
     </FooterContainerView>
   )
 
+  sending = localId => localId && this.props.sendingPool[localId]
+  getSender = sender => sender || this.state.defaultSender
+
   render() {
     const { socketConnectStatus } = this.props
     this.listView = ListView
@@ -185,13 +193,14 @@ export default class Chat extends Component {
             renderRow={(item, sectionId, rowId) => (
               <ChatItem
                 key={item.id}
+                sending={this.sending(item.local_id)}
                 index={parseInt(rowId, 10)}
-                sender={item.sender}
+                sender={this.getSender(item.sender)}
                 content={item.text}
                 type={item.type}
                 image={item.image}
                 showTime={item.showTime || null}
-                mine={item.sender.id === this.props.myId}
+                mine={this.getSender(item.sender).id === this.props.myId}
               />
             )}
           />

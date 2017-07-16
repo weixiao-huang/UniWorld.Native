@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { ActivityIndicator } from 'react-native'
 import Avatar from '@/components/Avatar'
 import {
   MainView,
@@ -10,6 +10,7 @@ import {
   TitleView,
   TitleText,
   ContentImage,
+  BubbleWrapView,
   ContentText,
   ContentTextView,
 } from './style'
@@ -17,7 +18,7 @@ import {
 const AvatarSize = 42
 
 const ChatItem = ({
-  index, sender, content, type, image, showTime, mine,
+  index, sender, content, type, image, showTime, mine, sending,
 }) => (
   <MainView>
     {type === 2 ?
@@ -44,6 +45,10 @@ const ChatItem = ({
             }
           </ContentView>
         </ContentView>
+        <ActivityIndicator
+          style={{ marginRight: 10 }}
+          animating={Boolean(mine && sending)}
+        />
       </WrapView>
     }
   </MainView>

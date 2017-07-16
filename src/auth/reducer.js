@@ -11,6 +11,7 @@ import {
   SET_DEVICE_TOKEN,
   SET_SOCKET_CONNECT_STATUS,
   SET_SOCKET_RECONNECT,
+  SEND_MESSAGE,
 } from './types'
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
   initialLabels: null,
   alert: false,
   messages: {},
+  sendingPool: {},
   pmid: 0,
   unreadMessages: {},
   wx: null,
@@ -77,9 +79,30 @@ export default (state = initialState, action) => {
         unreadMessages,
       }
     }
+    case SEND_MESSAGE: {
+      const { message } = action
+      const { local_id, room: roomId } = message
+      const messages = { ...state.messages }
+      let index = 0
+
+      if (messages[roomId] !== undefined) {
+        index = messages[roomId].length
+        messages[roomId] = messages[roomId].concat(message)
+      } else messages[roomId] = [message]
+      const sendingPool = {
+        [local_id]: { roomId, index },
+        ...state.sendingMessages,
+      }
+      return {
+        ...state,
+        messages,
+        sendingPool,
+      }
+    }
     case SET_ROOM_MESSAGE: {
       const messages = { ...state.messages }
       const unreadMessages = { ...state.unreadMessages }
+      const sendingPool = { ...state.sendingPool }
       const data = action.message
       const pmid = data.id || state.pmid
       console.log('data.id: ', data.id)
@@ -87,15 +110,17 @@ export default (state = initialState, action) => {
       console.log('pmid: ', pmid)
       const roomId = data.room
       const showRoomId = action.id
-      if (state.messages[roomId] !== undefined) {
-        messages[roomId] = state.messages[roomId].concat(data)
-      } else messages[roomId] = [data]
       if (unreadMessages[roomId] !== undefined) {
         if (showRoomId !== roomId) {
           unreadMessages[roomId] += 1
         }
       } else unreadMessages[roomId] = 1
 
+      if (data.local_id && sendingPool[data.local_id]) {
+        delete sendingPool[data.local_id]
+      } else if (state.messages[roomId] !== undefined) {
+        messages[roomId] = state.messages[roomId].concat(data)
+      } else messages[roomId] = [data]
       // console.log('roomId: ', roomId)
       // PushNotification.localNotification({
       //   id: roomId,
@@ -136,6 +161,7 @@ export default (state = initialState, action) => {
         messages,
         unreadMessages,
         pmid,
+        sendingPool,
       }
     }
     case SET_ALERT_MESSAGE:

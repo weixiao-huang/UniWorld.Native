@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
 })
 
 export default ({
-  roomDetails, myId, hostId, socketConnectStatus, socketReconnect
+  roomDetails, myId, hostId, navigation,
+  socketConnectStatus, socketReconnect
 }) => (
   <MainView>
     {!socketConnectStatus && <SocketBreakView>
@@ -62,7 +63,7 @@ export default ({
       />}
       {roomDetails ? <Member
         tabLabel={I18n.t('Room.Member.title')}
-        goBack={this.props.navigation.goBack}
+        goBack={navigation.goBack}
       /> : <AnimatedScreen
         tabLabel={I18n.t('Room.Member.title')}
       />}
