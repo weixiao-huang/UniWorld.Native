@@ -34,24 +34,32 @@ export const TriangleView = styled.View`
   border-bottom-color: ${props => (props.reverse ? '#d5d9f0' : 'white')};
   transform: rotate(${props => (props.reverse ? '' : '-')}90deg);
 `
-export const ContentView = styled.View`
+
+export const ContentTouch = styled.TouchableOpacity`
   flex-direction: column;
   justify-content: ${props => (props.reverse ? 'flex-end' : 'flex-start')};
   align-items: ${props => (props.reverse ? 'flex-end' : 'flex-start')};
-  margin-right: ${props => (props.reverse ? '-1.5px' : '0')};
   borderRadius: 5px;
 `
+
+export const ContentView = styled.View`
+  margin-right: ${props => (props.reverse ? '-3px' : '0')};
+`
+
 export const TitleView = styled.View`
 `
+
 export const TitleText = styled.Text`
   fontSize: 12px;
   marginBottom: 2px;
 `
+
 export const ContentImage = styled.Image`
   resizeMode: cover;
   width: 160px;
   height: 200px;
 `
+
 export const ContentTextView = styled.View`
   background-color: ${props => (props.reverse ? '#d5d9f0' : 'white')};
   margin-top: 4px;
@@ -59,5 +67,6 @@ export const ContentTextView = styled.View`
   margin-left: -3px;
   border-radius: 5px;
 `
+
 export const ContentText = styled.Text`
 `

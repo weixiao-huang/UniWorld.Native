@@ -10,7 +10,7 @@ import {
   TitleView,
   TitleText,
   ContentImage,
-  BubbleWrapView,
+  ContentTouch,
   ContentText,
   ContentTextView,
 } from './style'
@@ -30,7 +30,11 @@ const ChatItem = ({
           size={AvatarSize}
         />
         <TriangleView reverse={mine} />
-        <ContentView reverse={mine} >
+        <ContentTouch
+          onLongPress={() => console.log('long press')}
+          reverse={mine}
+          activeOpacity={1}
+        >
           {!mine && <TitleView>
             <TitleText>{sender.name}</TitleText>
           </TitleView>}
@@ -44,7 +48,7 @@ const ChatItem = ({
               </ContentTextView>
             }
           </ContentView>
-        </ContentView>
+        </ContentTouch>
         <ActivityIndicator
           style={{ marginRight: 10 }}
           animating={Boolean(mine && sending)}
