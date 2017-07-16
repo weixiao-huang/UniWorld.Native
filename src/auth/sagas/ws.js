@@ -53,6 +53,7 @@ function* sendFlow(ws) {
   while (true) {
     try {
       const { message } = yield take(SEND_MESSAGE)
+      // console.log('message: ', message)
       ws.send(JSON.stringify(message))
     } catch (error) {
       console.log('send message error: ', error)

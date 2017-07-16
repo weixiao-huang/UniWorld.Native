@@ -19,7 +19,6 @@ const initialState = {
   initialLabels: null,
   alert: false,
   messages: {},
-  messages2: {},
   pmid: 0,
   unreadMessages: {},
   wx: null,
@@ -80,7 +79,6 @@ export default (state = initialState, action) => {
     }
     case SET_ROOM_MESSAGE: {
       const messages = { ...state.messages }
-      const messages2 = { ...state.messages2 }
       const unreadMessages = { ...state.unreadMessages }
       const data = action.message
       const pmid = data.id || state.pmid
@@ -89,22 +87,6 @@ export default (state = initialState, action) => {
       console.log('pmid: ', pmid)
       const roomId = data.room
       const showRoomId = action.id
-      const user = {
-        _id: data.sender.id,
-        name: data.sender.name,
-        avatar: data.sender.avatar,
-      }
-      const data2 = {
-        _id: data.id,
-        text: data.text,
-        createdAt: data.time,
-        user,
-        image: data.image,
-      }
-      if (state.messages2[roomId] !== undefined) {
-        messages2[roomId] = state.messages2[roomId].concat(data2)
-      } else messages2[roomId] = [data2]
-
       if (state.messages[roomId] !== undefined) {
         messages[roomId] = state.messages[roomId].concat(data)
       } else messages[roomId] = [data]
@@ -144,7 +126,6 @@ export default (state = initialState, action) => {
       //   // number: global.unread, // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
       //   repeatType: 'day', // (Android only) Repeating interval. Could be one of `week`, `day`, `hour`, `minute, `time`. If specified as time, it should be accompanied by one more parameter 'repeatTime` which should the number of milliseconds between each interval
       //   // actions: '["Yes", "No"]',  // (Android only) See the doc for notification actions to know more
-
       // });
       const unreadArray = Object.values(unreadMessages)
       const unread = unreadArray.length > 0 ?

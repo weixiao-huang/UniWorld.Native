@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+/*
+  Page: RoomDetails
+*/
+import React from 'react'
 import { StyleSheet, Keyboard, ActivityIndicator } from 'react-native'
 import I18n from 'react-native-i18n'
 import AnimatedScreen from '@/components/AnimatedScreen'
@@ -13,7 +16,6 @@ import {
 import Notice from './pages/Notice'
 import Chat from './pages/Chat'
 import Member from './pages/Member'
-import GChat from './pages/GChat'
 
 const styles = StyleSheet.create({
   tabBarUnderline: {
@@ -25,51 +27,45 @@ const styles = StyleSheet.create({
   },
 })
 
-export default class RoomDetails extends Component {
-  render() {
-    const {
-      roomDetails, myId, hostId, socketConnectStatus, socketReconnect,
-    } = this.props
-    return (
-      <MainView>
-        {!socketConnectStatus && <SocketBreakView>
-          <ActivityIndicator animating color="#414755" />
-          <SocketBreakText>
-            {socketReconnect ?
-              '网络断了哦，正在尝试连接中' :
-              '失去连接，尝试重启应用'}
-          </SocketBreakText>
-        </SocketBreakView>}
-        <MainScrollTabView
-          tabBarUnderlineStyle={styles.tabBarUnderline}
-          tabBarBackgroundColor="#ec5367"
-          tabBarTextStyle={styles.tabBarText}
-          initialPage={1}
-          contentProps={{ keyboardShouldPersistTaps: 'handled' }}
-          onChangeTab={() => Keyboard.dismiss()}
-        >
-          {roomDetails ? <Notice
-            tabLabel={I18n.t('Room.Notice.notice')}
-            questionnaires={roomDetails.questionnaires}
-            isHost={myId === hostId}
-          /> : <AnimatedScreen
-            tabLabel={I18n.t('Room.Notice.notice')}
-          />}
-          {/*<GChat tabLabel="Gifted Chat" />*/}
-          {roomDetails ? <Chat
-            tabLabel={I18n.t('Room.Chat.title')}
-            isHost={myId === hostId}
-          /> : <AnimatedScreen
-            tabLabel={I18n.t('Room.Chat.title')}
-          />}
-          {roomDetails ? <Member
-            tabLabel={I18n.t('Room.Member.title')}
-            goBack={this.props.navigation.goBack}
-          /> : <AnimatedScreen
-            tabLabel={I18n.t('Room.Member.title')}
-          />}
-        </MainScrollTabView>
-      </MainView>
-    )
-  }
-}
+export default ({
+  roomDetails, myId, hostId, socketConnectStatus, socketReconnect
+}) => (
+  <MainView>
+    {!socketConnectStatus && <SocketBreakView>
+      <ActivityIndicator animating color="#414755" />
+      <SocketBreakText>
+        {socketReconnect ?
+          '网络断了哦，正在尝试连接中' :
+          '失去连接，尝试重启应用'}
+      </SocketBreakText>
+    </SocketBreakView>}
+    <MainScrollTabView
+      tabBarUnderlineStyle={styles.tabBarUnderline}
+      tabBarBackgroundColor="#ec5367"
+      tabBarTextStyle={styles.tabBarText}
+      initialPage={1}
+      contentProps={{ keyboardShouldPersistTaps: 'handled' }}
+      onChangeTab={() => Keyboard.dismiss()}
+    >
+      {roomDetails ? <Notice
+        tabLabel={I18n.t('Room.Notice.notice')}
+        questionnaires={roomDetails.questionnaires}
+        isHost={myId === hostId}
+      /> : <AnimatedScreen
+        tabLabel={I18n.t('Room.Notice.notice')}
+      />}
+      {roomDetails ? <Chat
+        tabLabel={I18n.t('Room.Chat.title')}
+        isHost={myId === hostId}
+      /> : <AnimatedScreen
+        tabLabel={I18n.t('Room.Chat.title')}
+      />}
+      {roomDetails ? <Member
+        tabLabel={I18n.t('Room.Member.title')}
+        goBack={this.props.navigation.goBack}
+      /> : <AnimatedScreen
+        tabLabel={I18n.t('Room.Member.title')}
+      />}
+    </MainScrollTabView>
+  </MainView>
+)
