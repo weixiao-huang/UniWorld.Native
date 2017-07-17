@@ -12,6 +12,7 @@ import {
   SET_SOCKET_CONNECT_STATUS,
   SET_SOCKET_RECONNECT,
   SEND_MESSAGE,
+  SET_SEND_MESSAGE,
 } from './types'
 
 const initialState = {
@@ -79,8 +80,8 @@ export default (state = initialState, action) => {
         unreadMessages,
       }
     }
-    case SEND_MESSAGE: {
-      const { message } = action
+    case SET_SEND_MESSAGE: {
+      const message = { ...action.message, sending: true }
       const { local_id, room: roomId } = message
       const messages = { ...state.messages }
       let index = 0
@@ -90,8 +91,8 @@ export default (state = initialState, action) => {
         messages[roomId] = messages[roomId].concat(message)
       } else messages[roomId] = [message]
       const sendingPool = {
-        [local_id]: { roomId, index },
         ...state.sendingMessages,
+        [local_id]: { roomId, index },
       }
       return {
         ...state,
@@ -117,6 +118,11 @@ export default (state = initialState, action) => {
       } else unreadMessages[roomId] = 1
 
       if (data.local_id && sendingPool[data.local_id]) {
+        const { roomId: id, index } = sendingPool[data.local_id]
+        messages[id][index] = {
+          ...messages[id][index],
+          sending: false,
+        }
         delete sendingPool[data.local_id]
       } else if (state.messages[roomId] !== undefined) {
         messages[roomId] = state.messages[roomId].concat(data)

@@ -23,7 +23,6 @@ import {
 export default class Chat extends Component {
   constructor(props) {
     super(props)
-    // const { messages } = this.props
     const messages = this.props.messages || []
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
@@ -54,41 +53,20 @@ export default class Chat extends Component {
 
   updateNewMessages = messages => this.setState({
     ds: this.state.ds.cloneWithRows(
-      messages,
+      messages.slice(),
       messages.map((_, index) => index).reverse(),
-    ),
-  })
-
-  updateMyMessages = message => this.setState({
-    ds: this.state.ds.cloneWithRows(
-      message,
     ),
   })
 
   sendMessage = () => {
     if (this.state.text) {
-      const { sendAction, roomId, me } = this.props
+      const { sendAction, roomId } = this.props
       sendAction({
         text: this.state.text,
         type: 0,
         room: roomId,
         local_id: shortid.generate(),
       })
-      // console.log(me)
-      // const sender = {
-      //   id: me.id,
-      //   name: me.name,
-      //   avatar: me.avatar,
-      //   signture: me.signature,
-      // }
-      // const message = {
-      //   text: this.state.text,
-      //   time: new Date(),
-      //   room: roomId,
-      //   sender,
-      //   id: 0,
-      // }
-      // this.updateMyMessages(message)
       this.setState({ text: '' })
     }
   }
@@ -168,11 +146,10 @@ export default class Chat extends Component {
     </FooterContainerView>
   )
 
-  sending = localId => localId && this.props.sendingPool[localId]
   getSender = sender => sender || this.state.defaultSender
 
   render() {
-    const { socketConnectStatus } = this.props
+    const { socketConnectStatus, sendingPool } = this.props
     this.listView = ListView
     return (
       <MainView>
@@ -193,7 +170,7 @@ export default class Chat extends Component {
             renderRow={(item, sectionId, rowId) => (
               <ChatItem
                 key={item.id}
-                sending={this.sending(item.local_id)}
+                sending={item.sending}
                 index={parseInt(rowId, 10)}
                 sender={this.getSender(item.sender)}
                 content={item.text}

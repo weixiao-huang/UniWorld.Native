@@ -13,6 +13,7 @@ import {
   SEND_MESSAGE,
   SET_SOCKET_CONNECT_STATUS,
   SET_SOCKET_RECONNECT,
+  SET_SEND_MESSAGE,
 } from '../types'
 
 const checkMailboxApi = (pmid, token) => (
@@ -54,6 +55,7 @@ function* sendFlow(ws) {
     try {
       const { message } = yield take(SEND_MESSAGE)
       // console.log('message: ', message)
+      yield put({ type: SET_SEND_MESSAGE, message })
       ws.send(JSON.stringify(message))
     } catch (error) {
       console.log('send message error: ', error)
