@@ -91,7 +91,7 @@ export default (state = initialState, action) => {
         messages[roomId] = messages[roomId].concat(message)
       } else messages[roomId] = [message]
       const sendingPool = {
-        ...state.sendingMessages,
+        ...state.sendingPool,
         [local_id]: { roomId, index },
       }
       return {
