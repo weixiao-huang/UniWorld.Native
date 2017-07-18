@@ -40,10 +40,12 @@ export const ContentTouch = styled.TouchableOpacity`
   justify-content: ${props => (props.reverse ? 'flex-end' : 'flex-start')};
   align-items: ${props => (props.reverse ? 'flex-end' : 'flex-start')};
   borderRadius: 5px;
+  flex: 1;
 `
 
 export const ContentView = styled.View`
   margin-right: ${props => (props.reverse ? '-3px' : '0')};
+  flex-direction: row;
 `
 
 export const TitleView = styled.View`

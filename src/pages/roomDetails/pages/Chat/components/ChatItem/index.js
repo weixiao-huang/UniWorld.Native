@@ -39,6 +39,10 @@ const ChatItem = ({
             <TitleText>{sender.name}</TitleText>
           </TitleView>}
           <ContentView reverse={mine} >
+            {mine && sending && <ActivityIndicator
+              style={{ marginRight: 10 }}
+              animating={mine && sending}
+            />}
             {type ?
               <ContentTextView reverse={mine}>
                 <ContentImage source={{ uri: image }} />
@@ -49,10 +53,6 @@ const ChatItem = ({
             }
           </ContentView>
         </ContentTouch>
-        <ActivityIndicator
-          style={{ marginRight: 10 }}
-          animating={Boolean(mine && sending)}
-        />
       </WrapView>
     }
   </MainView>
