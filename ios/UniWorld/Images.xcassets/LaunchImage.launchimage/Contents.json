@@ -3,7 +3,6 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "filename" : "1x.png",
       "extent" : "full-screen",
       "scale" : "1x"
     },
@@ -29,6 +28,14 @@
       "filename" : "retina HD5.5.png",
       "minimum-system-version" : "8.0",
       "orientation" : "portrait",
+      "scale" : "3x"
+    },
+    {
+      "orientation" : "landscape",
+      "idiom" : "iphone",
+      "extent" : "full-screen",
+      "minimum-system-version" : "8.0",
+      "subtype" : "736h",
       "scale" : "3x"
     },
     {

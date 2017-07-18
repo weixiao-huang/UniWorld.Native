@@ -4051,6 +4051,10 @@ react-native-spinkit@latest:
   version "1.0.3"
   resolved "http://registry.npm.taobao.org/react-native-spinkit/download/react-native-spinkit-1.0.3.tgz#5e83e26a3598a94f45102ee15bd918efa673c76d"
 
+react-native-splash-screen@^2.1.0:
+  version "2.1.0"
+  resolved "http://registry.npm.taobao.org/react-native-splash-screen/download/react-native-splash-screen-2.1.0.tgz#4e0a5e4e8c32974fe7a3cdb4d9a226d06d9daf4f"
+
 react-native-swiper@^1.5.4:
   version "1.5.4"
   resolved "http://registry.npm.taobao.org/react-native-swiper/download/react-native-swiper-1.5.4.tgz#a85535b5374ef8d605a7a720e447ac46816ac448"
