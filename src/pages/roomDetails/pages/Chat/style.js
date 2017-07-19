@@ -54,3 +54,17 @@ export const TestView = styled.View`
 
 export const TestText = styled.Text`
 `
+
+export const SocketBreakView = styled.View`
+  flex-direction: row;
+  background-color: #d7d5da;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+`
+
+export const SocketBreakText = styled.Text`
+  color: white;
+  padding-left: 10px;
+  font-size: 14px;
+`

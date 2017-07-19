@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ListView } from 'react-native'
+import { ListView, ActivityIndicator } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 import InvertibleScrollView from 'react-native-invertible-scroll-view'
 import shortid from 'shortid'
@@ -18,6 +18,8 @@ import {
   FooterIconImage,
   FooterInput,
   FooterPlusButton,
+  SocketBreakView,
+  SocketBreakText,
 } from './style'
 
 export default class Chat extends Component {
@@ -146,13 +148,20 @@ export default class Chat extends Component {
     </FooterContainerView>
   )
 
-  getSender = sender => sender || this.state.defaultSender
-
   render() {
-    const { socketConnectStatus, sendingPool } = this.props
+    const { socketConnectStatus, socketReconnect } = this.props
+    const { defaultSender } = this.state
     this.listView = ListView
     return (
       <MainView>
+        {!socketConnectStatus && <SocketBreakView>
+          <ActivityIndicator animating color="#414755" />
+          <SocketBreakText>
+            {socketReconnect ?
+              '网络断了哦，正在尝试连接中' :
+              '失去连接，尝试重启应用'}
+          </SocketBreakText>
+        </SocketBreakView>}
         <KeyboardAvoidingView
           behavior="padding"
           keyboardVerticalOffset={
@@ -172,12 +181,12 @@ export default class Chat extends Component {
                 key={item.id}
                 sending={item.sending}
                 index={parseInt(rowId, 10)}
-                sender={this.getSender(item.sender)}
+                sender={item.sender || defaultSender}
                 content={item.text}
                 type={item.type}
                 image={item.image}
                 showTime={item.showTime || null}
-                mine={this.getSender(item.sender).id === this.props.myId}
+                mine={(item.sender || defaultSender).id === this.props.myId}
               />
             )}
           />

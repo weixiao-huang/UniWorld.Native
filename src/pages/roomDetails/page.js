@@ -2,15 +2,13 @@
   Page: RoomDetails
 */
 import React from 'react'
-import { StyleSheet, Keyboard, ActivityIndicator } from 'react-native'
+import { StyleSheet, Keyboard } from 'react-native'
 import I18n from 'react-native-i18n'
 import AnimatedScreen from '@/components/AnimatedScreen'
 
 import {
   MainScrollTabView,
   MainView,
-  SocketBreakView,
-  SocketBreakText,
 } from './style'
 
 import Notice from './pages/Notice'
@@ -27,19 +25,8 @@ const styles = StyleSheet.create({
   },
 })
 
-export default ({
-  roomDetails, myId, hostId, navigation,
-  socketConnectStatus, socketReconnect
-}) => (
+export default ({ roomDetails, myId, hostId, navigation }) => (
   <MainView>
-    {!socketConnectStatus && <SocketBreakView>
-      <ActivityIndicator animating color="#414755" />
-      <SocketBreakText>
-        {socketReconnect ?
-          '网络断了哦，正在尝试连接中' :
-          '失去连接，尝试重启应用'}
-      </SocketBreakText>
-    </SocketBreakView>}
     <MainScrollTabView
       tabBarUnderlineStyle={styles.tabBarUnderline}
       tabBarBackgroundColor="#ec5367"
