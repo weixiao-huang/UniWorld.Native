@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ActivityIndicator, TouchableOpacity } from 'react-native'
+import { ActivityIndicator, TouchableOpacity, Clipboard } from 'react-native'
 import moment from 'moment'
 import Avatar from '@/components/Avatar'
 import {
@@ -61,7 +61,16 @@ export default class ChatItem extends Component {
                   animating={mine && sending}
                 />}
                 {type ?
-                  <ContentTextView reverse={mine}>
+                  <ContentTextView
+                    reverse={mine}
+                    actions={[
+                      { text: 'x', onPress: () => { } },
+                      { text: 'y', onPress: () => { } },
+                    ]}
+                    underlayColor="transparent"
+                    longPress
+                    activeOpacity={1}
+                  >
                     <TouchableOpacity
                       onPress={() => this.setState({ showModal: true })}
                     >
@@ -81,7 +90,18 @@ export default class ChatItem extends Component {
                       </ImageTouch>
                     </ImageModal>}
                   </ContentTextView> :
-                  <ContentTextView reverse={mine}>
+                  <ContentTextView
+                    reverse={mine}
+                    actions={[
+                      {
+                        text: 'Copy',
+                        onPress: () => Clipboard.setString(content),
+                      },
+                    ]}
+                    underlayColor={mine ? '#ccd1f0' : '#f3f3f3'}
+                    longPress
+                    activeOpacity={1}
+                  >
                     <ContentText>{content}</ContentText>
                   </ContentTextView>
                 }

@@ -4065,6 +4065,10 @@ react-native-tab-view@^0.0.65:
   dependencies:
     prop-types "^15.5.8"
 
+react-native-tooltip@^5.0.0:
+  version "5.0.0"
+  resolved "http://registry.npm.taobao.org/react-native-tooltip/download/react-native-tooltip-5.0.0.tgz#90477f257081ce168d2a27d2ac29e74759b7a7d6"
+
 react-native-vector-icons@^4.2.0:
   version "4.2.0"
   resolved "http://registry.npm.taobao.org/react-native-vector-icons/download/react-native-vector-icons-4.2.0.tgz#0594b68debdd758dce4c565bf02e2d64d7004d82"

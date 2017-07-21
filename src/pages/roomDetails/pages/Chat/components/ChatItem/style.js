@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-
+import ToolTip from 'react-native-tooltip'
 
 export const MainView = styled.View`
   align-items: flex-start;
@@ -33,7 +33,7 @@ export const TriangleView = styled.View`
   transform: rotate(${props => (props.reverse ? '' : '-')}90deg);
 `
 
-export const ContentTouch = styled.TouchableOpacity`
+export const ContentTouch = styled.View`
   flex-direction: column;
   justify-content: ${props => (props.reverse ? 'flex-end' : 'flex-start')};
   align-items: ${props => (props.reverse ? 'flex-end' : 'flex-start')};
@@ -60,7 +60,7 @@ export const ContentImage = styled.Image`
   height: 200px;
 `
 
-export const ContentTextView = styled.View`
+export const ContentTextView = styled(ToolTip)`
   background-color: ${props => (props.reverse ? '#d5d9f0' : 'white')};
   margin-top: 4px;
   padding: 8px;
