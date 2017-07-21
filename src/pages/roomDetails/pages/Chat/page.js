@@ -164,15 +164,15 @@ export default class Chat extends Component {
         </SocketBreakView>}
         <KeyboardAvoidingView
           behavior="padding"
-          keyboardVerticalOffset={
-            socketConnectStatus ? 114 : 144
-          }
+          keyboardVerticalOffset={114}
         >
           <ListView
             enableEmptySections
             ref={(lv) => { this.listView = lv }}
             dataSource={this.state.ds}
-            onScroll={this.hideMenu}
+            onScroll={() => {
+              this.hideMenu()
+            }}
             renderScrollComponent={props => (
               <InvertibleScrollView {...props} inverted />
             )}

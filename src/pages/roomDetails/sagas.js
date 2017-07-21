@@ -12,46 +12,54 @@ import {
   SEND_ANNOUNCEMENT,
 } from './types'
 
-function fetchApi(token, id) {
-  return api.fetchQuestionnaires(id)(token)
+const fetchApi = (token, id) => (
+  api.fetchQuestionnaires(id)(token)
     .then(handleApiErrors)
     .then(res => res.json())
-}
+)
 
 export default function* () {
   yield take('persist/REHYDRATE')
   while (true) {
-    const action = yield take([
-      navTypes.NAVIGATE_TO_ROOM_DETAILS,
-      SEND_ANNOUNCEMENT,
-    ])
-    const state = yield select()
-    const token = state.auth.token
-    const id = action.id || state.roomInfo.roomInfo.id
-    if (!state.roomInfo.roomInfo) {
-      yield put(FetchRoomInfo(id))
-    }
-    switch (action.type) {
-      case navTypes.NAVIGATE_TO_ROOM_DETAILS:
-        if (!state.roomInfo.roomInfo ||
-            state.roomInfo.roomInfo.id !== action.id) {
-          yield put(ClearRoomInfo())
-          yield put(FetchRoomInfo(id))
+    try {
+      const action = yield take([
+        navTypes.NAVIGATE_TO_ROOM_DETAILS,
+        SEND_ANNOUNCEMENT,
+      ])
+      const state = yield select()
+      const token = state.auth.token
+      const id = action.id || state.roomInfo.roomInfo.id
+      if (!state.roomInfo.roomInfo) {
+        yield put(FetchRoomInfo(id))
+      }
+      switch (action.type) {
+        case navTypes.NAVIGATE_TO_ROOM_DETAILS: {
+          if (!state.roomInfo.roomInfo ||
+              state.roomInfo.roomInfo.id !== action.id) {
+            yield put(ClearRoomInfo())
+            yield put(FetchRoomInfo(id))
+          }
+          if (!state.roomDetails.roomDetails ||
+              state.roomInfo.roomInfo.id !== action.id) {
+            yield put({ type: CLEAR_ROOM_DETAILS })
+            yield put({
+              type: SET_ROOM_DETAILS,
+              roomDetails: yield call(fetchApi, token, id),
+            })
+          }
+          yield put(ResetUnreadMessage(id))
+          break
         }
-        yield put({ type: CLEAR_ROOM_DETAILS })
-        yield put({
-          type: SET_ROOM_DETAILS,
-          roomDetails: yield call(fetchApi, token, id),
-        })
-        yield put(ResetUnreadMessage(id))
-        break
-      case SEND_ANNOUNCEMENT:
-        yield put({
-          type: SET_ROOM_DETAILS,
-          roomDetails: yield call(fetchApi, token, id),
-        })
-        break
-      default:
+        case SEND_ANNOUNCEMENT:
+          yield put({
+            type: SET_ROOM_DETAILS,
+            roomDetails: yield call(fetchApi, token, id),
+          })
+          break
+        default:
+      }
+    } catch (e) {
+      console.log('error in roomDetails sagas: ', e)
     }
   }
 }

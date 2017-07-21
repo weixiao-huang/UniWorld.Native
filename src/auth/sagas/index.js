@@ -67,40 +67,45 @@ export default function* () {
     const {
       auth: { token, unreadMessages, deviceToken },
     } = yield select()
-    switch (type) {
-      case FOLLOW_USER:
-        yield call(baseApi, api.followUser, id, token)
-        break
-      case UNFOLLOW_USER:
-        yield call(baseApi, api.unfollowUser, id, token)
-        break
-      case INITIAL_WEBSOCKET:
-        if (token) {
-          const { auth } = yield select()
+    try {
+      switch (type) {
+        case FOLLOW_USER:
+          yield call(baseApi, api.followUser, id, token)
+          break
+        case UNFOLLOW_USER:
+          yield call(baseApi, api.unfollowUser, id, token)
+          break
+        case INITIAL_WEBSOCKET:
+          if (token) {
+            const { auth } = yield select()
+            if (task) yield cancel(task)
+            task = yield fork(eventFlow, auth)
+          }
+          break
+        case POST_UNREAD_COUNT:
+          if (token) {
+            const unreadArray = Object.values(unreadMessages)
+            const unread = unreadArray.length > 0 ?
+              unreadArray.reduce((a, b) => a + b) : 0
+            console.log('unread: ', unread)
+            console.log('token: ', token)
+            postUnreadCount(unread, token)
+          }
+          break
+        case POST_DEVICE_TOKEN:
+          if (token && deviceToken) postDeviceToken(deviceToken.token, token)
+          break
+        case LOGOUT_DEVICE_TOKEN:
+          if (token) postDeviceToken('abcd', token)
+          break
+        case CLIENT_UNSET:
+          console.log('task will be cancelled: ', task)
           if (task) yield cancel(task)
-          task = yield fork(eventFlow, auth)
-        }
-        break
-      case POST_UNREAD_COUNT:
-        if (token) {
-          const unreadArray = Object.values(unreadMessages)
-          const unread = unreadArray.length > 0 ?
-            unreadArray.reduce((a, b) => a + b) : 0
-          const res = yield call(postUnreadCount, unread, token)
-          console.log('post unread ok, res is: ', res)
-        }
-        break
-      case POST_DEVICE_TOKEN:
-        if (token && deviceToken) postDeviceToken(deviceToken.token, token)
-        break
-      case LOGOUT_DEVICE_TOKEN:
-        if (token) postDeviceToken('abcd', token)
-        break
-      case CLIENT_UNSET:
-        console.log('task will be cancelled: ', task)
-        if (task) yield cancel(task)
-        break
-      default:
+          break
+        default:
+      }
+    } catch (e) {
+      console.log('auth sagas error: ', e)
     }
   }
 }

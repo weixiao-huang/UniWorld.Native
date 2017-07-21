@@ -28,7 +28,9 @@ export default class ChatItem extends Component {
     }
   }
   render() {
-    const { index, sender, content, type, image, showTime, mine, sending } = this.props
+    const {
+      index, sender, content, type, image, showTime, mine, sending
+    } = this.props
     return (
       <MainView>
         {type === 2 ?
