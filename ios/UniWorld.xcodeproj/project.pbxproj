@@ -22,6 +22,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		180AAA991F1DFB980041D3EA /* Default-568.png in Resources */ = {isa = PBXBuildFile; fileRef = 180AAA981F1DFB980041D3EA /* Default-568.png */; };
+		180AAA9B1F1DFB9C0041D3EA /* Default-568.png in Resources */ = {isa = PBXBuildFile; fileRef = 180AAA9A1F1DFB9C0041D3EA /* Default-568.png */; };
 		180C2BC31F0A5E70007FC560 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6403351F0583D300DBB29F /* Lottie.framework */; };
 		180C2BC41F0A5E70007FC560 /* Lottie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6403351F0583D300DBB29F /* Lottie.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1873D7BB1F04F31800C92098 /* libRCTPushNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1873D7B81F04F2FE00C92098 /* libRCTPushNotification.a */; };
@@ -431,6 +433,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = UniWorld/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = UniWorld/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		180AAA981F1DFB980041D3EA /* Default-568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568.png"; path = "../../../Default-568.png"; sourceTree = "<group>"; };
+		180AAA9A1F1DFB9C0041D3EA /* Default-568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568.png"; path = "../../../Default-568.png"; sourceTree = "<group>"; };
 		1873D7B21F04F2FE00C92098 /* RCTPushNotification.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTPushNotification.xcodeproj; path = "../node_modules/react-native/Libraries/PushNotificationIOS/RCTPushNotification.xcodeproj"; sourceTree = "<group>"; };
 		1873D8331F061C2A00C92098 /* UniWorld.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = UniWorld.entitlements; path = UniWorld/UniWorld.entitlements; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* UniWorld-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UniWorld-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -616,6 +620,7 @@
 				1873D8331F061C2A00C92098 /* UniWorld.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				180AAA981F1DFB980041D3EA /* Default-568.png */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -770,6 +775,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				180AAA9A1F1DFB9C0041D3EA /* Default-568.png */,
 				13B07FAE1A68108700A75B9A /* UniWorld */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* UniWorldTests */,
@@ -1390,8 +1396,10 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				180AAA991F1DFB980041D3EA /* Default-568.png in Resources */,
 				54CECAD363B64DFAA04EC20F /* Entypo.ttf in Resources */,
 				8239A94A9D9A470A985AFDF7 /* EvilIcons.ttf in Resources */,
+				180AAA9B1F1DFB9C0041D3EA /* Default-568.png in Resources */,
 				52BDB60AEA9A4222A9F26BA3 /* FontAwesome.ttf in Resources */,
 				F0D0A209915B4A74AAA9DFD7 /* Foundation.ttf in Resources */,
 				8ABC8EA6F135437CB35BD072 /* Ionicons.ttf in Resources */,

@@ -72,3 +72,18 @@ export const ContentTextView = styled.View`
 
 export const ContentText = styled.Text`
 `
+
+export const ImageModal = styled.Modal`
+`
+export const ImageTouch = styled.TouchableWithoutFeedback`
+  flex: 1;
+  align-items: center;
+  justify-content:center;
+  background-color: black;
+`
+export const ModalImage = styled.Image`
+  resize-mode: contain;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+`
