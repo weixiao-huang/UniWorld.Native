@@ -1,4 +1,5 @@
 import PushNotification from 'react-native-push-notification'
+import moment from 'moment'
 
 import {
   CLIENT_SET,
@@ -119,9 +120,33 @@ export default (state = initialState, action) => {
 
       if (data.local_id && sendingPool[data.local_id]) {
         const { roomId: id, index } = sendingPool[data.local_id]
+        let time
+        let prevId = index
+        while (!time) {
+          prevId -= 1
+          if (prevId < 0) break
+          time = messages[id][prevId].time
+        }
         messages[id][index] = {
           ...messages[id][index],
+          time: data.time,
           sending: false,
+        }
+        if (time) {
+          const delta = new Date(data.time) - new Date(time)
+          if (delta > 1000 * 60 * 8) {
+            messages[id].push(data)
+            messages[id][index] = {
+              text: moment(data.time).format('MM-DD HH:mm'),
+              type: 2,
+            }
+          }
+        } else {
+          messages[id].push(data)
+          messages[id][index] = {
+            text: moment(data.time).format('MM-DD HH:mm'),
+            type: 2,
+          }
         }
         delete sendingPool[data.local_id]
       } else if (state.messages[roomId] !== undefined) {

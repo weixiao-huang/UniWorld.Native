@@ -37,6 +37,7 @@ export default class World extends Component {
           tabBarBackgroundColor="#ec5367"
           tabBarTextStyle={styles.tabBarText}
           tabBarUnderlineStyle={styles.tabBarUnderline}
+          contentProps={{ keyboardShouldPersistTaps: 'handled' }}
         >
           <Square tabLabel={I18n.t('World.Square.label')} />
           <Search tabLabel={I18n.t('World.Search.label')} />

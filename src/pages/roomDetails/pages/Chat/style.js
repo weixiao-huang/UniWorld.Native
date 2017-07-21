@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import Button from '@/components/Button'
 
 export const MainView = styled.View`
   flex: 1;
@@ -16,7 +17,7 @@ export const FooterView = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #f5f5f7;
+  background-color: #f2f0f5;
   padding: 10px;
   height: 60px;
 `
@@ -33,20 +34,28 @@ export const FooterInput = styled.TextInput`
   height: 100%;
   margin-left: 10px;
   border-width: 1px;
-  border-color: #bababa;
+  border-color: #ebeaea;
   border-radius: 5px;
   padding-left: 10px;
   font-size: 16px;
 `
 
-export const FooterPlusButton = styled.Button`
-  text-align: center;
-  background-color: white;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 30px;
+const plusSize = 38
+const plusFontSize = 24
+export const FooterPlusTouch = styled.TouchableOpacity`
+  background-color: #fe586f;
+  height: ${plusSize}px;
+  width: ${plusSize}px;
+  border-radius: ${plusSize / 2}px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8px;
+`
+
+export const FooterPlusText = styled.Text`
   color: white;
-  width: 60%;
+  font-size: ${plusFontSize}px;
+  line-height: ${plusFontSize}px;
 `
 
 export const TestView = styled.View`

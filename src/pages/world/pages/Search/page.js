@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import I18n from 'react-native-i18n'
 import RoomWrap from '@/components/RoomWrap'
+import AnimatedScreen from '@/components/AnimatedScreen'
 import api from '@/api'
 import { server } from '@/api/constants'
 import {
@@ -27,16 +28,19 @@ export default class Search extends Component {
       searchResult: [],
       next: null,
       isFetching: false,
+      isSearching: false,
     }
   }
 
   search = async () => {
-    this.setState({ searchResult: [] })
+    this.setState({
+      searchResult: [],
+      isSearching: true,
+    })
     try {
       const res = await api.fetchDataFromUrl(
         `${server}/room/search/?title=${this.state.name}`,
       )(this.props.token)
-      console.log(res)
       if (res.status === 200) {
         const data = await res.json()
         if (data.results && data.results.length > 0) {
@@ -46,11 +50,11 @@ export default class Search extends Component {
           })
         }
         this.setState({ name: '' })
-        console.log(this.state.searchResult)
       }
     } catch (e) {
       console.log(e)
     }
+    this.setState({ isSearching: false })
   }
 
   showNext = async () => {
@@ -72,13 +76,16 @@ export default class Search extends Component {
   }
 
   render() {
+    const {
+      searchResult, name, isFetching, next, isSearching,
+    } = this.state
     return (
       <MainView>
         <SearchView>
           <SearchInput
             placeholder={I18n.t('World.Search.searchByName')}
-            value={this.state.name}
-            onChangeText={name => this.setState({ name })}
+            value={name}
+            onChangeText={e => this.setState({ name: e })}
           />
           <SearchButton onPress={this.search} >
             <ButtonText>
@@ -86,24 +93,25 @@ export default class Search extends Component {
             </ButtonText>
           </SearchButton>
         </SearchView>
+        {isSearching ? <AnimatedScreen /> :
         <ListScrollView>
-          {this.state.searchResult.length > 0 ?
-            <RoomWrap
-              roomList={this.state.searchResult}
-            /> :
-            <NoneView>
-              <NoneImage source={ImageUrl} />
-            </NoneView>
-          }
-          {this.state.isFetching ?
+          {searchResult.length > 0 ? <RoomWrap
+            roomList={searchResult}
+          /> :
+          <NoneView>
+            <NoneImage source={ImageUrl} />
+          </NoneView>}
+          {isFetching ?
             <NextIndicator
-              animating={this.state.isFetching}
+              animating={isFetching}
             /> :
-            this.state.next && <NextButton onPress={this.showNext}>
-              <NextText>{I18n.t('RoomList.searchNext')}</NextText>
+            next && <NextButton onPress={this.showNext}>
+              <NextText>
+                {I18n.t('RoomList.searchNext')}
+              </NextText>
             </NextButton>
           }
-        </ListScrollView>
+        </ListScrollView>}
       </MainView>
     )
   }

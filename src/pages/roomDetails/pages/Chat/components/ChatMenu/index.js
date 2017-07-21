@@ -14,6 +14,10 @@ import {
 
 const ChatMenu = ({ sendImg }) => (
   <MainView>
+    <ItemTouch onPress={sendImg}>
+      <ItemImage source={ImageIconImg} />
+      <ItemText>{I18n.t('Room.Chat.image')}</ItemText>
+    </ItemTouch>
     <ItemTouch>
       <ItemImage source={noticeIconImg} />
       <ItemText>{I18n.t('Room.Chat.notice')}</ItemText>
@@ -21,10 +25,6 @@ const ChatMenu = ({ sendImg }) => (
     <ItemTouch>
       <ItemImage source={questionIconImg} />
       <ItemText>{I18n.t('Room.Chat.questionnaires')}</ItemText>
-    </ItemTouch>
-    <ItemTouch onPress={sendImg}>
-      <ItemImage source={ImageIconImg} />
-      <ItemText>{I18n.t('Room.Chat.image')}</ItemText>
     </ItemTouch>
   </MainView>
 )

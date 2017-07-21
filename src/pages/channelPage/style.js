@@ -21,16 +21,6 @@ export const CoverImage = styled.Image`
 export const ListScrollView = styled.ScrollView`
 `
 
-export const NoneView = styled.View`
-  flex: 1;
-  align-items: center;
-`
-
-export const NoneImage = styled.Image`
-  resizeMode: contain;
-  width: 70%;
-`
-
 export const NextButton = styled.TouchableOpacity`
 `
 

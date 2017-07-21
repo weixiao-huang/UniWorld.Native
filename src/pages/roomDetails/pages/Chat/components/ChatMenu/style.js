@@ -1,17 +1,19 @@
 import styled from 'styled-components/native'
+import { Dimensions } from 'react-native'
 
 export const MainView = styled.View`
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-start;
   background-color: white;
 `
 
 export const ItemTouch = styled.TouchableOpacity`
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
+  width: ${Dimensions.get('window').width / 4}px;
 `
 
 export const ItemImage = styled.Image`
@@ -24,6 +26,7 @@ export const ItemImage = styled.Image`
 
 export const ItemText = styled.Text`
   margin-top: 5px;
+  text-align: center;
   align-self: center;
-  font-size: 16px;
+  font-size: 12px;
 `

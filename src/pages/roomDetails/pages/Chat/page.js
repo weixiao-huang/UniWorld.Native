@@ -17,7 +17,8 @@ import {
   KeyboardAvoidingView,
   FooterIconImage,
   FooterInput,
-  FooterPlusButton,
+  FooterPlusTouch,
+  FooterPlusText,
   SocketBreakView,
   SocketBreakText,
 } from './style'
@@ -104,9 +105,9 @@ export default class Chat extends Component {
           name: 'image',
         })
         await api.uploadImage(formData)(roomId)(token)
+        this.setState({ showMenu: false })
       }
     })
-    this.setState({ showMenu: false })
   }
 
   plus = () => {
@@ -119,34 +120,6 @@ export default class Chat extends Component {
   hideMenu = () => {
     if (this.state.showMenu) this.setState({ showMenu: false })
   }
-
-  renderFooter = () => (
-    <FooterContainerView>
-      <FooterView>
-        <FooterIconImage source={logoBlue} />
-        <FooterInput
-          innerRef={(e) => { this.input = e }}
-          onFocus={this.onFocus}
-          onChangeText={text => this.setState({ text })}
-          onSubmitEditing={this.sendMessage}
-          value={this.state.text}
-          blurOnSubmit={false}
-          autoFocus
-          returnKeyType="send"
-          enablesReturnKeyAutomatically
-          clearButtonMode="unless-editing"
-        />
-        <FooterPlusButton
-          title={this.state.showMenu ? ' - ' : ' + '}
-          onPress={this.plus}
-          sendImg={this.sendImg}
-        />
-      </FooterView>
-      {this.state.showMenu && <ChatMenu
-        sendImg={this.sendImg}
-      />}
-    </FooterContainerView>
-  )
 
   render() {
     const { socketConnectStatus, socketReconnect } = this.props
@@ -190,7 +163,33 @@ export default class Chat extends Component {
               />
             )}
           />
-          {this.renderFooter()}
+          <FooterContainerView>
+            <FooterView>
+              <FooterIconImage source={logoBlue} />
+              <FooterInput
+                innerRef={(e) => { this.input = e }}
+                onFocus={this.onFocus}
+                onChangeText={text => this.setState({ text })}
+                onSubmitEditing={this.sendMessage}
+                value={this.state.text}
+                blurOnSubmit={false}
+                autoFocus
+                returnKeyType="send"
+                enablesReturnKeyAutomatically
+                clearButtonMode="unless-editing"
+              />
+              <FooterPlusTouch
+                onPress={this.plus}
+              >
+                <FooterPlusText>
+                  {this.state.showMenu ? '-' : '+'}
+                </FooterPlusText>
+              </FooterPlusTouch>
+            </FooterView>
+            {this.state.showMenu && <ChatMenu
+              sendImg={this.sendImg}
+            />}
+          </FooterContainerView>
         </KeyboardAvoidingView>
       </MainView>
     )
