@@ -2,7 +2,6 @@ import styled from 'styled-components/native'
 
 
 export const MainView = styled.View`
-  flex-direction: row;
   align-items: flex-start;
   margin: 20px;
   marginBottom:10px;
@@ -10,7 +9,6 @@ export const MainView = styled.View`
 `
 export const WrapView = styled.View`
   flex-direction: ${props => (props.reverse ? 'row-reverse' : 'row')};
-  flex: 1;
   align-items: center;
 `
 export const NoticeText = styled.Text`

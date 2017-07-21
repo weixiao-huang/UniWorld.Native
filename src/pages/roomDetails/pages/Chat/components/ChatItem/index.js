@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { ActivityIndicator, TouchableOpacity } from 'react-native'
+import moment from 'moment'
 import Avatar from '@/components/Avatar'
 import {
   MainView,
@@ -29,10 +30,14 @@ export default class ChatItem extends Component {
   }
   render() {
     const {
-      index, sender, content, type, image, showTime, mine, sending
+      index, sender, content, type, image,
+      showTime, mine, sending, time,
     } = this.props
     return (
       <MainView>
+        {showTime && <NoticeText>
+          {moment(time).format('MM-DD H:mm')}
+        </NoticeText>}
         {type === 2 ?
           <NoticeText>{content}</NoticeText> :
           <WrapView reverse={mine} >
@@ -57,7 +62,9 @@ export default class ChatItem extends Component {
                 />}
                 {type ?
                   <ContentTextView reverse={mine}>
-                    <TouchableOpacity onPress={() => this.setState({ showModal: true })}>
+                    <TouchableOpacity
+                      onPress={() => this.setState({ showModal: true })}
+                    >
                       <ContentImage source={{ uri: image }} />
                     </TouchableOpacity>
                     {this.state.showModal && <ImageModal
@@ -65,7 +72,9 @@ export default class ChatItem extends Component {
                       visible={this.state.showModal}
                       animationType="fade"
                     >
-                      <ImageTouch onPress={() => this.setState({ showModal: false })}>
+                      <ImageTouch
+                        onPress={() => this.setState({ showModal: false })}
+                      >
                         <ModalImage
                           source={{ uri: image }}
                         />

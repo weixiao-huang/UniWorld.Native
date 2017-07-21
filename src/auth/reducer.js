@@ -1,5 +1,4 @@
 import PushNotification from 'react-native-push-notification'
-import moment from 'moment'
 
 import {
   CLIENT_SET,
@@ -12,7 +11,6 @@ import {
   SET_DEVICE_TOKEN,
   SET_SOCKET_CONNECT_STATUS,
   SET_SOCKET_RECONNECT,
-  SEND_MESSAGE,
   SET_SEND_MESSAGE,
 } from './types'
 
@@ -112,46 +110,42 @@ export default (state = initialState, action) => {
       console.log('pmid: ', pmid)
       const roomId = data.room
       const showRoomId = action.id
+
       if (unreadMessages[roomId] !== undefined) {
         if (showRoomId !== roomId) {
           unreadMessages[roomId] += 1
         }
       } else unreadMessages[roomId] = 1
 
+      let time
+      let prevId
       if (data.local_id && sendingPool[data.local_id]) {
         const { roomId: id, index } = sendingPool[data.local_id]
-        let time
-        let prevId = index
-        while (!time) {
-          prevId -= 1
-          if (prevId < 0) break
-          time = messages[id][prevId].time
-        }
         messages[id][index] = {
           ...messages[id][index],
           time: data.time,
           sending: false,
         }
-        if (time) {
-          const delta = new Date(data.time) - new Date(time)
-          if (delta > 1000 * 60 * 8) {
-            messages[id].push(data)
-            messages[id][index] = {
-              text: moment(data.time).format('MM-DD HH:mm'),
-              type: 2,
-            }
-          }
-        } else {
-          messages[id].push(data)
-          messages[id][index] = {
-            text: moment(data.time).format('MM-DD HH:mm'),
-            type: 2,
-          }
-        }
         delete sendingPool[data.local_id]
+        prevId = index
       } else if (state.messages[roomId] !== undefined) {
+        prevId = messages[roomId].length
         messages[roomId] = state.messages[roomId].concat(data)
-      } else messages[roomId] = [data]
+      } else {
+        prevId = 0
+        messages[roomId] = [data]
+      }
+
+      const currentId = prevId
+      while (!time) {
+        prevId -= 1
+        if (prevId < 0) break
+        time = messages[roomId][prevId].time
+      }
+      const delta = time && new Date(data.time) - new Date(time)
+      if (!delta || (delta && delta > 480000)) {
+        messages[roomId][currentId].showTime = true
+      }
       // console.log('roomId: ', roomId)
       // PushNotification.localNotification({
       //   id: roomId,
