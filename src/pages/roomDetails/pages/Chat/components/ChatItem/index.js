@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ActivityIndicator, TouchableOpacity, Clipboard } from 'react-native'
+import { ActivityIndicator, Clipboard, CameraRoll, Alert } from 'react-native'
 import moment from 'moment'
 import Avatar from '@/components/Avatar'
 import {
@@ -47,11 +47,7 @@ export default class ChatItem extends Component {
               size={AvatarSize}
             />
             <TriangleView reverse={mine} />
-            <ContentTouch
-              onLongPress={() => console.log('long press')}
-              reverse={mine}
-              activeOpacity={1}
-            >
+            <ContentTouch reverse={mine} >
               {!mine && <TitleView>
                 <TitleText>{sender.name}</TitleText>
               </TitleView>}
@@ -64,18 +60,24 @@ export default class ChatItem extends Component {
                   <ContentTextView
                     reverse={mine}
                     actions={[
-                      { text: 'x', onPress: () => { } },
-                      { text: 'y', onPress: () => { } },
+                      {
+                        text: 'Save',
+                        onPress: () => CameraRoll.saveToCameraRoll(image)
+                          .then(() => {})
+                          .catch(e => Alert.alert(
+                            'Save Image Error',
+                            `Counld not save image into photo, err: ${e}`,
+                            [{ text: 'OK', onPress: () => {} }],
+                          ))
+                        ,
+                      },
                     ]}
-                    underlayColor="transparent"
+                    underlayColor={mine ? '#ccd1f0' : '#f3f3f3'}
                     longPress
                     activeOpacity={1}
+                    onPress={() => this.setState({ showModal: true })}
                   >
-                    <TouchableOpacity
-                      onPress={() => this.setState({ showModal: true })}
-                    >
-                      <ContentImage source={{ uri: image }} />
-                    </TouchableOpacity>
+                    <ContentImage source={{ uri: image }} />
                     {this.state.showModal && <ImageModal
                       onRequestClose={() => { }}
                       visible={this.state.showModal}

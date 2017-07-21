@@ -122,7 +122,9 @@ export default class Chat extends Component {
   }
 
   render() {
-    const { socketConnectStatus, socketReconnect } = this.props
+    const {
+      socketConnectStatus, socketReconnect,
+    } = this.props
     const { defaultSender } = this.state
     this.listView = ListView
     return (
