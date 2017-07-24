@@ -16,7 +16,7 @@ export const MainView = styled.ScrollView`
 `
 
 export const MainText = styled.Text`
-
+  font-weight: 10px;
 `
 
 export const BackgroundView = styled.View`
@@ -36,3 +36,12 @@ export const LogoImage = styled.Image`
 export const StyledButton = styled(Button)`
   margin-top: 10px;
 `
+export const AgreementButton = styled(Button)`
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border-bottom-width: 1px;
+  border-bottom-color:white;
+  background-color: transparent;
+`
+

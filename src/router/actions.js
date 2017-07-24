@@ -9,6 +9,7 @@ import {
   NAVIGATE_TO_REGISTERINFO,
   NAVIGATE_TO_CHANNELPAGE,
   GO_BACK,
+  NAVIGATE_TO_AGREEMENT,
 } from './types'
 
 export const GoBack = () => ({
@@ -39,6 +40,12 @@ export const NavigateToChannelPage = id => ({
 export const NavigateToFindPassword = () => ({
   type: NAVIGATE_TO_FIND_PASSWORD,
 })
+
+export const NavigateToAgreement = () => ({
+  type: NAVIGATE_TO_AGREEMENT,
+})
+
+
 
 export const NavigateToRoomInfo = id => ({
   type: NAVIGATE_TO_ROOM_INFO,

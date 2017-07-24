@@ -8,6 +8,7 @@ import Register from '../pages/register'
 import FindPassword from '../pages/findPassword'
 import RegisterInfo from '../pages/registerInfo'
 import ChannelPage from '../pages/channelPage'
+import Agreement from '../pages/agreement'
 
 const commonSettings = {
   headerStyle: {
@@ -71,6 +72,13 @@ const AppRouteConfigs = {
     screen: FindPassword,
     navigationOptions: {
       title: 'FindPassword',
+      header: null,
+    },
+  },
+  agreement: {
+    screen: Agreement,
+    navigationOptions: {
+      title: 'Agreemet',
       header: null,
     },
   },

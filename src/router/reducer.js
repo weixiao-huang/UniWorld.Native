@@ -74,6 +74,14 @@ export default (state, action) => {
         state,
       )
       break
+    case types.NAVIGATE_TO_AGREEMENT:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({
+          routeName: 'agreement',
+        }),
+        state,
+      )
+      break
     case types.NAVIGATE_TO_REGISTERINFO:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({

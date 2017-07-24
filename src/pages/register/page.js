@@ -14,6 +14,7 @@ import {
   BackgroundView,
   LogoImage,
   StyledButton,
+  AgreementButton,
 } from './style'
 
 import Input from '../login/components/Input'
@@ -205,15 +206,23 @@ export default class Login extends Component {
     const { toFindPassAction } = this.props
     toFindPassAction()
   }
+
   login = () => this.props.navigation.goBack()
+
+  agreement = () => {
+    const { toAgreementAction } = this.props
+    console.log('props', this.props)
+    toAgreementAction()
+  }
+
 
   render() {
     const {
       login: {
         requesting,
-        successful,
-        messages,
-        errors,
+      successful,
+      messages,
+      errors,
       },
     } = this.props
     return (
@@ -262,6 +271,13 @@ export default class Login extends Component {
               secureTextEntry
               icon={passIcon}
               maxLength={20}
+            />
+            <AgreementButton
+              title={I18n.t('SignInfo.second.agreement')}
+              onPress={this.agreement}
+              textStyle={{
+                color: '#ffffff', paddingBottom: 0, fontSize: 13, textAlign: 'left', paddingLeft: 0, paddingRight: 0,
+              }}
             />
             <StyledButton
               title={I18n.t('Register.register')}

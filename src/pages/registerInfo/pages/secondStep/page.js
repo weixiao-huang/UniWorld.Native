@@ -135,11 +135,11 @@ export default class SecondStep extends Component {
               gender={this.state.gender}
             />
             <SubmitView>
-              <AgreementButton
+              {/*<AgreementButton
                 title={I18n.t('SignInfo.second.agreement')}
                 onPress={this.agreement}
                 textStyle={{ color: '#3555b6', paddingBottom: 0 }}
-              />
+              />*/}
               <StyledButton
                 title={I18n.t('SignInfo.second.continue')}
                 onPress={this.next}

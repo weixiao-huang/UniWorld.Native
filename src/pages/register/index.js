@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { GoBack, NavigateToFindPassword } from '@/router/actions'
+import { GoBack, NavigateToFindPassword, NavigateToAgreement } from '@/router/actions'
 
 import Page from './page'
 
@@ -13,6 +13,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   goBackAction: bindActionCreators(GoBack, dispatch),
   toFindPassAction: bindActionCreators(NavigateToFindPassword, dispatch),
+  toAgreementAction: bindActionCreators(NavigateToAgreement, dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page)

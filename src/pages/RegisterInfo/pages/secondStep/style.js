@@ -26,9 +26,10 @@ export const SubmitView = styled.View`
 `
 
 export const StyledButton = styled(Button)`
-  margin-top: 5px;
-  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   border-radius: 5px;
+  width: 80%;
   background-color: ${props => (props.disabled ? '#cbcbcb' : '#ec5367')}
 `
 
