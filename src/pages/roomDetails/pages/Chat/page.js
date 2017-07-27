@@ -3,6 +3,7 @@ import { ListView, ActivityIndicator } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 import InvertibleScrollView from 'react-native-invertible-scroll-view'
 import shortid from 'shortid'
+import moment from 'moment'
 
 import I18n from '@/locales'
 import api from '@/api'
@@ -64,12 +65,15 @@ export default class Chat extends Component {
   sendMessage = () => {
     if (this.state.text) {
       const { sendAction, roomId } = this.props
+      const time = moment().format('YYYY-MM-DDTHH:mm:ss')
       sendAction({
         text: this.state.text,
         type: 0,
         room: roomId,
         local_id: shortid.generate(),
+        time,
       })
+      console.log(time)
       this.setState({ text: '' })
     }
   }

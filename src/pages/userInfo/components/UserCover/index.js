@@ -56,9 +56,9 @@ export default class UserCover extends Component {
             </ContentLineView>
             <SignatureText>{userInfo.signature}</SignatureText>
             <FollowWrapText>
-              {userInfo.thumb_ups} {I18n.t('User.likes')}
-              | {userInfo.follows.length} {I18n.t('User.follows')}
-              | {userInfo.followers.length} {I18n.t('User.followers')}
+              {`${userInfo.thumb_ups} ${I18n.t('User.likes')} | `}
+              {`${userInfo.follows} ${I18n.t('User.follows')} | `}
+              {`${userInfo.followers} ${I18n.t('User.followers')}`}
             </FollowWrapText>
           </ContentView>
         </MainView>}

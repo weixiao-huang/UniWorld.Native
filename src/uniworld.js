@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { AppState } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
+import { FlexView } from './styles'
 
 import AppWithNavigationState from './router'
 import {
@@ -39,7 +40,9 @@ export default class UniWorld extends Component {
 
   render() {
     return (
-      <AppWithNavigationState />
+      <FlexView>
+        <AppWithNavigationState />
+      </FlexView>
     )
   }
 }

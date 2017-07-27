@@ -12,6 +12,7 @@ import {
   SET_SOCKET_CONNECT_STATUS,
   SET_SOCKET_RECONNECT,
   SET_SEND_MESSAGE,
+  SET_MESSAGE_FAILED,
 } from './types'
 
 const initialState = {
@@ -79,9 +80,26 @@ export default (state = initialState, action) => {
         unreadMessages,
       }
     }
+    case SET_MESSAGE_FAILED: {
+      const failedMessages = action.failedMessages
+      const messages = { ...state.messages }
+      failedMessages.map((item) => {
+        const { roomId, index } = item
+        messages[roomId][index].failed = true
+        return item
+      })
+      return {
+        ...state,
+        messages,
+      }
+    }
     case SET_SEND_MESSAGE: {
-      const message = { ...action.message, sending: true }
-      const { local_id, room: roomId } = message
+      const message = {
+        ...action.message,
+        sending: true,
+        failed: false,
+      }
+      const { local_id, room: roomId, time } = message
       const messages = { ...state.messages }
       let index = 0
 
@@ -91,7 +109,7 @@ export default (state = initialState, action) => {
       } else messages[roomId] = [message]
       const sendingPool = {
         ...state.sendingPool,
-        [local_id]: { roomId, index },
+        [local_id]: { roomId, index, time },
       }
       return {
         ...state,

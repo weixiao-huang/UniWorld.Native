@@ -9,6 +9,7 @@ import {
   RESET_UNREAD_MESSAGE,
   LOGOUT_DEVICE_TOKEN,
   POST_DEVICE_TOKEN,
+  SET_MESSAGE_FAILED,
 } from './types'
 
 export function setClient(token) {
@@ -60,4 +61,9 @@ export const SendMessage = message => ({
 export const ResetUnreadMessage = id => ({
   type: RESET_UNREAD_MESSAGE,
   id,
+})
+
+export const SetMessageFailed = failedMessages => ({
+  type: SET_MESSAGE_FAILED,
+  failedMessages,
 })

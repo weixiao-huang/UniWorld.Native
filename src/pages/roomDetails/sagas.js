@@ -6,6 +6,8 @@ import api from '@/api'
 import { ResetUnreadMessage } from '@/auth/actions'
 import { handleApiErrors } from '@/lib/api-errors'
 
+import { SetMessageFailed } from '@/auth/actions'
+
 import {
   SET_ROOM_DETAILS,
   CLEAR_ROOM_DETAILS,
@@ -17,6 +19,16 @@ const fetchApi = (token, id) => (
     .then(handleApiErrors)
     .then(res => res.json())
 )
+
+function* checkSendingTimeout() {
+  const { auth: { sendingPool } } = yield select()
+  const failedMessages = Object.values(sendingPool).filter(item => (
+    (new Date() - Date.parse(item.time)) / 1000 / 60 > 1
+  ))
+  if (failedMessages.length > 0) {
+    yield put(SetMessageFailed(failedMessages))
+  }
+}
 
 export default function* () {
   yield take('persist/REHYDRATE')
