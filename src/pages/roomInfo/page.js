@@ -10,7 +10,6 @@ import {
   CoverImage,
   ContentView,
 } from './style'
-
 import Header from './components/Header'
 import Time from './components/Time'
 import People from './components/People'
@@ -18,6 +17,7 @@ import Host from './components/Host'
 import LableBox from './components/LabelBox'
 import Options from './components/Options'
 import ButtonArea from './components/ButtonArea'
+import ReportModal from './components/ReportModal'
 
 import {
   JOIN_ROOM,
@@ -27,6 +27,27 @@ import {
 } from './types'
 
 export default class RoomInfo extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      showModal: false,
+    }
+  }
+  mark = () => {
+    // this.props.dispatch({ type: MARK_ROOM })
+    this.setState({
+      showModal: true,
+    })
+    console.log(this.state.showModal)
+  }
+
+  cancel = () => {
+    this.setState({
+      showModal: false,
+    })
+  }
+
   render() {
     let options
     const {
@@ -115,10 +136,16 @@ export default class RoomInfo extends Component {
           }
           }
           room={() => navigateAction(roomInfo.id)}
-          mark={() => dispatch({ type: MARK_ROOM })}
+          mark={this.mark}
           unmark={() => dispatch({ type: UNMARK_ROOM })}
           joined={this.props.isJoined}
           marked={this.props.isMarked}
+        />}
+        {!!token && !!roomInfo && !!this.state.showModal && <ReportModal
+          cancel={this.cancel}
+          token={token}
+          roomId={roomInfo.id}
+          name={roomInfo.title}
         />}
       </ContentView>
     )

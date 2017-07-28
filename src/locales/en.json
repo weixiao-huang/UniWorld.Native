@@ -14,6 +14,10 @@
       "confirm": "Login",
       "cancel": "Cancel"
     },
+    "Report":{
+      "title":"Report succeeded",
+      "success":"Justice will finally beat evil"
+    },
     "ImageSize": {
       "title": "Size Error",
       "content": "Image size is too large, try to crop it",
@@ -100,7 +104,11 @@
       "Participants": {
         "space1": "people have joined",
         "space2": "place left"
-      }
+      },
+      "report": "Report",
+      "reason": "Reason",
+      "name": "Name",
+      "defaultReason1":"Anything illgal or objectionable in this room?"
     },
     "Detail": {
       "title": "Details",

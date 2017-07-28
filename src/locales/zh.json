@@ -20,6 +20,10 @@
       "confirm": "确定并重选",
       "cancel": "取消"
     },
+    "Report":{
+      "title":"举报成功",
+      "success":"正义必胜"
+    },
     "tips": "提示",
     "tokenExpired": "您的登录已过期，请重新登录"
   },
@@ -100,7 +104,10 @@
       "Participants": {
         "space1": "已加入的人",
         "space2": "剩余位置"
-      }
+      },
+    "report":"Report",
+    "reason":"Reason",
+    "name":"Name"
     },
     "Detail": {
       "title": "详情",
