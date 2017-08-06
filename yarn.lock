@@ -4055,6 +4055,10 @@ react-native-splash-screen@^2.1.0:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/react-native-splash-screen/download/react-native-splash-screen-2.1.0.tgz#4e0a5e4e8c32974fe7a3cdb4d9a226d06d9daf4f"
 
+react-native-swipe-list-view@^0.4.1:
+  version "0.4.1"
+  resolved "http://registry.npm.taobao.org/react-native-swipe-list-view/download/react-native-swipe-list-view-0.4.1.tgz#f4b0288e090fc86f743bc30b45df829de729bcd7"
+
 react-native-swiper@^1.5.4:
   version "1.5.4"
   resolved "http://registry.npm.taobao.org/react-native-swiper/download/react-native-swiper-1.5.4.tgz#a85535b5374ef8d605a7a720e447ac46816ac448"

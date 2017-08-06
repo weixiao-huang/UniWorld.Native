@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native'
+import Button from '@/components/Button'
 
 const TextStyle = css`
   color: #ec5367;
@@ -6,7 +7,21 @@ const TextStyle = css`
 `
 
 export const MainView = styled.View`
+`
+export const HeaderView = styled.View`
+  flex-direction: row;
+  justifyContent: center;
+  alignItems: center;
+  paddingRight: 15;
+`
+export const HiddenTouch = styled.TouchableOpacity`
 
+
+`
+export const RowView = styled.View`
+  flexDirection: row;
+`
+export const DeleteView = styled.View`
 `
 export const UpperView = styled.View``
 export const FriendView = styled.View`
@@ -72,7 +87,7 @@ export const TitleLabelText = styled.Text`
 
 export const RoomContentTitleView = styled.View`
   flex-direction: row;
-
+  justifyContent: space-between;
   align-items: center;
 `
 

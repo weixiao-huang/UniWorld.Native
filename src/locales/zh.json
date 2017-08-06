@@ -14,6 +14,9 @@
       "confirm": "登录",
       "cancel": "取消"
     },
+    "Hide": {
+      "text": "确认要屏蔽这个房间么？"
+    },
     "ImageSize": {
       "title": "尺寸错误",
       "content": "图片太大，尝试裁剪图片",
@@ -118,7 +121,7 @@
       }
     },
     "Footer": {
-      "star": "点赞",
+      "star": "报告",
       "unstar": "取消点赞",
       "join": "加入",
       "leave": "离开",

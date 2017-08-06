@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Alert } from 'react-native'
 import I18n from 'react-native-i18n'
 import api from '@/api'
 
@@ -41,25 +40,16 @@ export default class NoticeModal extends Component {
   }
 
   submit = async () => {
-    const { title, description } = this.state
-    if (title.length > 0 && description.length > 0) {
+    const { title, text } = this.state
+    console.log(text, title)
+    if (text.length > 0) {
       const { roomId, token, cancel } = this.props
       const data = {
         text: this.state.text,
       }
       // const res = await api.reportRoom(data)(roomId)(token)
-      console.log(res)
+      // console.log(res)
       cancel()
-      Alert.alert(
-        I18n.t('Alert.Report.title'),
-        I18n.t('Alert.Report.success'),
-        [
-          {
-            text: 'OK',
-            onPress: () => {},
-          },
-        ],
-      )
     }
   }
 

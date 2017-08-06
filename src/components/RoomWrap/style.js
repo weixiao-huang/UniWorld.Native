@@ -26,5 +26,5 @@ export const MainTitleText = styled.Text`
 export const MainWrapView = styled.View`
 `
 
-export const RoomListView = styled.View`
+export const RoomListView = styled.ScrollView`
 `

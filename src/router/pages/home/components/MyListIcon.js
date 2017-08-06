@@ -56,7 +56,7 @@ export default class MyListIcon extends Component {
     return (
       <View>
         {unread ? <MessageItemView>
-          <Text style={[styles.messagesText]}>{unread}</Text>
+          <Text style={[styles.messagesText]}>{unread > 99 ? '...' : unread}</Text>
         </MessageItemView> : null}
         <Image
           source={listIcon}

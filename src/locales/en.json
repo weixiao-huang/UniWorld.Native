@@ -14,6 +14,9 @@
       "confirm": "Login",
       "cancel": "Cancel"
     },
+    "Hide": {
+      "text": "Sure to block this room?"
+    },
     "Report":{
       "title":"Report succeeded",
       "success":"Justice will finally beat evil"
@@ -119,7 +122,7 @@
       }
     },
     "Footer": {
-      "star": "Mark",
+      "star": "Report",
       "unstar": "Unmark",
       "join": "Join In",
       "leave": "Leave",

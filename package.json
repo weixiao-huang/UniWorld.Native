@@ -26,6 +26,7 @@
 		"react-native-scrollable-tab-view": "^0.7.4",
 		"react-native-spinkit": "latest",
 		"react-native-splash-screen": "^2.1.0",
+		"react-native-swipe-list-view": "^0.4.1",
 		"react-native-swiper": "^1.5.4",
 		"react-native-tooltip": "^5.0.0",
 		"react-native-vector-icons": "^4.2.0",
