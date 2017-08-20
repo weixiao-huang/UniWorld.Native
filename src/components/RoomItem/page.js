@@ -41,8 +41,16 @@ const defaultCover = require('@/img/image/default_avatar.jpg')
 export default class RoomItem extends Component {
   constructor(props) {
     super(props)
+    let show = true
+    if (this.props.myBlocks.length != 0 && this.props.host) {
+      for (let user in this.props.myBlocks) {
+        if (user.id === this.props.host) {
+          show = false
+        }
+      }
+    }
     this.state = {
-      show: true,
+      show,
     }
   }
   hideRoom = () => {
@@ -69,10 +77,10 @@ export default class RoomItem extends Component {
   }
   render = () => {
     const {
-  id, src, title, place, dateTimeStart, dateTimeEnd, myFollows,
+  id, src, title, place, dateTimeStart, dateTimeEnd, myFollows, myBlocks,
       maxParticipants, participantCount, participantIds, titleLabel,
       myId, navigateToRoomInfoAction, navigateToRoomDetailsAction,
-      infoFlag, unreadMessages, myFollowDict,
+      infoFlag, unreadMessages, myFollowDict, host,
 } = this.props
     console.log(title, this.state.show)
     let showPeople = maxParticipants ?
@@ -83,7 +91,6 @@ export default class RoomItem extends Component {
     const roomFollows = _.intersection(
       participantIds, myFollows,
     ).map(item => myFollowDict[item])
-
     const inFlag = myId && participantIds && participantIds.indexOf(myId) >= 0
     const navigate = () => (
       inFlag && !infoFlag ?

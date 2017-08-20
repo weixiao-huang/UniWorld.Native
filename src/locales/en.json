@@ -17,9 +17,9 @@
     "Hide": {
       "text": "Sure to block this room?"
     },
-    "Report":{
-      "title":"Report succeeded",
-      "success":"Justice will finally beat evil"
+    "Report": {
+      "title": "Report succeeded",
+      "success": "Justice will finally beat evil"
     },
     "ImageSize": {
       "title": "Size Error",
@@ -111,7 +111,7 @@
       "report": "Report",
       "reason": "Reason",
       "name": "Name",
-      "defaultReason1":"Anything illgal or objectionable in this room?"
+      "defaultReason1": "Anything illgal or objectionable in this room?"
     },
     "Detail": {
       "title": "Details",
@@ -174,7 +174,10 @@
     "follow": "Follow",
     "followed": "Followed",
     "follows": "Follows",
-    "followers": "Followers"
+    "followers": "Followers",
+    "block": "Block",
+    "blocked": "Blocked",
+    "blockText": "Sure to block all the rooms of this user?"
   },
   "World": {
     "label": "World",
@@ -341,7 +344,8 @@
     },
     "follow": {
       "label": "Follow",
-      "title": "Follow people"
+      "title": "Follow people",
+      "blocks": "Blocks"
     },
     "credit": {
       "label": "Reputation",

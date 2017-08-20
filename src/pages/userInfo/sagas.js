@@ -11,6 +11,7 @@ import {
   SET_USER_INFO,
   CLEAR_USER_INFO,
   SET_FOLLOWED,
+  SET_BLOCKED,
   FOLLOW_OR_UNFOLLOW_USER,
   FOLLOW_OR_UNFOLLOW_SUCCESS,
 } from './types'
@@ -28,8 +29,11 @@ export default function* () {
       navTypes.NAVIGATE_TO_USER_INFO,
       authTypes.FOLLOW_USER,
       authTypes.UNFOLLOW_USER,
+      authTypes.UNBLOCK_USER,
+      authTypes.BLOCK_USER,
     ])
     let isFollowed = false
+    let isBlocked = false
     switch (action.type) {
       case navTypes.NAVIGATE_TO_USER_INFO: {
         const id = action.id
@@ -39,8 +43,13 @@ export default function* () {
           if (user.id === id) isFollowed = true
           return user
         })
+        state.me.userInfo.blocked_users.map((user) => {
+          if (user.id === id) isBlocked = true
+          return user
+        })
         yield put({ type: CLEAR_USER_INFO })
         yield put({ type: SET_FOLLOWED, isFollowed })
+        yield put({ type: SET_BLOCKED, isBlocked })
         const userInfo = yield call(fetchApi, token, id)
         yield put({ type: SET_USER_INFO, userInfo })
         break
@@ -49,6 +58,23 @@ export default function* () {
         yield put({ type: FOLLOW_OR_UNFOLLOW_USER })
         yield take(meTypes.FETCH_MY_USER_INFO_SUCCESS)
         yield put({ type: SET_FOLLOWED, isFollowed })
+        yield put({ type: FOLLOW_OR_UNFOLLOW_SUCCESS })
+        break
+      case authTypes.BLOCK_USER:
+        isBlocked = true
+        console.log('block')
+        yield put({ type: FOLLOW_OR_UNFOLLOW_USER })
+        yield take(meTypes.FETCH_MY_USER_INFO_SUCCESS)
+        console.log('success')
+        yield put({ type: SET_BLOCKED, isBlocked })
+        yield put({ type: FOLLOW_OR_UNFOLLOW_SUCCESS })
+        break
+      case authTypes.UNBLOCK_USER:
+        console.log('unblock')
+        yield put({ type: FOLLOW_OR_UNFOLLOW_USER })
+        yield take(meTypes.FETCH_MY_USER_INFO_SUCCESS)
+        console.log('success')
+        yield put({ type: SET_BLOCKED, isBlocked })
         yield put({ type: FOLLOW_OR_UNFOLLOW_SUCCESS })
         break
       case authTypes.FOLLOW_USER:

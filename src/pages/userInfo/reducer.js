@@ -2,6 +2,7 @@ import {
   SET_USER_INFO,
   CLEAR_USER_INFO,
   SET_FOLLOWED,
+  SET_BLOCKED,
   FOLLOW_OR_UNFOLLOW_USER,
   FOLLOW_OR_UNFOLLOW_SUCCESS,
 } from './types'
@@ -10,6 +11,7 @@ const initialState = {
   userInfo: null,
   isFollowed: false,
   requesting: false,
+  isBlocked: false,
 }
 
 export default (state = initialState, action) => {
@@ -23,6 +25,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isFollowed: action.isFollowed,
+      }
+    case SET_BLOCKED:
+      return {
+        ...state,
+        isBlocked: action.isBlocked,
       }
     case CLEAR_USER_INFO:
       return initialState

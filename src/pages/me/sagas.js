@@ -30,11 +30,13 @@ export default function* () {
     const state = yield select()
     try {
       if ((state.nav.routes[0].routeName === 'homeTab' &&
-          state.nav.routes[0].index === index &&
-          !state.me.userInfo) ||
-          action.type === FETCH_MY_USER_INFO ||
-          action.type === authTypes.FOLLOW_USER ||
-          action.type === authTypes.UNFOLLOW_USER
+        state.nav.routes[0].index === index &&
+        !state.me.userInfo) ||
+        action.type === FETCH_MY_USER_INFO ||
+        action.type === authTypes.FOLLOW_USER ||
+        action.type === authTypes.UNFOLLOW_USER ||
+        action.type === authTypes.UNBLOCK_USER ||
+        action.type === authTypes.BLOCK_USER
       ) {
         const token = state.auth.token
         const userInfo = yield call(fetchApi, token)

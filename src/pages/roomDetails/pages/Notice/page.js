@@ -42,8 +42,10 @@ export default class Notice extends Component {
               participantCount={roomInfo.participants.length}
               participantIds={roomInfo.participant_ids}
               infoFlag
+
               myFollows={[]}
               myFollowDict={{}}
+              myBlocks={{}}
             />
             }
           </ItemView>

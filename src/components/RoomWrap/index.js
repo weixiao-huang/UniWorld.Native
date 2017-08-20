@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
   myFollows: state.me.userInfo && state.me.followIds,
   myFollowDict: state.me.userInfo && state.me.followDict,
   unreadMessages: state.auth.unreadMessages,
+  myBlocks: state.me.userInfo && state.me.userInfo.blocked_users,
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -11,6 +11,8 @@ import {
   INITIAL_WEBSOCKET,
   CLIENT_UNSET,
   FOLLOW_USER,
+  BLOCK_USER,
+  UNBLOCK_USER,
   UNFOLLOW_USER,
   POST_DEVICE_TOKEN,
   POST_UNREAD_COUNT,
@@ -60,6 +62,8 @@ export default function* () {
       INITIAL_WEBSOCKET,
       FOLLOW_USER,
       UNFOLLOW_USER,
+      BLOCK_USER,
+      UNBLOCK_USER,
       POST_UNREAD_COUNT,
       POST_DEVICE_TOKEN,
       LOGOUT_DEVICE_TOKEN,
@@ -74,6 +78,12 @@ export default function* () {
           break
         case UNFOLLOW_USER:
           yield call(baseApi, api.unfollowUser, id, token)
+          break
+        case BLOCK_USER:
+          yield call(baseApi, api.blockUser, id, token)
+          break
+        case UNBLOCK_USER:
+          yield call(baseApi, api.unblockUser, id, token)
           break
         case INITIAL_WEBSOCKET:
           if (token) {

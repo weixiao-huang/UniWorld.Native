@@ -43,22 +43,9 @@ export default class RoomInfo extends Component {
   }
 
   cancel = () => {
-    console.log('445')
-
-    Alert.alert(
-      I18n.t('Alert.Report.title'),
-      I18n.t('Alert.Report.success'),
-      [
-        {
-          text: 'OK',
-          onPress: () => {
-            this.setState({
-              showModal: false,
-            })
-          },
-        },
-      ],
-    )
+    this.setState({
+      showModal: false,
+    })
   }
 
   render() {

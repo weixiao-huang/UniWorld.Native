@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { AppState } from 'react-native'
+import { AppState, StatusBar } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 import { FlexView } from './styles'
 
@@ -41,6 +41,10 @@ export default class UniWorld extends Component {
   render() {
     return (
       <FlexView>
+        <StatusBar
+          backgroundColor="white"
+          barStyle="light-content"
+        />
         <AppWithNavigationState />
       </FlexView>
     )

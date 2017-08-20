@@ -128,6 +128,7 @@ export default class ThirdStep extends Component {
               maxParticipants={newRoom.max_participants}
               participantCount="1"
               participantIds={newRoom.participant_ids}
+              hostId={0}
               titleLabel="HOT"
             />
           </WrapView>

@@ -144,6 +144,12 @@ export default {
   unfollowUser: userId => token => getByToken(
     `/user/${userId}/unfollow/`,
   )(token),
+  blockUser: userId => token => getByToken(
+    `/user/${userId}/block/`,
+  )(token),
+  unblockUser: userId => token => getByToken(
+    `/user/${userId}/unblock/`,
+  )(token),
   leaveRoom: roomId => token => getByToken(
     `/room/${roomId}/leave/`,
   )(token),

@@ -18,7 +18,7 @@ import {
 
 export default ({
   title, roomList,
-  titleLabel, myFollows, myFollowDict, unreadMessages,
+  titleLabel, myFollows, myFollowDict, unreadMessages, myBlocks,
 }) => (
   <MainView>
     {!!title && <MainTitleView>
@@ -44,6 +44,8 @@ export default ({
             myFollows={myFollows}
             myFollowDict={myFollowDict}
             unreadMessages={unreadMessages[item.id]}
+            myBlocks={myBlocks}
+            host={item.host}
           />
         </RoomListView>
       ))}

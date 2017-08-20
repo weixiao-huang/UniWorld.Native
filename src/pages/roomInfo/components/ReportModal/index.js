@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import I18n from 'react-native-i18n'
 import api from '@/api'
+import { Alert } from 'react-native'
 
 import {
   MainModal,
@@ -47,9 +48,18 @@ export default class NoticeModal extends Component {
       const data = {
         text: this.state.text,
       }
-      // const res = await api.reportRoom(data)(roomId)(token)
-      // console.log(res)
-      cancel()
+      const res = api.reportRoom(data)(roomId)(token)
+      Alert.alert(
+        I18n.t('Alert.Report.title'),
+        I18n.t('Alert.Report.success'),
+        [
+          {
+            text: 'OK',
+            onPress: cancel,
+          },
+        ],
+      )
+
     }
   }
 

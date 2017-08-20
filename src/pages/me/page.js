@@ -97,6 +97,7 @@ export default class Me extends Component {
             <Follow
               tabLabel={I18n.t('Me.follow.label')}
               follows={userInfo.follows}
+              blocks={userInfo.blocked_users}
             />
             <Reputation
               tabLabel={I18n.t('Me.credit.label')}

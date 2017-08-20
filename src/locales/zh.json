@@ -173,7 +173,10 @@
     "follow": "关注",
     "followed": "已关注的",
     "follows": "关注者",
-    "followers": "关注他的人"
+    "followers": "关注他的人",
+    "block":"屏蔽",
+    "blocked":"已加入黑名单",
+    "blockText":"确定将此用户加入黑名单吗？"
   },
   "World": {
     "label": "世界",
@@ -340,7 +343,8 @@
     },
     "follow": {
       "label": "关注",
-      "title": "已关注的人"
+      "title": "已关注的人",
+      "blocks": "黑名单",
     },
     "credit": {
       "label": "信誉",
