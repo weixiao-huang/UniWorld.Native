@@ -42,7 +42,7 @@ export default class RoomItem extends Component {
   constructor(props) {
     super(props)
     let show = true
-    if (this.props.myBlocks.length != 0 && this.props.host) {
+    if (this.props.myBlocks && this.props.myBlocks.length != 0 && this.props.host) {
       for (let user in this.props.myBlocks) {
         if (user.id === this.props.host) {
           show = false
