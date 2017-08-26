@@ -79,7 +79,7 @@ export default class Chat extends Component {
   }
 
   sendImg = () => {
-    const { roomId, token } = this.props
+    const { roomId, token, sendAction } = this.props
     const options = {
       title: I18n.t('NewRoom.input.second.Cover.uploadTitle'),
       rotation: true,
@@ -108,7 +108,18 @@ export default class Chat extends Component {
           uri: res.uri,
           name: 'image',
         })
-        await api.uploadImage(formData)(roomId)(token)
+        const local_id = shortid.generate()
+        formData.append('local_id', local_id)
+        api.uploadImage(formData)(roomId)(token)
+        const time = moment().format('YYYY-MM-DDTHH:mm:ss')
+        sendAction({
+          text: '',
+          image: res.uri,
+          type: 1,
+          room: roomId,
+          local_id,
+          time,
+        })
         this.setState({ showMenu: false })
       }
     })

@@ -55,8 +55,13 @@ function* sendFlow(ws) {
     try {
       const { message } = yield take(SEND_MESSAGE)
       // console.log('message: ', message)
-      yield put({ type: SET_SEND_MESSAGE, message })
-      ws.send(JSON.stringify(message))
+      if (message.type === 0) {
+        yield put({ type: SET_SEND_MESSAGE, message })
+        ws.send(JSON.stringify(message))
+      }
+      else {
+        yield put({ type: SET_SEND_MESSAGE, message })
+      }
     } catch (error) {
       console.log('send message error: ', error)
     } finally {
