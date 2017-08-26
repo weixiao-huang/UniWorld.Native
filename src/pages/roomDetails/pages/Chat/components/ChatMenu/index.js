@@ -12,17 +12,17 @@ import {
   ItemText,
 } from './style'
 
-const ChatMenu = ({ sendImg }) => (
+const ChatMenu = ({ sendImg, toNotice }) => (
   <MainView>
     <ItemTouch onPress={sendImg}>
       <ItemImage source={ImageIconImg} />
       <ItemText>{I18n.t('Room.Chat.image')}</ItemText>
     </ItemTouch>
-    <ItemTouch>
+    <ItemTouch onPress={toNotice}>
       <ItemImage source={noticeIconImg} />
       <ItemText>{I18n.t('Room.Chat.notice')}</ItemText>
     </ItemTouch>
-    <ItemTouch>
+    <ItemTouch onPress={toNotice}>
       <ItemImage source={questionIconImg} />
       <ItemText>{I18n.t('Room.Chat.questionnaires')}</ItemText>
     </ItemTouch>

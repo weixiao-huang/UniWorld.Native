@@ -206,6 +206,7 @@ export default class Chat extends Component {
             </FooterView>
             {this.state.showMenu && <ChatMenu
               sendImg={this.sendImg}
+              toNotice={this.props.toNotice}
             />}
           </FooterContainerView>
         </KeyboardAvoidingView>
