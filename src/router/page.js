@@ -1,4 +1,8 @@
 import { StackNavigator } from 'react-navigation'
+import React from 'react'
+import { TouchableOpacity } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import styled from 'styled-components/native'
 import Login from '../pages/login'
 import RoomInfo from '../pages/roomInfo'
 import RoomDetails from '../pages/roomDetails'
@@ -24,6 +28,29 @@ const commonSettings = {
   headerTintColor: '#e9e9ef',
 }
 
+const StyledIcon = styled(Icon) `
+  color: white;
+  padding-right: 10px;
+`
+
+const shareSettings = {
+  headerStyle: {
+    backgroundColor: '#ec5367',
+  },
+  headerTitleStyle: {
+    color: 'white',
+  },
+  headerBackTitleStyle: {
+    color: '#e9e9ef',
+  },
+  gesturesEnabled: true,
+  headerTintColor: '#e9e9ef',
+  /*headerRight:
+  <TouchableOpacity>
+    <StyledIcon name="share" size={22} />
+  </TouchableOpacity>,*/
+}
+
 const AppRouteConfigs = {
   login: {
     screen: Login,
@@ -44,14 +71,14 @@ const AppRouteConfigs = {
     screen: RoomInfo,
     navigationOptions: {
       title: 'RoomInfo',
-      ...commonSettings,
+      ...shareSettings,
     },
   },
   roomDetails: {
     screen: RoomDetails,
     navigationOptions: {
       title: 'RoomDetails',
-      ...commonSettings,
+      ...shareSettings,
     },
   },
   userInfo: {
