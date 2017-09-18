@@ -148,7 +148,7 @@ export default class Chat extends Component {
           <ActivityIndicator animating color="#414755" />
           <SocketBreakText>
             {socketReconnect ?
-              '网络断了哦，正在尝试连接中' :
+              '连接中' :
               '失去连接，尝试重启应用'}
           </SocketBreakText>
         </SocketBreakView>}

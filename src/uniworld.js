@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { AppState, StatusBar } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
+import * as WeChat from 'react-native-wechat'
 import { FlexView } from './styles'
-
 import AppWithNavigationState from './router'
 import {
   POST_UNREAD_COUNT,
@@ -21,6 +21,7 @@ export default class UniWorld extends Component {
   }
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
+    WeChat.registerApp('wxe4964b21e33b8205')
     SplashScreen.hide()
   }
 

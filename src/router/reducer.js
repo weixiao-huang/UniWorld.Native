@@ -1,4 +1,5 @@
 import { NavigationActions } from 'react-navigation'
+
 import * as types from './types'
 
 import AppNavigator from './page'
@@ -11,6 +12,7 @@ import AppNavigator from './page'
 //   loginAction,
 //   tempNavState,
 // );
+
 
 export default (state, action) => {
   let nextState;

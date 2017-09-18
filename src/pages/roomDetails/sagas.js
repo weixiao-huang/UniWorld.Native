@@ -7,12 +7,16 @@ import { ResetUnreadMessage } from '@/auth/actions'
 import { handleApiErrors } from '@/lib/api-errors'
 
 import { SetMessageFailed } from '@/auth/actions'
-
+import {
+  FOLLOW_OR_UNFOLLOW_USER,
+  FOLLOW_OR_UNFOLLOW_SUCCESS,
+} from '@/pages/roomInfo/types'
 import {
   SET_ROOM_DETAILS,
   CLEAR_ROOM_DETAILS,
   SEND_ANNOUNCEMENT,
 } from './types'
+
 
 const fetchApi = (token, id) => (
   api.fetchQuestionnaires(id)(token)
@@ -46,6 +50,7 @@ export default function* () {
       }
       switch (action.type) {
         case navTypes.NAVIGATE_TO_ROOM_DETAILS: {
+          yield put({ type: FOLLOW_OR_UNFOLLOW_USER })
           if (!state.roomInfo.roomInfo ||
               state.roomInfo.roomInfo.id !== action.id) {
             yield put(ClearRoomInfo())
@@ -60,6 +65,7 @@ export default function* () {
             })
           }
           yield put(ResetUnreadMessage(id))
+          yield put({ type: FOLLOW_OR_UNFOLLOW_SUCCESS })
           break
         }
         case SEND_ANNOUNCEMENT:

@@ -2,7 +2,7 @@
   Page: RoomDetails
 */
 import React, { Component } from 'react'
-import { StyleSheet, Keyboard } from 'react-native'
+import { StyleSheet, Keyboard, StatusBar } from 'react-native'
 import I18n from 'react-native-i18n'
 import AnimatedScreen from '@/components/AnimatedScreen'
 
@@ -30,6 +30,10 @@ export default class RoomDetails extends Component {
     const { roomDetails, myId, hostId, navigation } = this.props
     return (
       <MainView>
+        <StatusBar
+          backgroundColor="white"
+          barStyle="light-content"
+        />
         <MainScrollTabView
           tabBarUnderlineStyle={styles.tabBarUnderline}
           tabBarBackgroundColor="#ec5367"

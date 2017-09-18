@@ -2,6 +2,7 @@ import { StackNavigator } from 'react-navigation'
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import * as wechat from 'react-native-wechat'
 import styled from 'styled-components/native'
 import Login from '../pages/login'
 import RoomInfo from '../pages/roomInfo'
@@ -45,10 +46,20 @@ const shareSettings = {
   },
   gesturesEnabled: true,
   headerTintColor: '#e9e9ef',
-  /*headerRight:
-  <TouchableOpacity>
+  headerRight:
+  <TouchableOpacity onPress={() => {
+    wechat.isWXAppInstalled()
+      .then((isInstalled) => {
+        if (isInstalled) {
+
+        } else {
+          console.log('没有安装微信软件，请您安装微信之后再试')
+        }
+      })
+  }
+  } >
     <StyledIcon name="share" size={22} />
-  </TouchableOpacity>,*/
+  </TouchableOpacity >,
 }
 
 const AppRouteConfigs = {

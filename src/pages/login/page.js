@@ -66,7 +66,7 @@ export default class Login extends Component {
           <Loading visible={requesting} />
           <KeyboardAvoidingView
             behavior="position"
-            keyboardVerticalOffset={-100}
+            keyboardVerticalOffset={-50}
           >
             <DropdownAlert
               ref={(e) => { this.dropdown = e }}
