@@ -10,6 +10,10 @@ const FlexCenter = css`
   align-items: center;
 `
 
+export const MainScroll = styled.ScrollView`
+  paddingTop: 80px;
+`
+
 export const MainView = styled.View`
   ${FlexView}
 `

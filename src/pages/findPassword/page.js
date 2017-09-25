@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StatusBar, Alert } from 'react-native'
+import { StatusBar, Alert, KeyboardAvoidingView } from 'react-native'
 import I18n from '@/locales'
 import BackgroundImage from '@/components/BackgroundImage'
 import Loading from '@/components/Loading'
@@ -9,6 +9,7 @@ import {
   BackgroundView,
   LogoImage,
   StyledButton,
+  MainScroll,
 } from './style'
 
 import Input from '../login/components/Input'
@@ -77,9 +78,9 @@ export default class Login extends Component {
     const {
       login: {
         requesting,
-        successful,
-        messages,
-        errors,
+      successful,
+      messages,
+      errors,
       },
     } = this.props
     return (
@@ -89,32 +90,39 @@ export default class Login extends Component {
           barStyle="light-content"
         />
         <BackgroundImage bgUrl={bgUrl}>
-          <Loading visible={requesting} />
-          <BackgroundView>
-            <LogoImage source={logoUrl} />
-            <Input
-              onChangeText={username => this.setState({ username })}
-              placeholder={I18n.t('Login.username')}
-              icon={userIcon}
-              maxLength={11}
-            />
-            <Input
-              onChangeText={email => this.setState({ email })}
-              placeholder={I18n.t('FindPassword.email')}
-              icon={emailIcon}
-              maxLength={50}
-            />
-            <StyledButton
-              title={I18n.t('FindPassword.findPassword')}
-              onPress={this.find}
-            />
-            <NavArea
-              nav1={this.login}
-              title1={I18n.t('Login.login')}
-              nav2={this.register}
-              title2={I18n.t('Login.register')}
-            />
-          </BackgroundView>
+          <KeyboardAvoidingView
+            behavior="position"
+            keyboardVerticalOffset={-30}
+          >
+            <MainScroll scrollEnabled={false}>
+              <Loading visible={requesting} />
+              <BackgroundView>
+                <LogoImage source={logoUrl} />
+                <Input
+                  onChangeText={username => this.setState({ username })}
+                  placeholder={I18n.t('Login.username')}
+                  icon={userIcon}
+                  maxLength={11}
+                />
+                <Input
+                  onChangeText={email => this.setState({ email })}
+                  placeholder={I18n.t('FindPassword.email')}
+                  icon={emailIcon}
+                  maxLength={50}
+                />
+                <StyledButton
+                  title={I18n.t('FindPassword.findPassword')}
+                  onPress={this.find}
+                />
+                <NavArea
+                  nav1={this.login}
+                  title1={I18n.t('Login.login')}
+                  nav2={this.register}
+                  title2={I18n.t('Login.register')}
+                />
+              </BackgroundView>
+            </MainScroll>
+          </KeyboardAvoidingView>
         </BackgroundImage>
       </MainView>
     )

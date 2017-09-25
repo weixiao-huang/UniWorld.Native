@@ -276,8 +276,6 @@ export default class Login extends Component {
                 secureTextEntry
                 icon={passIcon}
                 maxLength={20}
-                returnKeyType="go"
-                onSubmitEditing={this.register}
                 blurOnSubmit
               />
             <AgreementButton
@@ -297,9 +295,7 @@ export default class Login extends Component {
               nav2={this.login}
               title2={I18n.t('Register.login')}
             />
-
           </BackgroundView>
-
         </BackgroundImage>
       </MainView>
     )

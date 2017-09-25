@@ -69,7 +69,7 @@ export default class Login extends Component {
             behavior="position"
             keyboardVerticalOffset={-30}
           >
-          <MainScroll>
+          <MainScroll scrollEnabled={false}>
           <Loading visible={requesting} />
 
             <DropdownAlert
