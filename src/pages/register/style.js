@@ -11,6 +11,10 @@ const FlexCenter = css`
   align-items: center;
 `
 
+export const StyledKeyboardView = styled.KeyboardAvoidingView`
+  width: 100%;
+`
+
 export const MainView = styled.ScrollView`
   ${FlexView}
 `

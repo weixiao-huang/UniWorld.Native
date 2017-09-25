@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { StatusBar, Alert, KeyboardAvoidingView } from 'react-native'
+import { StatusBar, Alert, View } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 
 import I18n from '@/locales'
 import { handleApiErrors } from '@/lib/api-errors'
 import api from '@/api'
-
+import EmptyView from '@/components/EmptyView'
 import BackgroundImage from '@/components/BackgroundImage'
 import Loading from '@/components/Loading'
 
@@ -15,6 +15,7 @@ import {
   LogoImage,
   StyledButton,
   AgreementButton,
+  StyledKeyboardView,
 } from './style'
 
 import Input from '../login/components/Input'
@@ -233,41 +234,41 @@ export default class Login extends Component {
         />
         <BackgroundImage bgUrl={bgUrl}>
           <Loading visible={requesting} />
-          <KeyboardAvoidingView
-            behavior="position"
-            keyboardVerticalOffset={-30}
-          >
-            <BackgroundView>
-              <LogoImage source={logoUrl} />
+          <BackgroundView>
+            <LogoImage source={logoUrl} />
+            <Input
+              onChangeText={username => this.setState({ username })}
+              placeholder={I18n.t('Register.username')}
+              icon={userIcon}
+              maxLength={11}
+              blurOnSubmit
+            />
+            <AuthButton
+              emailAuth={() => this.setState({ emailAuth: true })}
+              stuAuth={() => this.setState({ emailAuth: false })}
+            />
+            {this.state.emailAuth ?
               <Input
-                onChangeText={username => this.setState({ username })}
-                placeholder={I18n.t('Register.username')}
-                icon={userIcon}
-                maxLength={11}
-              />
-              <AuthButton
-                emailAuth={() => this.setState({ emailAuth: true })}
-                stuAuth={() => this.setState({ emailAuth: false })}
-              />
-              {this.state.emailAuth ?
-                <Input
-                  onChangeText={email => this.setState({ email })}
-                  placeholder={I18n.t('Register.email')}
-                  icon={emailIcon}
-                  maxLength={50}
-                /> :
-                <UploadButton
-                  onPress={this.uploadImage}
-                  title={I18n.t('Register.addImage')}
-                  icon={stuIcon}
-                  image={this.state.stuCard}
-                />}
+                onChangeText={email => this.setState({ email })}
+                placeholder={I18n.t('Register.email')}
+                icon={emailIcon}
+                maxLength={50}
+                blurOnSubmit
+              /> :
+              <UploadButton
+                onPress={this.uploadImage}
+                title={I18n.t('Register.addImage')}
+                icon={stuIcon}
+                image={this.state.stuCard}
+              />}
+
               <Input
                 onChangeText={password => this.setState({ password })}
                 placeholder={I18n.t('Register.password')}
                 secureTextEntry
                 icon={passIcon}
                 maxLength={20}
+                blurOnSubmit
               />
               <Input
                 onChangeText={passwordAgain => this.setState({ passwordAgain })}
@@ -275,26 +276,30 @@ export default class Login extends Component {
                 secureTextEntry
                 icon={passIcon}
                 maxLength={20}
+                returnKeyType="go"
+                onSubmitEditing={this.register}
+                blurOnSubmit
               />
-              <AgreementButton
-                title={I18n.t('SignInfo.second.agreement')}
-                onPress={this.agreement}
-                textStyle={{
-                  color: '#ffffff', paddingBottom: 0, fontSize: 13, textAlign: 'left', paddingLeft: 0, paddingRight: 0,
-                }}
-              />
-              <StyledButton
-                title={I18n.t('Register.register')}
-                onPress={this.register}
-              />
-              <NavArea
-                nav1={this.findPassword}
-                title1={I18n.t('Register.findPassword')}
-                nav2={this.login}
-                title2={I18n.t('Register.login')}
-              />
-            </BackgroundView>
-          </KeyboardAvoidingView>
+            <AgreementButton
+              title={I18n.t('SignInfo.second.agreement')}
+              onPress={this.agreement}
+              textStyle={{
+                color: '#ffffff', paddingBottom: 0, fontSize: 13, textAlign: 'left', paddingLeft: 0, paddingRight: 0,
+              }}
+            />
+            <StyledButton
+              title={I18n.t('Register.register')}
+              onPress={this.register}
+            />
+            <NavArea
+              nav1={this.findPassword}
+              title1={I18n.t('Register.findPassword')}
+              nav2={this.login}
+              title2={I18n.t('Register.login')}
+            />
+
+          </BackgroundView>
+
         </BackgroundImage>
       </MainView>
     )

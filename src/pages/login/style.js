@@ -13,14 +13,16 @@ const FlexCenter = css`
 export const MainView = styled.View`
   ${FlexView}
 `
-
+export const MainScroll = styled.ScrollView`
+  paddingTop: 80px;
+`
 export const MainText = styled.Text`
 `
 
 export const BackgroundView = styled.View`
   ${FlexCenter}
-  height: 96%;
-  margin: 10px 40px;
+  height: 100%;
+  padding: 10px 40px;
 `
 
 export const LogoImage = styled.Image`

@@ -11,6 +11,7 @@ import {
   BackgroundView,
   LogoImage,
   StyledButton,
+  MainScroll,
 } from './style'
 
 import Input from './components/Input'
@@ -62,12 +63,15 @@ export default class Login extends Component {
           backgroundColor="white"
           barStyle="light-content"
         />
+
         <BackgroundImage bgUrl={bgUrl}>
-          <Loading visible={requesting} />
           <KeyboardAvoidingView
             behavior="position"
             keyboardVerticalOffset={-30}
           >
+          <MainScroll>
+          <Loading visible={requesting} />
+
             <DropdownAlert
               ref={(e) => { this.dropdown = e }}
             />
@@ -80,6 +84,7 @@ export default class Login extends Component {
                 icon={userIcon}
                 maxLength={11}
                 underlineColorAndroid="transparent"
+                blurOnSubmit
               />
               <Input
                 onChangeText={password => this.setState({ password })}
@@ -88,6 +93,8 @@ export default class Login extends Component {
                 icon={passIcon}
                 maxLength={20}
                 underlineColorAndroid="transparent"
+                returnKeyType="go"
+                onSubmitEditing={this.login}
               />
               <StyledButton
                 title={I18n.t('Login.login')}
@@ -99,7 +106,10 @@ export default class Login extends Component {
                 nav2={this.register}
                 title2={I18n.t('Login.register')}
               />
+
             </BackgroundView>
+
+          </MainScroll>
           </KeyboardAvoidingView>
         </BackgroundImage>
       </MainView>
